@@ -2,8 +2,10 @@
 
 #include "World.h"
 
+#include <LaggySdk/EventHandler.h>
 
-class Session
+
+class Session : public Sdk::EventHandler
 {
 public:
   void setWorld(std::unique_ptr<World> i_world);

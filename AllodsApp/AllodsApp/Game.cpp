@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 
-#include "GameEvents.h"
+#include "SessionEvents.h"
 #include "SessionLoader.h"
 
 #include <LaggyDx/GameSettings.h>
@@ -24,37 +24,57 @@ Game::Game()
 }
 
 
+Session* Game::getSession() const { return d_session.get(); }
+
+
 void Game::onGameStart()
 {
+  createViewController();
   startNewSession();
 }
 
-
-bool Game::hasSession() const
+void Game::update(double i_dt)
 {
-  return d_session.get() != nullptr;
+  if (d_viewController)
+    d_viewController->update(i_dt);
 }
+
+void Game::render()
+{
+  if (d_viewController)
+    d_viewController->render();
+}
+
 
 void Game::attachSession(std::unique_ptr<Session> i_session)
 {
-  if (hasSession())
+  CONTRACT_EXPECT(d_session.get() != i_session.get());
+
+  if (d_session)
     detachSession();
 
   d_session = std::move(i_session);
-  notify(SessionAttachedEvent(*this));
+
+  if (d_session)
+    notify(SessionAttachedEvent(*d_session));
 }
 
 void Game::detachSession()
 {
-  if (hasSession())
-  {
-    d_session.reset();
-    notify(SessionDetachedEvent(*this));
-  }
+  CONTRACT_EXPECT(d_session);
+
+  notify(SessionDetachedEvent(*d_session));
+  d_session.reset();
 }
 
 void Game::startNewSession()
 {
   auto newSession = SessionLoader().createNew();
   attachSession(std::make_unique<Session>(std::move(newSession)));
+}
+
+
+void Game::createViewController()
+{
+  d_viewController = std::make_unique<ViewController>(*this);
 }

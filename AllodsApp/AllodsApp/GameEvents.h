@@ -21,16 +21,3 @@ public:
 private:
   Game& d_game;
 };
-
-
-class SessionAttachedEvent : public GameEvent
-{
-public:
-  using GameEvent::GameEvent;
-};
-
-class SessionDetachedEvent : public GameEvent
-{
-public:
-  using GameEvent::GameEvent;
-};

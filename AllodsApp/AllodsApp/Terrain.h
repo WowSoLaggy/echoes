@@ -8,6 +8,9 @@ class Terrain
 public:
   Terrain(const int i_sizeX, const int i_sizeY);
 
+  int getSizeX() const;
+  int getSizeY() const;
+
   void setTerrainType(const TerrainType i_type, const int i_x, const int i_y);
   TerrainType getTerrainType(const int i_x, const int i_y) const;
 

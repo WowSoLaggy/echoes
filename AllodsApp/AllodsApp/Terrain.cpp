@@ -10,6 +10,17 @@ Terrain::Terrain(const int i_sizeX, const int i_sizeY)
 }
 
 
+int Terrain::getSizeX() const
+{
+  return d_sizeX;
+}
+
+int Terrain::getSizeY() const
+{
+  return d_sizeY;
+}
+
+
 void Terrain::setTerrainType(const TerrainType i_type, const int i_x, const int i_y)
 {
   d_tiles[getIndex(i_x, i_y)] = i_type;

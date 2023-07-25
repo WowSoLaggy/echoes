@@ -3,7 +3,7 @@
 
 
 TerrainTypeRng::TerrainTypeRng()
-  : d_rng(0, (int)TerrainType::Count)
+  : d_rng(0, (int)TerrainType::Count - 1)
 {
 }
 

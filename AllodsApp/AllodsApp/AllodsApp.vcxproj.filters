@@ -13,6 +13,18 @@
     <Filter Include="src\Session">
       <UniqueIdentifier>{9b0114d9-032e-4ff4-98d5-e2849b5773b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Events">
+      <UniqueIdentifier>{a6fcd85b-5a06-41c5-9dc4-c89b7df80e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\View">
+      <UniqueIdentifier>{7a6f60a9-8fd5-4b04-bdc4-1e07e303aeb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\View\ViewController">
+      <UniqueIdentifier>{6bf2b0e8-3ef8-4cf0-8afc-fd01808df159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\View\TerrainView">
+      <UniqueIdentifier>{87c5884b-03c8-485b-a43e-9413889e5ff1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,6 +56,15 @@
     </ClCompile>
     <ClCompile Include="SessionLoader.cpp">
       <Filter>src\Session</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewController.cpp">
+      <Filter>src\View\ViewController</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainView.cpp">
+      <Filter>src\View\TerrainView</Filter>
+    </ClCompile>
+    <ClCompile Include="TerrainTextures.cpp">
+      <Filter>src\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -77,11 +98,26 @@
     <ClInclude Include="SessionLoader.h">
       <Filter>src\Session</Filter>
     </ClInclude>
-    <ClInclude Include="GameEvents.h">
-      <Filter>src\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Fwd.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewController.h">
+      <Filter>src\View\ViewController</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEvents.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionEvents.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldEvents.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainView.h">
+      <Filter>src\View\TerrainView</Filter>
+    </ClInclude>
+    <ClInclude Include="TerrainTextures.h">
+      <Filter>src\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
