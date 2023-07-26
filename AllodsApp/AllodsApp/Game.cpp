@@ -4,14 +4,14 @@
 #include "SessionEvents.h"
 #include "SessionLoader.h"
 
-#include <LaggyDx/GameSettings.h>
+#include <LaggyDx/AppSettings.h>
 
 
 namespace
 {
-  const Dx::GameSettings& getGameSettings()
+  const Dx::AppSettings& getAppSettings()
   {
-    static Dx::GameSettings settings;
+    static Dx::AppSettings settings;
     return settings;
   }
 
@@ -19,7 +19,7 @@ namespace
 
 
 Game::Game()
-  : Dx::Game(getGameSettings())
+  : Dx::App(getAppSettings())
 {
 }
 
@@ -27,7 +27,7 @@ Game::Game()
 Session* Game::getSession() const { return d_session.get(); }
 
 
-void Game::onGameStart()
+void Game::onStart()
 {
   createViewController();
   startNewSession();

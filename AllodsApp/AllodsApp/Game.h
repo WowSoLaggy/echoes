@@ -3,10 +3,10 @@
 #include "Session.h"
 #include "ViewController.h"
 
-#include <LaggyDx/Game.h>
+#include <LaggyDx/App.h>
 
 
-class Game : public Dx::Game
+class Game : public Dx::App
 {
 public:
   Game();
@@ -23,7 +23,7 @@ private:
 
   void createViewController();
 
-  virtual void onGameStart() override;
+  virtual void onStart() override;
   virtual void update(double i_dt) override;
   virtual void render() override;
 };

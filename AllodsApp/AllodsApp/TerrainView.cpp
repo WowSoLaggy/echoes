@@ -5,7 +5,7 @@
 #include "TerrainTextures.h"
 
 #include <LaggyDx/AnimatedSprite.h>
-#include <LaggyDx/Game.h>
+#include <LaggyDx/App.h>
 #include <LaggyDx/IRenderer2d.h>
 
 
@@ -23,7 +23,7 @@ void TerrainView::update(double i_dt)
 void TerrainView::render() const
 {
   constexpr int TileSize = 64;
-  const auto& rc = Dx::Game::get().getResourceController();
+  const auto& rc = Dx::App::get().getResourceController();
 
   Dx::AnimatedSprite sprite;
   sprite.setSize({ TileSize, TileSize });
