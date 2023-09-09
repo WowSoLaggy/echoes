@@ -9,10 +9,11 @@
 #include <LaggyDx/IRenderer2d.h>
 
 
-TerrainView::TerrainView(const Terrain& i_terrain, Dx::IRenderer2d& i_renderer)
+TerrainView::TerrainView(const Terrain& i_terrain)
   : d_terrain(i_terrain)
-  , d_renderer(i_renderer)
+  , d_spriteShader(Dx::ISpriteShader::create())
 {
+  CONTRACT_ASSERT(d_spriteShader);
 }
 
 
@@ -38,7 +39,7 @@ void TerrainView::render() const
 
       sprite.setPosition({ x * TileSize, y * TileSize });
 
-      d_renderer.renderSprite(sprite);
+      d_spriteShader->draw(sprite);
     }
   }
 }

@@ -2,18 +2,19 @@
 
 #include "Fwd.h"
 
+#include <LaggyDx/ISpriteShader.h>
 #include <LaggyDx/LaggyDxFwd.h>
 
 
 class TerrainView
 {
 public:
-  explicit TerrainView(const Terrain& i_terrain, Dx::IRenderer2d& i_renderer);
+  TerrainView(const Terrain& i_terrain);
 
   void update(double i_dt);
   void render() const;
 
 private:
   const Terrain& d_terrain;
-  Dx::IRenderer2d& d_renderer;
+  std::unique_ptr<Dx::ISpriteShader> d_spriteShader;
 };

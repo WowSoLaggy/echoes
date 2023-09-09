@@ -3,7 +3,6 @@
 #include "Fwd.h"
 #include "TerrainView.h"
 
-#include <LaggyDx/IRenderer2d.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -17,7 +16,6 @@ public:
   void render();
 
 private:
-  std::unique_ptr<Dx::IRenderer2d> d_renderer;
   std::unique_ptr<TerrainView> d_terrainView;
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;

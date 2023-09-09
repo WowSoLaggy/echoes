@@ -15,8 +15,6 @@ ViewController::ViewController(Game& i_game)
   connectTo(i_game);
   if (auto* session = i_game.getSession())
     onSessionAttached(*session);
-
-  d_renderer = Dx::IRenderer2d::create(i_game.getRenderDevice(), i_game.getRenderDevice().getResolution());
 }
 
 ViewController::~ViewController()
@@ -33,8 +31,6 @@ void ViewController::update(double i_dt)
 
 void ViewController::render()
 {
-  const Dx::Renderer2dGuard rendererGuard(*d_renderer);
-
   if (d_terrainView)
     d_terrainView->render();
 }
@@ -94,7 +90,7 @@ void ViewController::onTerrainAdded(const Terrain& i_terrain)
 {
   CONTRACT_EXPECT(d_terrainView == nullptr);
 
-  d_terrainView = std::make_unique<TerrainView>(i_terrain, *d_renderer);
+  d_terrainView = std::make_unique<TerrainView>(i_terrain);
 }
 
 void ViewController::onTerrainRemoved()
