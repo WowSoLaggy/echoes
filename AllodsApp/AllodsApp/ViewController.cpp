@@ -32,7 +32,7 @@ void ViewController::update(double i_dt)
 void ViewController::render()
 {
   if (d_terrainView)
-    d_terrainView->render();
+    d_terrainView->render(SAFE_DEREF(d_worldShader));
 }
 
 
@@ -59,6 +59,9 @@ void ViewController::onSessionAttached(Session& i_session)
 {
   connectTo(i_session);
   
+  d_worldShader = Dx::ISpriteShader::create(&i_session.getCamera());
+  CONTRACT_ASSERT(d_worldShader);
+
   if (auto* world = i_session.getWorld())
     onWorldAdded(*world);
 }
@@ -67,6 +70,8 @@ void ViewController::onSessionDetached(Session& i_session)
 {
   if (auto* world = i_session.getWorld())
     onWorldRemoved(*world);
+
+  d_worldShader.reset();
   
   disconnectFrom(i_session);
 }

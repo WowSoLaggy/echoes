@@ -6,14 +6,12 @@
 
 #include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/App.h>
-#include <LaggyDx/IRenderer2d.h>
+#include <LaggyDx/ISpriteShader.h>
 
 
 TerrainView::TerrainView(const Terrain& i_terrain)
   : d_terrain(i_terrain)
-  , d_spriteShader(Dx::ISpriteShader::create())
 {
-  CONTRACT_ASSERT(d_spriteShader);
 }
 
 
@@ -21,7 +19,7 @@ void TerrainView::update(double i_dt)
 {
 }
 
-void TerrainView::render() const
+void TerrainView::render(const Dx::ISpriteShader& i_shader) const
 {
   constexpr int TileSize = 64;
   const auto& rc = Dx::App::get().getResourceController();
@@ -39,7 +37,7 @@ void TerrainView::render() const
 
       sprite.setPosition({ x * TileSize, y * TileSize });
 
-      d_spriteShader->draw(sprite);
+      i_shader.draw(sprite);
     }
   }
 }

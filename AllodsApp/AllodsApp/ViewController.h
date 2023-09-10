@@ -3,6 +3,7 @@
 #include "Fwd.h"
 #include "TerrainView.h"
 
+#include <LaggyDx/ISpriteShader.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -16,6 +17,8 @@ public:
   void render();
 
 private:
+  std::unique_ptr<Dx::ISpriteShader> d_worldShader;
+
   std::unique_ptr<TerrainView> d_terrainView;
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
