@@ -7,8 +7,6 @@
 #include "World.h"
 #include "WorldEvents.h"
 
-#include <LaggyDx/Renderer2dGuard.h>
-
 
 ViewController::ViewController(Game& i_game)
 {
