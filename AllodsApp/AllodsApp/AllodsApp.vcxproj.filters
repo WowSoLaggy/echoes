@@ -22,8 +22,6 @@
     <Filter Include="src\View\ViewController">
       <UniqueIdentifier>{6bf2b0e8-3ef8-4cf0-8afc-fd01808df159}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\View\TerrainView">
-      <UniqueIdentifier>{87c5884b-03c8-485b-a43e-9413889e5ff1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,18 +37,6 @@
     <ClCompile Include="World.cpp">
       <Filter>src\World</Filter>
     </ClCompile>
-    <ClCompile Include="Terrain.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
-    <ClCompile Include="RandomWorldGenerator.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
-    <ClCompile Include="RandomTerrainGenerator.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainTypeRng.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
     <ClCompile Include="Session.cpp">
       <Filter>src\Session</Filter>
     </ClCompile>
@@ -60,11 +46,6 @@
     <ClCompile Include="ViewController.cpp">
       <Filter>src\View\ViewController</Filter>
     </ClCompile>
-    <ClCompile Include="TerrainView.cpp">
-      <Filter>src\View\TerrainView</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainTextures.cpp">
-      <Filter>src\World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -75,21 +56,6 @@
       <Filter>src\Game</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
-    <ClInclude Include="Terrain.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainType.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomWorldGenerator.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomTerrainGenerator.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainTypeRng.h">
       <Filter>src\World</Filter>
     </ClInclude>
     <ClInclude Include="Session.h">
@@ -113,11 +79,6 @@
     <ClInclude Include="WorldEvents.h">
       <Filter>src\Events</Filter>
     </ClInclude>
-    <ClInclude Include="TerrainView.h">
-      <Filter>src\View\TerrainView</Filter>
-    </ClInclude>
-    <ClInclude Include="TerrainTextures.h">
-      <Filter>src\World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

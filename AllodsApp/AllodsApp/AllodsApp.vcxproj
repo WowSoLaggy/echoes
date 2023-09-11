@@ -145,7 +145,6 @@
   <ItemGroup>
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="RandomTerrainGenerator.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionLoader.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -154,31 +153,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Terrain.cpp" />
-    <ClCompile Include="TerrainTextures.cpp" />
-    <ClCompile Include="TerrainTypeRng.cpp" />
-    <ClCompile Include="TerrainView.cpp" />
     <ClCompile Include="ViewController.cpp" />
     <ClCompile Include="World.cpp" />
-    <ClCompile Include="RandomWorldGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
-    <ClInclude Include="RandomTerrainGenerator.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SessionEvents.h" />
     <ClInclude Include="SessionLoader.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Terrain.h" />
-    <ClInclude Include="TerrainTextures.h" />
-    <ClInclude Include="TerrainType.h" />
-    <ClInclude Include="TerrainTypeRng.h" />
-    <ClInclude Include="TerrainView.h" />
     <ClInclude Include="ViewController.h" />
     <ClInclude Include="World.h" />
-    <ClInclude Include="RandomWorldGenerator.h" />
     <ClInclude Include="WorldEvents.h" />
   </ItemGroup>
   <ItemGroup>
