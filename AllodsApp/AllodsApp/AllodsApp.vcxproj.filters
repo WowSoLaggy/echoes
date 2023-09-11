@@ -22,6 +22,8 @@
     <Filter Include="src\View\ViewController">
       <UniqueIdentifier>{6bf2b0e8-3ef8-4cf0-8afc-fd01808df159}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\View\BackgroundView">
+      <UniqueIdentifier>{dfeecdbd-6809-4350-be28-6386ffac95f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +48,8 @@
     <ClCompile Include="ViewController.cpp">
       <Filter>src\View\ViewController</Filter>
     </ClCompile>
+    <ClCompile Include="BackgroundView.cpp">
+      <Filter>src\View\BackgroundView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +83,8 @@
     <ClInclude Include="WorldEvents.h">
       <Filter>src\Events</Filter>
     </ClInclude>
+    <ClInclude Include="BackgroundView.h">
+      <Filter>src\View\BackgroundView</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
