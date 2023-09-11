@@ -3,10 +3,13 @@
 
 #include "WorldEvents.h"
 
+#include <LaggyDx/FreeCamera2Controller.h>
+
 
 Session::Session()
 {
   d_camera = Dx::ICamera2::create();
+  d_inputController = std::make_unique<Dx::FreeCamera2Controller>(*d_camera);
 }
 
 

@@ -3,6 +3,7 @@
 #include "World.h"
 
 #include <LaggyDx/ICamera2.h>
+#include <LaggyDx/IInputController.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -18,5 +19,6 @@ public:
 
 private:
   std::unique_ptr<Dx::ICamera2> d_camera;
+  std::unique_ptr<Dx::IInputController> d_inputController;
   std::unique_ptr<World> d_world;
 };
