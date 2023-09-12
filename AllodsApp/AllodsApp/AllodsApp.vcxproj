@@ -145,7 +145,11 @@
   <ItemGroup>
     <ClCompile Include="BackgroundView.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game_session.cpp" />
+    <ClCompile Include="Game_state.cpp" />
+    <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionLoader.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -154,21 +158,35 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Structure.cpp" />
+    <ClCompile Include="StructurePrototypeLoader.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileView.cpp" />
     <ClCompile Include="ViewController.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
+    <ClInclude Include="GameStates.h" />
+    <ClInclude Include="Layers.h" />
+    <ClInclude Include="PrototypesCollection.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SessionEvents.h" />
     <ClInclude Include="SessionLoader.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Structure.h" />
+    <ClInclude Include="StructurePrototype.h" />
+    <ClInclude Include="StructurePrototypeLoader.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileView.h" />
     <ClInclude Include="ViewController.h" />
     <ClInclude Include="World.h" />
     <ClInclude Include="WorldEvents.h" />
+    <ClInclude Include="WorldLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LaggyDx\LaggyDx\LaggyDx.vcxproj">

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fwd.h"
+#include "TileView.h"
 
 #include <LaggyDx/ISpriteShader.h>
 #include <LaggySdk/EventHandler.h>
@@ -17,6 +18,8 @@ public:
 
 private:
   std::unique_ptr<Dx::ISpriteShader> d_worldShader;
+  TileView d_tileView;
+  World* d_world = nullptr;
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 

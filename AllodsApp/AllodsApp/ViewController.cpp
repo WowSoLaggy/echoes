@@ -27,6 +27,8 @@ void ViewController::update(double i_dt)
 
 void ViewController::render()
 {
+  if (d_world)
+    d_tileView.render(SAFE_DEREF(d_worldShader), d_world->getTiles());
 }
 
 
@@ -67,10 +69,12 @@ void ViewController::onSessionDetached(Session& i_session)
 
 void ViewController::onWorldAdded(World& i_world)
 {
+  d_world = &i_world;
   connectTo(i_world);
 }
 
 void ViewController::onWorldRemoved(World& i_world)
 {
   disconnectFrom(i_world);
+  d_world = nullptr;
 }
