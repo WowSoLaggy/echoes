@@ -3,6 +3,8 @@
 
 #include "PrototypesCollection.h"
 
+#include <LaggySdk/Files.h>
+
 
 void Game::checkState()
 {
@@ -59,7 +61,9 @@ bool Game::loadResources()
   try
   {
     getResourceController().loadResources();
-    //PrototypesCollection::load();
+
+    const fs::path configsPath = Sdk::getExeFolder() / getSettings().dataFolder / "Configs";
+    PrototypesCollection::load(configsPath);
   }
   catch (...)
   {

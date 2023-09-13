@@ -6,10 +6,9 @@
 class PrototypesCollection
 {
 public:
-  void load(const fs::path& i_prototypesFolder);
+  PrototypesCollection() = delete;
 
-  const StructurePrototype& getStructurePrototype(const std::string& i_name) const;
+  static void load(const fs::path& i_prototypesFolder);
 
-private:
-  std::unordered_map<std::string, StructurePrototype> d_structurePrototypes;
+  static const StructurePrototype& getStructurePrototype(const std::string& i_name);
 };

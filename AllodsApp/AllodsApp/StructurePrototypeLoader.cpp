@@ -41,6 +41,8 @@ std::vector<StructurePrototype> StructurePrototypeLoader::load(const fs::path& i
     proto.name = protoName;
     proto.textureName = protoNode["TextureName"].asString();
     proto.layer = getLayerByName(protoNode["Layer"].asString());
+
+    prototypes.push_back(std::move(proto));
   }
 
   return prototypes;

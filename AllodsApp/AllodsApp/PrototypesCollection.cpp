@@ -4,6 +4,13 @@
 #include "StructurePrototypeLoader.h"
 
 
+namespace
+{
+  std::unordered_map<std::string, StructurePrototype> d_structurePrototypes;
+
+} // anonym NS
+
+
 void PrototypesCollection::load(const fs::path& i_prototypesFolder)
 {
   CONTRACT_EXPECT(fs::exists(i_prototypesFolder));
@@ -16,7 +23,7 @@ void PrototypesCollection::load(const fs::path& i_prototypesFolder)
 }
 
 
-const StructurePrototype& PrototypesCollection::getStructurePrototype(const std::string& i_name) const
+const StructurePrototype& PrototypesCollection::getStructurePrototype(const std::string& i_name)
 {
   return d_structurePrototypes.at(i_name);
 }
