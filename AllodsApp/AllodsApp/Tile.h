@@ -6,15 +6,20 @@
 #include <LaggySdk/Vector.h>
 
 
+using LayersMap = std::map<Layer, StructurePtr>;
+
+
 class Tile
 {
 public:
   void update(double i_dt);
 
+  const LayersMap& getLayers() const;
+
   void setStructure(Layer i_layer, StructurePtr i_structure);
 
 private:
-  std::unordered_map<Layer, StructurePtr> d_structures;
+  LayersMap d_layers;
 };
 
 using Tiles = std::unordered_map<TileCoord, Tile, Sdk::Vector2_hash>;
