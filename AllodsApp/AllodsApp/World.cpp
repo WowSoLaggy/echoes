@@ -13,3 +13,8 @@ const Tiles& World::getTiles() const
 {
   return d_tiles;
 }
+
+Tile& World::getOrCreateTile(const TileCoord& i_coord)
+{
+  return d_tiles[i_coord];
+}

@@ -6,7 +6,7 @@
 
 namespace
 {
-  std::unordered_map<std::string, StructurePrototype> d_structurePrototypes;
+  std::unordered_map<PrototypeName, StructurePrototype> d_structurePrototypes;
 
 } // anonym NS
 
@@ -23,7 +23,7 @@ void PrototypesCollection::load(const fs::path& i_prototypesFolder)
 }
 
 
-const StructurePrototype& PrototypesCollection::getStructurePrototype(const std::string& i_name)
+const StructurePrototype& PrototypesCollection::getStructurePrototype(const PrototypeName& i_name)
 {
   return d_structurePrototypes.at(i_name);
 }

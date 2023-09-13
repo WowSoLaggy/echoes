@@ -1,11 +1,12 @@
 #pragma once
 
+#include "Fwd.h"
 #include "Layers.h"
 
 
 struct StructurePrototype
 {
-  std::string name;
+  PrototypeName name;
   std::string textureName;
   Layer layer;
 };

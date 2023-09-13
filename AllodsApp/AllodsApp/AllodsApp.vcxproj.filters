@@ -54,7 +54,7 @@
     <ClCompile Include="Tile.cpp">
       <Filter>src\World</Filter>
     </ClCompile>
-    <ClCompile Include="WorldLoader.cpp">
+    <ClCompile Include="WorldCreator.cpp">
       <Filter>src\World</Filter>
     </ClCompile>
     <ClCompile Include="Structure.cpp">
@@ -80,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="Game_state.cpp">
       <Filter>src\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsSpawner.cpp">
+      <Filter>src\World\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,7 +119,7 @@
     <ClInclude Include="Tile.h">
       <Filter>src\World</Filter>
     </ClInclude>
-    <ClInclude Include="WorldLoader.h">
+    <ClInclude Include="WorldCreator.h">
       <Filter>src\World</Filter>
     </ClInclude>
     <ClInclude Include="Structure.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="GameStates.h">
       <Filter>src\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectsSpawner.h">
+      <Filter>src\World\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
