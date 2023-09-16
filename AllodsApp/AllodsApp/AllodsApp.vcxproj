@@ -147,6 +147,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
+    <ClCompile Include="GuiManager.cpp" />
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
     <ClInclude Include="GameStates.h" />
+    <ClInclude Include="GuiManager.h" />
     <ClInclude Include="Layers.h" />
     <ClInclude Include="PrototypesCollection.h" />
     <ClInclude Include="Session.h" />

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameStates.h"
+#include "GuiManager.h"
 #include "Session.h"
 #include "ViewController.h"
 
@@ -22,6 +23,9 @@ private:
   void onGameLoaded();
   std::future<bool> d_loadResourcesFuture;
   bool loadResources();
+
+
+  GuiManager d_guiManager;
 
 
   std::unique_ptr<Session> d_session;

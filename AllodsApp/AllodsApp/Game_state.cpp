@@ -32,6 +32,8 @@ void Game::onNotLoaded()
   createViewController();
   d_loadResourcesFuture = std::async(&Game::loadResources, this);
 
+  d_guiManager.showLoadingScreen();
+
   d_state = GameState::Loading;
 }
 
@@ -52,7 +54,10 @@ void Game::onLoading()
 void Game::onGameLoaded()
 {
   d_state = GameState::Loaded;
-  startNewSession();
+  d_guiManager.hideLoadingScreen();
+  d_guiManager.createMainMenu();
+
+  getInputDevice().showCursor();
 }
 
 

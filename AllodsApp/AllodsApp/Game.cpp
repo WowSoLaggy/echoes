@@ -17,6 +17,7 @@ namespace
 
 Game::Game()
   : Dx::App(getAppSettings())
+  , d_guiManager(getForm())
 {
 }
 

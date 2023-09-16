@@ -28,6 +28,9 @@
     <Filter Include="src\World\Prototypes">
       <UniqueIdentifier>{a9e2c0db-f407-480a-bd16-c39061d2d113}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GuiManager">
+      <UniqueIdentifier>{44c5d645-8436-415b-be99-f604882895e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="ObjectsSpawner.cpp">
       <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager.cpp">
+      <Filter>src\GuiManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="ObjectsSpawner.h">
       <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiManager.h">
+      <Filter>src\GuiManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
