@@ -15,6 +15,9 @@ public:
 
   Session* getSession() const;
 
+  void onNewGame();
+  void onExit();
+
 private:
   GameState d_state = GameState::NotLoaded;
   void checkState();

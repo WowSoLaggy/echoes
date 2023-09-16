@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "GuiManager.h"
 
+#include "Game.h"
+
 #include <LaggyDx/App.h>
 #include <LaggyDx/Button.h>
 #include <LaggyDx/IResourceController.h>
@@ -61,19 +63,19 @@ namespace
 } // anonym NS
 
 
-GuiManager::GuiManager(Dx::IControl& i_rootControl)
-  : d_rootControl(i_rootControl)
+GuiManager::GuiManager(Game& i_game)
+  : d_game(i_game)
 {
 }
 
 
 void GuiManager::showLoadingScreen()
 {
-  auto& background = createPanel(d_rootControl);
+  auto& background = createPanel(d_game.getForm());
   background.setTexture(getTexture("Black.png"));
   background.setSize(getResolution().getVector<float>());
 
-  auto& layout = createLayout(d_rootControl);
+  auto& layout = createLayout(d_game.getForm());
   layout.setSize(getResolution().getVector<float>());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
@@ -83,17 +85,17 @@ void GuiManager::showLoadingScreen()
 
 void GuiManager::hideLoadingScreen()
 {
-  d_rootControl.removeChildren();
+  d_game.getForm().removeChildren();
 }
 
 
 void GuiManager::createMainMenu()
 {
-  auto& background = createPanel(d_rootControl);
+  auto& background = createPanel(d_game.getForm());
   background.setTexture(getTexture("Black.png"));
   background.setSize(getResolution().getVector<float>());
 
-  auto& layout = createLayout(d_rootControl);
+  auto& layout = createLayout(d_game.getForm());
   layout.setSize(getResolution().getVector<float>());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
   layout.setOffsetBetweenElements(16);
@@ -101,10 +103,17 @@ void GuiManager::createMainMenu()
   {
     auto& btn = createButton(layout);
     btn.setText("New Game");
+    btn.setOnPress(std::bind(&Game::onNewGame, &d_game));
   }
 
   {
     auto& btn = createButton(layout);
     btn.setText("Exit");
+    btn.setOnPress(std::bind(&Game::onExit, &d_game));
   }
+}
+
+void GuiManager::hideMainMenu()
+{
+  d_game.getForm().removeChildren();
 }

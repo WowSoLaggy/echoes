@@ -17,7 +17,7 @@ namespace
 
 Game::Game()
   : Dx::App(getAppSettings())
-  , d_guiManager(getForm())
+  , d_guiManager(*this)
 {
 }
 
@@ -45,4 +45,16 @@ void Game::render()
 void Game::createViewController()
 {
   d_viewController = std::make_unique<ViewController>(*this);
+}
+
+
+void Game::onNewGame()
+{
+  d_guiManager.hideMainMenu();
+  startNewSession();
+}
+
+void Game::onExit()
+{
+  stop();
 }
