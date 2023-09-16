@@ -1,8 +1,10 @@
 #pragma once
 
+#include "BackgroundView.h"
 #include "Fwd.h"
 #include "TileView.h"
 
+#include <LaggyDx/LaggyDxFwd.h>
 #include <LaggyDx/ISpriteShader.h>
 #include <LaggySdk/EventHandler.h>
 
@@ -18,8 +20,10 @@ public:
 
 private:
   std::unique_ptr<Dx::ISpriteShader> d_worldShader;
-  TileView d_tileView;
-  World* d_world = nullptr;
+  const BackgroundView d_backgroundView;
+  const TileView d_tileView;
+  const Dx::ICamera2* d_camera = nullptr;
+  const World* d_world = nullptr;
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 

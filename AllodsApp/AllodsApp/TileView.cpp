@@ -24,7 +24,7 @@ namespace
 } // anonym NS
 
 
-void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles)
+void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) const
 {
   // TODO: ae Remove this const from here
   constexpr int TileSize = 64;

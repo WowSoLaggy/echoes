@@ -28,7 +28,10 @@ void ViewController::update(double i_dt)
 void ViewController::render()
 {
   if (d_world)
+  {
+    d_backgroundView.render(SAFE_DEREF(d_worldShader), SAFE_DEREF(d_camera));
     d_tileView.render(SAFE_DEREF(d_worldShader), d_world->getTiles());
+  }
 }
 
 
@@ -49,8 +52,10 @@ void ViewController::processEvent(const Sdk::IEvent& i_event)
 void ViewController::onSessionAttached(Session& i_session)
 {
   connectTo(i_session);
+
+  d_camera = &i_session.getCamera();
   
-  d_worldShader = Dx::ISpriteShader::create(&i_session.getCamera());
+  d_worldShader = Dx::ISpriteShader::create(d_camera);
   CONTRACT_ASSERT(d_worldShader);
 
   if (auto* world = i_session.getWorld())
@@ -61,6 +66,8 @@ void ViewController::onSessionDetached(Session& i_session)
 {
   if (auto* world = i_session.getWorld())
     onWorldRemoved(*world);
+
+  d_camera = nullptr;
 
   d_worldShader.reset();
   

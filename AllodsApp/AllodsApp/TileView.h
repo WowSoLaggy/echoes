@@ -8,5 +8,5 @@
 class TileView
 {
 public:
-  void render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles);
+  void render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) const;
 };
