@@ -29,6 +29,9 @@ Game::~Game()
 }
 
 
+GuiManager& Game::getGui() { return d_guiManager; }
+
+
 void Game::onStart()
 {
   d_state = GameState::NotLoaded;
@@ -60,7 +63,6 @@ void Game::onNewSession()
   d_guiManager.hideMainMenu();
   startNewSession();
   d_guiManager.createInGameMenu();
-  d_actionsController.setInGameActions();
 }
 
 void Game::onExitSession()

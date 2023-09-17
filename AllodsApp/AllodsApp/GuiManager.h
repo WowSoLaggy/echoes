@@ -22,6 +22,8 @@ public:
 
   void createInGameMenu();
 
+  void showGodModeBuildMenu();
+
 private:
   Game& d_game;
   Session* d_session = nullptr;

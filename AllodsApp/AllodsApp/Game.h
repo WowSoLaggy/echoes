@@ -16,6 +16,7 @@ public:
   ~Game();
 
   Session* getSession() const;
+  GuiManager& getGui();
 
   void onNewSession();
   void onExitSession();

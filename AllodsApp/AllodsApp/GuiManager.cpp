@@ -209,3 +209,8 @@ void GuiManager::createInGameMenu()
   d_rbF2->setTextureName(Dx::RadioButtonState::Unchecked, "f2_disabled.png");
   d_rbF2->setOnCheck(std::bind(&GuiManager::onCheck_rbF2, this));
 }
+
+
+void GuiManager::showGodModeBuildMenu()
+{
+}
