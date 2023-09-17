@@ -31,6 +31,9 @@
     <Filter Include="src\GuiManager">
       <UniqueIdentifier>{44c5d645-8436-415b-be99-f604882895e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ActionsController">
+      <UniqueIdentifier>{9863edc1-0a1a-441f-a787-22931fd2afdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -89,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="GuiManager.cpp">
       <Filter>src\GuiManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionsController.cpp">
+      <Filter>src\ActionsController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="GuiManager.h">
       <Filter>src\GuiManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionsController.h">
+      <Filter>src\ActionsController</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,8 +17,14 @@ public:
 
   Dx::ICamera2& getCamera() const;
 
+  void enableGodMode(bool i_silent = false);
+  void disableGodMode(bool i_silent = false);
+  bool isGodMode() const;
+
 private:
   std::unique_ptr<Dx::ICamera2> d_camera;
   std::unique_ptr<Dx::IInputController> d_inputController;
   std::unique_ptr<World> d_world;
+
+  bool d_godMode = true;
 };

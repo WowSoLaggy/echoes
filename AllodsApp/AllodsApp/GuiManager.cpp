@@ -2,6 +2,7 @@
 #include "GuiManager.h"
 
 #include "Game.h"
+#include "SessionEvents.h"
 
 #include <LaggyDx/App.h>
 #include <LaggyDx/Button.h>
@@ -9,6 +10,8 @@
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
+#include <LaggyDx/RadioButton.h>
+#include <LaggyDx/RadioGroup.h>
 
 
 namespace
@@ -54,9 +57,29 @@ namespace
     auto ctrl = std::make_shared<Dx::Button>();
     i_parent.addChild(ctrl);
     ctrl->setFont(defaultFont);
-    ctrl->setTextureName(Dx::ButtonState::Normal, "Button.png");
-    ctrl->setTextureName(Dx::ButtonState::Hover, "ButtonLight.png");
-    ctrl->setTextureName(Dx::ButtonState::Pressed, "ButtonPressed.png");
+    return *ctrl;
+  }
+
+  Dx::Button& createMenuButton(Dx::IControl& i_parent)
+  {
+    auto& ctrl = createButton(i_parent);
+    ctrl.setTextureName(Dx::ButtonState::Normal, "Button.png");
+    ctrl.setTextureName(Dx::ButtonState::Hover, "ButtonLight.png");
+    ctrl.setTextureName(Dx::ButtonState::Pressed, "ButtonPressed.png");
+    return ctrl;
+  }
+
+  Dx::RadioButton& createRadioButton(Dx::IControl& i_parent)
+  {
+    auto ctrl = std::make_shared<Dx::RadioButton>();
+    i_parent.addChild(ctrl);
+    return *ctrl;
+  }
+
+  Dx::RadioGroup& createRadioGroup(Dx::IControl& i_parent)
+  {
+    auto ctrl = std::make_shared<Dx::RadioGroup>();
+    i_parent.addChild(ctrl);
     return *ctrl;
   }
 
@@ -66,6 +89,57 @@ namespace
 GuiManager::GuiManager(Game& i_game)
   : d_game(i_game)
 {
+  connectTo(d_game);
+}
+
+GuiManager::~GuiManager()
+{
+  disconnectFrom(d_game);
+}
+
+
+void GuiManager::processEvent(const Sdk::IEvent& i_event)
+{
+  if (const auto* event = dynamic_cast<const SessionAttachedEvent*>(&i_event))
+    onSessionAttached(event->getSession());
+  else if (const auto* event = dynamic_cast<const SessionDetachedEvent*>(&i_event))
+    onSessionDetached(event->getSession());
+  else if (const auto* event = dynamic_cast<const GodModeEvent*>(&i_event))
+    onGodModeEvent(event->getEnabled());
+}
+
+
+void GuiManager::onSessionAttached(Session& i_session)
+{
+  d_session = &i_session;
+  connectTo(i_session);
+}
+
+void GuiManager::onSessionDetached(Session& i_session)
+{
+  disconnectFrom(i_session);
+  d_session = nullptr;
+}
+
+void GuiManager::onGodModeEvent(bool i_enabled)
+{
+  if (i_enabled)
+    SAFE_DEREF(d_rbF1).check();
+  else
+    SAFE_DEREF(d_rbF2).check();
+}
+
+
+void GuiManager::onCheck_rbF1()
+{
+  CONTRACT_EXPECT(d_session);
+  d_session->enableGodMode(true);
+}
+
+void GuiManager::onCheck_rbF2()
+{
+  CONTRACT_EXPECT(d_session);
+  d_session->disableGodMode(true);
 }
 
 
@@ -101,19 +175,37 @@ void GuiManager::createMainMenu()
   layout.setOffsetBetweenElements(16);
 
   {
-    auto& btn = createButton(layout);
+    auto& btn = createMenuButton(layout);
     btn.setText("New Game");
-    btn.setOnPress(std::bind(&Game::onNewGame, &d_game));
+    btn.setOnPress(std::bind(&Game::onNewSession, &d_game));
   }
 
   {
-    auto& btn = createButton(layout);
+    auto& btn = createMenuButton(layout);
     btn.setText("Exit");
-    btn.setOnPress(std::bind(&Game::onExit, &d_game));
+    btn.setOnPress(std::bind(&Game::onCloseApplication, &d_game));
   }
 }
 
 void GuiManager::hideMainMenu()
 {
   d_game.getForm().removeChildren();
+}
+
+
+void GuiManager::createInGameMenu()
+{
+  auto& rgModes = createRadioGroup(d_game.getForm());
+  rgModes.setPosition({ 0, (float)getResolution().y });
+  rgModes.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
+
+  d_rbF1 = &createRadioButton(rgModes);
+  d_rbF1->setTextureName(Dx::RadioButtonState::Checked, "f1_enabled.png");
+  d_rbF1->setTextureName(Dx::RadioButtonState::Unchecked, "f1_disabled.png");
+  d_rbF1->setOnCheck(std::bind(&GuiManager::onCheck_rbF1, this));
+
+  d_rbF2 = &createRadioButton(rgModes);
+  d_rbF2->setTextureName(Dx::RadioButtonState::Checked, "f2_enabled.png");
+  d_rbF2->setTextureName(Dx::RadioButtonState::Unchecked, "f2_disabled.png");
+  d_rbF2->setOnCheck(std::bind(&GuiManager::onCheck_rbF2, this));
 }

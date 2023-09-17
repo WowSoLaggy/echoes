@@ -18,7 +18,14 @@ namespace
 Game::Game()
   : Dx::App(getAppSettings())
   , d_guiManager(*this)
+  , d_actionsController(*this)
 {
+}
+
+Game::~Game()
+{
+  if (getSession())
+    onExitSession();
 }
 
 
@@ -48,13 +55,20 @@ void Game::createViewController()
 }
 
 
-void Game::onNewGame()
+void Game::onNewSession()
 {
   d_guiManager.hideMainMenu();
   startNewSession();
+  d_guiManager.createInGameMenu();
+  d_actionsController.setInGameActions();
 }
 
-void Game::onExit()
+void Game::onExitSession()
+{
+  detachSession();
+}
+
+void Game::onCloseApplication()
 {
   stop();
 }

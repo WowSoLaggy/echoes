@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActionsController.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
@@ -169,6 +170,7 @@
     <ClCompile Include="WorldCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActionsController.h" />
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ActionsController.h"
 #include "GameStates.h"
 #include "GuiManager.h"
 #include "Session.h"
@@ -12,11 +13,13 @@ class Game : public Dx::App
 {
 public:
   Game();
+  ~Game();
 
   Session* getSession() const;
 
-  void onNewGame();
-  void onExit();
+  void onNewSession();
+  void onExitSession();
+  void onCloseApplication();
 
 private:
   GameState d_state = GameState::NotLoaded;
@@ -39,6 +42,9 @@ private:
 
   std::unique_ptr<ViewController> d_viewController;
   void createViewController();
+
+
+  ActionsController d_actionsController;
 
 
   virtual void onStart() override;

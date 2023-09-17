@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Session.h"
 
+#include "SessionEvents.h"
 #include "WorldEvents.h"
 
 #include <LaggyDx/FreeCamera2Controller.h>
@@ -35,4 +36,30 @@ World* Session::getWorld() const
 Dx::ICamera2& Session::getCamera() const
 {
   return SAFE_DEREF(d_camera);
+}
+
+
+void Session::enableGodMode(const bool i_silent)
+{
+  if (d_godMode)
+    return;
+
+  d_godMode = true;
+  if (!i_silent)
+    notify(GodModeEvent(d_godMode));
+}
+
+void Session::disableGodMode(const bool i_silent)
+{
+  if (!d_godMode)
+    return;
+
+  d_godMode = false;
+  if (!i_silent)
+    notify(GodModeEvent(d_godMode));
+}
+
+bool Session::isGodMode() const
+{
+  return d_godMode;
 }

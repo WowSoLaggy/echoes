@@ -34,3 +34,21 @@ class SessionDetachedEvent : public SessionEvent
 public:
   using SessionEvent::SessionEvent;
 };
+
+
+class GodModeEvent : public Sdk::IEvent
+{
+public:
+  GodModeEvent(const bool i_enabled)
+    : d_enabled(i_enabled)
+  {
+  }
+
+  bool getEnabled() const
+  {
+    return d_enabled;
+  }
+
+private:
+  bool d_enabled = false;
+};
