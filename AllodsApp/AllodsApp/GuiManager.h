@@ -10,7 +10,6 @@ class GuiManager : public Sdk::EventHandler
 {
 public:
   GuiManager(Game& i_game);
-  ~GuiManager();
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 
@@ -22,7 +21,9 @@ public:
 
   void createInGameMenu();
 
+  bool isGodModeBuildMenuShown() const;
   void showGodModeBuildMenu();
+  void hideGodModeBuildMenu();
 
 private:
   Game& d_game;
@@ -32,6 +33,8 @@ private:
   Dx::RadioButton* d_rbF2 = nullptr;
   void onCheck_rbF1();
   void onCheck_rbF2();
+
+  Grid* d_godModeBuildGrid = nullptr;
 
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);

@@ -8,6 +8,7 @@
 ActionsController::ActionsController(Game& i_game)
   : d_game(i_game)
 {
+  connectTo(d_game);
 }
 
 
@@ -49,10 +50,9 @@ void ActionsController::setGodModeActions()
 {
   Dx::ActionsMap actions;
 
-  actions.setAction(Dx::KeyboardKey::F1, Dx::Action(std::bind(&ActionsController::enableGodMode, this)), Dx::ActionType::OnPress);
   actions.setAction(Dx::KeyboardKey::F2, Dx::Action(std::bind(&ActionsController::disableGodMode, this)), Dx::ActionType::OnPress);
 
-  actions.setAction(Dx::KeyboardKey::B, Dx::Action(std::bind(&ActionsController::showGodModeBuildMenu, this)), Dx::ActionType::OnPress);
+  actions.setAction(Dx::KeyboardKey::B, Dx::Action(std::bind(&ActionsController::switchGodModeBuildMenu, this)), Dx::ActionType::OnPress);
 
   d_game.setActionsMap(std::move(actions));
 }
@@ -60,7 +60,11 @@ void ActionsController::setGodModeActions()
 
 void ActionsController::setInGameActions()
 {
-  d_game.setActionsMap(Dx::ActionsMap());
+  Dx::ActionsMap actions;
+
+  actions.setAction(Dx::KeyboardKey::F1, Dx::Action(std::bind(&ActionsController::enableGodMode, this)), Dx::ActionType::OnPress);
+
+  d_game.setActionsMap(std::move(actions));
 }
 
 
@@ -79,7 +83,10 @@ void ActionsController::disableGodMode()
 }
 
 
-void ActionsController::showGodModeBuildMenu()
+void ActionsController::switchGodModeBuildMenu()
 {
-  d_game.getGui().showGodModeBuildMenu();
+  if (d_game.getGui().isGodModeBuildMenuShown())
+    d_game.getGui().hideGodModeBuildMenu();
+  else
+    d_game.getGui().showGodModeBuildMenu();
 }

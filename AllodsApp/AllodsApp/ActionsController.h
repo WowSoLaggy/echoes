@@ -28,5 +28,5 @@ private:
   void enableGodMode();
   void disableGodMode();
 
-  void showGodModeBuildMenu();
+  void switchGodModeBuildMenu();
 };

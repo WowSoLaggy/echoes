@@ -2,6 +2,7 @@
 #include "GuiManager.h"
 
 #include "Game.h"
+#include "Grid.h"
 #include "SessionEvents.h"
 
 #include <LaggyDx/App.h>
@@ -83,6 +84,13 @@ namespace
     return *ctrl;
   }
 
+  Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
+  {
+    auto ctrl = std::make_shared<Grid>(i_slotsX, i_slotsY);
+    i_parent.addChild(ctrl);
+    return *ctrl;
+  }
+
 } // anonym NS
 
 
@@ -90,11 +98,6 @@ GuiManager::GuiManager(Game& i_game)
   : d_game(i_game)
 {
   connectTo(d_game);
-}
-
-GuiManager::~GuiManager()
-{
-  disconnectFrom(d_game);
 }
 
 
@@ -211,6 +214,21 @@ void GuiManager::createInGameMenu()
 }
 
 
+bool GuiManager::isGodModeBuildMenuShown() const
+{
+  return d_godModeBuildGrid;
+}
+
 void GuiManager::showGodModeBuildMenu()
 {
+  d_godModeBuildGrid = &createGrid(d_game.getForm(), 3, 2);
+}
+
+void GuiManager::hideGodModeBuildMenu()
+{
+  if (d_godModeBuildGrid)
+  {
+    d_godModeBuildGrid->setParent(nullptr);
+    d_godModeBuildGrid = nullptr;
+  }
 }

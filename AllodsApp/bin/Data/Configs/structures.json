@@ -3,5 +3,11 @@
   {
     "TextureName": "Lattice.png",
     "Layer": "Panneling"
+  },
+  
+  "Plating":
+  {
+    "TextureName": "Plating.png",
+    "Layer": "Panneling"
   }
 }

@@ -34,6 +34,9 @@
     <Filter Include="src\ActionsController">
       <UniqueIdentifier>{9863edc1-0a1a-441f-a787-22931fd2afdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GuiManager\Controls">
+      <UniqueIdentifier>{6caaaf5c-9b9e-4d21-9f18-5598ee4cb9c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,6 +98,9 @@
     </ClCompile>
     <ClCompile Include="ActionsController.cpp">
       <Filter>src\ActionsController</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>src\GuiManager\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="ActionsController.h">
       <Filter>src\ActionsController</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>src\GuiManager\Controls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
