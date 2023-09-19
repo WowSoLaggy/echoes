@@ -17,8 +17,8 @@ namespace
   const std::string TextureName_B = "Grid_B.png";
   const std::string TextureName_BL = "Grid_BL.png";
   const std::string TextureName_BR = "Grid_BR.png";
-  const std::string TextureName_Item = "Grid_Item.png";
-  const std::string TextureName_Frame = "Grid_Frame.png";
+  const std::string TextureName_Slot = "Grid_Slot.png";
+  const std::string TextureName_Selection = "Grid_Selection.png";
 
   const Dx::ITexture& getTexture(const fs::path& i_name)
   {
@@ -39,7 +39,10 @@ Grid::Grid(const int i_slotsX, const int i_slotsY)
 void Grid::render(Dx::IRenderer2d& i_renderer) const
 {
   i_renderer.setTranslation(getPositionAbsolute());
+
   for (const auto& sprite : d_gridSprites)
+    i_renderer.renderSprite(sprite);
+  for (const auto& sprite : d_slotSprites)
     i_renderer.renderSprite(sprite);
 }
 
@@ -61,56 +64,49 @@ void Grid::createGridSprites()
   const auto& texture_B(getTexture(TextureName_B));
   const auto& texture_BL(getTexture(TextureName_BL));
   const auto& texture_BR(getTexture(TextureName_BR));
-  const auto& texture_Item(getTexture(TextureName_Item));
-  const auto& texture_Frame(getTexture(TextureName_Frame));
+  const auto& texture_Slot(getTexture(TextureName_Slot));
+  const auto& texture_Selection(getTexture(TextureName_Selection));
 
-  d_gridSprites.push_back(
-    Dx::Sprite{ &texture_T, { 0, 0 }, texture_T.getDescription().size(), Sdk::Vector4F::identity() });
-  /*d_gridSprites.emplace_back(Dx::Sprite{
-    &textureTr, { CornerSize + d_slotsHor * SlotSize, 0 },
-      textureTr.getDescription().size(), Sdk::Vector4F::identity() });
-  d_gridSprites.emplace_back(Dx::Sprite{
-    &textureBl, { 0, CornerSize + d_slotsVert * SlotSize },
-      textureBl.getDescription().size(), Sdk::Vector4F::identity() });
-  d_gridSprites.emplace_back(Dx::Sprite{
-    &textureBr, { CornerSize + d_slotsHor * SlotSize, CornerSize + d_slotsVert * SlotSize },
-      textureBr.getDescription().size(), Sdk::Vector4F::identity() });
+  const int slotWidth = texture_Slot.getDescription().size().x;
+  const int slotHeight = texture_Slot.getDescription().size().y;
+  const int cornerWidth = texture_TL.getDescription().size().x;
+  const int cornerHeight = texture_TL.getDescription().size().y;
 
-  /*for (int i = 0; i < d_slotsHor; ++i)
+  d_gridSprites.push_back(Dx::Sprite{ &texture_TL, { 0, 0 } });
+  d_gridSprites.push_back(Dx::Sprite{ &texture_TR, { cornerWidth + d_slotsX * slotWidth, 0 } });
+  d_gridSprites.push_back(Dx::Sprite{ &texture_BL, { 0, cornerHeight + d_slotsY * slotHeight } });
+  d_gridSprites.push_back(Dx::Sprite{ &texture_BR, { cornerWidth + d_slotsX * slotWidth, cornerHeight + d_slotsY * slotHeight } });
+
+  for (int i = 0; i < d_slotsX; ++i)
   {
-    d_gridSprites.emplace_back(Dx::Sprite{
-      &textureT, { CornerSize + SlotSize * i, 0 },
-        textureT.getDescription().size(), Sdk::Vector4F::identity() });
-    d_gridSprites.emplace_back(Dx::Sprite{
-      &textureB, { CornerSize + SlotSize * i, CornerSize + d_slotsVert * SlotSize },
-        textureB.getDescription().size(), Sdk::Vector4F::identity() });
+    d_gridSprites.push_back(Dx::Sprite{ &texture_T, { cornerWidth + slotWidth * i, 0 } });
+    d_gridSprites.push_back(Dx::Sprite{ &texture_B, { cornerWidth + slotWidth * i, cornerHeight + d_slotsY * slotHeight } });
   }
 
-  for (int i = 0; i < d_slotsVert; ++i)
+  for (int i = 0; i < d_slotsY; ++i)
   {
-    d_gridSprites.emplace_back(Dx::Sprite{
-      &textureL, { 0, CornerSize + SlotSize * i },
-        textureL.getDescription().size(), Sdk::Vector4F::identity() });
-    d_gridSprites.emplace_back(Dx::Sprite{
-      &textureR, { CornerSize + SlotSize * d_slotsHor, CornerSize + SlotSize * i },
-        textureR.getDescription().size(), Sdk::Vector4F::identity() });
+    d_gridSprites.push_back(Dx::Sprite{ &texture_L, { 0, cornerHeight + slotHeight * i } });
+    d_gridSprites.push_back(Dx::Sprite{ &texture_R, { cornerWidth + slotWidth * d_slotsX, cornerHeight + slotHeight * i } });
   }
 
-  for (int y = 0; y < d_slotsVert; ++y)
+  for (int y = 0; y < d_slotsY; ++y)
   {
-    for (int x = 0; x < d_slotsHor; ++x)
+    for (int x = 0; x < d_slotsX; ++x)
     {
-      d_framesSprites.emplace_back(Dx::Sprite{
-        &textureItem, { CornerSize + SlotSize * x, CornerSize + SlotSize * y },
-          textureItem.getDescription().size(), Sdk::Vector4F::identity() });
+      d_slotSprites.push_back(Dx::Sprite{ &texture_Slot, { cornerWidth + slotWidth * x, cornerHeight + slotHeight * y } });
 
-      d_itemSprites.emplace_back(Dx::Sprite{
+      /*d_itemSprites.push_back(Dx::Sprite{
         nullptr, { CornerSize + SlotSize * x + 4, CornerSize + SlotSize * y + 4 },
           textureItem.getDescription().size(), Sdk::Vector4F::identity() });
 
-      d_itemOffsets.emplace_back(Sdk::Vector2I{ 0, 0 });
+      d_itemOffsets.push_back(Sdk::Vector2I{ 0, 0 });
 
-      updateItemSprite(x + y * d_slotsHor);
+      updateItemSprite(x + y * d_slotsHor);*/
     }
-  }*/
+  }
+
+  for (auto& sprite : d_gridSprites)
+    sprite.resetSizeToTexture();
+  for (auto& sprite : d_slotSprites)
+    sprite.resetSizeToTexture();
 }

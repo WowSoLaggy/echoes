@@ -18,6 +18,7 @@ private:
   int d_slotsY = 0;
 
   std::vector<Dx::Sprite> d_gridSprites;
+  std::vector<Dx::Sprite> d_slotSprites;
 
   void createGridSprites();
 };
