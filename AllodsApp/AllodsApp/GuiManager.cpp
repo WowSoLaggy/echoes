@@ -89,6 +89,13 @@ namespace
   {
     auto ctrl = std::make_shared<Dx::Grid>(i_slotsX, i_slotsY);
     i_parent.addChild(ctrl);
+
+    ctrl->setTextures(
+      "Grid_T.png", "Grid_TL.png", "Grid_TR.png",
+      "Grid_L.png", "Grid_R.png",
+      "Grid_B.png", "Grid_BL.png", "Grid_BR.png",
+      "Grid_Slot.png", "Grid_Selection.png");
+
     return *ctrl;
   }
 
@@ -224,6 +231,7 @@ void GuiManager::showGodModeBuildMenu()
 {
   d_godModeBuildGrid = &createGrid(d_game.getForm(), 3, 2);
   d_godModeBuildGrid->setItems(getGodModeBuildGridItems());
+  d_godModeBuildGrid->setPosition({ 16, 16 });
 }
 
 void GuiManager::hideGodModeBuildMenu()
