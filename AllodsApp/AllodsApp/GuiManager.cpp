@@ -2,6 +2,7 @@
 #include "GuiManager.h"
 
 #include "Game.h"
+#include "GodModeBuildGridItems.h"
 #include "SessionEvents.h"
 
 #include <LaggyDx/App.h>
@@ -222,6 +223,7 @@ bool GuiManager::isGodModeBuildMenuShown() const
 void GuiManager::showGodModeBuildMenu()
 {
   d_godModeBuildGrid = &createGrid(d_game.getForm(), 3, 2);
+  d_godModeBuildGrid->setItems(getGodModeBuildGridItems());
 }
 
 void GuiManager::hideGodModeBuildMenu()

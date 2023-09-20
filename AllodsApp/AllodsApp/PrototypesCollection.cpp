@@ -27,3 +27,9 @@ const StructurePrototype& PrototypesCollection::getStructurePrototype(const Prot
 {
   return d_structurePrototypes.at(i_name);
 }
+
+
+const std::unordered_map<PrototypeName, StructurePrototype>& PrototypesCollection::getStructurePrototypes()
+{
+  return d_structurePrototypes;
+}
