@@ -2,11 +2,11 @@
 #include "GuiManager.h"
 
 #include "Game.h"
-#include "Grid.h"
 #include "SessionEvents.h"
 
 #include <LaggyDx/App.h>
 #include <LaggyDx/Button.h>
+#include <LaggyDx/Grid.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
@@ -84,9 +84,9 @@ namespace
     return *ctrl;
   }
 
-  Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
+  Dx::Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
   {
-    auto ctrl = std::make_shared<Grid>(i_slotsX, i_slotsY);
+    auto ctrl = std::make_shared<Dx::Grid>(i_slotsX, i_slotsY);
     i_parent.addChild(ctrl);
     return *ctrl;
   }

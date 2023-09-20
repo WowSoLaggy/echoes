@@ -34,7 +34,7 @@ private:
   void onCheck_rbF1();
   void onCheck_rbF2();
 
-  Grid* d_godModeBuildGrid = nullptr;
+  Dx::Grid* d_godModeBuildGrid = nullptr;
 
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);

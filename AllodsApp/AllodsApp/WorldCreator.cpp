@@ -22,7 +22,7 @@ World WorldCreator::createTest()
 
   //
 
-  createStr("Lattice", 12, 6);
+  createStr("Lattice", 8, 5);
 
   return world;
 }

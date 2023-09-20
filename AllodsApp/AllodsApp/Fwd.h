@@ -4,7 +4,6 @@
 
 
 class Game;
-class Grid;
 using PrototypeName = std::string;
 class Session;
 class Structure;
