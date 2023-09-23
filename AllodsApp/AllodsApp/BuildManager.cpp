@@ -2,6 +2,7 @@
 #include "BuildManager.h"
 
 #include "BuildDraftInfo.h"
+#include "ObjectsSpawner.h"
 #include "Session.h"
 #include "SessionEvents.h"
 #include "Structure.h"
@@ -41,6 +42,36 @@ void BuildManager::onMouseMove()
     return;
 
   updateBuildDraft();
+}
+
+void BuildManager::onMouseClick(Dx::MouseKey i_key)
+{
+  if (!d_buildDraftInfo)
+    return;
+
+  tryBuild();
+}
+
+
+void BuildManager::tryBuild()
+{
+  CONTRACT_EXPECT(d_buildDraftInfo);
+  if (!d_buildDraftInfo->allowed)
+    return;
+
+  build();
+}
+
+void BuildManager::build()
+{
+  CONTRACT_EXPECT(d_buildPrototype);
+  CONTRACT_EXPECT(d_buildDraftInfo);
+
+  auto* world = d_session.getWorld();
+  CONTRACT_EXPECT(world);
+
+  ObjectsSpawner::despawnStructure(*world, d_buildDraftInfo->tileCoords, d_buildPrototype->layer);
+  ObjectsSpawner::spawnStructure(*d_buildPrototype, *world, d_buildDraftInfo->tileCoords);
 }
 
 

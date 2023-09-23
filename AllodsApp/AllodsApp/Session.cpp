@@ -24,6 +24,11 @@ void Session::onMouseMove()
   d_buildManager.onMouseMove();
 }
 
+void Session::onMouseClick(Dx::MouseKey i_key)
+{
+  d_buildManager.onMouseClick(i_key);
+}
+
 
 void Session::setWorld(std::unique_ptr<World> i_world)
 {

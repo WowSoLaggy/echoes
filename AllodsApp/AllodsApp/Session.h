@@ -5,6 +5,7 @@
 
 #include <LaggyDx/ICamera2.h>
 #include <LaggyDx/IInputController.h>
+#include <LaggyDx/MouseKeys.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -15,6 +16,7 @@ public:
 
   void update();
   void onMouseMove();
+  void onMouseClick(Dx::MouseKey i_key);
 
   void setWorld(std::unique_ptr<World> i_world);
   World* getWorld() const;

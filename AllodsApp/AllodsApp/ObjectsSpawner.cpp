@@ -21,3 +21,12 @@ StructurePtr ObjectsSpawner::spawnStructure(const StructurePrototype& i_prototyp
 
   return structure;
 }
+
+
+void ObjectsSpawner::despawnStructure(World& i_world, const TileCoord& i_tileCoord, const Layer i_layer)
+{
+  if (auto* tile = i_world.getTile(i_tileCoord))
+  {
+    tile->resetStructure(i_layer);
+  }
+}

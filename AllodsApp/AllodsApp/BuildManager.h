@@ -2,6 +2,7 @@
 
 #include "Fwd.h"
 
+#include <LaggyDx/MouseKeys.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -14,6 +15,7 @@ public:
   void resetBuildDraft();
 
   void onMouseMove();
+  void onMouseClick(Dx::MouseKey i_key);
 
 private:
   Session& d_session;
@@ -27,4 +29,7 @@ private:
   bool canBeBuilt() const;
   const Tile* getTileForBuildDraft() const;
   bool doesTileHaveLowerLayerWithSupport() const;
+
+  void tryBuild();
+  void build();
 };

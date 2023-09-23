@@ -17,6 +17,7 @@ public:
   const LayersMap& getLayers() const;
 
   void setStructure(Layer i_layer, StructurePtr i_structure);
+  void resetStructure(Layer i_layer);
 
 private:
   LayersMap d_layers;

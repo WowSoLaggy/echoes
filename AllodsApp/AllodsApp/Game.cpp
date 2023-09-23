@@ -64,6 +64,15 @@ void Game::onMouseMove(Sdk::Vector2I i_moveDiff)
   App::onMouseMove(std::move(i_moveDiff));
 }
 
+bool Game::onMouseClick(Dx::MouseKey i_key)
+{
+  if (App::onMouseClick(i_key))
+    return true;
+
+  if (d_session)
+    d_session->onMouseClick(i_key);
+}
+
 
 void Game::createViewController()
 {
