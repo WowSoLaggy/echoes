@@ -7,6 +7,8 @@
 struct StructurePrototype
 {
   PrototypeName name;
+
   std::string textureName;
   Layer layer;
+  bool support = false;
 };

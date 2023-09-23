@@ -12,5 +12,5 @@ struct BuildDraftInfo
 
   const std::string& textureName;
   bool allowed = false;
-  Sdk::Vector2I position;
+  TileCoord tileCoords;
 };

@@ -13,7 +13,7 @@ public:
   void setBuildDraft(const StructurePrototype& i_prototype);
   void resetBuildDraft();
 
-  void update();
+  void onMouseMove();
 
 private:
   Session& d_session;
@@ -21,7 +21,10 @@ private:
   const StructurePrototype* d_buildPrototype = nullptr;
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 
+  void updateBuildDraft();
   void updateBuildPosition();
   void updateBuildAllowance();
   bool canBeBuilt() const;
+  const Tile* getTileForBuildDraft() const;
+  bool doesTileHaveLowerLayerWithSupport() const;
 };

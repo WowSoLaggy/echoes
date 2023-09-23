@@ -51,4 +51,5 @@ private:
   virtual void onStart() override;
   virtual void update(double i_dt) override;
   virtual void render() override;
+  virtual void onMouseMove(Sdk::Vector2I i_moveDiff) override;
 };

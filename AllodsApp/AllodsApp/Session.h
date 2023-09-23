@@ -14,6 +14,7 @@ public:
   Session();
 
   void update();
+  void onMouseMove();
 
   void setWorld(std::unique_ptr<World> i_world);
   World* getWorld() const;

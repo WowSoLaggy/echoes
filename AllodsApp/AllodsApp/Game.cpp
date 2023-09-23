@@ -56,6 +56,14 @@ void Game::render()
     d_viewController->render();
 }
 
+void Game::onMouseMove(Sdk::Vector2I i_moveDiff)
+{
+  if (d_session)
+    d_session->onMouseMove();
+
+  App::onMouseMove(std::move(i_moveDiff));
+}
+
 
 void Game::createViewController()
 {

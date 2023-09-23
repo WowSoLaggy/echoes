@@ -4,6 +4,7 @@
 #include "BuildDraftInfo.h"
 #include "Session.h"
 #include "SessionEvents.h"
+#include "Structure.h"
 #include "StructurePrototype.h"
 #include "TileUtils.h"
 
@@ -20,7 +21,8 @@ void BuildManager::setBuildDraft(const StructurePrototype& i_prototype)
 {
   d_buildPrototype = &i_prototype;
   d_buildDraftInfo = std::make_shared<BuildDraftInfo>(BuildDraftInfo(d_buildPrototype->textureName));
-  updateBuildAllowance();
+
+  updateBuildDraft();
 
   notify(BuildDraftSetEvent(d_buildDraftInfo));
 }
@@ -33,20 +35,25 @@ void BuildManager::resetBuildDraft()
 }
 
 
-void BuildManager::update()
+void BuildManager::onMouseMove()
 {
   if (!d_buildDraftInfo)
     return;
 
+  updateBuildDraft();
+}
+
+
+void BuildManager::updateBuildDraft()
+{
   updateBuildPosition();
   updateBuildAllowance();
 }
 
-
 void BuildManager::updateBuildPosition()
 {
   const auto& mousePos = Dx::App::get().getInputDevice().getMousePosition();
-  SAFE_DEREF(d_buildDraftInfo).position = getTilePosWorld(getTileCoords(mousePos, d_session.getCamera()));
+  SAFE_DEREF(d_buildDraftInfo).tileCoords = getTileCoords(mousePos, d_session.getCamera());
 }
 
 void BuildManager::updateBuildAllowance()
@@ -56,5 +63,37 @@ void BuildManager::updateBuildAllowance()
 
 bool BuildManager::canBeBuilt() const
 {
-  return true;
+  CONTRACT_EXPECT(d_buildPrototype);
+
+  if (d_buildPrototype->layer == Layer::Lowest)
+    return true;
+
+  return doesTileHaveLowerLayerWithSupport();
+}
+
+const Tile* BuildManager::getTileForBuildDraft() const
+{
+  if (const auto* world = d_session.getWorld())
+    return world->getTile(SAFE_DEREF(d_buildDraftInfo).tileCoords);
+  return nullptr;
+}
+
+bool BuildManager::doesTileHaveLowerLayerWithSupport() const
+{
+  const auto* tile = getTileForBuildDraft();
+  if (!tile)
+    return false;
+
+  CONTRACT_EXPECT(d_buildPrototype);
+
+  for (const auto& [layer, structurePtr] : tile->getLayers())
+  {
+    if (layer >= d_buildPrototype->layer)
+      return false;
+
+    if (structurePtr->getPrototype().support)
+      return true;
+  }
+
+  return false;
 }

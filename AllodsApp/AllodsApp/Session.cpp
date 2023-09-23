@@ -17,7 +17,11 @@ Session::Session()
 
 void Session::update()
 {
-  d_buildManager.update();
+}
+
+void Session::onMouseMove()
+{
+  d_buildManager.onMouseMove();
 }
 
 

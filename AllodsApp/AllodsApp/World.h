@@ -12,6 +12,8 @@ public:
 
   const Tiles& getTiles() const;
   Tile& getOrCreateTile(const TileCoord& i_coord);
+  Tile* getTile(const TileCoord& i_coord);
+  const Tile* getTile(const TileCoord& i_coord) const;
 
 private:
   Tiles d_tiles;

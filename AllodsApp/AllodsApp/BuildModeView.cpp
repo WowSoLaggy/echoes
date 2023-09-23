@@ -2,6 +2,7 @@
 #include "BuildModeView.h"
 
 #include "BuildDraftInfo.h"
+#include "TileUtils.h"
 
 #include <LaggyDx/App.h>
 #include <LaggyDx/ISpriteShader.h>
@@ -37,7 +38,7 @@ void BuildModeView::render(const Dx::ISpriteShader& i_shader)
     CONTRACT_EXPECT(d_buildDraftInfo);
 
     d_sprite->setColor(d_buildDraftInfo->allowed ? BuildAllowedColor : BuildForbiddenColor);
-    d_sprite->setPosition(d_buildDraftInfo->position);
+    d_sprite->setPosition(getTilePosWorld(d_buildDraftInfo->tileCoords));
 
     i_shader.draw(*d_sprite);
   }

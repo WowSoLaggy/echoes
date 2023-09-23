@@ -3,7 +3,9 @@
 
 enum class Layer : int32_t
 {
-  Panneling = 0,
+  Lowest = 0,
+
+  Panneling = Lowest,
   Floor,
 
   Count

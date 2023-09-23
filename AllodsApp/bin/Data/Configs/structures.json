@@ -2,12 +2,21 @@
   "Lattice":
   {
     "TextureName": "Lattice.png",
-    "Layer": "Panneling"
+    "Layer": "Panneling",
+	"Support": true
   },
   
   "Plating":
   {
     "TextureName": "Plating.png",
-    "Layer": "Panneling"
+    "Layer": "Panneling",
+	"Support": true
+  },
+  
+  "Floor":
+  {
+	"TextureName": "Floor.png",
+	"Layer": "Floor",
+	"Support": true
   }
 }
