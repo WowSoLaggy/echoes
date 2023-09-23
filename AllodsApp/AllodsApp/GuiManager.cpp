@@ -151,6 +151,7 @@ void GuiManager::onCheck_rbF2()
 {
   CONTRACT_EXPECT(d_session);
   d_session->disableGodMode(true);
+  hideGodModeBuildMenu();
 }
 
 
@@ -232,6 +233,7 @@ void GuiManager::showGodModeBuildMenu()
   d_godModeBuildGrid = &createGrid(d_game.getForm(), 3, 2);
   d_godModeBuildGrid->setItems(getGodModeBuildGridItems());
   d_godModeBuildGrid->setPosition({ 16, 16 });
+  d_godModeBuildGrid->setSelectionEnabled(true);
 }
 
 void GuiManager::hideGodModeBuildMenu()
