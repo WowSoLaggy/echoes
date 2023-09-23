@@ -12,3 +12,4 @@ using StructurePtr = std::shared_ptr<Structure>;
 class Tile;
 using TileCoord = Sdk::Vector2I;
 class World;
+struct BuildDraftInfo;

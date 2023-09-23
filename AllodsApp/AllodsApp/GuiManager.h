@@ -35,6 +35,8 @@ private:
   void onCheck_rbF2();
 
   Dx::Grid* d_godModeBuildGrid = nullptr;
+  void onGodModeBuildSelectedItem(const Dx::GridItem& i_item);
+  void onGodModeBuildUnselectedItem();
 
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);

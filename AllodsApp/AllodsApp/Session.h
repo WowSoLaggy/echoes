@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BuildManager.h"
 #include "World.h"
 
 #include <LaggyDx/ICamera2.h>
@@ -15,6 +16,8 @@ public:
   void setWorld(std::unique_ptr<World> i_world);
   World* getWorld() const;
 
+  BuildManager& getBuildManger();
+
   Dx::ICamera2& getCamera() const;
 
   void enableGodMode(bool i_silent = false);
@@ -27,4 +30,6 @@ private:
   std::unique_ptr<World> d_world;
 
   bool d_godMode = true;
+
+  BuildManager d_buildManager;
 };

@@ -8,6 +8,7 @@
 #include <LaggyDx/App.h>
 #include <LaggyDx/Button.h>
 #include <LaggyDx/Grid.h>
+#include <LaggyDx/GridItem.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
@@ -155,6 +156,21 @@ void GuiManager::onCheck_rbF2()
 }
 
 
+void GuiManager::onGodModeBuildSelectedItem(const Dx::GridItem& i_item)
+{
+  const auto& item = dynamic_cast<const GodModeBuildGridItem&>(i_item);
+  
+  CONTRACT_EXPECT(d_session);
+  d_session->getBuildManger().setBuildDraft(item.getPrototype());
+}
+
+void GuiManager::onGodModeBuildUnselectedItem()
+{
+  CONTRACT_EXPECT(d_session);
+  d_session->getBuildManger().resetBuildDraft();
+}
+
+
 void GuiManager::showLoadingScreen()
 {
   auto& background = createPanel(d_game.getForm());
@@ -234,6 +250,10 @@ void GuiManager::showGodModeBuildMenu()
   d_godModeBuildGrid->setItems(getGodModeBuildGridItems());
   d_godModeBuildGrid->setPosition({ 16, 16 });
   d_godModeBuildGrid->setSelectionEnabled(true);
+
+  d_godModeBuildGrid->setOnItemSelected(
+    std::bind(&GuiManager::onGodModeBuildSelectedItem, this, std::placeholders::_1));
+  d_godModeBuildGrid->setOnItemUnselected(std::bind(&GuiManager::onGodModeBuildUnselectedItem, this));
 }
 
 void GuiManager::hideGodModeBuildMenu()
@@ -242,5 +262,8 @@ void GuiManager::hideGodModeBuildMenu()
   {
     d_godModeBuildGrid->setParent(nullptr);
     d_godModeBuildGrid = nullptr;
+
+    CONTRACT_EXPECT(d_session);
+    d_session->getBuildManger().resetBuildDraft();
   }
 }

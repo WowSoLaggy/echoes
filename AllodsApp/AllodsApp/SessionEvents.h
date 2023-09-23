@@ -52,3 +52,21 @@ public:
 private:
   bool d_enabled = false;
 };
+
+
+class BuildDraftSetEvent : public Sdk::IEvent
+{
+public:
+  BuildDraftSetEvent(std::shared_ptr<BuildDraftInfo> i_info)
+    : d_info(i_info)
+  {
+  }
+
+  std::shared_ptr<BuildDraftInfo> getInfo() const
+  {
+    return d_info;
+  }
+
+private:
+  std::shared_ptr<BuildDraftInfo> d_info;
+};

@@ -31,6 +31,7 @@ void ViewController::render()
   {
     d_backgroundView.render(SAFE_DEREF(d_worldShader), SAFE_DEREF(d_camera));
     d_tileView.render(SAFE_DEREF(d_worldShader), d_world->getTiles());
+    d_buildModeView.render(SAFE_DEREF(d_worldShader));
   }
 }
 
@@ -46,12 +47,16 @@ void ViewController::processEvent(const Sdk::IEvent& i_event)
     onWorldAdded(event->getWorld());
   else if (const auto* event = dynamic_cast<const WorldRemovedEvent*>(&i_event))
     onWorldRemoved(event->getWorld());
+
+  else if (const auto* event = dynamic_cast<const BuildDraftSetEvent*>(&i_event))
+    OnBuildDraftSet(event->getInfo());
 }
 
 
 void ViewController::onSessionAttached(Session& i_session)
 {
   connectTo(i_session);
+  connectTo(i_session.getBuildManger());
 
   d_camera = &i_session.getCamera();
   
@@ -71,6 +76,7 @@ void ViewController::onSessionDetached(Session& i_session)
 
   d_worldShader.reset();
   
+  disconnectFrom(i_session.getBuildManger());
   disconnectFrom(i_session);
 }
 
@@ -84,4 +90,12 @@ void ViewController::onWorldRemoved(World& i_world)
 {
   disconnectFrom(i_world);
   d_world = nullptr;
+}
+
+void ViewController::OnBuildDraftSet(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo)
+{
+  if (i_buildDraftInfo)
+    d_buildModeView.setBuildDraft(*i_buildDraftInfo);
+  else
+    d_buildModeView.resetBuildDraft();
 }

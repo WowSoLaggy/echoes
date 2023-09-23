@@ -8,6 +8,7 @@
 
 
 Session::Session()
+  : d_buildManager(*this)
 {
   d_camera = Dx::ICamera2::create();
   d_inputController = std::make_unique<Dx::FreeCamera2Controller>(*d_camera);
@@ -30,6 +31,12 @@ void Session::setWorld(std::unique_ptr<World> i_world)
 World* Session::getWorld() const
 {
   return d_world.get();
+}
+
+
+BuildManager& Session::getBuildManger()
+{
+  return d_buildManager;
 }
 
 

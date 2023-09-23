@@ -145,6 +145,8 @@
   <ItemGroup>
     <ClCompile Include="ActionsController.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
+    <ClCompile Include="BuildManager.cpp" />
+    <ClCompile Include="BuildModeView.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
@@ -173,12 +175,15 @@
   <ItemGroup>
     <ClInclude Include="ActionsController.h" />
     <ClInclude Include="BackgroundView.h" />
+    <ClInclude Include="BuildManager.h" />
+    <ClInclude Include="BuildModeView.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
     <ClInclude Include="GameStates.h" />
     <ClInclude Include="GodModeBuildGridItems.h" />
     <ClInclude Include="GuiManager.h" />
+    <ClInclude Include="BuildDraftInfo.h" />
     <ClInclude Include="Layers.h" />
     <ClInclude Include="PrototypesCollection.h" />
     <ClInclude Include="Session.h" />

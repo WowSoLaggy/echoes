@@ -34,6 +34,9 @@
     <Filter Include="src\ActionsController">
       <UniqueIdentifier>{9863edc1-0a1a-441f-a787-22931fd2afdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Session\BuildManager">
+      <UniqueIdentifier>{87524f6b-a3af-46b6-a5f5-3172b8062a51}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -98,6 +101,12 @@
     </ClCompile>
     <ClCompile Include="GodModeBuildGridItems.cpp">
       <Filter>src\GuiManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildManager.cpp">
+      <Filter>src\Session\BuildManager</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildModeView.cpp">
+      <Filter>src\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +181,15 @@
     </ClInclude>
     <ClInclude Include="GodModeBuildGridItems.h">
       <Filter>src\GuiManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildManager.h">
+      <Filter>src\Session\BuildManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildModeView.h">
+      <Filter>src\View</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildDraftInfo.h">
+      <Filter>src\Session\BuildManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

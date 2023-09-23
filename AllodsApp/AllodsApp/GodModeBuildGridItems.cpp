@@ -6,6 +6,18 @@
 #include <LaggyDx/GridItem.h>
 
 
+GodModeBuildGridItem::GodModeBuildGridItem(const StructurePrototype& i_prototype)
+  : d_prototype(i_prototype)
+{
+}
+
+
+const StructurePrototype& GodModeBuildGridItem::getPrototype() const
+{
+  return d_prototype;
+}
+
+
 Dx::GridItems getGodModeBuildGridItems()
 {
   Dx::GridItems items;
@@ -13,7 +25,7 @@ Dx::GridItems getGodModeBuildGridItems()
   const auto& prototypes = PrototypesCollection::getStructurePrototypes();
   for (const auto& [_, proto] : prototypes)
   {
-    auto item = std::make_shared<Dx::GridItem>();
+    auto item = std::make_shared<GodModeBuildGridItem>(proto);
     item->setTextureName(proto.textureName);
     items.push_back(std::move(item));
   }
