@@ -15,6 +15,12 @@ Session::Session()
 }
 
 
+void Session::update()
+{
+  d_buildManager.update();
+}
+
+
 void Session::setWorld(std::unique_ptr<World> i_world)
 {
   CONTRACT_EXPECT(d_world.get() != i_world.get());

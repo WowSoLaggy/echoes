@@ -94,8 +94,5 @@ void ViewController::onWorldRemoved(World& i_world)
 
 void ViewController::OnBuildDraftSet(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo)
 {
-  if (i_buildDraftInfo)
-    d_buildModeView.setBuildDraft(*i_buildDraftInfo);
-  else
-    d_buildModeView.resetBuildDraft();
+  d_buildModeView.setBuildDraft(i_buildDraftInfo);
 }

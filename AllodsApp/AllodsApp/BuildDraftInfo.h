@@ -1,14 +1,16 @@
 #pragma once
 
+#include <LaggySdk/Vector.h>
+
 
 struct BuildDraftInfo
 {
   BuildDraftInfo(const std::string& i_textureName)
-    : buildAllowed(false)
-    , textureName(i_textureName)
+    : textureName(i_textureName)
   {
   }
 
-  bool buildAllowed = false;
   const std::string& textureName;
+  bool allowed = false;
+  Sdk::Vector2I position;
 };

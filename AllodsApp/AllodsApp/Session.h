@@ -13,6 +13,8 @@ class Session : public Sdk::EventHandler
 public:
   Session();
 
+  void update();
+
   void setWorld(std::unique_ptr<World> i_world);
   World* getWorld() const;
 

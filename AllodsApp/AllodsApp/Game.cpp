@@ -43,6 +43,9 @@ void Game::update(double i_dt)
 {
   checkState();
 
+  if (d_session)
+    d_session->update();
+
   if (d_viewController)
     d_viewController->update(i_dt);
 }

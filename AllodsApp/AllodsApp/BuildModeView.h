@@ -9,12 +9,11 @@
 class BuildModeView
 {
 public:
-  void setBuildDraft(const BuildDraftInfo& i_buildDraftInfo);
-  void resetBuildDraft();
+  void setBuildDraft(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo);
 
-  void render(const Dx::ISpriteShader& i_shader) const;
+  void render(const Dx::ISpriteShader& i_shader);
 
 private:
   std::optional<Dx::Sprite> d_sprite;
-  const bool* d_allowance = nullptr;
+  std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 };
