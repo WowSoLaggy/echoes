@@ -6,6 +6,6 @@
 class WorldCreator
 {
 public:
-  static World createEmpty();
-  static World createTest();
+  static std::unique_ptr<World> createEmpty();
+  static std::unique_ptr<World> createTest();
 };

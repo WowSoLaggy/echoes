@@ -31,6 +31,6 @@ void Game::detachSession()
 
 void Game::startNewSession()
 {
-  auto newSession = SessionLoader().createNew();
-  attachSession(std::make_unique<Session>(std::move(newSession)));
+  auto session = SessionLoader().createNew();
+  attachSession(std::move(session));
 }

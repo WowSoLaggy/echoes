@@ -4,11 +4,11 @@
 #include "WorldCreator.h"
 
 
-Session SessionLoader::createNew() const
+std::unique_ptr<Session> SessionLoader::createNew() const
 {
-  Session session;
+  auto session = std::make_unique<Session>();
 
-  session.setWorld(std::make_unique<World>(WorldCreator::createTest()));
+  session->setWorld(WorldCreator::createTest());
 
   return session;
 }

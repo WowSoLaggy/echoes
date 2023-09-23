@@ -4,20 +4,19 @@
 #include "ObjectsSpawner.h"
 
 
-World WorldCreator::createEmpty()
+std::unique_ptr<World> WorldCreator::createEmpty()
 {
-  World world;
-  return world;
+  return std::make_unique<World>();
 }
 
 
-World WorldCreator::createTest()
+std::unique_ptr<World> WorldCreator::createTest()
 {
-  World world = createEmpty();
+  auto world = createEmpty();
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
-    return ObjectsSpawner::spawnStructure(i_protoName, world, { x, y });
+    return ObjectsSpawner::spawnStructure(i_protoName, *world, { x, y });
   };
 
   //

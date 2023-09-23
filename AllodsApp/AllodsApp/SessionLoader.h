@@ -6,5 +6,5 @@
 class SessionLoader
 {
 public:
-  Session createNew() const;
+  std::unique_ptr<Session> createNew() const;
 };
