@@ -2,8 +2,10 @@
 #include "BuildManager.h"
 
 #include "BuildDraftInfo.h"
+#include "Session.h"
 #include "SessionEvents.h"
 #include "StructurePrototype.h"
+#include "TileUtils.h"
 
 #include <LaggyDx/App.h>
 
@@ -44,7 +46,7 @@ void BuildManager::update()
 void BuildManager::updateBuildPosition()
 {
   const auto& mousePos = Dx::App::get().getInputDevice().getMousePosition();
-  SAFE_DEREF(d_buildDraftInfo).position = mousePos;
+  SAFE_DEREF(d_buildDraftInfo).position = getTilePosWorld(getTileCoords(mousePos, d_session.getCamera()));
 }
 
 void BuildManager::updateBuildAllowance()

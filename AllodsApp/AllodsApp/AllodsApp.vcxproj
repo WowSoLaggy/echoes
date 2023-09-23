@@ -167,6 +167,7 @@
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="StructurePrototypeLoader.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileUtils.cpp" />
     <ClCompile Include="TileView.cpp" />
     <ClCompile Include="ViewController.cpp" />
     <ClCompile Include="World.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="BuildManager.h" />
     <ClInclude Include="BuildModeView.h" />
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="StructurePrototype.h" />
     <ClInclude Include="StructurePrototypeLoader.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileUtils.h" />
     <ClInclude Include="TileView.h" />
     <ClInclude Include="ViewController.h" />
     <ClInclude Include="World.h" />

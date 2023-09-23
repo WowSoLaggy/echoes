@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TileView.h"
 
+#include "Constants.h"
 #include "Structure.h"
 
 #include <LaggyDx/AnimatedSprite.h>
@@ -26,12 +27,10 @@ namespace
 
 void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) const
 {
-  // TODO: ae Remove this const from here
-  constexpr int TileSize = 64;
   const auto& rc = Dx::App::get().getResourceController();
 
   Dx::AnimatedSprite sprite;
-  sprite.setSize({ TileSize, TileSize });
+  sprite.setSize({ Constants::TileSize, Constants::TileSize });
 
   for (const auto& [coord, tile] : i_tiles)
   {
@@ -44,7 +43,7 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
     const auto& texture = rc.getTexture(prototype.textureName);
 
     sprite.setTexture(texture);
-    sprite.setPosition({ coord.x * TileSize, coord.y * TileSize });
+    sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
 
     i_shader.draw(sprite);
   }
