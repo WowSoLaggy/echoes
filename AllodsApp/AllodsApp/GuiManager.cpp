@@ -271,5 +271,6 @@ void GuiManager::hideGodModeBuildMenu()
 
     CONTRACT_EXPECT(d_session);
     d_session->getBuildManger().resetBuildDraft();
+    d_session->getBuildManger().stopRemovalMode();
   }
 }
