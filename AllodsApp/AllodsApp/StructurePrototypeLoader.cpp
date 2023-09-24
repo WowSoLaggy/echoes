@@ -17,6 +17,12 @@ namespace
     return LayersMap.at(i_name);
   }
 
+  bool hasPrototype(const std::vector<StructurePrototype>& i_prototypes, const std::string& i_name)
+  {
+    return std::any_of(i_prototypes.cbegin(), i_prototypes.cend(), [&](const auto& i_prototype) {
+      return i_prototype.name == i_name; });
+  }
+
 } // anonym NS
 
 
@@ -35,6 +41,8 @@ std::vector<StructurePrototype> StructurePrototypeLoader::load(const fs::path& i
   std::vector<StructurePrototype> prototypes;
   for (const auto& protoName : root.getMemberNames())
   {
+    CONTRACT_EXPECT(!hasPrototype(prototypes, protoName));
+
     const auto& protoNode = root[protoName];
     StructurePrototype proto;
 
