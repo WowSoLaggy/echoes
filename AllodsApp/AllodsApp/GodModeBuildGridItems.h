@@ -18,4 +18,4 @@ private:
 };
 
 
-Dx::GridItems getGodModeBuildGridItems();
+Dx::GridItems getGodModeBuildGridItems(int i_gridSizeX);

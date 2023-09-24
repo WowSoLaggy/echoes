@@ -246,8 +246,11 @@ bool GuiManager::isGodModeBuildMenuShown() const
 
 void GuiManager::showGodModeBuildMenu()
 {
-  d_godModeBuildGrid = &createGrid(d_game.getForm(), 3, 2);
-  d_godModeBuildGrid->setItems(getGodModeBuildGridItems());
+  constexpr int GridSizeX = 3;
+  constexpr int GridSizeY = 2;
+
+  d_godModeBuildGrid = &createGrid(d_game.getForm(), GridSizeX, GridSizeY);
+  d_godModeBuildGrid->setItems(getGodModeBuildGridItems(GridSizeX));
   d_godModeBuildGrid->setPosition({ 16, 16 });
   d_godModeBuildGrid->setSelectionEnabled(true);
 
