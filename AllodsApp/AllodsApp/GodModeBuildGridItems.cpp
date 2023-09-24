@@ -4,6 +4,7 @@
 #include "PrototypesCollection.h"
 
 #include <LaggyDx/GridItem.h>
+#include <LaggyDx/TextureUtils.h>
 
 
 namespace
@@ -19,14 +20,14 @@ namespace
 
 GodModeBuildGridDestroyItem::GodModeBuildGridDestroyItem()
 {
-  setTextureName("Destroy.png");
+  setTexture(&Dx::TextureUtils::getTexture("Destroy.png"));
 }
 
 
 GodModeBuildGridItem::GodModeBuildGridItem(const StructurePrototype& i_prototype)
   : d_prototype(i_prototype)
 {
-  setTextureName(i_prototype.textureName);
+  setTexture(i_prototype.texture);
 }
 
 

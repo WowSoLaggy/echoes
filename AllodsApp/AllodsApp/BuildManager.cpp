@@ -21,7 +21,8 @@ BuildManager::BuildManager(Session& i_session)
 void BuildManager::setBuildDraft(const StructurePrototype& i_prototype)
 {
   d_buildPrototype = &i_prototype;
-  d_buildDraftInfo = std::make_shared<BuildDraftInfo>(BuildDraftInfo(d_buildPrototype->textureName));
+  d_buildDraftInfo = std::make_shared<BuildDraftInfo>();
+  d_buildDraftInfo->texture = d_buildPrototype->texture;
 
   updateBuildDraft();
 

@@ -1,16 +1,12 @@
 #pragma once
 
+#include <LaggyDx/LaggyDxFwd.h>
 #include <LaggySdk/Vector.h>
 
 
 struct BuildDraftInfo
 {
-  BuildDraftInfo(const std::string& i_textureName)
-    : textureName(i_textureName)
-  {
-  }
-
-  const std::string& textureName;
+  const Dx::ITexture* texture = nullptr;
   bool allowed = false;
   TileCoord tileCoords;
 };

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StructurePrototypeLoader.h"
 
+#include <LaggyDx/TextureUtils.h>
 #include <LaggySdk/json.h>
 
 
@@ -48,7 +49,8 @@ std::vector<StructurePrototype> StructurePrototypeLoader::load(const fs::path& i
     StructurePrototype proto;
 
     proto.name = protoName;
-    proto.textureName = protoNode["TextureName"].asString();
+    const auto textureName = protoNode["TextureName"].asString();
+    proto.texture = &Dx::TextureUtils::getTexture(textureName);
     proto.layer = getLayerByName(protoNode["Layer"].asString());
     proto.support = protoNode["Support"].asBool();
 

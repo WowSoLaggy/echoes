@@ -27,8 +27,6 @@ namespace
 
 void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) const
 {
-  const auto& rc = Dx::App::get().getResourceController();
-
   Dx::AnimatedSprite sprite;
   sprite.setSize({ Constants::TileSize, Constants::TileSize });
 
@@ -39,10 +37,7 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
     if (topStructure == nullptr)
       continue;
 
-    const auto& prototype = topStructure->getPrototype();
-    const auto& texture = rc.getTexture(prototype.textureName);
-
-    sprite.setTexture(texture);
+    sprite.setTexture(topStructure->getPrototype().texture);
     sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
 
     i_shader.draw(sprite);

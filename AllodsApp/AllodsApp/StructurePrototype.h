@@ -3,12 +3,14 @@
 #include "Fwd.h"
 #include "Layers.h"
 
+#include <LaggyDx/ITexture.h>
+
 
 struct StructurePrototype
 {
   PrototypeName name;
 
-  std::string textureName;
+  const Dx::ITexture* texture = nullptr;
   Layer layer;
   bool support = false;
 

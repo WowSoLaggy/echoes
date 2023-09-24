@@ -23,7 +23,7 @@ void BuildModeView::setBuildDraft(std::shared_ptr<BuildDraftInfo> i_buildDraftIn
   if (d_buildDraftInfo)
   {
     d_sprite.emplace(Dx::Sprite());
-    d_sprite->setTexture(Dx::App::get().getResourceController().getTexture(d_buildDraftInfo->textureName));
+    d_sprite->setTexture(d_buildDraftInfo->texture);
     d_sprite->resetSizeToTexture();
   }
   else
