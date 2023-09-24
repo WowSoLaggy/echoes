@@ -10,6 +10,7 @@
 #include "TileUtils.h"
 
 #include <LaggyDx/App.h>
+#include <LaggyDx/CursorUtils.h>
 
 
 BuildManager::BuildManager(Session& i_session)
@@ -107,7 +108,7 @@ void BuildManager::updateBuildDraft()
 
 void BuildManager::updateBuildPosition()
 {
-  const auto& mousePos = Dx::App::get().getInputDevice().getMousePosition();
+  const auto& mousePos = Dx::CursorUtils::getPosition();
   SAFE_DEREF(d_buildDraftInfo).tileCoords = getTileCoords(mousePos, d_session.getCamera());
 }
 
