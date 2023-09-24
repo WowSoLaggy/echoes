@@ -14,7 +14,7 @@ class Session : public Sdk::EventHandler
 public:
   Session();
 
-  void update();
+  void update(double i_dt);
   void onMouseMove();
   bool onMouseClick(Dx::MouseKey i_key);
   void onMouseRelease(Dx::MouseKey i_key);

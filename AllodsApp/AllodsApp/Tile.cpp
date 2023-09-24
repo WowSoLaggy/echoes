@@ -1,9 +1,13 @@
 #include "stdafx.h"
 #include "Tile.h"
 
+#include "Structure.h"
+
 
 void Tile::update(const double i_dt)
 {
+  for (auto& [_, structurePtr] : d_layers)
+    SAFE_DEREF(structurePtr).update(i_dt);
 }
 
 

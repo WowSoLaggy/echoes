@@ -15,8 +15,10 @@ Session::Session()
 }
 
 
-void Session::update()
+void Session::update(const double i_dt)
 {
+  if (d_world)
+    d_world->update(i_dt);
 }
 
 void Session::onMouseMove()
