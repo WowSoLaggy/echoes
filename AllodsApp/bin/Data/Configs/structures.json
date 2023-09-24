@@ -3,7 +3,7 @@
   {
     "TextureName": "Lattice.png",
     "Layer": "Panneling",
-	"Support": true
+	"Support": false
   },
   
   "Plating":
@@ -13,10 +13,26 @@
 	"Support": true
   },
   
+  
   "Floor":
   {
 	"TextureName": "Floor.png",
 	"Layer": "Floor",
 	"Support": true
+  },
+  
+  
+  "Wall":
+  {
+	"TextureName": "Wall.png",
+	"Layer": "Wall",
+	"Support": true
+  },
+  
+  "Door":
+  {
+	"TextureName": "Door.png",
+	"Layer": "Wall",
+	"Support": false
   }
 }

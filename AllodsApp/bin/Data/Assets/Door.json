@@ -1,0 +1,29 @@
+{
+  "Description":
+  {
+    "Width": 64,
+    "Height": 64,
+    "Alpha": true
+  },
+  "Animations":
+  [
+    {
+      "Name": "Open",
+      "Start": 0,
+      "End": 6,
+      "FrameTime": 0.1
+    },
+    {
+      "Name": "Close",
+      "Start": 6,
+      "End": 0,
+      "FrameTime": 0.1
+    },
+    {
+      "Name": "Blink",
+      "Start": 7,
+      "End": 8,
+      "FrameTime": 0.25
+    }
+  ]
+}

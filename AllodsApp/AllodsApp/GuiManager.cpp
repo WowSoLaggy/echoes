@@ -158,10 +158,13 @@ void GuiManager::onCheck_rbF2()
 
 void GuiManager::onGodModeBuildSelectedItem(const Dx::GridItem& i_item)
 {
-  const auto& item = dynamic_cast<const GodModeBuildGridItem&>(i_item);
-  
   CONTRACT_EXPECT(d_session);
-  d_session->getBuildManger().setBuildDraft(item.getPrototype());
+
+  if (const auto* item = dynamic_cast<const GodModeBuildGridItem*>(&i_item))
+    d_session->getBuildManger().setBuildDraft(item->getPrototype());
+  else if (const auto* item = dynamic_cast<const GodModeBuildGridDestroyItem*>(&i_item))
+  {
+  }
 }
 
 void GuiManager::onGodModeBuildUnselectedItem()
@@ -247,7 +250,7 @@ bool GuiManager::isGodModeBuildMenuShown() const
 void GuiManager::showGodModeBuildMenu()
 {
   constexpr int GridSizeX = 3;
-  constexpr int GridSizeY = 2;
+  constexpr int GridSizeY = 4;
 
   d_godModeBuildGrid = &createGrid(d_game.getForm(), GridSizeX, GridSizeY);
   d_godModeBuildGrid->setItems(getGodModeBuildGridItems(GridSizeX));

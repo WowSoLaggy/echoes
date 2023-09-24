@@ -6,6 +6,13 @@
 #include <LaggyDx/LaggyDxFwd.h>
 
 
+class GodModeBuildGridDestroyItem : public Dx::GridItem
+{
+public:
+  GodModeBuildGridDestroyItem();
+};
+
+
 class GodModeBuildGridItem : public Dx::GridItem
 {
 public:

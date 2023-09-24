@@ -11,6 +11,7 @@ namespace
     const std::unordered_map<std::string, Layer> LayersMap {
       { "Panneling", Layer::Panneling },
       { "Floor", Layer::Floor },
+      { "Wall", Layer::Wall },
     };
 
     CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(Layer::Count));
