@@ -5,6 +5,7 @@
 Structure::Structure(const StructurePrototype& i_prototype)
   : d_prototype(i_prototype)
 {
+  setBehaviorModel(IBehaviorModel::get(d_prototype.bahaviorModel, *this));
 }
 
 
@@ -28,4 +29,15 @@ Dx::Animation2Player& Structure::getAnimationPlayer()
 const Dx::Animation2Player& Structure::getAnimationPlayer() const
 {
   return d_animationPlayer;
+}
+
+
+void Structure::setBehaviorModel(BehaviorModelPtr i_model)
+{
+  d_behaviorModel = i_model;
+}
+
+BehaviorModelPtr Structure::getBehaviorModel() const
+{
+  return d_behaviorModel;
 }

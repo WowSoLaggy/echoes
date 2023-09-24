@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BuildManager.h"
+#include "InteractionManager.h"
 #include "World.h"
 
 #include <LaggyDx/ICamera2.h>
@@ -38,4 +39,5 @@ private:
   bool d_godMode = true;
 
   BuildManager d_buildManager;
+  InteractionManager d_interactionManager;
 };

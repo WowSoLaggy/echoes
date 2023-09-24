@@ -19,6 +19,17 @@ namespace
     return LayersMap.at(i_name);
   }
 
+  BehaviorModel getBehaviorByName(const std::string& i_name)
+  {
+    const std::unordered_map<std::string, BehaviorModel> LayersMap{
+      { "None", BehaviorModel::None },
+      { "Door", BehaviorModel::Door },
+    };
+
+    CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(BehaviorModel::Count));
+    return LayersMap.at(i_name);
+  }
+
   bool hasPrototype(const std::vector<StructurePrototype>& i_prototypes, const std::string& i_name)
   {
     return std::any_of(i_prototypes.cbegin(), i_prototypes.cend(), [&](const auto& i_prototype) {
@@ -53,6 +64,9 @@ std::vector<StructurePrototype> StructurePrototypeLoader::load(const fs::path& i
     proto.texture = &Dx::TextureUtils::getTexture(textureName);
     proto.layer = getLayerByName(protoNode["Layer"].asString());
     proto.support = protoNode["Support"].asBool();
+
+    if (protoNode.isMember("Behavior"))
+      proto.bahaviorModel = getBehaviorByName(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }

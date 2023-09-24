@@ -39,7 +39,8 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
     while (it != layers.cbegin())
     {
       const auto& structure = SAFE_DEREF(it->second);
-      if (!structure.getPrototype().texture->hasAlpha())
+      const auto& texture = SAFE_DEREF(structure.getPrototype().texture);
+      if (!texture.hasAlpha())
         break;
       else
         --it;

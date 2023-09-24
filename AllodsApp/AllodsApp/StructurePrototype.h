@@ -1,5 +1,6 @@
 #pragma once
 
+#include "BehaviorModels.h"
 #include "Fwd.h"
 #include "Layers.h"
 
@@ -13,6 +14,8 @@ struct StructurePrototype
   const Dx::ITexture* texture = nullptr;
   Layer layer;
   bool support = false;
+
+  BehaviorModel bahaviorModel = BehaviorModel::None;
 
   bool operator==(const StructurePrototype& i_other) const
   {

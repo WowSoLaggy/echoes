@@ -144,14 +144,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ActionsController.cpp" />
+    <ClCompile Include="AnimationUtils.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
+    <ClCompile Include="DoorBehavior.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
     <ClCompile Include="GodModeBuildGridItems.cpp" />
     <ClCompile Include="GuiManager.cpp" />
+    <ClCompile Include="IBehaviorModel.cpp" />
+    <ClCompile Include="InteractionManager.cpp" />
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
@@ -175,10 +179,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionsController.h" />
+    <ClInclude Include="AnimationUtils.h" />
     <ClInclude Include="BackgroundView.h" />
+    <ClInclude Include="BehaviorModels.h" />
     <ClInclude Include="BuildManager.h" />
     <ClInclude Include="BuildModeView.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="DoorBehavior.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
@@ -186,6 +193,8 @@
     <ClInclude Include="GodModeBuildGridItems.h" />
     <ClInclude Include="GuiManager.h" />
     <ClInclude Include="BuildDraftInfo.h" />
+    <ClInclude Include="IBehaviorModel.h" />
+    <ClInclude Include="InteractionManager.h" />
     <ClInclude Include="Layers.h" />
     <ClInclude Include="PrototypesCollection.h" />
     <ClInclude Include="Session.h" />

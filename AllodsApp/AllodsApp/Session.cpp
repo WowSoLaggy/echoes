@@ -9,6 +9,7 @@
 
 Session::Session()
   : d_buildManager(*this)
+  , d_interactionManager(*this)
 {
   d_camera = Dx::ICamera2::create();
   d_inputController = std::make_unique<Dx::FreeCamera2Controller>(*d_camera);
@@ -28,7 +29,13 @@ void Session::onMouseMove()
 
 bool Session::onMouseClick(Dx::MouseKey i_key)
 {
-  return d_buildManager.onMouseClick(i_key);
+  if (d_buildManager.onMouseClick(i_key))
+    return true;
+
+  if (d_interactionManager.onMouseClick(i_key))
+    return true;
+
+  return false;
 }
 
 void Session::onMouseRelease(Dx::MouseKey i_key)

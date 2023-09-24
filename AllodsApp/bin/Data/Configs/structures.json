@@ -33,6 +33,7 @@
   {
 	"TextureName": "Door.png",
 	"Layer": "Wall",
-	"Support": false
+	"Support": false,
+	"Behavior": "Door"
   }
 }

@@ -40,6 +40,12 @@
     <Filter Include="src\Utils">
       <UniqueIdentifier>{9cb41ce6-6ae8-4089-bd89-8fce86523ac1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Session\InteractionManager">
+      <UniqueIdentifier>{180304e4-64d7-4634-8ade-3a4e1cefe4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\World\BehaviorModel">
+      <UniqueIdentifier>{17f6f7f0-9607-4004-98b2-9dae0a4871f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -112,6 +118,18 @@
       <Filter>src\View</Filter>
     </ClCompile>
     <ClCompile Include="TileUtils.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="InteractionManager.cpp">
+      <Filter>src\Session\InteractionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DoorBehavior.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
+    <ClCompile Include="IBehaviorModel.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationUtils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
   </ItemGroup>
@@ -201,6 +219,21 @@
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="InteractionManager.h">
+      <Filter>src\Session\InteractionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IBehaviorModel.h">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="DoorBehavior.h">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorModels.h">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationUtils.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>

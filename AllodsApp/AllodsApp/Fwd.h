@@ -13,3 +13,5 @@ class Tile;
 using TileCoord = Sdk::Vector2I;
 class World;
 struct BuildDraftInfo;
+class IBehaviorModel;
+using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;

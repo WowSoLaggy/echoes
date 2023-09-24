@@ -61,7 +61,6 @@ std::unique_ptr<World> WorldCreator::createTest()
 
   createStr("Floor", 8, 7);
   auto& door = *createStr("Door", 8, 7);
-  door.getAnimationPlayer().playAnimation(door.getPrototype().texture->getAnimationsMap().at("Open"), 1);
 
   return world;
 }
