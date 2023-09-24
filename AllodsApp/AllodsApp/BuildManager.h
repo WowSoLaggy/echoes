@@ -16,12 +16,15 @@ public:
 
   void onMouseMove();
   bool onMouseClick(Dx::MouseKey i_key);
+  void onMouseRelease(Dx::MouseKey i_key);
 
 private:
   Session& d_session;
 
   const StructurePrototype* d_buildPrototype = nullptr;
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
+
+  bool d_isMutlibuilding = false;
 
   void updateBuildDraft();
   void updateBuildPosition();

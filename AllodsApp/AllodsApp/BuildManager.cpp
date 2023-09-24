@@ -42,17 +42,35 @@ void BuildManager::onMouseMove()
     return;
 
   updateBuildDraft();
+
+  if (d_isMutlibuilding)
+    tryBuild();
 }
 
 bool BuildManager::onMouseClick(Dx::MouseKey i_key)
 {
+  if (i_key == Dx::MouseKey::Right)
+  {
+    d_isMutlibuilding = false;
+    return true;
+  }
+
+  if (i_key != Dx::MouseKey::Left)
+    return false;
+
   if (!d_buildDraftInfo)
     return false;
 
+  d_isMutlibuilding = true;
+
   tryBuild();
-  updateBuildAllowance();
 
   return true;
+}
+
+void BuildManager::onMouseRelease(Dx::MouseKey i_key)
+{
+  d_isMutlibuilding = false;
 }
 
 
@@ -75,6 +93,8 @@ void BuildManager::build()
 
   ObjectsSpawner::despawnStructure(*world, d_buildDraftInfo->tileCoords, d_buildPrototype->layer);
   ObjectsSpawner::spawnStructure(*d_buildPrototype, *world, d_buildDraftInfo->tileCoords);
+
+  updateBuildAllowance();
 }
 
 

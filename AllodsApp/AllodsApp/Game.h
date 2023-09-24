@@ -53,5 +53,5 @@ private:
   virtual void render() override;
   virtual void onMouseMove(Sdk::Vector2I i_moveDiff) override;
   virtual bool onMouseClick(Dx::MouseKey i_key) override;
-
+  virtual void onMouseRelease(Dx::MouseKey i_key) override;
 };

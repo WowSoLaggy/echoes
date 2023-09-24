@@ -17,6 +17,7 @@ public:
   void update();
   void onMouseMove();
   bool onMouseClick(Dx::MouseKey i_key);
+  void onMouseRelease(Dx::MouseKey i_key);
 
   void setWorld(std::unique_ptr<World> i_world);
   World* getWorld() const;

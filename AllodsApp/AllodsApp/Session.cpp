@@ -29,6 +29,11 @@ bool Session::onMouseClick(Dx::MouseKey i_key)
   return d_buildManager.onMouseClick(i_key);
 }
 
+void Session::onMouseRelease(Dx::MouseKey i_key)
+{
+  d_buildManager.onMouseRelease(i_key);
+}
+
 
 void Session::setWorld(std::unique_ptr<World> i_world)
 {
