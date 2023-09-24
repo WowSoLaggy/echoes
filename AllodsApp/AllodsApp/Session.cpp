@@ -24,9 +24,9 @@ void Session::onMouseMove()
   d_buildManager.onMouseMove();
 }
 
-void Session::onMouseClick(Dx::MouseKey i_key)
+bool Session::onMouseClick(Dx::MouseKey i_key)
 {
-  d_buildManager.onMouseClick(i_key);
+  return d_buildManager.onMouseClick(i_key);
 }
 
 

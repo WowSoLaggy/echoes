@@ -44,12 +44,15 @@ void BuildManager::onMouseMove()
   updateBuildDraft();
 }
 
-void BuildManager::onMouseClick(Dx::MouseKey i_key)
+bool BuildManager::onMouseClick(Dx::MouseKey i_key)
 {
   if (!d_buildDraftInfo)
-    return;
+    return false;
 
   tryBuild();
+  updateBuildAllowance();
+
+  return true;
 }
 
 
@@ -96,10 +99,16 @@ bool BuildManager::canBeBuilt() const
 {
   CONTRACT_EXPECT(d_buildPrototype);
 
+  if (doesTileAlreadyHaveTheSameStructure())
+    return false;
+
   if (d_buildPrototype->layer == Layer::Lowest)
     return true;
 
-  return doesTileHaveLowerLayerWithSupport();
+  if (!doesTileHaveLowerLayerWithSupport())
+    return false;
+
+  return true;
 }
 
 const Tile* BuildManager::getTileForBuildDraft() const
@@ -125,6 +134,20 @@ bool BuildManager::doesTileHaveLowerLayerWithSupport() const
     if (structurePtr->getPrototype().support)
       return true;
   }
+
+  return false;
+}
+
+bool BuildManager::doesTileAlreadyHaveTheSameStructure() const
+{
+  const auto* tile = getTileForBuildDraft();
+  if (!tile)
+    return false;
+
+  CONTRACT_EXPECT(d_buildPrototype);
+
+  if (const auto structurePtr = tile->getStructure(d_buildPrototype->layer))
+    return structurePtr->getPrototype() == *d_buildPrototype;
 
   return false;
 }

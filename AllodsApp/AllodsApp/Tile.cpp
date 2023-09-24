@@ -13,6 +13,14 @@ const LayersMap& Tile::getLayers() const
 }
 
 
+const StructurePtr Tile::getStructure(Layer i_layer) const
+{
+  if (d_layers.contains(i_layer))
+    return d_layers.at(i_layer);
+  return nullptr;
+}
+
+
 void Tile::setStructure(const Layer i_layer, StructurePtr i_structure)
 {
   CONTRACT_EXPECT(i_structure);

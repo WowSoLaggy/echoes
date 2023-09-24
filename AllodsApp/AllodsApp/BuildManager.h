@@ -15,7 +15,7 @@ public:
   void resetBuildDraft();
 
   void onMouseMove();
-  void onMouseClick(Dx::MouseKey i_key);
+  bool onMouseClick(Dx::MouseKey i_key);
 
 private:
   Session& d_session;
@@ -29,6 +29,7 @@ private:
   bool canBeBuilt() const;
   const Tile* getTileForBuildDraft() const;
   bool doesTileHaveLowerLayerWithSupport() const;
+  bool doesTileAlreadyHaveTheSameStructure() const;
 
   void tryBuild();
   void build();

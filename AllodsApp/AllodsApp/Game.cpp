@@ -70,7 +70,12 @@ bool Game::onMouseClick(Dx::MouseKey i_key)
     return true;
 
   if (d_session)
-    d_session->onMouseClick(i_key);
+  {
+    if (d_session->onMouseClick(i_key))
+      return true;
+  }
+  
+  return false;
 }
 
 

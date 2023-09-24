@@ -16,6 +16,8 @@ public:
 
   const LayersMap& getLayers() const;
 
+  const StructurePtr getStructure(Layer i_layer) const;
+
   void setStructure(Layer i_layer, StructurePtr i_structure);
   void resetStructure(Layer i_layer);
 
