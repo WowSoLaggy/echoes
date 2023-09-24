@@ -32,15 +32,27 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
 
   for (const auto& [coord, tile] : i_tiles)
   {
-    const auto& layers = tile.getLayers();
-    const auto topStructure = getTopStructure(layers);
-    if (topStructure == nullptr)
-      continue;
-
-    sprite.setTexture(topStructure->getPrototype().texture);
     sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
-    sprite.setCurrentFrame(topStructure->getAnimationPlayer().getCurrentFrame());
 
-    i_shader.draw(sprite);
+    const auto& layers = tile.getLayers();
+    auto it = std::prev(layers.cend());
+    while (it != layers.cbegin())
+    {
+      const auto& structure = SAFE_DEREF(it->second);
+      if (!structure.getPrototype().texture->hasAlpha())
+        break;
+      else
+        --it;
+    }
+
+    for (; it != layers.cend(); ++it)
+    {
+      const auto& structure = SAFE_DEREF(it->second);
+
+      sprite.setTexture(structure.getPrototype().texture);
+      sprite.setCurrentFrame(structure.getAnimationPlayer().getCurrentFrame());
+
+      i_shader.draw(sprite);
+    }
   }
 }
