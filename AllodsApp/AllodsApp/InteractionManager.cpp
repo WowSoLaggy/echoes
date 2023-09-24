@@ -3,9 +3,7 @@
 
 #include "Session.h"
 #include "Structure.h"
-#include "TileUtils.h"
-
-#include <LaggyDx/CursorUtils.h>
+#include "StructureUtils.h"
 
 
 InteractionManager::InteractionManager(Session& i_session)
@@ -16,41 +14,14 @@ InteractionManager::InteractionManager(Session& i_session)
 
 bool InteractionManager::onMouseClick(Dx::MouseKey i_key)
 {
-  const auto behaviorModel = getInteractionBehaviorModel();
-  if (!behaviorModel)
-    return false;
-
-  behaviorModel->interact();
-
-  return true;
-}
-
-
-BehaviorModelPtr InteractionManager::getInteractionBehaviorModel() const
-{
-  const auto* world = d_session.getWorld();
-  if (!world)
-    return nullptr;
-
-  const auto& mousePosScreen = Dx::CursorUtils::getPosition();
-  const auto tileCoords = getTileCoords(mousePosScreen, d_session.getCamera());
-  const auto tilePosScreen = getTilePosScreen(tileCoords, d_session.getCamera());
-  const auto hitPos = mousePosScreen - tilePosScreen;
-
-  auto* tile = world->getTile(tileCoords);
-  if (!tile)
-    return nullptr;
-
-  for (const auto& [_, structurePtr] : std::ranges::reverse_view(tile->getLayers()))
+  if (const auto structurePtr = StructureUtils::getStructureUnderCursor(d_session))
   {
-    auto& structure = SAFE_DEREF(structurePtr);
-    auto& texture = SAFE_DEREF(structure.getPrototype().texture);
-    if (!texture.hasAlpha())
-      return structurePtr->getBehaviorModel();
-
-    if (texture.checkAlpha(hitPos, structure.getAnimationPlayer().getCurrentFrame()))
-      return structurePtr->getBehaviorModel();
+    if (const auto behaviorModel = structurePtr->getBehaviorModel())
+    {
+      behaviorModel->interact();
+      return true;
+    }
   }
-  
-  return nullptr;
+
+  return false;
 }

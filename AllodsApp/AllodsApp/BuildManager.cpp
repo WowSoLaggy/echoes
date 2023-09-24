@@ -7,6 +7,7 @@
 #include "SessionEvents.h"
 #include "Structure.h"
 #include "StructurePrototype.h"
+#include "StructureUtils.h"
 #include "TileUtils.h"
 
 #include <LaggyDx/App.h>
@@ -21,6 +22,8 @@ BuildManager::BuildManager(Session& i_session)
 
 void BuildManager::setBuildDraft(const StructurePrototype& i_prototype)
 {
+  stopRemovalMode();
+
   d_buildPrototype = &i_prototype;
   d_buildDraftInfo = std::make_shared<BuildDraftInfo>();
   d_buildDraftInfo->texture = d_buildPrototype->texture;
@@ -35,6 +38,18 @@ void BuildManager::resetBuildDraft()
   notify(BuildDraftSetEvent(nullptr));
   d_buildPrototype = nullptr;
   d_buildDraftInfo.reset();
+}
+
+
+void BuildManager::startRemovalMode()
+{
+  resetBuildDraft();
+  d_isRemovalMode = true;
+}
+
+void BuildManager::stopRemovalMode()
+{
+  d_isRemovalMode = false;
 }
 
 
@@ -60,14 +75,19 @@ bool BuildManager::onMouseClick(Dx::MouseKey i_key)
   if (i_key != Dx::MouseKey::Left)
     return false;
 
-  if (!d_buildDraftInfo)
-    return false;
+  if (d_buildDraftInfo)
+  {
+    d_isMutlibuilding = true;
+    tryBuild();
+    return true;
+  }
+  else if (d_isRemovalMode)
+  {
+    tryRemove();
+    return true;
+  }
 
-  d_isMutlibuilding = true;
-
-  tryBuild();
-
-  return true;
+  return false;
 }
 
 void BuildManager::onMouseRelease(Dx::MouseKey i_key)
@@ -109,7 +129,7 @@ void BuildManager::updateBuildDraft()
 void BuildManager::updateBuildPosition()
 {
   const auto& mousePos = Dx::CursorUtils::getPosition();
-  SAFE_DEREF(d_buildDraftInfo).tileCoords = getTileCoords(mousePos, d_session.getCamera());
+  SAFE_DEREF(d_buildDraftInfo).tileCoords = TileUtils::getTileCoords(mousePos, d_session.getCamera());
 }
 
 void BuildManager::updateBuildAllowance()
@@ -172,4 +192,17 @@ bool BuildManager::doesTileAlreadyHaveTheSameStructure() const
     return structurePtr->getPrototype() == *d_buildPrototype;
 
   return false;
+}
+
+
+void BuildManager::tryRemove()
+{
+  const auto structure = StructureUtils::getStructureUnderCursor(d_session);
+  if (!structure)
+    return;
+
+  ObjectsSpawner::despawnStructure(
+    SAFE_DEREF(d_session.getWorld()),
+    TileUtils::getTileCoordsUnderCursor(d_session.getCamera()),
+    structure->getPrototype().layer);
 }

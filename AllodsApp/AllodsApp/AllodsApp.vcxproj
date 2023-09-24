@@ -170,6 +170,7 @@
     </ClCompile>
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="StructurePrototypeLoader.cpp" />
+    <ClCompile Include="StructureUtils.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileUtils.cpp" />
     <ClCompile Include="TileView.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Structure.h" />
     <ClInclude Include="StructurePrototype.h" />
     <ClInclude Include="StructurePrototypeLoader.h" />
+    <ClInclude Include="StructureUtils.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileUtils.h" />
     <ClInclude Include="TileView.h" />

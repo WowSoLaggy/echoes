@@ -132,6 +132,9 @@
     <ClCompile Include="AnimationUtils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="StructureUtils.cpp">
+      <Filter>src\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -234,6 +237,9 @@
       <Filter>src\World\BehaviorModel</Filter>
     </ClInclude>
     <ClInclude Include="AnimationUtils.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureUtils.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>

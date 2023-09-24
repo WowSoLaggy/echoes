@@ -35,6 +35,9 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
     sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
 
     const auto& layers = tile.getLayers();
+    if (layers.empty())
+      continue;
+
     auto it = std::prev(layers.cend());
     while (it != layers.cbegin())
     {

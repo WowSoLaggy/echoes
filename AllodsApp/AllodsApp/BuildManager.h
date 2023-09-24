@@ -14,6 +14,9 @@ public:
   void setBuildDraft(const StructurePrototype& i_prototype);
   void resetBuildDraft();
 
+  void startRemovalMode();
+  void stopRemovalMode();
+
   void onMouseMove();
   bool onMouseClick(Dx::MouseKey i_key);
   void onMouseRelease(Dx::MouseKey i_key);
@@ -25,6 +28,7 @@ private:
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 
   bool d_isMutlibuilding = false;
+  bool d_isRemovalMode = false;
 
   void updateBuildDraft();
   void updateBuildPosition();
@@ -36,4 +40,6 @@ private:
 
   void tryBuild();
   void build();
+
+  void tryRemove();
 };

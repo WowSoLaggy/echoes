@@ -14,6 +14,4 @@ public:
 
 private:
   Session& d_session;
-
-  BehaviorModelPtr getInteractionBehaviorModel() const;
 };

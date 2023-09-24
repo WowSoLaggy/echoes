@@ -163,14 +163,14 @@ void GuiManager::onGodModeBuildSelectedItem(const Dx::GridItem& i_item)
   if (const auto* item = dynamic_cast<const GodModeBuildGridItem*>(&i_item))
     d_session->getBuildManger().setBuildDraft(item->getPrototype());
   else if (const auto* item = dynamic_cast<const GodModeBuildGridDestroyItem*>(&i_item))
-  {
-  }
+    d_session->getBuildManger().startRemovalMode();
 }
 
 void GuiManager::onGodModeBuildUnselectedItem()
 {
   CONTRACT_EXPECT(d_session);
   d_session->getBuildManger().resetBuildDraft();
+  d_session->getBuildManger().stopRemovalMode();
 }
 
 
