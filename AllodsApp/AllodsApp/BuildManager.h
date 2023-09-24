@@ -30,6 +30,8 @@ private:
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 
   bool d_isMutlibuilding = false;
+  bool d_isMutliremoving = false;
+  std::optional<TileCoord> d_lastRemovedCoords;
   bool d_isRemovalMode = false;
 
   void updateBuildDraft();

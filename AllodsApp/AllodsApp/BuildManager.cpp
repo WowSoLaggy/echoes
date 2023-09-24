@@ -65,21 +65,28 @@ void BuildManager::stopRemovalMode()
 
 void BuildManager::onMouseMove()
 {
-  if (!d_buildDraftInfo)
-    return;
+  if (d_buildDraftInfo)
+  {
+    updateBuildDraft();
 
-  updateBuildDraft();
-
-  if (d_isMutlibuilding)
-    tryBuild();
+    if (d_isMutlibuilding)
+      tryBuild();
+  }
+  else if (d_isMutliremoving)
+    tryRemove();
 }
 
 bool BuildManager::onMouseClick(Dx::MouseKey i_key)
 {
   if (i_key == Dx::MouseKey::Right)
   {
-    d_isMutlibuilding = false;
-    return true;
+    if (d_isMutlibuilding || d_isMutliremoving)
+    {
+      d_isMutlibuilding = false;
+      d_isMutliremoving = false;
+      d_lastRemovedCoords.reset();
+      return true;
+    }
   }
 
   if (i_key != Dx::MouseKey::Left)
@@ -93,6 +100,7 @@ bool BuildManager::onMouseClick(Dx::MouseKey i_key)
   }
   else if (d_isRemovalMode)
   {
+    d_isMutliremoving = true;
     tryRemove();
     return true;
   }
@@ -103,6 +111,8 @@ bool BuildManager::onMouseClick(Dx::MouseKey i_key)
 void BuildManager::onMouseRelease(Dx::MouseKey i_key)
 {
   d_isMutlibuilding = false;
+  d_isMutliremoving = false;
+  d_lastRemovedCoords.reset();
 }
 
 
@@ -211,8 +221,15 @@ void BuildManager::tryRemove()
   if (!structure)
     return;
 
+  const auto tileCoords = TileUtils::getTileCoordsUnderCursor(d_session.getCamera());
+  if (d_isMutliremoving && d_lastRemovedCoords && *d_lastRemovedCoords == tileCoords)
+    return;
+
   ObjectsSpawner::despawnStructure(
     SAFE_DEREF(d_session.getWorld()),
-    TileUtils::getTileCoordsUnderCursor(d_session.getCamera()),
+    tileCoords,
     structure->getPrototype().layer);
+
+  if (d_isMutliremoving)
+    d_lastRemovedCoords = tileCoords;
 }
