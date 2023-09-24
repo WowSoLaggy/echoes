@@ -39,6 +39,7 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
 
     sprite.setTexture(topStructure->getPrototype().texture);
     sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
+    sprite.setCurrentFrame(topStructure->getAnimationPlayer().getCurrentFrame());
 
     i_shader.draw(sprite);
   }

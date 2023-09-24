@@ -3,7 +3,7 @@
 #include "Fwd.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
-#include <LaggyDx/Sprite.h>
+#include <LaggyDx/AnimatedSprite.h>
 
 
 class BuildModeView
@@ -14,6 +14,6 @@ public:
   void render(const Dx::ISpriteShader& i_shader);
 
 private:
-  std::optional<Dx::Sprite> d_sprite;
+  std::optional<Dx::AnimatedSprite> d_sprite;
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 };

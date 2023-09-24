@@ -22,9 +22,10 @@ void BuildModeView::setBuildDraft(std::shared_ptr<BuildDraftInfo> i_buildDraftIn
 
   if (d_buildDraftInfo)
   {
-    d_sprite.emplace(Dx::Sprite());
+    d_sprite.emplace(Dx::AnimatedSprite());
     d_sprite->setTexture(d_buildDraftInfo->texture);
     d_sprite->resetSizeToTexture();
+    d_sprite->setCurrentFrame(0);
   }
   else
     d_sprite.reset();
