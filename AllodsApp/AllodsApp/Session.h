@@ -27,6 +27,10 @@ public:
 
   Dx::ICamera2& getCamera() const;
 
+  void onEscape();
+  void pause(bool i_silent = false);
+  void unpause(bool i_silent = false);
+
   void enableGodMode(bool i_silent = false);
   void disableGodMode(bool i_silent = false);
   bool isGodMode() const;
@@ -36,8 +40,12 @@ private:
   std::unique_ptr<Dx::IInputController> d_inputController;
   std::unique_ptr<World> d_world;
 
+  bool d_pause = false;
   bool d_godMode = true;
 
   BuildManager d_buildManager;
   InteractionManager d_interactionManager;
+
+  void attachFreeCameraController();
+  void detachFreeCameraController();
 };

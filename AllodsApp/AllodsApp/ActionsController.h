@@ -2,6 +2,7 @@
 
 #include "Fwd.h"
 
+#include <LaggyDx/ActionsMap.h>
 #include <LaggySdk/EventHandler.h>
 
 
@@ -20,10 +21,13 @@ private:
   void onGodMode(bool i_enabled);
 
   void setMainMenuActions();
+  Dx::ActionsMap getCommonActions();
   void setGodModeActions();
-  void setInGameActions();
+  void setLiveModeActions();
 
   // ACTIONS
+
+  void escapePress();
 
   void enableGodMode();
   void disableGodMode();

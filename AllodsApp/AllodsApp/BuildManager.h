@@ -11,9 +11,11 @@ class BuildManager : public Sdk::EventHandler
 public:
   BuildManager(Session& i_session);
 
+  bool isInBuildMode() const;
   void setBuildDraft(const StructurePrototype& i_prototype);
   void resetBuildDraft();
 
+  bool isInRemovalMode() const;
   void startRemovalMode();
   void stopRemovalMode();
 

@@ -40,5 +40,12 @@ private:
 
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);
+
+  Dx::Panel* d_pauseMenuPanel = nullptr;
+  void showPauseMenu();
+  void hidePauseMenu();
+  
   void onGodModeEvent(bool i_enabled);
+
+  void onExitBuildRemoval();
 };

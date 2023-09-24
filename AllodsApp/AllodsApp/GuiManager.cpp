@@ -7,6 +7,7 @@
 
 #include <LaggyDx/App.h>
 #include <LaggyDx/Button.h>
+#include <LaggyDx/Colors.h>
 #include <LaggyDx/Grid.h>
 #include <LaggyDx/GridItem.h>
 #include <LaggyDx/IResourceController.h>
@@ -15,17 +16,12 @@
 #include <LaggyDx/Panel.h>
 #include <LaggyDx/RadioButton.h>
 #include <LaggyDx/RadioGroup.h>
+#include <LaggyDx/TextureUtils.h>
 
 
 namespace
 {
   const std::string defaultFont = "MyFont.spritefont";
-
-  const Dx::ITexture& getTexture(const fs::path& i_path)
-  {
-    const auto& rc = Dx::App::get().getResourceController();
-    return rc.getTexture(i_path);
-  }
 
   const Sdk::Vector2I& getResolution()
   {
@@ -118,6 +114,12 @@ void GuiManager::processEvent(const Sdk::IEvent& i_event)
     onSessionDetached(event->getSession());
   else if (const auto* event = dynamic_cast<const GodModeEvent*>(&i_event))
     onGodModeEvent(event->getEnabled());
+  else if (const auto* event = dynamic_cast<const PauseEvent*>(&i_event))
+    showPauseMenu();
+  else if (const auto* event = dynamic_cast<const UnpauseEvent*>(&i_event))
+    hidePauseMenu();
+  else if (const auto* event = dynamic_cast<const ExitBuildRemovalEvent*>(&i_event))
+    onExitBuildRemoval();
 }
 
 
@@ -131,6 +133,22 @@ void GuiManager::onSessionDetached(Session& i_session)
 {
   disconnectFrom(i_session);
   d_session = nullptr;
+}
+
+void GuiManager::showPauseMenu()
+{
+  d_pauseMenuPanel = &createPanel(d_game.getForm());
+  d_pauseMenuPanel->sendToFront();
+  d_pauseMenuPanel->setTexture(Dx::TextureUtils::getTexture("Black.png"));
+  d_pauseMenuPanel->setSize(getResolution().getVector<float>());
+  d_pauseMenuPanel->setColor(Dx::colorWithAlpha(Dx::Colors::White, 0.5f));
+}
+
+void GuiManager::hidePauseMenu()
+{
+  CONTRACT_EXPECT(d_pauseMenuPanel);
+  d_pauseMenuPanel->setParent(nullptr);
+  d_pauseMenuPanel = nullptr;
 }
 
 void GuiManager::onGodModeEvent(bool i_enabled)
@@ -177,7 +195,7 @@ void GuiManager::onGodModeBuildUnselectedItem()
 void GuiManager::showLoadingScreen()
 {
   auto& background = createPanel(d_game.getForm());
-  background.setTexture(getTexture("Black.png"));
+  background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
   background.setSize(getResolution().getVector<float>());
 
   auto& layout = createLayout(d_game.getForm());
@@ -197,7 +215,7 @@ void GuiManager::hideLoadingScreen()
 void GuiManager::createMainMenu()
 {
   auto& background = createPanel(d_game.getForm());
-  background.setTexture(getTexture("Black.png"));
+  background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
   background.setSize(getResolution().getVector<float>());
 
   auto& layout = createLayout(d_game.getForm());
@@ -268,9 +286,16 @@ void GuiManager::hideGodModeBuildMenu()
   {
     d_godModeBuildGrid->setParent(nullptr);
     d_godModeBuildGrid = nullptr;
-
-    CONTRACT_EXPECT(d_session);
-    d_session->getBuildManger().resetBuildDraft();
-    d_session->getBuildManger().stopRemovalMode();
   }
+
+  CONTRACT_EXPECT(d_session);
+  d_session->getBuildManger().resetBuildDraft();
+  d_session->getBuildManger().stopRemovalMode();
+}
+
+
+void GuiManager::onExitBuildRemoval()
+{
+  if (d_godModeBuildGrid)
+    d_godModeBuildGrid->unselectItem();
 }

@@ -37,7 +37,7 @@ void ActionsController::onSessionDetached(Session& i_session)
 
 void ActionsController::onGodMode(const bool i_enabled)
 {
-  i_enabled ? setGodModeActions() : setInGameActions();
+  i_enabled ? setGodModeActions() : setLiveModeActions();
 }
 
 
@@ -46,21 +46,33 @@ void ActionsController::setMainMenuActions()
   d_game.setActionsMap(Dx::ActionsMap());
 }
 
-void ActionsController::setGodModeActions()
+Dx::ActionsMap ActionsController::getCommonActions()
 {
   Dx::ActionsMap actions;
 
-  actions.setAction(Dx::KeyboardKey::F2, Dx::Action(std::bind(&ActionsController::disableGodMode, this)), Dx::ActionType::OnPress);
+  actions.setAction(Dx::KeyboardKey::Escape,
+    Dx::Action(std::bind(&ActionsController::escapePress, this)), Dx::ActionType::OnPress);
 
-  actions.setAction(Dx::KeyboardKey::B, Dx::Action(std::bind(&ActionsController::switchGodModeBuildMenu, this)), Dx::ActionType::OnPress);
+  return actions;
+}
+
+void ActionsController::setGodModeActions()
+{
+  auto actions = getCommonActions();
+
+  actions.setAction(Dx::KeyboardKey::F2,
+    Dx::Action(std::bind(&ActionsController::disableGodMode, this)), Dx::ActionType::OnPress);
+
+  actions.setAction(Dx::KeyboardKey::B,
+    Dx::Action(std::bind(&ActionsController::switchGodModeBuildMenu, this)), Dx::ActionType::OnPress);
 
   d_game.setActionsMap(std::move(actions));
 }
 
 
-void ActionsController::setInGameActions()
+void ActionsController::setLiveModeActions()
 {
-  Dx::ActionsMap actions;
+  auto actions = getCommonActions();
 
   actions.setAction(Dx::KeyboardKey::F1, Dx::Action(std::bind(&ActionsController::enableGodMode, this)), Dx::ActionType::OnPress);
 
@@ -68,18 +80,19 @@ void ActionsController::setInGameActions()
 }
 
 
+void ActionsController::escapePress()
+{
+  SAFE_DEREF(d_game.getSession()).onEscape();
+}
+
 void ActionsController::enableGodMode()
 {
-  auto* session = d_game.getSession();
-  CONTRACT_EXPECT(session);
-  session->enableGodMode();
+  SAFE_DEREF(d_game.getSession()).enableGodMode();
 }
 
 void ActionsController::disableGodMode()
 {
-  auto* session = d_game.getSession();
-  CONTRACT_EXPECT(session);
-  session->disableGodMode();
+  SAFE_DEREF(d_game.getSession()).disableGodMode();
 }
 
 

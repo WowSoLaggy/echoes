@@ -12,7 +12,7 @@ Session::Session()
   , d_interactionManager(*this)
 {
   d_camera = Dx::ICamera2::create();
-  d_inputController = std::make_unique<Dx::FreeCamera2Controller>(*d_camera);
+  attachFreeCameraController();
 }
 
 
@@ -98,4 +98,45 @@ void Session::disableGodMode(const bool i_silent)
 bool Session::isGodMode() const
 {
   return d_godMode;
+}
+
+
+void Session::attachFreeCameraController()
+{
+  d_inputController = std::make_unique<Dx::FreeCamera2Controller>(*d_camera);
+}
+
+void Session::detachFreeCameraController()
+{
+  d_inputController.reset();
+}
+
+
+void Session::onEscape()
+{
+  if (d_buildManager.isInBuildMode() || d_buildManager.isInRemovalMode())
+  {
+    notify(ExitBuildRemovalEvent());
+    return;
+  }
+
+  d_pause ? unpause() : pause();
+}
+
+void Session::pause(const bool i_silent)
+{
+  detachFreeCameraController();
+  d_pause = true;
+
+  if (!i_silent)
+    notify(PauseEvent());
+}
+
+void Session::unpause(const bool i_silent)
+{
+  d_pause = false;
+  attachFreeCameraController();
+
+  if (!i_silent)
+    notify(UnpauseEvent());
 }

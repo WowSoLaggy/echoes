@@ -20,6 +20,11 @@ BuildManager::BuildManager(Session& i_session)
 }
 
 
+bool BuildManager::isInBuildMode() const
+{
+  return d_buildPrototype;
+}
+
 void BuildManager::setBuildDraft(const StructurePrototype& i_prototype)
 {
   stopRemovalMode();
@@ -40,6 +45,11 @@ void BuildManager::resetBuildDraft()
   d_buildDraftInfo.reset();
 }
 
+
+bool BuildManager::isInRemovalMode() const
+{
+  return d_isRemovalMode;
+}
 
 void BuildManager::startRemovalMode()
 {

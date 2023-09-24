@@ -70,3 +70,17 @@ public:
 private:
   std::shared_ptr<BuildDraftInfo> d_info;
 };
+
+
+class PauseEvent : public Sdk::IEvent
+{
+};
+
+class UnpauseEvent : public Sdk::IEvent
+{
+};
+
+
+class ExitBuildRemovalEvent : public Sdk::IEvent
+{
+};
