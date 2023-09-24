@@ -2,6 +2,7 @@
 #include "WorldCreator.h"
 
 #include "ObjectsSpawner.h"
+#include "Structure.h"
 
 
 std::unique_ptr<World> WorldCreator::createEmpty()
@@ -59,7 +60,8 @@ std::unique_ptr<World> WorldCreator::createTest()
   }
 
   createStr("Floor", 8, 7);
-  createStr("Door", 8, 7);
+  auto& door = *createStr("Door", 8, 7);
+  door.getAnimationPlayer().playAnimation(door.getPrototype().texture->getAnimationsMap().at("Open"), 1);
 
   return world;
 }
