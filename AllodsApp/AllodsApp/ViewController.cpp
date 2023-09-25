@@ -63,13 +63,13 @@ void ViewController::onSessionAttached(Session& i_session)
   d_locationShader = Dx::ISpriteShader::create(d_camera);
   CONTRACT_ASSERT(d_locationShader);
 
-  if (auto* location = i_session.getLocation())
+  if (auto* location = i_session.getCurrentLocation())
     onLocationAdded(*location);
 }
 
 void ViewController::onSessionDetached(Session& i_session)
 {
-  if (auto* location = i_session.getLocation())
+  if (auto* location = i_session.getCurrentLocation())
     onLocationRemoved(*location);
 
   d_camera = nullptr;

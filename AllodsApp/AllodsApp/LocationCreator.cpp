@@ -5,15 +5,9 @@
 #include "Structure.h"
 
 
-std::unique_ptr<Location> LocationCreator::createEmpty()
-{
-  return std::make_unique<Location>();
-}
-
-
 std::unique_ptr<Location> LocationCreator::createTest()
 {
-  auto location = createEmpty();
+  auto location = std::make_unique<Location>();
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {

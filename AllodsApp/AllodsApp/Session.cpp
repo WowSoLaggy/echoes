@@ -18,8 +18,8 @@ Session::Session()
 
 void Session::update(const double i_dt)
 {
-  if (d_location)
-    d_location->update(i_dt);
+  if (d_currentLocation)
+    d_currentLocation->update(i_dt);
 }
 
 void Session::onMouseMove()
@@ -44,22 +44,22 @@ void Session::onMouseRelease(Dx::MouseKey i_key)
 }
 
 
-void Session::setLocation(std::unique_ptr<Location> i_location)
+void Session::setCurrentLocation(std::unique_ptr<Location> i_location)
 {
-  CONTRACT_EXPECT(d_location.get() != i_location.get());
+  CONTRACT_EXPECT(d_currentLocation.get() != i_location.get());
 
-  if (d_location)
-    notify(LocationRemovedEvent(*d_location));
+  if (d_currentLocation)
+    notify(LocationRemovedEvent(*d_currentLocation));
 
-  d_location = std::move(i_location);
+  d_currentLocation = std::move(i_location);
 
-  if (d_location)
-    notify(LocationAddedEvent(*d_location));
+  if (d_currentLocation)
+    notify(LocationAddedEvent(*d_currentLocation));
 }
 
-Location* Session::getLocation() const
+Location* Session::getCurrentLocation() const
 {
-  return d_location.get();
+  return d_currentLocation.get();
 }
 
 

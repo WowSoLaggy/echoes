@@ -10,7 +10,7 @@
 
 StructurePtr StructureUtils::getStructureUnderCursor(const Session& i_session)
 {
-  const auto* location = i_session.getLocation();
+  const auto* location = i_session.getCurrentLocation();
   if (!location)
     return nullptr;
 

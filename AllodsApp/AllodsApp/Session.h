@@ -20,8 +20,8 @@ public:
   bool onMouseClick(Dx::MouseKey i_key);
   void onMouseRelease(Dx::MouseKey i_key);
 
-  void setLocation(std::unique_ptr<Location> i_location);
-  Location* getLocation() const;
+  void setCurrentLocation(std::unique_ptr<Location> i_location);
+  Location* getCurrentLocation() const;
 
   BuildManager& getBuildManger();
 
@@ -38,7 +38,7 @@ public:
 private:
   std::unique_ptr<Dx::ICamera2> d_camera;
   std::unique_ptr<Dx::IInputController> d_inputController;
-  std::unique_ptr<Location> d_location;
+  std::unique_ptr<Location> d_currentLocation;
 
   bool d_pause = false;
   bool d_godMode = true;

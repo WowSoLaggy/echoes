@@ -8,7 +8,7 @@ std::unique_ptr<Session> SessionLoader::createNew() const
 {
   auto session = std::make_unique<Session>();
 
-  session->setLocation(LocationCreator::createTest());
+  session->setCurrentLocation(LocationCreator::createTest());
 
   return session;
 }

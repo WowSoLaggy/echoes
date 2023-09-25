@@ -130,7 +130,7 @@ void BuildManager::build()
   CONTRACT_EXPECT(d_buildPrototype);
   CONTRACT_EXPECT(d_buildDraftInfo);
 
-  auto* location = d_session.getLocation();
+  auto* location = d_session.getCurrentLocation();
   CONTRACT_EXPECT(location);
 
   ObjectsSpawner::despawnStructure(*location, d_buildDraftInfo->tileCoords, d_buildPrototype->layer);
@@ -175,7 +175,7 @@ bool BuildManager::canBeBuilt() const
 
 const Tile* BuildManager::getTileForBuildDraft() const
 {
-  if (const auto* location = d_session.getLocation())
+  if (const auto* location = d_session.getCurrentLocation())
     return location->getTile(SAFE_DEREF(d_buildDraftInfo).tileCoords);
   return nullptr;
 }
@@ -226,7 +226,7 @@ void BuildManager::tryRemove()
     return;
 
   ObjectsSpawner::despawnStructure(
-    SAFE_DEREF(d_session.getLocation()),
+    SAFE_DEREF(d_session.getCurrentLocation()),
     tileCoords,
     structure->getPrototype().layer);
 
