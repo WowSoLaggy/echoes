@@ -8,6 +8,7 @@
 std::unique_ptr<Location> LocationCreator::createTest()
 {
   auto location = std::make_unique<Location>();
+  location->setName("Test Location");
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {

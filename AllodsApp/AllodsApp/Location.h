@@ -8,6 +8,9 @@
 class Location : public Sdk::EventHandler
 {
 public:
+  void setName(std::string i_name);
+  const std::string& getName() const;
+
   void update(double i_dt);
 
   const Tiles& getTiles() const;
@@ -16,5 +19,6 @@ public:
   const Tile* getTile(const TileCoord& i_coord) const;
 
 private:
+  std::string d_name;
   Tiles d_tiles;
 };

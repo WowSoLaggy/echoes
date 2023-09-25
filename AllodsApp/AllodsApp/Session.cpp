@@ -44,14 +44,25 @@ void Session::onMouseRelease(Dx::MouseKey i_key)
 }
 
 
-void Session::setCurrentLocation(std::unique_ptr<Location> i_location)
+void Session::setWorld(std::unique_ptr<World> i_world)
 {
-  CONTRACT_EXPECT(d_currentLocation.get() != i_location.get());
+  d_world = std::move(i_world);
+}
+
+World* Session::getWorld() const
+{
+  return d_world.get();
+}
+
+
+void Session::setCurrentLocation(Location* i_location)
+{
+  CONTRACT_EXPECT(d_currentLocation != i_location);
 
   if (d_currentLocation)
     notify(LocationRemovedEvent(*d_currentLocation));
 
-  d_currentLocation = std::move(i_location);
+  d_currentLocation = i_location;
 
   if (d_currentLocation)
     notify(LocationAddedEvent(*d_currentLocation));
@@ -59,7 +70,7 @@ void Session::setCurrentLocation(std::unique_ptr<Location> i_location)
 
 Location* Session::getCurrentLocation() const
 {
-  return d_currentLocation.get();
+  return d_currentLocation;
 }
 
 

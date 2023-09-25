@@ -159,6 +159,7 @@
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
+    <ClCompile Include="Scenarios.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionLoader.cpp" />
     <ClCompile Include="ObjectsSpawner.cpp" />
@@ -177,6 +178,8 @@
     <ClCompile Include="ViewController.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="LocationCreator.cpp" />
+    <ClCompile Include="World.cpp" />
+    <ClCompile Include="WorldCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionsController.h" />
@@ -198,6 +201,8 @@
     <ClInclude Include="InteractionManager.h" />
     <ClInclude Include="Layers.h" />
     <ClInclude Include="PrototypesCollection.h" />
+    <ClInclude Include="Scenario.h" />
+    <ClInclude Include="Scenarios.h" />
     <ClInclude Include="Session.h" />
     <ClInclude Include="SessionEvents.h" />
     <ClInclude Include="SessionLoader.h" />
@@ -214,6 +219,8 @@
     <ClInclude Include="Location.h" />
     <ClInclude Include="LocationEvents.h" />
     <ClInclude Include="LocationCreator.h" />
+    <ClInclude Include="World.h" />
+    <ClInclude Include="WorldCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LaggyDx\LaggyDx\LaggyDx.vcxproj">

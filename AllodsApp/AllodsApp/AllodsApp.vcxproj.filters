@@ -46,6 +46,12 @@
     <Filter Include="src\World\BehaviorModel">
       <UniqueIdentifier>{17f6f7f0-9607-4004-98b2-9dae0a4871f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Location">
+      <UniqueIdentifier>{380aa36f-b603-4e3f-b9b2-07c24aaa3d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenario">
+      <UniqueIdentifier>{6162a808-7ffa-4dfd-9b20-07d729b765e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,9 +63,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>src\Game</Filter>
     </ClCompile>
-    <ClCompile Include="Location.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
     <ClCompile Include="Session.cpp">
       <Filter>src\Session</Filter>
     </ClCompile>
@@ -69,17 +72,8 @@
     <ClCompile Include="ViewController.cpp">
       <Filter>src\View\ViewController</Filter>
     </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
-    <ClCompile Include="LocationCreator.cpp">
-      <Filter>src\World</Filter>
-    </ClCompile>
     <ClCompile Include="Structure.cpp">
       <Filter>src\World\Objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Layers.cpp">
-      <Filter>src\World</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundView.cpp">
       <Filter>src\View</Filter>
@@ -135,6 +129,27 @@
     <ClCompile Include="StructureUtils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Layers.cpp">
+      <Filter>src\World\Location</Filter>
+    </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>src\World\Location</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationCreator.cpp">
+      <Filter>src\World\Location</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>src\World\Location</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldCreator.cpp">
+      <Filter>src\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenarios.cpp">
+      <Filter>src\Scenario</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -142,9 +157,6 @@
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>src\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Location.h">
-      <Filter>src\World</Filter>
     </ClInclude>
     <ClInclude Include="Session.h">
       <Filter>src\Session</Filter>
@@ -167,17 +179,8 @@
     <ClInclude Include="LocationEvents.h">
       <Filter>src\Events</Filter>
     </ClInclude>
-    <ClInclude Include="Tile.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
-    <ClInclude Include="LocationCreator.h">
-      <Filter>src\World</Filter>
-    </ClInclude>
     <ClInclude Include="Structure.h">
       <Filter>src\World\Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Layers.h">
-      <Filter>src\World</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundView.h">
       <Filter>src\View</Filter>
@@ -241,6 +244,30 @@
     </ClInclude>
     <ClInclude Include="StructureUtils.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>src\World\Location</Filter>
+    </ClInclude>
+    <ClInclude Include="Layers.h">
+      <Filter>src\World\Location</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.h">
+      <Filter>src\World\Location</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationCreator.h">
+      <Filter>src\World\Location</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>src\World</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldCreator.h">
+      <Filter>src\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenario.h">
+      <Filter>src\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenarios.h">
+      <Filter>src\Scenario</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

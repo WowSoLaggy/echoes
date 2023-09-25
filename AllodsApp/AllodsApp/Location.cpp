@@ -2,6 +2,17 @@
 #include "Location.h"
 
 
+void Location::setName(std::string i_name)
+{
+  d_name = std::move(i_name);
+}
+
+const std::string& Location::getName() const
+{
+  return d_name;
+}
+
+
 void Location::update(const double i_dt)
 {
   for (auto& [_, tile] : d_tiles)

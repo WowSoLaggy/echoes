@@ -31,6 +31,6 @@ void Game::detachSession()
 
 void Game::startNewSession()
 {
-  auto session = SessionLoader().createNew();
+  auto session = SessionLoader().createNew("Test Scenario");
   attachSession(std::move(session));
 }
