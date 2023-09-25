@@ -14,6 +14,9 @@ InteractionManager::InteractionManager(Session& i_session)
 
 bool InteractionManager::onMouseClick(Dx::MouseKey i_key)
 {
+  if (i_key != Dx::MouseKey::Left)
+    return false;
+
   if (const auto structurePtr = StructureUtils::getStructureUnderCursor(d_session))
   {
     if (const auto behaviorModel = structurePtr->getBehaviorModel())
