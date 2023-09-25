@@ -11,7 +11,7 @@ struct StructurePrototype;
 using StructurePtr = std::shared_ptr<Structure>;
 class Tile;
 using TileCoord = Sdk::Vector2I;
-class World;
+class Location;
 struct BuildDraftInfo;
 class IBehaviorModel;
 using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;

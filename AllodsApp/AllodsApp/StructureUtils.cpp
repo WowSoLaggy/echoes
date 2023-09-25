@@ -10,8 +10,8 @@
 
 StructurePtr StructureUtils::getStructureUnderCursor(const Session& i_session)
 {
-  const auto* world = i_session.getWorld();
-  if (!world)
+  const auto* location = i_session.getLocation();
+  if (!location)
     return nullptr;
 
   const auto& mousePosScreen = Dx::CursorUtils::getPosition();
@@ -19,7 +19,7 @@ StructurePtr StructureUtils::getStructureUnderCursor(const Session& i_session)
   const auto tilePosScreen = TileUtils::getTilePosScreen(tileCoords, i_session.getCamera());
   const auto hitPos = mousePosScreen - tilePosScreen;
 
-  auto* tile = world->getTile(tileCoords);
+  auto* tile = location->getTile(tileCoords);
   if (!tile)
     return nullptr;
 

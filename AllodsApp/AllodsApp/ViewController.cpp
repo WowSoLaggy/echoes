@@ -2,10 +2,10 @@
 #include "ViewController.h"
 
 #include "Game.h"
+#include "Location.h"
+#include "LocationEvents.h"
 #include "Session.h"
 #include "SessionEvents.h"
-#include "World.h"
-#include "WorldEvents.h"
 
 
 ViewController::ViewController(Game& i_game)
@@ -27,11 +27,11 @@ void ViewController::update(double i_dt)
 
 void ViewController::render()
 {
-  if (d_world)
+  if (d_location)
   {
-    d_backgroundView.render(SAFE_DEREF(d_worldShader), SAFE_DEREF(d_camera));
-    d_tileView.render(SAFE_DEREF(d_worldShader), d_world->getTiles());
-    d_buildModeView.render(SAFE_DEREF(d_worldShader));
+    d_backgroundView.render(SAFE_DEREF(d_locationShader), SAFE_DEREF(d_camera));
+    d_tileView.render(SAFE_DEREF(d_locationShader), d_location->getTiles());
+    d_buildModeView.render(SAFE_DEREF(d_locationShader));
   }
 }
 
@@ -43,10 +43,10 @@ void ViewController::processEvent(const Sdk::IEvent& i_event)
   else if (const auto* event = dynamic_cast<const SessionDetachedEvent*>(&i_event))
     onSessionDetached(event->getSession());
 
-  else if (const auto* event = dynamic_cast<const WorldAddedEvent*>(&i_event))
-    onWorldAdded(event->getWorld());
-  else if (const auto* event = dynamic_cast<const WorldRemovedEvent*>(&i_event))
-    onWorldRemoved(event->getWorld());
+  else if (const auto* event = dynamic_cast<const LocationAddedEvent*>(&i_event))
+    onLocationAdded(event->getLocation());
+  else if (const auto* event = dynamic_cast<const LocationRemovedEvent*>(&i_event))
+    onLocationRemoved(event->getLocation());
 
   else if (const auto* event = dynamic_cast<const BuildDraftSetEvent*>(&i_event))
     OnBuildDraftSet(event->getInfo());
@@ -60,36 +60,36 @@ void ViewController::onSessionAttached(Session& i_session)
 
   d_camera = &i_session.getCamera();
   
-  d_worldShader = Dx::ISpriteShader::create(d_camera);
-  CONTRACT_ASSERT(d_worldShader);
+  d_locationShader = Dx::ISpriteShader::create(d_camera);
+  CONTRACT_ASSERT(d_locationShader);
 
-  if (auto* world = i_session.getWorld())
-    onWorldAdded(*world);
+  if (auto* location = i_session.getLocation())
+    onLocationAdded(*location);
 }
 
 void ViewController::onSessionDetached(Session& i_session)
 {
-  if (auto* world = i_session.getWorld())
-    onWorldRemoved(*world);
+  if (auto* location = i_session.getLocation())
+    onLocationRemoved(*location);
 
   d_camera = nullptr;
 
-  d_worldShader.reset();
+  d_locationShader.reset();
   
   disconnectFrom(i_session.getBuildManger());
   disconnectFrom(i_session);
 }
 
-void ViewController::onWorldAdded(World& i_world)
+void ViewController::onLocationAdded(Location& i_location)
 {
-  d_world = &i_world;
-  connectTo(i_world);
+  d_location = &i_location;
+  connectTo(i_location);
 }
 
-void ViewController::onWorldRemoved(World& i_world)
+void ViewController::onLocationRemoved(Location& i_location)
 {
-  disconnectFrom(i_world);
-  d_world = nullptr;
+  disconnectFrom(i_location);
+  d_location = nullptr;
 }
 
 void ViewController::OnBuildDraftSet(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo)

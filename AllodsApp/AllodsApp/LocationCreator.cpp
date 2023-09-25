@@ -1,23 +1,23 @@
 #include "stdafx.h"
-#include "WorldCreator.h"
+#include "LocationCreator.h"
 
 #include "ObjectsSpawner.h"
 #include "Structure.h"
 
 
-std::unique_ptr<World> WorldCreator::createEmpty()
+std::unique_ptr<Location> LocationCreator::createEmpty()
 {
-  return std::make_unique<World>();
+  return std::make_unique<Location>();
 }
 
 
-std::unique_ptr<World> WorldCreator::createTest()
+std::unique_ptr<Location> LocationCreator::createTest()
 {
-  auto world = createEmpty();
+  auto location = createEmpty();
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
-    return ObjectsSpawner::spawnStructure(i_protoName, *world, { x, y });
+    return ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y });
   };
 
   //
@@ -62,6 +62,6 @@ std::unique_ptr<World> WorldCreator::createTest()
   createStr("Floor", 8, 7);
   auto& door = *createStr("Door", 8, 7);
 
-  return world;
+  return location;
 }
 

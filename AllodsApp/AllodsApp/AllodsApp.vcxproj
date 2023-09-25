@@ -175,8 +175,8 @@
     <ClCompile Include="TileUtils.cpp" />
     <ClCompile Include="TileView.cpp" />
     <ClCompile Include="ViewController.cpp" />
-    <ClCompile Include="World.cpp" />
-    <ClCompile Include="WorldCreator.cpp" />
+    <ClCompile Include="Location.cpp" />
+    <ClCompile Include="LocationCreator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActionsController.h" />
@@ -211,9 +211,9 @@
     <ClInclude Include="TileUtils.h" />
     <ClInclude Include="TileView.h" />
     <ClInclude Include="ViewController.h" />
-    <ClInclude Include="World.h" />
-    <ClInclude Include="WorldEvents.h" />
-    <ClInclude Include="WorldCreator.h" />
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="LocationEvents.h" />
+    <ClInclude Include="LocationCreator.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LaggyDx\LaggyDx\LaggyDx.vcxproj">

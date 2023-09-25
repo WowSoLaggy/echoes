@@ -2,7 +2,7 @@
 
 #include "BuildManager.h"
 #include "InteractionManager.h"
-#include "World.h"
+#include "Location.h"
 
 #include <LaggyDx/ICamera2.h>
 #include <LaggyDx/IInputController.h>
@@ -20,8 +20,8 @@ public:
   bool onMouseClick(Dx::MouseKey i_key);
   void onMouseRelease(Dx::MouseKey i_key);
 
-  void setWorld(std::unique_ptr<World> i_world);
-  World* getWorld() const;
+  void setLocation(std::unique_ptr<Location> i_location);
+  Location* getLocation() const;
 
   BuildManager& getBuildManger();
 
@@ -38,7 +38,7 @@ public:
 private:
   std::unique_ptr<Dx::ICamera2> d_camera;
   std::unique_ptr<Dx::IInputController> d_inputController;
-  std::unique_ptr<World> d_world;
+  std::unique_ptr<Location> d_location;
 
   bool d_pause = false;
   bool d_godMode = true;

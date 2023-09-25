@@ -5,7 +5,7 @@
 #include <LaggySdk/EventHandler.h>
 
 
-class World : public Sdk::EventHandler
+class Location : public Sdk::EventHandler
 {
 public:
   void update(double i_dt);

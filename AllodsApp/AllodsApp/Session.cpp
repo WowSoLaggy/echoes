@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Session.h"
 
+#include "LocationEvents.h"
 #include "SessionEvents.h"
-#include "WorldEvents.h"
 
 #include <LaggyDx/FreeCamera2Controller.h>
 
@@ -18,8 +18,8 @@ Session::Session()
 
 void Session::update(const double i_dt)
 {
-  if (d_world)
-    d_world->update(i_dt);
+  if (d_location)
+    d_location->update(i_dt);
 }
 
 void Session::onMouseMove()
@@ -44,22 +44,22 @@ void Session::onMouseRelease(Dx::MouseKey i_key)
 }
 
 
-void Session::setWorld(std::unique_ptr<World> i_world)
+void Session::setLocation(std::unique_ptr<Location> i_location)
 {
-  CONTRACT_EXPECT(d_world.get() != i_world.get());
+  CONTRACT_EXPECT(d_location.get() != i_location.get());
 
-  if (d_world)
-    notify(WorldRemovedEvent(*d_world));
+  if (d_location)
+    notify(LocationRemovedEvent(*d_location));
 
-  d_world = std::move(i_world);
+  d_location = std::move(i_location);
 
-  if (d_world)
-    notify(WorldAddedEvent(*d_world));
+  if (d_location)
+    notify(LocationAddedEvent(*d_location));
 }
 
-World* Session::getWorld() const
+Location* Session::getLocation() const
 {
-  return d_world.get();
+  return d_location.get();
 }
 
 
