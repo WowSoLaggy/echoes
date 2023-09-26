@@ -98,17 +98,17 @@ Dx::ICamera2& Session::getCamera() const
 }
 
 
-void Session::enableGodMode(const bool i_silent)
+void Session::enableGodMode()
 {
   if (d_godMode)
     return;
 
   d_godMode = true;
-  if (!i_silent)
-    notify(GodModeEvent(d_godMode));
+
+  notify(GodModeEvent(d_godMode));
 }
 
-void Session::disableGodMode(const bool i_silent)
+void Session::disableGodMode()
 {
   if (!d_godMode)
     return;
@@ -116,8 +116,7 @@ void Session::disableGodMode(const bool i_silent)
   resetOverlay();
   d_godMode = false;
 
-  if (!i_silent)
-    notify(GodModeEvent(d_godMode));
+  notify(GodModeEvent(d_godMode));
 }
 
 bool Session::isGodMode() const

@@ -37,8 +37,8 @@ public:
   void pause(bool i_silent = false);
   void unpause(bool i_silent = false);
 
-  void enableGodMode(bool i_silent = false);
-  void disableGodMode(bool i_silent = false);
+  void enableGodMode();
+  void disableGodMode();
   bool isGodMode() const;
 
   const IOverlay* getOverlay() const;

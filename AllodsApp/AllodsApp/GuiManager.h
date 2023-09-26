@@ -28,13 +28,13 @@ private:
   void hideLoadingScreen();
   void showMainMenu();
   void hideMainMenu();
+  void recreateInGameMenu();
   void showInGameGui();
   void hideInGameGui();
 
-  Dx::RadioButton* d_rbF1 = nullptr;
-  Dx::RadioButton* d_rbF2 = nullptr;
-  void onCheck_rbF1();
-  void onCheck_rbF2();
+  Dx::Control* d_inGameGui = nullptr;
+  void onBtnGodMode();
+  void onBtnLiveMode();
 
   Dx::Grid* d_godModeBuildGrid = nullptr;
   void onGodModeBuildSelectedItem(const Dx::GridItem& i_item);
@@ -48,6 +48,8 @@ private:
   void hidePauseMenu();
   
   void onGodModeEvent(bool i_enabled);
+  void onGodModeOn();
+  void onGodModeOff();
 
   void onExitBuildRemoval();
 

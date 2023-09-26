@@ -15,8 +15,6 @@
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
-#include <LaggyDx/RadioButton.h>
-#include <LaggyDx/RadioGroup.h>
 #include <LaggyDx/TextureUtils.h>
 
 
@@ -28,6 +26,13 @@ namespace
   {
     const auto& rd = Dx::App::get().getRenderDevice();
     return rd.getResolution();
+  }
+
+  Dx::Control& createControl(Dx::IControl& i_parent)
+  {
+    auto ctrl = std::make_shared<Dx::Control>();
+    i_parent.addChild(ctrl);
+    return *ctrl;
   }
 
   Dx::Layout& createLayout(Dx::IControl& i_parent)
@@ -68,20 +73,6 @@ namespace
     ctrl.setTextureName(Dx::ButtonState::Hover, "ButtonLight.png");
     ctrl.setTextureName(Dx::ButtonState::Pressed, "ButtonPressed.png");
     return ctrl;
-  }
-
-  Dx::RadioButton& createRadioButton(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::RadioButton>();
-    i_parent.addChild(ctrl);
-    return *ctrl;
-  }
-
-  Dx::RadioGroup& createRadioGroup(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::RadioGroup>();
-    i_parent.addChild(ctrl);
-    return *ctrl;
   }
 
   Dx::Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
@@ -188,26 +179,34 @@ void GuiManager::hidePauseMenu()
   d_pauseMenuPanel = nullptr;
 }
 
+
 void GuiManager::onGodModeEvent(bool i_enabled)
 {
-  if (i_enabled)
-    SAFE_DEREF(d_rbF1).check();
-  else
-    SAFE_DEREF(d_rbF2).check();
+  i_enabled ? onGodModeOn() : onGodModeOff();
 }
 
-
-void GuiManager::onCheck_rbF1()
+void GuiManager::onGodModeOn()
 {
-  CONTRACT_EXPECT(d_session);
-  d_session->enableGodMode(true);
+  recreateInGameMenu();
 }
 
-void GuiManager::onCheck_rbF2()
+void GuiManager::onGodModeOff()
 {
-  CONTRACT_EXPECT(d_session);
-  d_session->disableGodMode(true);
+  recreateInGameMenu();
   hideGodModeBuildMenu();
+}
+
+
+void GuiManager::onBtnGodMode()
+{
+  CONTRACT_EXPECT(d_session);
+  d_session->enableGodMode();
+}
+
+void GuiManager::onBtnLiveMode()
+{
+  CONTRACT_EXPECT(d_session);
+  d_session->disableGodMode();
 }
 
 
@@ -290,30 +289,42 @@ void GuiManager::hideMainMenu()
 }
 
 
+void GuiManager::recreateInGameMenu()
+{
+  hideInGameGui();
+  showInGameGui();
+}
+
 void GuiManager::showInGameGui()
 {
-  auto& rgModes = createRadioGroup(d_game.getForm());
-  rgModes.setPosition({ 0, (float)getResolution().y });
-  rgModes.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
+  d_inGameGui = &createControl(d_game.getForm());
 
-  d_rbF1 = &createRadioButton(rgModes);
-  d_rbF1->setTextureName(Dx::RadioButtonState::Checked, "f1_enabled.png");
-  d_rbF1->setTextureName(Dx::RadioButtonState::Unchecked, "f1_disabled.png");
-  d_rbF1->setOnCheck(std::bind(&GuiManager::onCheck_rbF1, this));
+  const bool godMode = SAFE_DEREF(d_session).isGodMode();
 
-  d_rbF2 = &createRadioButton(rgModes);
-  d_rbF2->setTextureName(Dx::RadioButtonState::Checked, "f2_enabled.png");
-  d_rbF2->setTextureName(Dx::RadioButtonState::Unchecked, "f2_disabled.png");
-  d_rbF2->setOnCheck(std::bind(&GuiManager::onCheck_rbF2, this));
+  auto& godModeLayout = createLayout(*d_inGameGui);
+  godModeLayout.setPosition({ 0, (float)getResolution().y });
+  godModeLayout.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
+
+  {
+    auto& btn = createButton(godModeLayout);
+    btn.setTextureName(godMode ? "f1_enabled.png" : "f1_disabled.png");
+    if (!godMode)
+      btn.setOnPress(std::bind(&GuiManager::onBtnGodMode, this));
+  }
+
+  {
+    auto& btn = createButton(godModeLayout);
+    btn.setTextureName(godMode ? "f2_disabled.png" : "f2_enabled.png");
+    if (godMode)
+      btn.setOnPress(std::bind(&GuiManager::onBtnLiveMode, this));
+  }
 }
 
 void GuiManager::hideInGameGui()
 {
-  for (auto* rb : { d_rbF1, d_rbF2 })
-  {
-    rb->setParent(nullptr);
-    rb = nullptr;
-  }
+  CONTRACT_EXPECT(d_inGameGui);
+  d_inGameGui->setParent(nullptr);
+  d_inGameGui = nullptr;
 }
 
 
