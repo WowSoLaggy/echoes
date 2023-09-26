@@ -18,17 +18,26 @@ Session::Session()
 
 void Session::update(const double i_dt)
 {
+  if (d_pause)
+    return;
+
   if (d_currentLocation)
     d_currentLocation->update(i_dt);
 }
 
 void Session::onMouseMove()
 {
+  if (d_pause)
+    return;
+
   d_buildManager.onMouseMove();
 }
 
 bool Session::onMouseClick(Dx::MouseKey i_key)
 {
+  if (d_pause)
+    return false;
+
   if (d_buildManager.onMouseClick(i_key))
     return true;
 
@@ -40,6 +49,9 @@ bool Session::onMouseClick(Dx::MouseKey i_key)
 
 void Session::onMouseRelease(Dx::MouseKey i_key)
 {
+  if (d_pause)
+    return;
+
   d_buildManager.onMouseRelease(i_key);
 }
 

@@ -26,9 +26,10 @@ private:
 
   void showLoadingScreen();
   void hideLoadingScreen();
-  void createMainMenu();
+  void showMainMenu();
   void hideMainMenu();
-  void createInGameMenu();
+  void showInGameGui();
+  void hideInGameGui();
 
   Dx::RadioButton* d_rbF1 = nullptr;
   Dx::RadioButton* d_rbF2 = nullptr;
@@ -51,4 +52,5 @@ private:
   void onExitBuildRemoval();
 
   void onResumeGame();
+  void onExitToMenu();
 };

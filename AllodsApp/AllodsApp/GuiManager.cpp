@@ -133,13 +133,16 @@ void GuiManager::onSessionAttached(Session& i_session)
   connectTo(i_session);
   
   hideMainMenu();
-  createInGameMenu();
+  showInGameGui();
 }
 
 void GuiManager::onSessionDetached(Session& i_session)
 {
   disconnectFrom(i_session);
   d_session = nullptr;
+
+  hideInGameGui();
+  showMainMenu();
 }
 
 void GuiManager::showPauseMenu()
@@ -168,7 +171,7 @@ void GuiManager::showPauseMenu()
   {
     auto& btn = createMenuButton(layout);
     btn.setText("Exit to Menu");
-    btn.setOnPress(std::bind(&Game::closeSession, &d_game));
+    btn.setOnPress(std::bind(&GuiManager::onExitToMenu, this));
   }
 
   {
@@ -233,7 +236,7 @@ void GuiManager::onGameStateChanged(const GameState i_newState)
   else if (i_newState == GameState::Loaded)
   {
     hideLoadingScreen();
-    createMainMenu();
+    showMainMenu();
   }
 }
 
@@ -258,7 +261,7 @@ void GuiManager::hideLoadingScreen()
 }
 
 
-void GuiManager::createMainMenu()
+void GuiManager::showMainMenu()
 {
   auto& background = createPanel(d_game.getForm());
   background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
@@ -270,13 +273,13 @@ void GuiManager::createMainMenu()
 
   {
     auto& btn = createMenuButton(layout);
-    btn.setText("New Game");
+    btn.setText("Start New Game");
     btn.setOnPress(std::bind(&Game::newSession, &d_game));
   }
 
   {
     auto& btn = createMenuButton(layout);
-    btn.setText("Exit");
+    btn.setText("Exit to Desktop");
     btn.setOnPress(std::bind(&Game::closeApplication, &d_game));
   }
 }
@@ -287,7 +290,7 @@ void GuiManager::hideMainMenu()
 }
 
 
-void GuiManager::createInGameMenu()
+void GuiManager::showInGameGui()
 {
   auto& rgModes = createRadioGroup(d_game.getForm());
   rgModes.setPosition({ 0, (float)getResolution().y });
@@ -302,6 +305,15 @@ void GuiManager::createInGameMenu()
   d_rbF2->setTextureName(Dx::RadioButtonState::Checked, "f2_enabled.png");
   d_rbF2->setTextureName(Dx::RadioButtonState::Unchecked, "f2_disabled.png");
   d_rbF2->setOnCheck(std::bind(&GuiManager::onCheck_rbF2, this));
+}
+
+void GuiManager::hideInGameGui()
+{
+  for (auto* rb : { d_rbF1, d_rbF2 })
+  {
+    rb->setParent(nullptr);
+    rb = nullptr;
+  }
 }
 
 
@@ -350,4 +362,10 @@ void GuiManager::onResumeGame()
 {
   CONTRACT_EXPECT(d_session);
   d_session->unpause();
+}
+
+void GuiManager::onExitToMenu()
+{
+  hidePauseMenu();
+  d_game.closeSession();
 }
