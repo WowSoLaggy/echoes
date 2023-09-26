@@ -26,6 +26,8 @@ private:
   void setGodModeActions();
   void setLiveModeActions();
 
+  void setOnPress(Dx::ActionsMap& i_map, Dx::KeyboardKey i_key, auto i_func);
+
   void switchOverlay(OverlayType i_type);
 
   // ACTIONS

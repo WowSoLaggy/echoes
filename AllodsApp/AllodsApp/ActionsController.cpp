@@ -50,8 +50,7 @@ Dx::ActionsMap ActionsController::getCommonActions()
 {
   Dx::ActionsMap actions;
 
-  actions.setAction(Dx::KeyboardKey::Escape,
-    std::bind(&ActionsController::escapePress, this), Dx::ActionType::OnPress);
+  setOnPress(actions, Dx::KeyboardKey::Escape, &ActionsController::escapePress);
 
   return actions;
 }
@@ -60,16 +59,12 @@ void ActionsController::setGodModeActions()
 {
   auto actions = getCommonActions();
 
-  actions.setAction(Dx::KeyboardKey::F2,
-    std::bind(&ActionsController::disableGodMode, this), Dx::ActionType::OnPress);
+  setOnPress(actions, Dx::KeyboardKey::F2, &ActionsController::disableGodMode);
 
-  actions.setAction(Dx::KeyboardKey::B,
-    std::bind(&ActionsController::switchGodModeBuildMenu, this), Dx::ActionType::OnPress);
+  setOnPress(actions, Dx::KeyboardKey::B, &ActionsController::switchGodModeBuildMenu);
 
-  actions.setAction(Dx::KeyboardKey::F5,
-    std::bind(&ActionsController::switchTempOverlay, this), Dx::ActionType::OnPress);
-  actions.setAction(Dx::KeyboardKey::F6,
-    std::bind(&ActionsController::switchAtmoOverlay, this), Dx::ActionType::OnPress);
+  setOnPress(actions, Dx::KeyboardKey::F5, &ActionsController::switchTempOverlay);
+  setOnPress(actions, Dx::KeyboardKey::F6, &ActionsController::switchAtmoOverlay);
 
   d_game.setActionsMap(std::move(actions));
 }
@@ -79,10 +74,15 @@ void ActionsController::setLiveModeActions()
 {
   auto actions = getCommonActions();
 
-  actions.setAction(Dx::KeyboardKey::F1,
-    std::bind(&ActionsController::enableGodMode, this), Dx::ActionType::OnPress);
+  setOnPress(actions, Dx::KeyboardKey::F1, &ActionsController::enableGodMode);
 
   d_game.setActionsMap(std::move(actions));
+}
+
+
+void ActionsController::setOnPress(Dx::ActionsMap& i_map, const Dx::KeyboardKey i_key, auto i_func)
+{
+  i_map.setAction(i_key, std::bind(i_func, this), Dx::ActionType::OnPress);
 }
 
 
