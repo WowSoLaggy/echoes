@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fwd.h"
+#include "OverlayTypes.h"
 
 #include <LaggyDx/ActionsMap.h>
 #include <LaggySdk/EventHandler.h>
@@ -25,6 +26,8 @@ private:
   void setGodModeActions();
   void setLiveModeActions();
 
+  void switchOverlay(OverlayType i_type);
+
   // ACTIONS
 
   void escapePress();
@@ -34,5 +37,6 @@ private:
 
   void switchGodModeBuildMenu();
 
+  void switchTempOverlay();
   void switchAtmoOverlay();
 };

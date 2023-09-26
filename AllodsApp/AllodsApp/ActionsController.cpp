@@ -67,6 +67,8 @@ void ActionsController::setGodModeActions()
     Dx::Action(std::bind(&ActionsController::switchGodModeBuildMenu, this)), Dx::ActionType::OnPress);
 
   actions.setAction(Dx::KeyboardKey::F5,
+    Dx::Action(std::bind(&ActionsController::switchTempOverlay, this)), Dx::ActionType::OnPress);
+  actions.setAction(Dx::KeyboardKey::F6,
     Dx::Action(std::bind(&ActionsController::switchAtmoOverlay, this)), Dx::ActionType::OnPress);
 
   d_game.setActionsMap(std::move(actions));
@@ -107,11 +109,22 @@ void ActionsController::switchGodModeBuildMenu()
     d_game.getGui().showGodModeBuildMenu();
 }
 
-void ActionsController::switchAtmoOverlay()
+
+void ActionsController::switchOverlay(const OverlayType i_type)
 {
   auto& session = SAFE_DEREF(d_game.getSession());
-  if (const auto* overlay = session.getOverlay(); overlay && overlay->getType() == OverlayType::Atmo)
+  if (const auto* overlay = session.getOverlay(); overlay && overlay->getType() == i_type)
     session.resetOverlay();
   else
-    session.setOverlay(OverlayType::Atmo);
+    session.setOverlay(i_type);
+}
+
+void ActionsController::switchTempOverlay()
+{
+  switchOverlay(OverlayType::Temp);
+}
+
+void ActionsController::switchAtmoOverlay()
+{
+  switchOverlay(OverlayType::Atmo);
 }

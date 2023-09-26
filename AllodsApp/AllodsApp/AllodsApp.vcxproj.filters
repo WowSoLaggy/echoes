@@ -162,6 +162,9 @@
     <ClCompile Include="OverlayView.cpp">
       <Filter>src\View</Filter>
     </ClCompile>
+    <ClCompile Include="TempOverlay.cpp">
+      <Filter>src\Session\Overlay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -292,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="OverlayView.h">
       <Filter>src\View</Filter>
+    </ClInclude>
+    <ClInclude Include="TempOverlay.h">
+      <Filter>src\Session\Overlay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
