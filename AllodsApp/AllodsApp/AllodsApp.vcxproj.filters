@@ -52,6 +52,9 @@
     <Filter Include="src\Scenario">
       <UniqueIdentifier>{6162a808-7ffa-4dfd-9b20-07d729b765e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Session\Overlay">
+      <UniqueIdentifier>{97416e98-2a57-4f9d-90cd-8cd84ea21947}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -149,6 +152,15 @@
     </ClCompile>
     <ClCompile Include="Scenarios.cpp">
       <Filter>src\Scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="AtmoOverlay.cpp">
+      <Filter>src\Session\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="IOverlay.cpp">
+      <Filter>src\Session\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="OverlayView.cpp">
+      <Filter>src\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +280,18 @@
     </ClInclude>
     <ClInclude Include="Scenarios.h">
       <Filter>src\Scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="IOverlay.h">
+      <Filter>src\Session\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="AtmoOverlay.h">
+      <Filter>src\Session\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlayTypes.h">
+      <Filter>src\Session\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="OverlayView.h">
+      <Filter>src\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,9 +29,13 @@ void ViewController::render()
 {
   if (d_location)
   {
-    d_backgroundView.render(SAFE_DEREF(d_locationShader), SAFE_DEREF(d_camera));
-    d_tileView.render(SAFE_DEREF(d_locationShader), d_location->getTiles());
-    d_buildModeView.render(SAFE_DEREF(d_locationShader));
+    const auto& shader = SAFE_DEREF(d_locationShader);
+
+    d_backgroundView.render(shader, SAFE_DEREF(d_camera));
+    d_tileView.render(shader, d_location->getTiles());
+    if (d_overlay)
+      d_overlayView.render(shader, d_location->getTiles(), *d_overlay);
+    d_buildModeView.render(shader);
   }
 }
 
@@ -49,7 +53,10 @@ void ViewController::processEvent(const Sdk::IEvent& i_event)
     onLocationRemoved(event->getLocation());
 
   else if (const auto* event = dynamic_cast<const BuildDraftSetEvent*>(&i_event))
-    OnBuildDraftSet(event->getInfo());
+    onBuildDraftSet(event->getInfo());
+
+  else if (const auto* event = dynamic_cast<const OverlaySetEvent*>(&i_event))
+    onOverlaySet(event->getOverlay());
 }
 
 
@@ -92,7 +99,12 @@ void ViewController::onLocationRemoved(Location& i_location)
   d_location = nullptr;
 }
 
-void ViewController::OnBuildDraftSet(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo)
+void ViewController::onBuildDraftSet(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo)
 {
   d_buildModeView.setBuildDraft(i_buildDraftInfo);
+}
+
+void ViewController::onOverlaySet(const IOverlay* i_overlay)
+{
+  d_overlay = i_overlay;
 }

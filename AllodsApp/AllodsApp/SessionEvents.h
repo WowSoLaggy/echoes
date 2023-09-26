@@ -84,3 +84,18 @@ class UnpauseEvent : public Sdk::IEvent
 class ExitBuildRemovalEvent : public Sdk::IEvent
 {
 };
+
+
+class OverlaySetEvent : public Sdk::IEvent
+{
+public:
+  OverlaySetEvent(const IOverlay* i_overlay)
+    : d_overlay(i_overlay)
+  {
+  }
+
+  const IOverlay* getOverlay() const { return d_overlay; }
+
+private:
+  const IOverlay* d_overlay = nullptr;
+};

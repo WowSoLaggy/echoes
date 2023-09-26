@@ -2,7 +2,9 @@
 
 #include "BuildManager.h"
 #include "InteractionManager.h"
+#include "IOverlay.h"
 #include "Location.h"
+#include "OverlayTypes.h"
 #include "World.h"
 
 #include <LaggyDx/ICamera2.h>
@@ -39,17 +41,23 @@ public:
   void disableGodMode(bool i_silent = false);
   bool isGodMode() const;
 
+  const IOverlay* getOverlay() const;
+  void setOverlay(OverlayType i_overlayType);
+  void resetOverlay();
+
 private:
   std::unique_ptr<Dx::ICamera2> d_camera;
   std::unique_ptr<Dx::IInputController> d_inputController;
   std::unique_ptr<World> d_world;
   Location* d_currentLocation = nullptr;
-
+  
   bool d_pause = false;
   bool d_godMode = true;
 
   BuildManager d_buildManager;
   InteractionManager d_interactionManager;
+
+  std::unique_ptr<IOverlay> d_overlay;
 
   void attachFreeCameraController();
   void detachFreeCameraController();

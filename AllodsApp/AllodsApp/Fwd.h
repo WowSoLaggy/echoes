@@ -16,3 +16,4 @@ struct BuildDraftInfo;
 class IBehaviorModel;
 using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;
 struct Scenario;
+class IOverlay;

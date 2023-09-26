@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="ActionsController.cpp" />
     <ClCompile Include="AnimationUtils.cpp" />
+    <ClCompile Include="AtmoOverlay.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
@@ -156,8 +157,10 @@
     <ClCompile Include="GuiManager.cpp" />
     <ClCompile Include="IBehaviorModel.cpp" />
     <ClCompile Include="InteractionManager.cpp" />
+    <ClCompile Include="IOverlay.cpp" />
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="Scenarios.cpp" />
     <ClCompile Include="Session.cpp" />
@@ -184,6 +187,7 @@
   <ItemGroup>
     <ClInclude Include="ActionsController.h" />
     <ClInclude Include="AnimationUtils.h" />
+    <ClInclude Include="AtmoOverlay.h" />
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="BehaviorModels.h" />
     <ClInclude Include="BuildManager.h" />
@@ -199,7 +203,10 @@
     <ClInclude Include="BuildDraftInfo.h" />
     <ClInclude Include="IBehaviorModel.h" />
     <ClInclude Include="InteractionManager.h" />
+    <ClInclude Include="IOverlay.h" />
     <ClInclude Include="Layers.h" />
+    <ClInclude Include="OverlayTypes.h" />
+    <ClInclude Include="OverlayView.h" />
     <ClInclude Include="PrototypesCollection.h" />
     <ClInclude Include="Scenario.h" />
     <ClInclude Include="Scenarios.h" />

@@ -151,3 +151,21 @@ void Session::unpause(const bool i_silent)
   if (!i_silent)
     notify(UnpauseEvent());
 }
+
+
+const IOverlay* Session::getOverlay() const
+{
+  return d_overlay.get();
+}
+
+void Session::setOverlay(const OverlayType i_overlayType)
+{
+  d_overlay = IOverlay::create(i_overlayType, SAFE_DEREF(getCurrentLocation()));
+  notify(OverlaySetEvent(d_overlay.get()));
+}
+
+void Session::resetOverlay()
+{
+  d_overlay.reset();
+  notify(OverlaySetEvent(nullptr));
+}

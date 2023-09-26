@@ -33,4 +33,6 @@ private:
   void disableGodMode();
 
   void switchGodModeBuildMenu();
+
+  void switchAtmoOverlay();
 };
