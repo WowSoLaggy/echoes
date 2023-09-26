@@ -18,12 +18,13 @@ public:
   Session* getSession() const;
   GuiManager& getGui();
 
-  void onNewSession();
-  void onExitSession();
-  void onCloseApplication();
+  void newSession();
+  void closeSession();
+  void closeApplication();
 
 private:
   GameState d_state = GameState::NotLoaded;
+  void setState(GameState i_newState);
   void checkState();
   void onNotLoaded();
   void onLoading();

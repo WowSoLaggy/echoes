@@ -2,6 +2,7 @@
 #include "GuiManager.h"
 
 #include "Game.h"
+#include "GameEvents.h"
 #include "GodModeBuildGridItems.h"
 #include "SessionEvents.h"
 
@@ -33,6 +34,7 @@ namespace
   {
     auto ctrl = std::make_shared<Dx::Layout>();
     i_parent.addChild(ctrl);
+    ctrl->setOffsetBetweenElements(16);
     return *ctrl;
   }
 
@@ -108,7 +110,9 @@ GuiManager::GuiManager(Game& i_game)
 
 void GuiManager::processEvent(const Sdk::IEvent& i_event)
 {
-  if (const auto* event = dynamic_cast<const SessionAttachedEvent*>(&i_event))
+  if (const auto* event = dynamic_cast<const GameStateChangedEvent*>(&i_event))
+    onGameStateChanged(event->getNewState());
+  else if (const auto* event = dynamic_cast<const SessionAttachedEvent*>(&i_event))
     onSessionAttached(event->getSession());
   else if (const auto* event = dynamic_cast<const SessionDetachedEvent*>(&i_event))
     onSessionDetached(event->getSession());
@@ -127,6 +131,9 @@ void GuiManager::onSessionAttached(Session& i_session)
 {
   d_session = &i_session;
   connectTo(i_session);
+  
+  hideMainMenu();
+  createInGameMenu();
 }
 
 void GuiManager::onSessionDetached(Session& i_session)
@@ -142,6 +149,33 @@ void GuiManager::showPauseMenu()
   d_pauseMenuPanel->setTexture(Dx::TextureUtils::getTexture("Black.png"));
   d_pauseMenuPanel->setSize(getResolution().getVector<float>());
   d_pauseMenuPanel->setColor(Dx::colorWithAlpha(Dx::Colors::White, 0.5f));
+
+  auto& layout = createLayout(*d_pauseMenuPanel);
+  layout.setSize(d_pauseMenuPanel->getSize());
+  layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
+
+  {
+    auto& btn = createMenuButton(layout);
+    btn.setText("Resume Game");
+    btn.setOnPress(std::bind(&GuiManager::onResumeGame, this));
+  }
+
+  {
+    auto& fakePanel = createPanel(layout);
+    fakePanel.setSize({ 0, 16 });
+  }
+
+  {
+    auto& btn = createMenuButton(layout);
+    btn.setText("Exit to Menu");
+    btn.setOnPress(std::bind(&Game::closeSession, &d_game));
+  }
+
+  {
+    auto& btn = createMenuButton(layout);
+    btn.setText("Exit to Desktop");
+    btn.setOnPress(std::bind(&Game::closeApplication, &d_game));
+  }
 }
 
 void GuiManager::hidePauseMenu()
@@ -192,6 +226,18 @@ void GuiManager::onGodModeBuildUnselectedItem()
 }
 
 
+void GuiManager::onGameStateChanged(const GameState i_newState)
+{
+  if (i_newState == GameState::Loading)
+    showLoadingScreen();
+  else if (i_newState == GameState::Loaded)
+  {
+    hideLoadingScreen();
+    createMainMenu();
+  }
+}
+
+
 void GuiManager::showLoadingScreen()
 {
   auto& background = createPanel(d_game.getForm());
@@ -221,18 +267,17 @@ void GuiManager::createMainMenu()
   auto& layout = createLayout(d_game.getForm());
   layout.setSize(getResolution().getVector<float>());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
-  layout.setOffsetBetweenElements(16);
 
   {
     auto& btn = createMenuButton(layout);
     btn.setText("New Game");
-    btn.setOnPress(std::bind(&Game::onNewSession, &d_game));
+    btn.setOnPress(std::bind(&Game::newSession, &d_game));
   }
 
   {
     auto& btn = createMenuButton(layout);
     btn.setText("Exit");
-    btn.setOnPress(std::bind(&Game::onCloseApplication, &d_game));
+    btn.setOnPress(std::bind(&Game::closeApplication, &d_game));
   }
 }
 
@@ -298,4 +343,11 @@ void GuiManager::onExitBuildRemoval()
 {
   if (d_godModeBuildGrid)
     d_godModeBuildGrid->unselectItem();
+}
+
+
+void GuiManager::onResumeGame()
+{
+  CONTRACT_EXPECT(d_session);
+  d_session->unpause();
 }

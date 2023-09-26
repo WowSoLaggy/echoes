@@ -25,7 +25,7 @@ Game::Game()
 Game::~Game()
 {
   if (getSession())
-    onExitSession();
+    closeSession();
 }
 
 
@@ -34,7 +34,7 @@ GuiManager& Game::getGui() { return d_guiManager; }
 
 void Game::onStart()
 {
-  d_state = GameState::NotLoaded;
+  setState(GameState::NotLoaded);
 }
 
 void Game::update(double i_dt)
@@ -91,19 +91,17 @@ void Game::createViewController()
 }
 
 
-void Game::onNewSession()
+void Game::newSession()
 {
-  d_guiManager.hideMainMenu();
   startNewSession();
-  d_guiManager.createInGameMenu();
 }
 
-void Game::onExitSession()
+void Game::closeSession()
 {
   detachSession();
 }
 
-void Game::onCloseApplication()
+void Game::closeApplication()
 {
   stop();
 }

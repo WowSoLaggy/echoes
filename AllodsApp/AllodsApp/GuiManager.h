@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fwd.h"
+#include "GameStates.h"
 
 #include <LaggyDx/LaggyDxFwd.h>
 #include <LaggySdk/EventHandler.h>
@@ -13,14 +14,6 @@ public:
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 
-  void showLoadingScreen();
-  void hideLoadingScreen();
-
-  void createMainMenu();
-  void hideMainMenu();
-
-  void createInGameMenu();
-
   bool isGodModeBuildMenuShown() const;
   void showGodModeBuildMenu();
   void hideGodModeBuildMenu();
@@ -28,6 +21,14 @@ public:
 private:
   Game& d_game;
   Session* d_session = nullptr;
+
+  void onGameStateChanged(GameState i_newState);
+
+  void showLoadingScreen();
+  void hideLoadingScreen();
+  void createMainMenu();
+  void hideMainMenu();
+  void createInGameMenu();
 
   Dx::RadioButton* d_rbF1 = nullptr;
   Dx::RadioButton* d_rbF2 = nullptr;
@@ -48,4 +49,6 @@ private:
   void onGodModeEvent(bool i_enabled);
 
   void onExitBuildRemoval();
+
+  void onResumeGame();
 };

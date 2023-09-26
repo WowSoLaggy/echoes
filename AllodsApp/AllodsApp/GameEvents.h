@@ -1,23 +1,23 @@
 #pragma once
 
-#include "Fwd.h"
+#include "GameStates.h"
 
 #include <LaggySdk/IEvent.h>
 
 
-class GameEvent : public Sdk::IEvent
+class GameStateChangedEvent : public Sdk::IEvent
 {
 public:
-  explicit GameEvent(Game& i_game)
-    : d_game(i_game)
+  GameStateChangedEvent(const GameState i_newState)
+    : d_newState(i_newState)
   {
   }
 
-  Game& getGame() const
+  GameState getNewState() const
   {
-    return d_game;
+    return d_newState;
   }
 
 private:
-  Game& d_game;
+  const GameState d_newState;
 };

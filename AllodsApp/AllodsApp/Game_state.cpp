@@ -1,9 +1,17 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "GameEvents.h"
 #include "PrototypesCollection.h"
 
 #include <LaggySdk/Files.h>
+
+
+void Game::setState(const GameState i_newState)
+{
+  d_state = i_newState;
+  notify(GameStateChangedEvent(d_state));
+}
 
 
 void Game::checkState()
@@ -32,9 +40,7 @@ void Game::onNotLoaded()
   createViewController();
   d_loadResourcesFuture = std::async(&Game::loadResources, this);
 
-  d_guiManager.showLoadingScreen();
-
-  d_state = GameState::Loading;
+  setState(GameState::Loading);
 }
 
 void Game::onLoading()
@@ -53,10 +59,7 @@ void Game::onLoading()
 
 void Game::onGameLoaded()
 {
-  d_state = GameState::Loaded;
-  d_guiManager.hideLoadingScreen();
-  d_guiManager.createMainMenu();
-
+  setState(GameState::Loaded);
   getInputDevice().showCursor();
 }
 
