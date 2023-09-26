@@ -101,7 +101,9 @@ void Session::disableGodMode(const bool i_silent)
   if (!d_godMode)
     return;
 
+  resetOverlay();
   d_godMode = false;
+
   if (!i_silent)
     notify(GodModeEvent(d_godMode));
 }

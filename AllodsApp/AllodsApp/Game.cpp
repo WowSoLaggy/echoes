@@ -9,8 +9,6 @@ namespace
   const Dx::AppSettings& getAppSettings()
   {
     static Dx::AppSettings settings;
-    settings.screenWidth = 1024;
-    settings.screenHeight = 768;
     return settings;
   }
 
