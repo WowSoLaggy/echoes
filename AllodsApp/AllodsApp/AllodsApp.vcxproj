@@ -150,6 +150,7 @@
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
     <ClCompile Include="DoorBehavior.cpp" />
+    <ClCompile Include="DummyTileThd.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
@@ -177,6 +178,8 @@
     <ClCompile Include="StructureUtils.cpp" />
     <ClCompile Include="TempOverlay.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileCollection.cpp" />
+    <ClCompile Include="TileThd.cpp" />
     <ClCompile Include="TileUtils.cpp" />
     <ClCompile Include="TileView.cpp" />
     <ClCompile Include="ViewController.cpp" />
@@ -195,6 +198,7 @@
     <ClInclude Include="BuildModeView.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DoorBehavior.h" />
+    <ClInclude Include="DummyTileThd.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
@@ -222,6 +226,8 @@
     <ClInclude Include="StructureUtils.h" />
     <ClInclude Include="TempOverlay.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileCollection.h" />
+    <ClInclude Include="TileThd.h" />
     <ClInclude Include="TileUtils.h" />
     <ClInclude Include="TileView.h" />
     <ClInclude Include="ViewController.h" />

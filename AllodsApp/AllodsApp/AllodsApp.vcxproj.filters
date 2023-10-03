@@ -55,6 +55,9 @@
     <Filter Include="src\Session\Overlay">
       <UniqueIdentifier>{97416e98-2a57-4f9d-90cd-8cd84ea21947}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Thermodyamics">
+      <UniqueIdentifier>{980a3962-8203-4639-8128-fcdbc3036188}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,6 +167,15 @@
     </ClCompile>
     <ClCompile Include="TempOverlay.cpp">
       <Filter>src\Session\Overlay</Filter>
+    </ClCompile>
+    <ClCompile Include="TileThd.cpp">
+      <Filter>src\Thermodyamics</Filter>
+    </ClCompile>
+    <ClCompile Include="TileCollection.cpp">
+      <Filter>src\Thermodyamics</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyTileThd.cpp">
+      <Filter>src\Thermodyamics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -298,6 +310,15 @@
     </ClInclude>
     <ClInclude Include="TempOverlay.h">
       <Filter>src\Session\Overlay</Filter>
+    </ClInclude>
+    <ClInclude Include="TileThd.h">
+      <Filter>src\Thermodyamics</Filter>
+    </ClInclude>
+    <ClInclude Include="TileCollection.h">
+      <Filter>src\Thermodyamics</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyTileThd.h">
+      <Filter>src\Thermodyamics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

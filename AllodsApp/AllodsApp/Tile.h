@@ -21,8 +21,13 @@ public:
   void setStructure(Layer i_layer, StructurePtr i_structure);
   void resetStructure(Layer i_layer);
 
+  double getT() const;
+  void setT(double i_t);
+
 private:
   LayersMap d_layers;
+
+  double d_temperature = 0;
 };
 
 using Tiles = std::unordered_map<TileCoord, Tile, Sdk::Vector2_hash>;

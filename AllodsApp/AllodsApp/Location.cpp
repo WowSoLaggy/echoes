@@ -1,6 +1,14 @@
 #include "stdafx.h"
 #include "Location.h"
 
+#include <LaggyDx/Simulation.h>
+
+
+Location::Location()
+  : d_tileCollection(*this)
+{
+}
+
 
 void Location::setName(std::string i_name)
 {
@@ -15,8 +23,31 @@ const std::string& Location::getName() const
 
 void Location::update(const double i_dt)
 {
+  Dx::thd::Simulation().update(i_dt, d_tileCollection);
+
   for (auto& [_, tile] : d_tiles)
     tile.update(i_dt);
+}
+
+
+int Location::getMinX() const
+{
+  return d_minX;
+}
+
+int Location::getMinY() const
+{
+  return d_minY;
+}
+
+int Location::getMaxX() const
+{
+  return d_maxX;
+}
+
+int Location::getMaxY() const
+{
+  return d_maxY;
 }
 
 
@@ -27,6 +58,14 @@ const Tiles& Location::getTiles() const
 
 Tile& Location::getOrCreateTile(const TileCoord& i_coord)
 {
+  if (auto* tile = getTile(i_coord))
+    return *tile;
+
+  d_minX = std::min(d_minX, i_coord.x);
+  d_minY = std::min(d_minY, i_coord.y);
+  d_maxX = std::max(d_maxX, i_coord.x);
+  d_maxY = std::max(d_maxY, i_coord.y);
+
   return d_tiles[i_coord];
 }
 

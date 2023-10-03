@@ -21,8 +21,8 @@ void Session::update(const double i_dt)
   if (d_pause)
     return;
 
-  if (d_currentLocation)
-    d_currentLocation->update(i_dt);
+  for (auto& location : SAFE_DEREF(d_world).getLocations())
+    SAFE_DEREF(location).update(i_dt);
 }
 
 void Session::onMouseMove()

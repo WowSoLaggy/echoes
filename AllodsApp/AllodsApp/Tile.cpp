@@ -36,3 +36,14 @@ void Tile::resetStructure(const Layer i_layer)
 {
   d_layers.erase(i_layer);
 }
+
+
+double Tile::getT() const
+{
+  return d_temperature;
+}
+
+void Tile::setT(const double i_t)
+{
+  d_temperature = i_t;
+}

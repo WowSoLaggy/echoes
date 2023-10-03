@@ -57,6 +57,8 @@ std::unique_ptr<Location> LocationCreator::createTest()
   createStr("Floor", 8, 7);
   auto& door = *createStr("Door", 8, 7);
 
+  location->getOrCreateTile({ 8, 5 }).setT(100);
+
   return location;
 }
 
