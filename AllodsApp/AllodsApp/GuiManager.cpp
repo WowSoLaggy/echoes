@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "GameEvents.h"
 #include "GodModeBuildGridItems.h"
+#include "IOverlay.h"
 #include "SessionEvents.h"
 
 #include <LaggyDx/App.h>
@@ -89,6 +90,20 @@ namespace
     return *ctrl;
   }
 
+  std::string getOverlayName(const OverlayType i_type)
+  {
+    switch (i_type)
+    {
+    case OverlayType::Temp:
+      return "Temperature";
+    case OverlayType::Atmo:
+      return "Gases";
+
+    default:
+      CONTRACT_EXPECT(false);
+    }
+  }
+
 } // anonym NS
 
 
@@ -103,18 +118,25 @@ void GuiManager::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* event = dynamic_cast<const GameStateChangedEvent*>(&i_event))
     onGameStateChanged(event->getNewState());
+
   else if (const auto* event = dynamic_cast<const SessionAttachedEvent*>(&i_event))
     onSessionAttached(event->getSession());
   else if (const auto* event = dynamic_cast<const SessionDetachedEvent*>(&i_event))
     onSessionDetached(event->getSession());
+  
   else if (const auto* event = dynamic_cast<const GodModeEvent*>(&i_event))
     onGodModeEvent(event->getEnabled());
+  
   else if (const auto* event = dynamic_cast<const PauseEvent*>(&i_event))
     showPauseMenu();
   else if (const auto* event = dynamic_cast<const UnpauseEvent*>(&i_event))
     hidePauseMenu();
+  
   else if (const auto* event = dynamic_cast<const ExitBuildRemovalEvent*>(&i_event))
     onExitBuildRemoval();
+  
+  else if (const auto* event = dynamic_cast<const OverlaySetEvent*>(&i_event))
+    onOverlaySet(event->getOverlay());
 }
 
 
@@ -318,11 +340,17 @@ void GuiManager::showInGameGui()
     if (godMode)
       btn.setOnPress(std::bind(&GuiManager::onBtnLiveMode, this));
   }
+
+  if (const auto* overlay = d_session->getOverlay())
+    showOverlayPanel(*overlay);
 }
 
 void GuiManager::hideInGameGui()
 {
   CONTRACT_EXPECT(d_inGameGui);
+
+  hideOverlayPanel();
+
   d_inGameGui->setParent(nullptr);
   d_inGameGui = nullptr;
 }
@@ -379,4 +407,41 @@ void GuiManager::onExitToMenu()
 {
   hidePauseMenu();
   d_game.closeSession();
+}
+
+
+void GuiManager::onOverlaySet(const IOverlay* i_overlay)
+{
+  hideOverlayPanel();
+
+  if (i_overlay)
+    showOverlayPanel(*i_overlay);
+}
+
+void GuiManager::showOverlayPanel(const IOverlay& i_overlay)
+{
+  if (!d_inGameGui)
+    return;
+
+  d_overlayPanel = &createPanel(*d_inGameGui);
+  d_overlayPanel->setTexture(Dx::TextureUtils::getTexture("White.png"));
+  d_overlayPanel->setColor({ 0.5f, 0.5f, 0.5f, 0.5f });
+  d_overlayPanel->setSize({ 200, 48 });
+  d_overlayPanel->setPosition({ getResolution().x - d_overlayPanel->getSize().x, 0 });
+
+  auto& layout = createLayout(*d_overlayPanel);
+  layout.setSize(d_overlayPanel->getSize());
+  layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
+  
+  auto& label = createLabel(layout);
+  label.setText(getOverlayName(i_overlay.getType()));
+}
+
+void GuiManager::hideOverlayPanel()
+{
+  if (d_overlayPanel)
+  {
+    d_overlayPanel->setParent(nullptr);
+    d_overlayPanel = nullptr;
+  }
 }

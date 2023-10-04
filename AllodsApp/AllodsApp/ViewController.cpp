@@ -95,6 +95,8 @@ void ViewController::onLocationAdded(Location& i_location)
 
 void ViewController::onLocationRemoved(Location& i_location)
 {
+  d_overlay = nullptr;
+
   disconnectFrom(i_location);
   d_location = nullptr;
 }

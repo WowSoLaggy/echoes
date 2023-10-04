@@ -55,4 +55,9 @@ private:
 
   void onResumeGame();
   void onExitToMenu();
+
+  Dx::Panel* d_overlayPanel = nullptr;
+  void onOverlaySet(const IOverlay* i_overlay);
+  void showOverlayPanel(const IOverlay& i_overlay);
+  void hideOverlayPanel();
 };

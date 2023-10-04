@@ -3,6 +3,8 @@
 #include "Fwd.h"
 #include "IOverlay.h"
 
+#include <LaggyDx/Gradient.h>
+
 
 class TempOverlay : public IOverlay
 {
@@ -14,4 +16,5 @@ public:
 
 private:
   const Location& d_location;
+  const Dx::Gradient d_gradient;
 };
