@@ -6,10 +6,12 @@
 #include "GodModeBuildGridItems.h"
 #include "IOverlay.h"
 #include "SessionEvents.h"
+#include "TileUtils.h"
 
 #include <LaggyDx/App.h>
 #include <LaggyDx/Button.h>
 #include <LaggyDx/Colors.h>
+#include <LaggyDx/CursorUtils.h>
 #include <LaggyDx/Grid.h>
 #include <LaggyDx/GridItem.h>
 #include <LaggyDx/IResourceController.h>
@@ -17,6 +19,7 @@
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
 #include <LaggyDx/TextureUtils.h>
+#include <LaggySdk/StringUtils.h>
 
 
 namespace
@@ -140,8 +143,20 @@ void GuiManager::processEvent(const Sdk::IEvent& i_event)
 }
 
 
+void GuiManager::update()
+{
+  if (!d_session || d_session->isPause())
+    return;
+
+  if (d_overlayHint)
+    updateOverlayHint();
+}
+
+
 void GuiManager::onSessionAttached(Session& i_session)
 {
+  CONTRACT_ASSERT(!d_session);
+
   d_session = &i_session;
   connectTo(i_session);
   
@@ -160,6 +175,8 @@ void GuiManager::onSessionDetached(Session& i_session)
 
 void GuiManager::showPauseMenu()
 {
+  CONTRACT_EXPECT(!d_pauseMenuPanel);
+
   d_pauseMenuPanel = &createPanel(d_game.getForm());
   d_pauseMenuPanel->sendToFront();
   d_pauseMenuPanel->setTexture(Dx::TextureUtils::getTexture("Black.png"));
@@ -319,6 +336,8 @@ void GuiManager::recreateInGameMenu()
 
 void GuiManager::showInGameGui()
 {
+  CONTRACT_EXPECT(!d_inGameGui);
+
   d_inGameGui = &createControl(d_game.getForm());
 
   const bool godMode = SAFE_DEREF(d_session).isGodMode();
@@ -341,15 +360,16 @@ void GuiManager::showInGameGui()
       btn.setOnPress(std::bind(&GuiManager::onBtnLiveMode, this));
   }
 
-  if (const auto* overlay = d_session->getOverlay())
-    showOverlayPanel(*overlay);
+  d_overlay = d_session->getOverlay();
+  if (d_overlay)
+    showOverlayUI();
 }
 
 void GuiManager::hideInGameGui()
 {
   CONTRACT_EXPECT(d_inGameGui);
 
-  hideOverlayPanel();
+  hideOverlayUI();
 
   d_inGameGui->setParent(nullptr);
   d_inGameGui = nullptr;
@@ -365,6 +385,8 @@ void GuiManager::showGodModeBuildMenu()
 {
   constexpr int GridSizeX = 3;
   constexpr int GridSizeY = 4;
+
+  CONTRACT_EXPECT(!d_godModeBuildGrid);
 
   d_godModeBuildGrid = &createGrid(d_game.getForm(), GridSizeX, GridSizeY);
   d_godModeBuildGrid->setItems(getGodModeBuildGridItems(GridSizeX));
@@ -412,16 +434,21 @@ void GuiManager::onExitToMenu()
 
 void GuiManager::onOverlaySet(const IOverlay* i_overlay)
 {
-  hideOverlayPanel();
+  d_overlay = i_overlay;
+
+  hideOverlayUI();
 
   if (i_overlay)
-    showOverlayPanel(*i_overlay);
+    showOverlayUI();
 }
 
-void GuiManager::showOverlayPanel(const IOverlay& i_overlay)
+void GuiManager::showOverlayUI()
 {
   if (!d_inGameGui)
     return;
+
+  CONTRACT_EXPECT(d_overlay);
+  CONTRACT_EXPECT(!d_overlayPanel);
 
   d_overlayPanel = &createPanel(*d_inGameGui);
   d_overlayPanel->setTexture(Dx::TextureUtils::getTexture("White.png"));
@@ -434,14 +461,59 @@ void GuiManager::showOverlayPanel(const IOverlay& i_overlay)
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
   
   auto& label = createLabel(layout);
-  label.setText(getOverlayName(i_overlay.getType()));
+  label.setText(getOverlayName(d_overlay->getType()));
+
+  if (d_overlay->getType() == OverlayType::Temp)
+    showOverlayHintTemp();
 }
 
-void GuiManager::hideOverlayPanel()
+void GuiManager::hideOverlayUI()
 {
   if (d_overlayPanel)
   {
+    hideOverlayHint();
+
     d_overlayPanel->setParent(nullptr);
     d_overlayPanel = nullptr;
   }
+}
+
+void GuiManager::showOverlayHintTemp()
+{
+  CONTRACT_EXPECT(!d_overlayHint);
+
+  d_overlayHint = &createPanel(*d_inGameGui);
+  d_overlayHint->setSize({ 64, 48 });
+
+  d_overlayHintLabel = &createLabel(*d_overlayHint);
+
+  updateOverlayHint();
+}
+
+void GuiManager::hideOverlayHint()
+{
+  if (d_overlayHint)
+  {
+    d_overlayHint->setParent(nullptr);
+    d_overlayHint = nullptr;
+  }
+}
+
+void GuiManager::updateOverlayHint()
+{
+  CONTRACT_EXPECT(d_overlay);
+  CONTRACT_EXPECT(d_overlayHint);
+  CONTRACT_EXPECT(d_overlayHintLabel);
+  CONTRACT_EXPECT(d_session);
+
+  CONTRACT_EXPECT(d_overlay->getType() == OverlayType::Temp);
+
+  const auto& mousePos = Dx::CursorUtils::getPosition();
+  d_overlayHint->setPosition(mousePos.getVector<float>() + Sdk::Vector2F{ 8, 0 });
+
+  const auto tileCoords = TileUtils::getTileCoordsUnderCursor(d_session->getCamera());
+  const auto& currentLocation = SAFE_DEREF(d_session->getCurrentLocation());
+  const auto* tile = currentLocation.getTile(tileCoords);
+  const auto tempString = tile ? Sdk::toString(tile->getT(), 2) + " C" : "N/A";
+  d_overlayHintLabel->setText("T: " + tempString);
 }

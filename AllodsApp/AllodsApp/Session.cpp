@@ -165,6 +165,11 @@ void Session::unpause(const bool i_silent)
     notify(UnpauseEvent());
 }
 
+bool Session::isPause() const
+{
+  return d_pause;
+}
+
 
 const IOverlay* Session::getOverlay() const
 {

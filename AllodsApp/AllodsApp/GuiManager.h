@@ -14,6 +14,8 @@ public:
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 
+  void update();
+
   bool isGodModeBuildMenuShown() const;
   void showGodModeBuildMenu();
   void hideGodModeBuildMenu();
@@ -56,8 +58,14 @@ private:
   void onResumeGame();
   void onExitToMenu();
 
+  const IOverlay* d_overlay = nullptr;
   Dx::Panel* d_overlayPanel = nullptr;
   void onOverlaySet(const IOverlay* i_overlay);
-  void showOverlayPanel(const IOverlay& i_overlay);
-  void hideOverlayPanel();
+  void showOverlayUI();
+  void hideOverlayUI();
+  Dx::Panel* d_overlayHint = nullptr;
+  Dx::Label* d_overlayHintLabel = nullptr;
+  void showOverlayHintTemp();
+  void hideOverlayHint();
+  void updateOverlayHint();
 };

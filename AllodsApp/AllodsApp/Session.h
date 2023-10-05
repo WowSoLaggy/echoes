@@ -36,6 +36,7 @@ public:
   void onEscape();
   void pause(bool i_silent = false);
   void unpause(bool i_silent = false);
+  bool isPause() const;
 
   void enableGodMode();
   void disableGodMode();
