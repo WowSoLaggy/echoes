@@ -8,6 +8,7 @@
 
 #include <LaggyDx/ISpriteShader.h>
 #include <LaggyDx/LaggyDxFwd.h>
+
 #include <LaggySdk/EventHandler.h>
 
 

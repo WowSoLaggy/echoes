@@ -10,12 +10,12 @@ class Fixture
 public:
   Fixture();
 
+  const FixturesMap& getMounts() const;
   MountPtr getMount(FixtureLocation i_location) const;
+
   void setMount(FixtureLocation i_location, MountPtr i_mount);
   void resetMount(FixtureLocation i_location);
 
 private:
   FixturesMap d_mounts;
 };
-
-using FixturePtr = std::shared_ptr<Fixture>;

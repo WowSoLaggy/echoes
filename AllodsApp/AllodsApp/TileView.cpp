@@ -2,6 +2,7 @@
 #include "TileView.h"
 
 #include "Constants.h"
+#include "MountView.h"
 #include "Prototypes.h"
 #include "Structure.h"
 
@@ -28,6 +29,8 @@ namespace
 
 void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) const
 {
+  const MountView mountView(i_shader);
+
   Dx::AnimatedSprite sprite;
   sprite.setSize({ Constants::TileSize, Constants::TileSize });
 
@@ -58,6 +61,9 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
       sprite.setCurrentFrame(structure.getAnimationPlayer().getCurrentFrame());
 
       i_shader.draw(sprite);
+
+      if (const auto fixturePtr = structure.getFixture())
+        mountView.render(*fixturePtr, coord);
     }
   }
 }

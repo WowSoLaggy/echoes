@@ -34,16 +34,16 @@ void ObjectsSpawner::despawnStructure(
 
 
 MountPtr ObjectsSpawner::spawnMount(
-  const PrototypeName& i_name, StructurePtr i_structure, FixtureLocation i_location)
+  const PrototypeName& i_name, Structure& i_structure, FixtureLocation i_location)
 {
   const auto& prototype = PrototypesCollection::getMountPrototype(i_name);
   return spawnMount(prototype, i_structure, i_location);
 }
 
 MountPtr ObjectsSpawner::spawnMount(
-  const MountPrototype& i_prototype, StructurePtr i_structure, FixtureLocation i_location)
+  const MountPrototype& i_prototype, Structure& i_structure, FixtureLocation i_location)
 {
-  auto fixture = i_structure->getFixture();
+  auto fixture = i_structure.getFixture();
   CONTRACT_EXPECT(fixture);
 
   MountPtr mount = std::make_shared<Mount>(i_prototype);
@@ -53,9 +53,9 @@ MountPtr ObjectsSpawner::spawnMount(
 }
 
 void ObjectsSpawner::despawnMount(
-  StructurePtr i_structure, FixtureLocation i_location)
+  Structure& i_structure, FixtureLocation i_location)
 {
-  auto fixture = i_structure->getFixture();
+  auto fixture = i_structure.getFixture();
   CONTRACT_EXPECT(fixture);
 
   fixture->resetMount(i_location);

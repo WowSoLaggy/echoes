@@ -1,6 +1,7 @@
 #pragma once
 
 #include <LaggyDx/LaggyDxFwd.h>
+
 #include <LaggySdk/Vector.h>
 
 

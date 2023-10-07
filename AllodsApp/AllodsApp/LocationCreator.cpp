@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "LocationCreator.h"
 
+#include "Mount.h"
 #include "ObjectsSpawner.h"
 #include "Structure.h"
 
@@ -13,6 +14,12 @@ std::unique_ptr<Location> LocationCreator::createTest()
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
     return ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y });
+  };
+
+  const auto createMount = [&](
+    const PrototypeName& i_protoName, Structure& i_structure, const FixtureLocation i_location)
+  {
+    return ObjectsSpawner::spawnMount(i_protoName, i_structure, i_location);
   };
 
   //
@@ -58,6 +65,25 @@ std::unique_ptr<Location> LocationCreator::createTest()
   auto& door = *createStr("Door", 8, 7);
 
   location->getOrCreateTile({ 8, 5 }).setT(100);
+
+  {
+    auto& wallN = SAFE_DEREF(location->getOrCreateTile({ 8, 3 }).getStructure(Layer::Wall));
+    createMount("Lamp", wallN, FixtureLocation::Bottom);
+  }
+  {
+    auto& wallE = SAFE_DEREF(location->getOrCreateTile({ 10, 5 }).getStructure(Layer::Wall));
+    createMount("Lamp", wallE, FixtureLocation::Left);
+  }
+  {
+    auto& wallW = SAFE_DEREF(location->getOrCreateTile({ 6, 5 }).getStructure(Layer::Wall));
+    createMount("Lamp", wallW, FixtureLocation::Right);
+  }
+  {
+    auto& wallS1 = SAFE_DEREF(location->getOrCreateTile({ 7, 7 }).getStructure(Layer::Wall));
+    auto& wallS2 = SAFE_DEREF(location->getOrCreateTile({ 9, 7 }).getStructure(Layer::Wall));
+    createMount("Lamp", wallS1, FixtureLocation::Top);
+    createMount("Lamp", wallS2, FixtureLocation::Top);
+  }
 
   return location;
 }

@@ -186,6 +186,9 @@
     <ClCompile Include="Structure.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="MountView.cpp">
+      <Filter>src\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -343,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="Structure.h">
       <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MountView.h">
+      <Filter>src\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

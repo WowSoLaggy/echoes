@@ -17,11 +17,11 @@ public:
     Location& i_location, const TileCoord& i_tileCoord, Layer i_layer);
   
   static MountPtr spawnMount(
-    const PrototypeName& i_name, StructurePtr i_structure, FixtureLocation i_location);
+    const PrototypeName& i_name, Structure& i_structure, FixtureLocation i_location);
   static MountPtr spawnMount(
-    const MountPrototype& i_prototype, StructurePtr i_structure, FixtureLocation i_location);
+    const MountPrototype& i_prototype, Structure& i_structure, FixtureLocation i_location);
   static void despawnMount(
-    StructurePtr i_structure, FixtureLocation i_location);
+    Structure& i_structure, FixtureLocation i_location);
 
 private:
   ObjectsSpawner() = delete;

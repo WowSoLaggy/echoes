@@ -163,6 +163,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Fixture.cpp" />
     <ClCompile Include="Mount.cpp" />
+    <ClCompile Include="MountView.cpp" />
     <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="Scenarios.cpp" />
@@ -217,6 +218,7 @@
     <ClInclude Include="Fixture.h" />
     <ClInclude Include="Mount.h" />
     <ClInclude Include="MountPrototype.h" />
+    <ClInclude Include="MountView.h" />
     <ClInclude Include="OverlayTypes.h" />
     <ClInclude Include="OverlayView.h" />
     <ClInclude Include="PrototypesCollection.h" />
