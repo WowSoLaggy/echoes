@@ -12,6 +12,8 @@ public:
 
   [[nodiscard]] const StructurePrototype& getStructurePrototype() const;
 
+  [[nodiscard]] FixturePtr getFixture() const;
+
 private:
   FixturePtr d_fixture;
 };

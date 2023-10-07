@@ -16,3 +16,9 @@ const StructurePrototype& Structure::getStructurePrototype() const
 {
   return dynamic_cast<const StructurePrototype&>(Entity::getPrototype());
 }
+
+
+FixturePtr Structure::getFixture() const
+{
+  return d_fixture;
+}

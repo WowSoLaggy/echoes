@@ -9,12 +9,19 @@ Fixture::Fixture()
 }
 
 
-StructurePtr Fixture::getMount(const FixtureLocation i_location) const
+MountPtr Fixture::getMount(const FixtureLocation i_location) const
 {
   return d_mounts.at(i_location);
 }
 
-void Fixture::setMount(FixtureLocation i_location, StructurePtr i_structure)
+void Fixture::setMount(FixtureLocation i_location, MountPtr i_mount)
 {
-  d_mounts[i_location] = i_structure;
+  CONTRACT_EXPECT(!d_mounts[i_location]);
+  d_mounts[i_location] = i_mount;
+}
+
+void Fixture::resetMount(FixtureLocation i_location)
+{
+  CONTRACT_EXPECT(d_mounts[i_location]);
+  d_mounts[i_location] = nullptr;
 }
