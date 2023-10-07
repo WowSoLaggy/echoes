@@ -2,6 +2,7 @@
 #include "TileView.h"
 
 #include "Constants.h"
+#include "Prototypes.h"
 #include "Structure.h"
 
 #include <LaggyDx/AnimatedSprite.h>

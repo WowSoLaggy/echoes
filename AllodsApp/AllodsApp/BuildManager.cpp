@@ -3,10 +3,10 @@
 
 #include "BuildDraftInfo.h"
 #include "ObjectsSpawner.h"
+#include "Prototypes.h"
 #include "Session.h"
 #include "SessionEvents.h"
 #include "Structure.h"
-#include "StructurePrototype.h"
 #include "StructureUtils.h"
 #include "TileUtils.h"
 
@@ -190,10 +190,12 @@ bool BuildManager::doesTileHaveLowerLayerWithSupport() const
 
   for (const auto& [layer, structurePtr] : tile->getLayers())
   {
+    CONTRACT_EXPECT(structurePtr);
+
     if (layer >= d_buildPrototype->layer)
       return false;
 
-    if (structurePtr->getPrototype().support)
+    if (structurePtr->getStructurePrototype().support)
       return true;
   }
 
@@ -228,7 +230,7 @@ void BuildManager::tryRemove()
   ObjectsSpawner::despawnStructure(
     SAFE_DEREF(d_session.getCurrentLocation()),
     tileCoords,
-    structure->getPrototype().layer);
+    structure->getStructurePrototype().layer);
 
   if (d_isMutliremoving)
     d_lastRemovedCoords = tileCoords;

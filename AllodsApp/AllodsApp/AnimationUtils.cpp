@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include "AnimationUtils.h"
 
-#include "Structure.h"
+#include "Entity.h"
+#include "Prototypes.h"
 
 
 void AnimationUtils::playAnimation(
-  Structure& i_structure, const std::string& i_animationName, std::optional<int> i_times)
+  Entity& i_entity, const std::string& i_animationName, std::optional<int> i_times)
 {
-  const auto& animations = i_structure.getPrototype().texture->getAnimationsMap();
+  const auto& animations = i_entity.getPrototype().texture->getAnimationsMap();
   const auto& animation = animations.at(i_animationName);
-  i_structure.getAnimationPlayer().playAnimation(&animation, i_times);
+  i_entity.getAnimationPlayer().playAnimation(&animation, i_times);
 }

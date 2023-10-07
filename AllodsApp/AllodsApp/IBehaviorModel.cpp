@@ -4,10 +4,10 @@
 #include "DoorBehavior.h"
 
 
-BehaviorModelPtr IBehaviorModel::get(BehaviorModel i_model, Structure& i_structure)
+BehaviorModelPtr IBehaviorModel::get(BehaviorModel i_model, Entity& i_entity)
 {
   if (i_model == BehaviorModel::Door)
-    return std::make_shared<DoorBehavior>(i_structure);
+    return std::make_shared<DoorBehavior>(i_entity);
 
   return nullptr;
 }

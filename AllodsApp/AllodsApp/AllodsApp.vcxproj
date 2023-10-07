@@ -161,6 +161,8 @@
     <ClCompile Include="IOverlay.cpp" />
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Fixture.cpp" />
+    <ClCompile Include="Mount.cpp" />
     <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="Scenarios.cpp" />
@@ -173,8 +175,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="PrototypeLoader.cpp" />
     <ClCompile Include="Structure.cpp" />
-    <ClCompile Include="StructurePrototypeLoader.cpp" />
     <ClCompile Include="StructureUtils.cpp" />
     <ClCompile Include="TempOverlay.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -199,6 +202,7 @@
     <ClInclude Include="Constants.h" />
     <ClInclude Include="DoorBehavior.h" />
     <ClInclude Include="DummyTileThd.h" />
+    <ClInclude Include="FixtureLocations.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
@@ -210,6 +214,9 @@
     <ClInclude Include="InteractionManager.h" />
     <ClInclude Include="IOverlay.h" />
     <ClInclude Include="Layers.h" />
+    <ClInclude Include="Fixture.h" />
+    <ClInclude Include="Mount.h" />
+    <ClInclude Include="MountPrototype.h" />
     <ClInclude Include="OverlayTypes.h" />
     <ClInclude Include="OverlayView.h" />
     <ClInclude Include="PrototypesCollection.h" />
@@ -220,9 +227,10 @@
     <ClInclude Include="SessionLoader.h" />
     <ClInclude Include="ObjectsSpawner.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Structure.h" />
-    <ClInclude Include="StructurePrototype.h" />
-    <ClInclude Include="StructurePrototypeLoader.h" />
+    <ClInclude Include="Prototypes.h" />
+    <ClInclude Include="PrototypeLoader.h" />
     <ClInclude Include="StructureUtils.h" />
     <ClInclude Include="TempOverlay.h" />
     <ClInclude Include="Tile.h" />

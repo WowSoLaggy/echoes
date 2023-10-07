@@ -26,14 +26,13 @@
   {
 	"TextureName": "Wall.png",
 	"Layer": "Wall",
-	"Support": true
+	"Fixture": true
   },
   
   "Door":
   {
 	"TextureName": "Door.png",
 	"Layer": "Wall",
-	"Support": false,
 	"Behavior": "Door"
   }
 }

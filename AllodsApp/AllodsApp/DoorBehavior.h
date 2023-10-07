@@ -9,7 +9,7 @@
 class DoorBehavior : public IBehaviorModel, public Sdk::EventHandler
 {
 public:
-  DoorBehavior(Structure& i_structure);
+  DoorBehavior(Entity& i_door);
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 
@@ -28,7 +28,7 @@ private:
     Closed,
   };
 
-  Structure& d_structure;
+  Entity& d_door;
 
   DoorState d_state = DoorState::Closed;
 

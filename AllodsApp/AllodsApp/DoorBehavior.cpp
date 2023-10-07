@@ -2,15 +2,15 @@
 #include "DoorBehavior.h"
 
 #include "AnimationUtils.h"
-#include "Structure.h"
+#include "Entity.h"
 
 #include <LaggyDx/AnimationEvents.h>
 
 
-DoorBehavior::DoorBehavior(Structure& i_structure)
-  : d_structure(i_structure)
+DoorBehavior::DoorBehavior(Entity& i_door)
+  : d_door(i_door)
 {
-  connectTo(d_structure.getAnimationPlayer());
+  connectTo(d_door.getAnimationPlayer());
 }
 
 
@@ -32,13 +32,13 @@ void DoorBehavior::interact()
 
 void DoorBehavior::open()
 {
-  AnimationUtils::playAnimation(d_structure, "Open", 1);
+  AnimationUtils::playAnimation(d_door, "Open", 1);
   d_state = DoorState::Opening;
 }
 
 void DoorBehavior::close()
 {
-  AnimationUtils::playAnimation(d_structure, "Close", 1);
+  AnimationUtils::playAnimation(d_door, "Close", 1);
   d_state = DoorState::Closing;
 }
 

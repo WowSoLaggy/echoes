@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StructureUtils.h"
 
+#include "Prototypes.h"
 #include "Session.h"
 #include "Structure.h"
 #include "TileUtils.h"

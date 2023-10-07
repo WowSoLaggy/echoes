@@ -78,7 +78,7 @@
     <ClCompile Include="ViewController.cpp">
       <Filter>src\View\ViewController</Filter>
     </ClCompile>
-    <ClCompile Include="Structure.cpp">
+    <ClCompile Include="Entity.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundView.cpp">
@@ -87,7 +87,7 @@
     <ClCompile Include="TileView.cpp">
       <Filter>src\View</Filter>
     </ClCompile>
-    <ClCompile Include="StructurePrototypeLoader.cpp">
+    <ClCompile Include="PrototypeLoader.cpp">
       <Filter>src\World\Prototypes</Filter>
     </ClCompile>
     <ClCompile Include="PrototypesCollection.cpp">
@@ -177,6 +177,15 @@
     <ClCompile Include="DummyTileThd.cpp">
       <Filter>src\Thermodyamics</Filter>
     </ClCompile>
+    <ClCompile Include="Fixture.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Mount.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Structure.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -206,7 +215,7 @@
     <ClInclude Include="LocationEvents.h">
       <Filter>src\Events</Filter>
     </ClInclude>
-    <ClInclude Include="Structure.h">
+    <ClInclude Include="Entity.h">
       <Filter>src\World\Objects</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundView.h">
@@ -215,10 +224,10 @@
     <ClInclude Include="TileView.h">
       <Filter>src\View</Filter>
     </ClInclude>
-    <ClInclude Include="StructurePrototype.h">
+    <ClInclude Include="Prototypes.h">
       <Filter>src\World\Prototypes</Filter>
     </ClInclude>
-    <ClInclude Include="StructurePrototypeLoader.h">
+    <ClInclude Include="PrototypeLoader.h">
       <Filter>src\World\Prototypes</Filter>
     </ClInclude>
     <ClInclude Include="PrototypesCollection.h">
@@ -319,6 +328,21 @@
     </ClInclude>
     <ClInclude Include="DummyTileThd.h">
       <Filter>src\Thermodyamics</Filter>
+    </ClInclude>
+    <ClInclude Include="Fixture.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FixtureLocations.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mount.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="MountPrototype.h">
+      <Filter>src\World\Prototypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Structure.h">
+      <Filter>src\World\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
 class IBehaviorModel
 {
 public:
-  static BehaviorModelPtr get(BehaviorModel i_model, Structure& i_structure);
+  static BehaviorModelPtr get(BehaviorModel i_model, Entity& i_entity);
 
 public:
   virtual ~IBehaviorModel() = default;
