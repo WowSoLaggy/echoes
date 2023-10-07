@@ -82,7 +82,7 @@ namespace
 
   Dx::Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
   {
-    auto ctrl = std::make_shared<Dx::Grid>(i_slotsX, i_slotsY);
+    auto ctrl = std::make_shared<Dx::Grid>(Sdk::Vector2I{ i_slotsX, i_slotsY });
     i_parent.addChild(ctrl);
 
     ctrl->setTextures(

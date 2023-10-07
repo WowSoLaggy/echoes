@@ -80,3 +80,14 @@ const Tile* Location::getTile(const TileCoord& i_coord) const
   const auto it = d_tiles.find(i_coord);
   return it == d_tiles.end() ? nullptr : &it->second;
 }
+
+
+Objects& Location::getObjects()
+{
+  return d_objects;
+}
+
+const Objects& Location::getObjects() const
+{
+  return d_objects;
+}

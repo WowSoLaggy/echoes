@@ -34,3 +34,8 @@ struct StructurePrototype : public Prototype
 struct MountPrototype : public Prototype
 {
 };
+
+
+struct ObjectPrototype : public Prototype
+{
+};

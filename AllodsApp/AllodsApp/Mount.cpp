@@ -12,5 +12,5 @@ Mount::Mount(const MountPrototype& i_prototype)
 
 const MountPrototype& Mount::getMountPrototype() const
 {
-  return dynamic_cast<const MountPrototype&>(Entity::getPrototype());
+  return dynamic_cast<const MountPrototype&>(getPrototype());
 }

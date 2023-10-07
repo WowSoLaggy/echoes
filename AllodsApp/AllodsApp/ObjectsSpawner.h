@@ -4,6 +4,8 @@
 #include "Fwd.h"
 #include "Layers.h"
 
+#include <LaggySdk/Vector.h>
+
 
 class ObjectsSpawner
 {
@@ -20,8 +22,13 @@ public:
     const PrototypeName& i_name, Structure& i_structure, FixtureLocation i_location);
   static MountPtr spawnMount(
     const MountPrototype& i_prototype, Structure& i_structure, FixtureLocation i_location);
-  static void despawnMount(
-    Structure& i_structure, FixtureLocation i_location);
+  static void despawnMount(Structure& i_structure, FixtureLocation i_location);
+
+  static ObjectPtr spawnObject(
+    const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position);
+  static ObjectPtr spawnObject(
+    const ObjectPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position);
+  static void despawnObject(Location& i_location, Object& i_object);
 
 private:
   ObjectsSpawner() = delete;

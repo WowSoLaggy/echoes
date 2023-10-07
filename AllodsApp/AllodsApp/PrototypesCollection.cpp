@@ -8,6 +8,7 @@ namespace
 {
   MountPrototypesMap d_mountPrototypes;
   StructurePrototypesMap d_structurePrototypes;
+  ObjectPrototypesMap d_objectPrototypes;
 
 } // anonym NS
 
@@ -18,6 +19,7 @@ void PrototypesCollection::load(const fs::path& i_prototypesFolder)
 
   loadMounts(i_prototypesFolder);
   loadStructures(i_prototypesFolder);
+  loadObjects(i_prototypesFolder);
 }
 
 
@@ -39,6 +41,15 @@ void PrototypesCollection::loadStructures(const fs::path& i_prototypesFolder)
     d_structurePrototypes[prototype.name] = prototype;
 }
 
+void PrototypesCollection::loadObjects(const fs::path& i_prototypesFolder)
+{
+  const std::string PrototypeFileName = "objects.json";
+  const auto structurePrototypes = PrototypeLoader::loadObjects(i_prototypesFolder / PrototypeFileName);
+
+  for (const auto& prototype : structurePrototypes)
+    d_objectPrototypes[prototype.name] = prototype;
+}
+
 
 const MountPrototype& PrototypesCollection::getMountPrototype(const PrototypeName& i_name)
 {
@@ -50,6 +61,11 @@ const StructurePrototype& PrototypesCollection::getStructurePrototype(const Prot
   return d_structurePrototypes.at(i_name);
 }
 
+const ObjectPrototype& PrototypesCollection::getObjectPrototype(const PrototypeName& i_name)
+{
+  return d_objectPrototypes.at(i_name);
+}
+
 
 const MountPrototypesMap& PrototypesCollection::getMountPrototypes()
 {
@@ -59,4 +75,9 @@ const MountPrototypesMap& PrototypesCollection::getMountPrototypes()
 const StructurePrototypesMap& PrototypesCollection::getStructurePrototypes()
 {
   return d_structurePrototypes;
+}
+
+const ObjectPrototypesMap& PrototypesCollection::getObjectrototypes()
+{
+  return d_objectPrototypes;
 }

@@ -189,6 +189,9 @@
     <ClCompile Include="MountView.cpp">
       <Filter>src\View</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -341,14 +344,14 @@
     <ClInclude Include="Mount.h">
       <Filter>src\World\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="MountPrototype.h">
-      <Filter>src\World\Prototypes</Filter>
-    </ClInclude>
     <ClInclude Include="Structure.h">
       <Filter>src\World\Objects</Filter>
     </ClInclude>
     <ClInclude Include="MountView.h">
       <Filter>src\View</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>src\World\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Fwd.h"
 #include "Tile.h"
 #include "TileCollection.h"
 
@@ -16,6 +17,8 @@ public:
 
   void update(double i_dt);
 
+  // TODO: ae
+  // Change to Sdk::Rect2I
   int getMinX() const;
   int getMinY() const;
   int getMaxX() const;
@@ -25,6 +28,9 @@ public:
   Tile& getOrCreateTile(const TileCoord& i_coord);
   Tile* getTile(const TileCoord& i_coord);
   const Tile* getTile(const TileCoord& i_coord) const;
+  
+  Objects& getObjects();
+  const Objects& getObjects() const;
 
 private:
   std::string d_name;
@@ -35,6 +41,6 @@ private:
   int d_maxY = 0;
 
   Tiles d_tiles;
-
   TileCollection d_tileCollection;
+  Objects d_objects;
 };

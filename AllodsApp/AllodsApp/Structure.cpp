@@ -14,7 +14,7 @@ Structure::Structure(const StructurePrototype& i_prototype)
 
 const StructurePrototype& Structure::getStructurePrototype() const
 {
-  return dynamic_cast<const StructurePrototype&>(Entity::getPrototype());
+  return dynamic_cast<const StructurePrototype&>(getPrototype());
 }
 
 

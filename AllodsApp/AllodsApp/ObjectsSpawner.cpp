@@ -4,6 +4,7 @@
 #include "PrototypesCollection.h"
 #include "Location.h"
 #include "Mount.h"
+#include "Object.h"
 #include "Structure.h"
 
 
@@ -52,11 +53,35 @@ MountPtr ObjectsSpawner::spawnMount(
   return mount;
 }
 
-void ObjectsSpawner::despawnMount(
-  Structure& i_structure, FixtureLocation i_location)
+void ObjectsSpawner::despawnMount(Structure& i_structure, FixtureLocation i_location)
 {
   auto fixture = i_structure.getFixture();
   CONTRACT_EXPECT(fixture);
 
   fixture->resetMount(i_location);
+}
+
+
+ObjectPtr ObjectsSpawner::spawnObject(
+  const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position)
+{
+  const auto& prototype = PrototypesCollection::getObjectPrototype(i_name);
+  return spawnObject(prototype, i_location, i_position);
+}
+
+ObjectPtr ObjectsSpawner::spawnObject(
+  const ObjectPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position)
+{
+  ObjectPtr object = std::make_shared<Object>(i_prototype);
+  object->setPosition(std::move(i_position));
+
+  return object;
+}
+
+void ObjectsSpawner::despawnObject(Location& i_location, Object& i_object)
+{
+  auto& objects = i_location.getObjects();
+  objects.erase(std::remove_if(objects.begin(), objects.end(), [&](const auto i_objectPtr) {
+    return &i_object == i_objectPtr.get();
+    }), objects.end());
 }
