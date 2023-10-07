@@ -4,6 +4,7 @@
 #include "Mount.h"
 #include "ObjectsSpawner.h"
 #include "Structure.h"
+#include "TileUtils.h"
 
 
 std::unique_ptr<Location> LocationCreator::createTest()
@@ -20,6 +21,12 @@ std::unique_ptr<Location> LocationCreator::createTest()
     const PrototypeName& i_protoName, Structure& i_structure, const FixtureLocation i_location)
   {
     return ObjectsSpawner::spawnMount(i_protoName, i_structure, i_location);
+  };
+
+  const auto createObject = [&](
+    const PrototypeName& i_protoName, Sdk::Vector2I i_position)
+  {
+    return ObjectsSpawner::spawnObject(i_protoName, *location, std::move(i_position));
   };
 
   //
@@ -84,6 +91,8 @@ std::unique_ptr<Location> LocationCreator::createTest()
     createMount("Lamp", wallS1, FixtureLocation::Top);
     createMount("Lamp", wallS2, FixtureLocation::Top);
   }
+
+  createObject("Lamp", TileUtils::getTileCenter({ 8, 5 }));
 
   return location;
 }

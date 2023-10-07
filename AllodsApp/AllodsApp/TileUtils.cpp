@@ -20,14 +20,19 @@ TileCoord TileUtils::getTileCoordsUnderCursor(const Dx::ICamera2& i_camera)
   return getTileCoords(Dx::CursorUtils::getPosition(), i_camera);
 }
 
-Sdk::Vector2I TileUtils::getTilePosLocation(const Sdk::Vector2I& i_tileCoords)
+Sdk::Vector2I TileUtils::getTilePos(const Sdk::Vector2I& i_tileCoords)
 {
   return i_tileCoords * Constants::TileSize;
 }
 
+Sdk::Vector2I TileUtils::getTileCenter(const TileCoord& i_tileCoords)
+{
+  return i_tileCoords * Constants::TileSize + Sdk::Vector2I{ Constants::TileSize / 2, Constants::TileSize / 2};
+}
+
 Sdk::Vector2I TileUtils::getTilePosScreen(const Sdk::Vector2I& i_tileCoords, const Dx::ICamera2& i_camera)
 {
-  const auto tilePosLocation = getTilePosLocation(i_tileCoords);
+  const auto tilePosLocation = getTilePos(i_tileCoords);
   const auto tilePosScreen = tilePosLocation - i_camera.getOffset();
   return tilePosScreen;
 }

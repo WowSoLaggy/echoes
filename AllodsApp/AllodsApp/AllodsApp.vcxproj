@@ -165,6 +165,7 @@
     <ClCompile Include="Mount.cpp" />
     <ClCompile Include="MountView.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectView.cpp" />
     <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="Scenarios.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Mount.h" />
     <ClInclude Include="MountView.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectView.h" />
     <ClInclude Include="OverlayTypes.h" />
     <ClInclude Include="OverlayView.h" />
     <ClInclude Include="PrototypesCollection.h" />

@@ -39,7 +39,7 @@ void BuildModeView::render(const Dx::ISpriteShader& i_shader)
     CONTRACT_EXPECT(d_buildDraftInfo);
 
     d_sprite->setColor(d_buildDraftInfo->allowed ? BuildAllowedColor : BuildForbiddenColor);
-    d_sprite->setPosition(TileUtils::getTilePosLocation(d_buildDraftInfo->tileCoords));
+    d_sprite->setPosition(TileUtils::getTilePos(d_buildDraftInfo->tileCoords));
 
     i_shader.draw(*d_sprite);
   }

@@ -27,16 +27,18 @@ void ViewController::update(double i_dt)
 
 void ViewController::render()
 {
-  if (d_location)
-  {
-    const auto& shader = SAFE_DEREF(d_locationShader);
+  if (!d_location)
+    return;
 
-    d_backgroundView.render(shader, SAFE_DEREF(d_camera));
-    d_tileView.render(shader, d_location->getTiles());
-    if (d_overlay)
-      d_overlayView.render(shader, d_location->getTiles(), *d_overlay);
-    d_buildModeView.render(shader);
-  }
+  const auto& shader = SAFE_DEREF(d_locationShader);
+
+  d_backgroundView.render(shader, SAFE_DEREF(d_camera));
+  d_tileView.render(shader, d_location->getTiles());
+  d_objectView.render(shader, d_location->getObjects());
+
+  if (d_overlay)
+    d_overlayView.render(shader, d_location->getTiles(), *d_overlay);
+  d_buildModeView.render(shader);
 }
 
 

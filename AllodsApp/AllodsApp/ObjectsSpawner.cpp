@@ -75,6 +75,8 @@ ObjectPtr ObjectsSpawner::spawnObject(
   ObjectPtr object = std::make_shared<Object>(i_prototype);
   object->setPosition(std::move(i_position));
 
+  i_location.getObjects().push_back(object);
+
   return object;
 }
 
