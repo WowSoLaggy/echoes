@@ -3,36 +3,36 @@
   {
     "TextureName": "Lattice.png",
     "Layer": "Panneling",
-	"Support": false
+    "Support": false
   },
   
   "Plating":
   {
     "TextureName": "Plating.png",
     "Layer": "Panneling",
-	"Support": true
+    "Support": true
   },
   
   
   "Floor":
   {
-	"TextureName": "Floor.png",
-	"Layer": "Floor",
-	"Support": true
+    "TextureName": "Floor.png",
+    "Layer": "Floor",
+    "Support": true
   },
   
   
   "Wall":
   {
-	"TextureName": "Wall.png",
-	"Layer": "Wall",
-	"Fixture": true
+    "TextureName": "Wall.png",
+    "Layer": "Wall",
+    "Fixture": true
   },
   
   "Door":
   {
-	"TextureName": "Door.png",
-	"Layer": "Wall",
-	"Behavior": "Door"
+    "TextureName": "Door.png",
+    "Layer": "Wall",
+    "Behavior": "Door"
   }
 }
