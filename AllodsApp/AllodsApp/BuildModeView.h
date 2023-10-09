@@ -11,9 +11,8 @@ class BuildModeView
 public:
   void setBuildDraft(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo);
 
-  void render(const Dx::ISpriteShader& i_shader);
+  void render(const Dx::ISpriteShader& i_shader) const;
 
 private:
-  std::optional<Dx::AnimatedSprite> d_sprite;
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 };

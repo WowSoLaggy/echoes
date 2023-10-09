@@ -42,4 +42,6 @@ private:
 
   void switchTempOverlay();
   void switchAtmoOverlay();
+
+  void rotateDraftClockWise();
 };

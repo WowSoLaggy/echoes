@@ -70,23 +70,31 @@ MountView::MountView(const Dx::ISpriteShader& i_shader)
 
 void MountView::render(const Fixture& i_fixture, const TileCoord& i_coords) const
 {
-  Dx::AnimatedSprite sprite;
-
   for (const auto& [location, mountPtr] : i_fixture.getMounts())
   {
-    if (mountPtr == nullptr)
-      continue;
-
-    sprite.setTexture(mountPtr->getPrototype().texture);
-    sprite.setCurrentFrame(mountPtr->getAnimationPlayer().getCurrentFrame());
-    sprite.resetSizeToTexture();
-
-    sprite.setRotation(getRotation(location));
-
-    const auto basePosition = Sdk::Vector2I{ i_coords.x * Constants::TileSize, i_coords.y * Constants::TileSize };
-    const auto mountPosition = basePosition + getPosition(sprite.getSize(), location);
-    sprite.setPosition(mountPosition);
-
-    d_shader.draw(sprite);
+    if (mountPtr)
+      render(i_coords, mountPtr->getMountPrototype().texture, location, mountPtr->getAnimationPlayer().getCurrentFrame());
   }
+}
+
+void MountView::render(
+  const TileCoord& i_coords, const Dx::ITexture* i_texture,
+  const FixtureLocation i_fixtureLocation, const int i_animationFrame,
+  Dx::Color i_color) const
+{
+  Dx::AnimatedSprite sprite;
+
+  sprite.setTexture(i_texture);
+  sprite.setCurrentFrame(i_animationFrame);
+  sprite.resetSizeToTexture();
+
+  sprite.setRotation(getRotation(i_fixtureLocation));
+
+  const auto basePosition = Sdk::Vector2I{ i_coords.x * Constants::TileSize, i_coords.y * Constants::TileSize };
+  const auto mountPosition = basePosition + getPosition(sprite.getSize(), i_fixtureLocation);
+  sprite.setPosition(mountPosition);
+
+  sprite.setColor(std::move(i_color));
+
+  d_shader.draw(sprite);
 }

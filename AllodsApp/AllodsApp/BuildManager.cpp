@@ -2,11 +2,14 @@
 #include "BuildManager.h"
 
 #include "BuildDraftInfo.h"
+#include "MountBuilder.h"
+#include "ObjectBuilder.h"
 #include "ObjectsSpawner.h"
 #include "Prototypes.h"
 #include "Session.h"
 #include "SessionEvents.h"
 #include "Structure.h"
+#include "StructureBuilder.h"
 #include "StructureUtils.h"
 #include "TileUtils.h"
 
@@ -25,7 +28,7 @@ bool BuildManager::isInBuildMode() const
   return d_buildPrototype;
 }
 
-void BuildManager::setBuildDraft(const StructurePrototype& i_prototype)
+void BuildManager::setBuildDraft(const Prototype& i_prototype)
 {
   stopRemovalMode();
 
@@ -43,6 +46,13 @@ void BuildManager::resetBuildDraft()
   notify(BuildDraftSetEvent(nullptr));
   d_buildPrototype = nullptr;
   d_buildDraftInfo.reset();
+}
+
+
+void BuildManager::rotateDraftClockwise()
+{
+  if (d_buildDraftInfo)
+    d_buildDraftInfo->fixtureLocation = rotateClockWise(d_buildDraftInfo->fixtureLocation);
 }
 
 
@@ -127,16 +137,68 @@ void BuildManager::tryBuild()
 
 void BuildManager::build()
 {
-  CONTRACT_EXPECT(d_buildPrototype);
-  CONTRACT_EXPECT(d_buildDraftInfo);
-
-  auto* location = d_session.getCurrentLocation();
-  CONTRACT_EXPECT(location);
-
-  ObjectsSpawner::despawnStructure(*location, d_buildDraftInfo->tileCoords, d_buildPrototype->layer);
-  ObjectsSpawner::spawnStructure(*d_buildPrototype, *location, d_buildDraftInfo->tileCoords);
+  if (isDraftStructure())
+    buildStructure();
+  else if (isDraftMount())
+    buildMount();
+  else if (isDraftObject())
+    buildObject();
+  else
+  {
+    CONTRACT_THROW;
+  }
 
   updateBuildAllowance();
+}
+
+void BuildManager::buildStructure()
+{
+  return StructureBuilder(
+    SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
+    getStructurePrototype()).build();
+}
+
+void BuildManager::buildMount()
+{
+  return MountBuilder(
+    SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
+    getMountPrototype(), SAFE_DEREF(d_buildDraftInfo).fixtureLocation).build();
+}
+
+void BuildManager::buildObject()
+{
+  ObjectBuilder::build(SAFE_DEREF(d_session.getCurrentLocation()));
+}
+
+
+bool BuildManager::isDraftStructure() const
+{
+  return dynamic_cast<const StructurePrototype*>(d_buildPrototype);
+}
+
+bool BuildManager::isDraftMount() const
+{
+  return dynamic_cast<const MountPrototype*>(d_buildPrototype);
+}
+
+bool BuildManager::isDraftObject() const
+{
+  return dynamic_cast<const ObjectPrototype*>(d_buildPrototype);
+}
+
+const StructurePrototype& BuildManager::getStructurePrototype() const
+{
+  return SAFE_DEREF(dynamic_cast<const StructurePrototype*>(d_buildPrototype));
+}
+
+const MountPrototype& BuildManager::getMountPrototype() const
+{
+  return SAFE_DEREF(dynamic_cast<const MountPrototype*>(d_buildPrototype));
+}
+
+const ObjectPrototype& BuildManager::getObjectPrototype() const
+{
+  return SAFE_DEREF(dynamic_cast<const ObjectPrototype*>(d_buildPrototype));
 }
 
 
@@ -159,61 +221,33 @@ void BuildManager::updateBuildAllowance()
 
 bool BuildManager::canBeBuilt() const
 {
-  CONTRACT_EXPECT(d_buildPrototype);
-
-  if (doesTileAlreadyHaveTheSameStructure())
-    return false;
-
-  if (d_buildPrototype->layer == Layer::Lowest)
-    return true;
-
-  if (!doesTileHaveLowerLayerWithSupport())
-    return false;
-
-  return true;
+  if (isDraftStructure())
+    return canBeBuiltStructure();
+  else if (isDraftMount())
+    return canBeBuiltMount();
+  else if (isDraftObject())
+    return canBeBuiltObject();
+  
+  CONTRACT_THROW;
 }
 
-const Tile* BuildManager::getTileForBuildDraft() const
+bool BuildManager::canBeBuiltStructure() const
 {
-  if (const auto* location = d_session.getCurrentLocation())
-    return location->getTile(SAFE_DEREF(d_buildDraftInfo).tileCoords);
-  return nullptr;
+  return StructureBuilder(
+    SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
+    getStructurePrototype()).canBeBuilt();
 }
 
-bool BuildManager::doesTileHaveLowerLayerWithSupport() const
+bool BuildManager::canBeBuiltMount() const
 {
-  const auto* tile = getTileForBuildDraft();
-  if (!tile)
-    return false;
-
-  CONTRACT_EXPECT(d_buildPrototype);
-
-  for (const auto& [layer, structurePtr] : tile->getLayers())
-  {
-    CONTRACT_EXPECT(structurePtr);
-
-    if (layer >= d_buildPrototype->layer)
-      return false;
-
-    if (structurePtr->getStructurePrototype().support)
-      return true;
-  }
-
-  return false;
+  return MountBuilder(
+    SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
+    getMountPrototype(), SAFE_DEREF(d_buildDraftInfo).fixtureLocation).canBeBuilt();
 }
 
-bool BuildManager::doesTileAlreadyHaveTheSameStructure() const
+bool BuildManager::canBeBuiltObject() const
 {
-  const auto* tile = getTileForBuildDraft();
-  if (!tile)
-    return false;
-
-  CONTRACT_EXPECT(d_buildPrototype);
-
-  if (const auto structurePtr = tile->getStructure(d_buildPrototype->layer))
-    return structurePtr->getPrototype() == *d_buildPrototype;
-
-  return false;
+  return ObjectBuilder::canBeBuilt(SAFE_DEREF(d_session.getCurrentLocation()));
 }
 
 

@@ -66,6 +66,8 @@ void ActionsController::setGodModeActions()
   setOnPress(actions, Dx::KeyboardKey::F5, &ActionsController::switchTempOverlay);
   setOnPress(actions, Dx::KeyboardKey::F6, &ActionsController::switchAtmoOverlay);
 
+  setOnPress(actions, Dx::KeyboardKey::R, &ActionsController::rotateDraftClockWise);
+
   d_game.setActionsMap(std::move(actions));
 }
 
@@ -128,4 +130,11 @@ void ActionsController::switchTempOverlay()
 void ActionsController::switchAtmoOverlay()
 {
   switchOverlay(OverlayType::Atmo);
+}
+
+
+void ActionsController::rotateDraftClockWise()
+{
+  auto& session = SAFE_DEREF(d_game.getSession());
+  session.getBuildManger().rotateDraftClockwise();
 }

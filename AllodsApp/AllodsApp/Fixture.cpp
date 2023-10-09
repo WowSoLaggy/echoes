@@ -28,6 +28,5 @@ void Fixture::setMount(const FixtureLocation i_location, MountPtr i_mount)
 
 void Fixture::resetMount(const FixtureLocation i_location)
 {
-  CONTRACT_EXPECT(d_mounts[i_location]);
   d_mounts[i_location] = nullptr;
 }

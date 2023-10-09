@@ -16,12 +16,12 @@ public:
 class GodModeBuildGridItem : public Dx::GridItem
 {
 public:
-  GodModeBuildGridItem(const StructurePrototype& i_prototype);
+  GodModeBuildGridItem(const Prototype& i_prototype);
 
-  const StructurePrototype& getPrototype() const;
+  const Prototype& getPrototype() const;
 
 private:
-  const StructurePrototype& d_prototype;
+  const Prototype& d_prototype;
 };
 
 

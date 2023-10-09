@@ -58,6 +58,9 @@
     <Filter Include="src\Thermodyamics">
       <UniqueIdentifier>{980a3962-8203-4639-8128-fcdbc3036188}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Builders">
+      <UniqueIdentifier>{7a0c4446-1570-4bf5-98a8-fc21a39a0447}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -194,6 +197,18 @@
     </ClCompile>
     <ClCompile Include="ObjectView.cpp">
       <Filter>src\View</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureBuilder.cpp">
+      <Filter>src\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="MountBuilder.cpp">
+      <Filter>src\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectBuilder.cpp">
+      <Filter>src\Builders</Filter>
+    </ClCompile>
+    <ClCompile Include="FixtureLocations.cpp">
+      <Filter>src\World\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -358,6 +373,15 @@
     </ClInclude>
     <ClInclude Include="ObjectView.h">
       <Filter>src\View</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureBuilder.h">
+      <Filter>src\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="MountBuilder.h">
+      <Filter>src\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectBuilder.h">
+      <Filter>src\Builders</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,7 @@
 #include "BuildModeView.h"
 
 #include "BuildDraftInfo.h"
+#include "MountView.h"
 #include "TileUtils.h"
 
 #include <LaggyDx/App.h>
@@ -10,8 +11,13 @@
 
 namespace
 {
-  Sdk::Vector4F BuildAllowedColor{ 0.5f, 1.0f, 0.5f, 1.0f };
-  Sdk::Vector4F BuildForbiddenColor{ 1.0f, 0.5f, 0.5f, 1.0f };
+  Dx::Color getColor(const bool i_allowed)
+  {
+    Dx::Color BuildAllowedColor{ 0.5f, 1.0f, 0.5f, 1.0f };
+    Dx::Color BuildForbiddenColor{ 1.0f, 0.5f, 0.5f, 1.0f };
+
+    return i_allowed ? BuildAllowedColor : BuildForbiddenColor;
+  }
 
 } // anonym NS
 
@@ -19,28 +25,15 @@ namespace
 void BuildModeView::setBuildDraft(std::shared_ptr<BuildDraftInfo> i_buildDraftInfo)
 {
   d_buildDraftInfo = i_buildDraftInfo;
-
-  if (d_buildDraftInfo)
-  {
-    d_sprite.emplace(Dx::AnimatedSprite());
-    d_sprite->setTexture(d_buildDraftInfo->texture);
-    d_sprite->resetSizeToTexture();
-    d_sprite->setCurrentFrame(0);
-  }
-  else
-    d_sprite.reset();
 }
 
 
-void BuildModeView::render(const Dx::ISpriteShader& i_shader)
+void BuildModeView::render(const Dx::ISpriteShader& i_shader) const
 {
-  if (d_sprite)
+  if (d_buildDraftInfo)
   {
-    CONTRACT_EXPECT(d_buildDraftInfo);
-
-    d_sprite->setColor(d_buildDraftInfo->allowed ? BuildAllowedColor : BuildForbiddenColor);
-    d_sprite->setPosition(TileUtils::getTilePos(d_buildDraftInfo->tileCoords));
-
-    i_shader.draw(*d_sprite);
+    MountView(i_shader).render(
+      d_buildDraftInfo->tileCoords, d_buildDraftInfo->texture,
+      d_buildDraftInfo->fixtureLocation, 0, getColor(d_buildDraftInfo->allowed));
   }
 }

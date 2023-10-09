@@ -13,8 +13,10 @@ public:
   BuildManager(Session& i_session);
 
   bool isInBuildMode() const;
-  void setBuildDraft(const StructurePrototype& i_prototype);
+  void setBuildDraft(const Prototype& i_prototype);
   void resetBuildDraft();
+
+  void rotateDraftClockwise();
 
   bool isInRemovalMode() const;
   void startRemovalMode();
@@ -27,7 +29,7 @@ public:
 private:
   Session& d_session;
 
-  const StructurePrototype* d_buildPrototype = nullptr;
+  const Prototype* d_buildPrototype = nullptr;
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 
   bool d_isMutlibuilding = false;
@@ -35,16 +37,26 @@ private:
   std::optional<TileCoord> d_lastRemovedCoords;
   bool d_isRemovalMode = false;
 
+  bool isDraftStructure() const;
+  bool isDraftMount() const;
+  bool isDraftObject() const;
+  const StructurePrototype& getStructurePrototype() const;
+  const MountPrototype& getMountPrototype() const;
+  const ObjectPrototype& getObjectPrototype() const;
+
   void updateBuildDraft();
   void updateBuildPosition();
   void updateBuildAllowance();
   bool canBeBuilt() const;
-  const Tile* getTileForBuildDraft() const;
-  bool doesTileHaveLowerLayerWithSupport() const;
-  bool doesTileAlreadyHaveTheSameStructure() const;
+  bool canBeBuiltStructure() const;
+  bool canBeBuiltMount() const;
+  bool canBeBuiltObject() const;
 
   void tryBuild();
   void build();
+  void buildStructure();
+  void buildMount();
+  void buildObject();
 
   void tryRemove();
 };

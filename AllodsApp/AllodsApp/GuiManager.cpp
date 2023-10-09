@@ -384,13 +384,15 @@ bool GuiManager::isGodModeBuildMenuShown() const
 
 void GuiManager::showGodModeBuildMenu()
 {
-  constexpr int GridSizeX = 3;
-  constexpr int GridSizeY = 4;
-
   CONTRACT_EXPECT(!d_godModeBuildGrid);
 
-  d_godModeBuildGrid = &createGrid(d_game.getForm(), GridSizeX, GridSizeY);
-  d_godModeBuildGrid->setItems(getGodModeBuildGridItems(GridSizeX));
+  constexpr int GridSizeX = 3;
+  auto items = getGodModeBuildGridItems(GridSizeX);
+
+  const int gridSizeY = ((int)items.size() - 1) / GridSizeX + 1;
+
+  d_godModeBuildGrid = &createGrid(d_game.getForm(), GridSizeX, gridSizeY);
+  d_godModeBuildGrid->setItems(std::move(items));
   d_godModeBuildGrid->setPosition({ 16, 16 });
   d_godModeBuildGrid->setSelectionEnabled(true);
 

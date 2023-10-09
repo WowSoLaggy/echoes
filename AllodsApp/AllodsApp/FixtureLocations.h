@@ -4,9 +4,11 @@
 enum class FixtureLocation
 {
   Top,
+  Right,
   Bottom,
   Left,
-  Right,
 
   Count
 };
+
+FixtureLocation rotateClockWise(FixtureLocation i_prevLocation);

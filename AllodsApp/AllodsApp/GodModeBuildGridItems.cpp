@@ -24,14 +24,14 @@ GodModeBuildGridDestroyItem::GodModeBuildGridDestroyItem()
 }
 
 
-GodModeBuildGridItem::GodModeBuildGridItem(const StructurePrototype& i_prototype)
+GodModeBuildGridItem::GodModeBuildGridItem(const Prototype& i_prototype)
   : d_prototype(i_prototype)
 {
   setTexture(i_prototype.texture);
 }
 
 
-const StructurePrototype& GodModeBuildGridItem::getPrototype() const
+const Prototype& GodModeBuildGridItem::getPrototype() const
 {
   return d_prototype;
 }
@@ -46,7 +46,7 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
   items.push_back(std::make_shared<GodModeBuildGridDestroyItem>());
   insertEmptyCells(items, i_gridSizeX - 1);
 
-  // Prototypes per layers
+  // Structure prototypes per layers
 
   const auto& prototypes = PrototypesCollection::getStructurePrototypes();
 
@@ -60,6 +60,16 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
       items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
 
     const int emptyCells = i_gridSizeX - (protos.size() % i_gridSizeX);
+    insertEmptyCells(items, emptyCells);
+  }
+
+  // Mounts
+
+  const auto& mounts = PrototypesCollection::getMountPrototypes();
+  for (const auto& [_, proto] : mounts)
+  {
+    items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
+    const int emptyCells = i_gridSizeX - (mounts.size() % i_gridSizeX);
     insertEmptyCells(items, emptyCells);
   }
 
