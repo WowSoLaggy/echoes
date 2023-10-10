@@ -59,19 +59,25 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
     for (const auto& proto : protos)
       items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
 
-    const int emptyCells = i_gridSizeX - (protos.size() % i_gridSizeX);
-    insertEmptyCells(items, emptyCells);
+    const int emptyCellsAfterLayer = i_gridSizeX - (protos.size() % i_gridSizeX);
+    insertEmptyCells(items, emptyCellsAfterLayer);
   }
 
   // Mounts
 
   const auto& mounts = PrototypesCollection::getMountPrototypes();
   for (const auto& [_, proto] : mounts)
-  {
     items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
-    const int emptyCells = i_gridSizeX - (mounts.size() % i_gridSizeX);
-    insertEmptyCells(items, emptyCells);
-  }
+  const int emptyCellsAfterMounts = i_gridSizeX - (mounts.size() % i_gridSizeX);
+  insertEmptyCells(items, emptyCellsAfterMounts);
+
+  // Objects
+
+  const auto& objects = PrototypesCollection::getObjectrototypes();
+  for (const auto& [_, proto] : objects)
+    items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
+  const int emptyCellsAfterObjects = i_gridSizeX - (objects.size() % i_gridSizeX);
+  insertEmptyCells(items, emptyCellsAfterObjects);
 
   return items;
 }

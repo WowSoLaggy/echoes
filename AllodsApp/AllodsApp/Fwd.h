@@ -17,6 +17,7 @@ class Tile;
 
 struct BuildDraftInfo;
 struct BuildMountDraftInfo;
+struct BuildObjectDraftInfo;
 struct MountPrototype;
 struct ObjectPrototype;
 struct Prototype;

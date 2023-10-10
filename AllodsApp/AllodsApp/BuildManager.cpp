@@ -51,6 +51,8 @@ void BuildManager::createBuildDraftInfo()
   CONTRACT_ASSERT(d_buildPrototype);
   if (isDraftMount())
     d_buildDraftInfo = std::make_shared<BuildMountDraftInfo>();
+  else if (isDraftObject())
+    d_buildDraftInfo = std::make_shared<BuildObjectDraftInfo>();
   else
     d_buildDraftInfo = std::make_shared<BuildDraftInfo>();
 
@@ -166,21 +168,23 @@ void BuildManager::build()
 
 void BuildManager::buildStructure()
 {
-  return StructureBuilder(
+  StructureBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
     getStructurePrototype()).build();
 }
 
 void BuildManager::buildMount()
 {
-  return MountBuilder(
+  MountBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
     getMountPrototype(), getDraftMount().fixtureLocation).build();
 }
 
 void BuildManager::buildObject()
 {
-  ObjectBuilder::build(SAFE_DEREF(d_session.getCurrentLocation()));
+  ObjectBuilder(
+    SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
+    getObjectPrototype()).build();
 }
 
 
@@ -202,6 +206,11 @@ bool BuildManager::isDraftObject() const
 BuildMountDraftInfo& BuildManager::getDraftMount() const
 {
   return SAFE_DEREF(dynamic_cast<BuildMountDraftInfo*>(d_buildDraftInfo.get()));
+}
+
+BuildObjectDraftInfo& BuildManager::getDraftObject() const
+{
+  return SAFE_DEREF(dynamic_cast<BuildObjectDraftInfo*>(d_buildDraftInfo.get()));
 }
 
 const StructurePrototype& BuildManager::getStructurePrototype() const
@@ -230,6 +239,9 @@ void BuildManager::updateBuildPosition()
 {
   const auto& mousePos = Dx::CursorUtils::getPosition();
   SAFE_DEREF(d_buildDraftInfo).tileCoords = TileUtils::getTileCoords(mousePos, d_session.getCamera());
+  
+  if (isDraftObject())
+    getDraftObject().absCoords = TileUtils::getAbsPosUnderCursor(d_session.getCamera());
 }
 
 void BuildManager::updateBuildAllowance()
@@ -265,7 +277,9 @@ bool BuildManager::canBeBuiltMount() const
 
 bool BuildManager::canBeBuiltObject() const
 {
-  return ObjectBuilder::canBeBuilt(SAFE_DEREF(d_session.getCurrentLocation()));
+  return ObjectBuilder(
+    SAFE_DEREF(d_session.getCurrentLocation()), getDraftObject().absCoords,
+    getObjectPrototype()).canBeBuilt();
 }
 
 

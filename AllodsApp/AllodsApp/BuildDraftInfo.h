@@ -21,3 +21,9 @@ struct BuildMountDraftInfo : public BuildDraftInfo
 {
   FixtureLocation fixtureLocation = FixtureLocation::Bottom;
 };
+
+
+struct BuildObjectDraftInfo : public BuildDraftInfo
+{
+  Sdk::Vector2I absCoords;
+};

@@ -41,6 +41,7 @@ private:
   bool isDraftMount() const;
   bool isDraftObject() const;
   BuildMountDraftInfo& getDraftMount() const;
+  BuildObjectDraftInfo& getDraftObject() const;
   const StructurePrototype& getStructurePrototype() const;
   const MountPrototype& getMountPrototype() const;
   const ObjectPrototype& getObjectPrototype() const;

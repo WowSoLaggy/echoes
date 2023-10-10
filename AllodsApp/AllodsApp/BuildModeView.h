@@ -17,5 +17,6 @@ private:
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 
   const BuildMountDraftInfo* getBuildMountDraft() const;
+  const BuildObjectDraftInfo* getBuildObjectDraft() const;
   const BuildDraftInfo* getBuildDraft() const;
 };

@@ -3,6 +3,7 @@
 
 #include "BuildDraftInfo.h"
 #include "MountView.h"
+#include "ObjectView.h"
 #include "StructureView.h"
 #include "TileUtils.h"
 
@@ -37,6 +38,12 @@ void BuildModeView::render(const Dx::ISpriteShader& i_shader) const
       mountDraft->tileCoords, mountDraft->texture,
       mountDraft->fixtureLocation, 0, getColor(mountDraft->allowed));
   }
+  else if (const auto* objectDraft = getBuildObjectDraft())
+  {
+    ObjectView(i_shader).render(
+      objectDraft->texture, objectDraft->absCoords,
+      0, getColor(objectDraft->allowed));
+  }
   else if (const auto* draft = getBuildDraft())
   {
     StructureView(i_shader).render(
@@ -53,6 +60,11 @@ void BuildModeView::render(const Dx::ISpriteShader& i_shader) const
 const BuildMountDraftInfo* BuildModeView::getBuildMountDraft() const
 {
   return dynamic_cast<const BuildMountDraftInfo*>(d_buildDraftInfo.get());
+}
+
+const BuildObjectDraftInfo* BuildModeView::getBuildObjectDraft() const
+{
+  return dynamic_cast<const BuildObjectDraftInfo*>(d_buildDraftInfo.get());
 }
 
 const BuildDraftInfo* BuildModeView::getBuildDraft() const
