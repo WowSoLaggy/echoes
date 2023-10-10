@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "ObjectView.h"
+#include "ObjectsView.h"
 
 #include "Object.h"
 #include "Prototypes.h"
@@ -8,7 +8,7 @@
 #include <LaggyDx/ISpriteShader.h>
 
 
-void ObjectView::render(const Dx::ISpriteShader& i_shader, const Objects& i_objects) const
+void ObjectsView::render(const Dx::ISpriteShader& i_shader, const Objects& i_objects) const
 {
   Dx::AnimatedSprite sprite;
 

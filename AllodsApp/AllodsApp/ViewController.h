@@ -3,7 +3,7 @@
 #include "BackgroundView.h"
 #include "BuildModeView.h"
 #include "Fwd.h"
-#include "ObjectView.h"
+#include "ObjectsView.h"
 #include "OverlayView.h"
 #include "TileView.h"
 
@@ -27,7 +27,7 @@ private:
 
   const BackgroundView d_backgroundView;
   const TileView d_tileView;
-  const ObjectView d_objectView;
+  const ObjectsView d_objectsView;
   const OverlayView d_overlayView;
   BuildModeView d_buildModeView;
 

@@ -5,7 +5,7 @@
 #include <LaggyDx/LaggyDxFwd.h>
 
 
-class ObjectView
+class ObjectsView
 {
 public:
   void render(const Dx::ISpriteShader& i_shader, const Objects& i_objects) const;
