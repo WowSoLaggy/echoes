@@ -32,7 +32,7 @@ bool MountBuilder::canBeBuilt() const
   if (!mountPtr)
     return true;
 
-  return mountPtr->getMountPrototype() == d_prototype;
+  return mountPtr->getMountPrototype() != d_prototype;
 }
 
 void MountBuilder::build() const

@@ -3,6 +3,7 @@
 
 #include "BuildDraftInfo.h"
 #include "MountView.h"
+#include "StructureView.h"
 #include "TileUtils.h"
 
 #include <LaggyDx/App.h>
@@ -30,10 +31,31 @@ void BuildModeView::setBuildDraft(std::shared_ptr<BuildDraftInfo> i_buildDraftIn
 
 void BuildModeView::render(const Dx::ISpriteShader& i_shader) const
 {
-  if (d_buildDraftInfo)
+  if (const auto* mountDraft = getBuildMountDraft())
   {
     MountView(i_shader).render(
-      d_buildDraftInfo->tileCoords, d_buildDraftInfo->texture,
-      d_buildDraftInfo->fixtureLocation, 0, getColor(d_buildDraftInfo->allowed));
+      mountDraft->tileCoords, mountDraft->texture,
+      mountDraft->fixtureLocation, 0, getColor(mountDraft->allowed));
   }
+  else if (const auto* draft = getBuildDraft())
+  {
+    StructureView(i_shader).render(
+      draft->texture, TileUtils::getTilePos(draft->tileCoords),
+      0, getColor(draft->allowed));
+  }
+  else
+  {
+    CONTRACT_EXPECT(!d_buildDraftInfo);
+  }
+}
+
+
+const BuildMountDraftInfo* BuildModeView::getBuildMountDraft() const
+{
+  return dynamic_cast<const BuildMountDraftInfo*>(d_buildDraftInfo.get());
+}
+
+const BuildDraftInfo* BuildModeView::getBuildDraft() const
+{
+  return d_buildDraftInfo.get();
 }

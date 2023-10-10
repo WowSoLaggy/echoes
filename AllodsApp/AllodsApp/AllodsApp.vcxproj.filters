@@ -210,6 +210,9 @@
     <ClCompile Include="FixtureLocations.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="StructureView.cpp">
+      <Filter>src\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="ObjectBuilder.h">
       <Filter>src\Builders</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureView.h">
+      <Filter>src\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

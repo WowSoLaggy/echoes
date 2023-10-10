@@ -186,6 +186,7 @@
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="StructureBuilder.cpp" />
     <ClCompile Include="StructureUtils.cpp" />
+    <ClCompile Include="StructureView.cpp" />
     <ClCompile Include="TempOverlay.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="TileCollection.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="PrototypeLoader.h" />
     <ClInclude Include="StructureBuilder.h" />
     <ClInclude Include="StructureUtils.h" />
+    <ClInclude Include="StructureView.h" />
     <ClInclude Include="TempOverlay.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="TileCollection.h" />

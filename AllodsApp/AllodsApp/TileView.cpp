@@ -5,10 +5,9 @@
 #include "MountView.h"
 #include "Prototypes.h"
 #include "Structure.h"
+#include "StructureView.h"
 
-#include <LaggyDx/AnimatedSprite.h>
 #include <LaggyDx/App.h>
-#include <LaggyDx/ISpriteShader.h>
 
 
 namespace
@@ -30,14 +29,10 @@ namespace
 void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) const
 {
   const MountView mountView(i_shader);
-
-  Dx::AnimatedSprite sprite;
-  sprite.setSize({ Constants::TileSize, Constants::TileSize });
+  const StructureView structureView(i_shader);
 
   for (const auto& [coord, tile] : i_tiles)
   {
-    sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
-
     const auto& layers = tile.getLayers();
     if (layers.empty())
       continue;
@@ -57,10 +52,9 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
     {
       const auto& structure = SAFE_DEREF(it->second);
 
-      sprite.setTexture(structure.getPrototype().texture);
-      sprite.setCurrentFrame(structure.getAnimationPlayer().getCurrentFrame());
-
-      i_shader.draw(sprite);
+      structureView.render(
+        structure.getPrototype().texture, { coord.x * Constants::TileSize, coord.y * Constants::TileSize },
+        structure.getAnimationPlayer().getCurrentFrame());
 
       if (const auto fixturePtr = structure.getFixture())
         mountView.render(*fixturePtr, coord);

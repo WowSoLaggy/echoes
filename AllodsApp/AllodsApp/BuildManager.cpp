@@ -33,9 +33,7 @@ void BuildManager::setBuildDraft(const Prototype& i_prototype)
   stopRemovalMode();
 
   d_buildPrototype = &i_prototype;
-  d_buildDraftInfo = std::make_shared<BuildDraftInfo>();
-  d_buildDraftInfo->texture = d_buildPrototype->texture;
-
+  createBuildDraftInfo();
   updateBuildDraft();
 
   notify(BuildDraftSetEvent(d_buildDraftInfo));
@@ -48,11 +46,26 @@ void BuildManager::resetBuildDraft()
   d_buildDraftInfo.reset();
 }
 
+void BuildManager::createBuildDraftInfo()
+{
+  CONTRACT_ASSERT(d_buildPrototype);
+  if (isDraftMount())
+    d_buildDraftInfo = std::make_shared<BuildMountDraftInfo>();
+  else
+    d_buildDraftInfo = std::make_shared<BuildDraftInfo>();
+
+  CONTRACT_ENSURE(d_buildDraftInfo);
+  d_buildDraftInfo->texture = d_buildPrototype->texture;
+}
+
 
 void BuildManager::rotateDraftClockwise()
 {
-  if (d_buildDraftInfo)
-    d_buildDraftInfo->fixtureLocation = rotateClockWise(d_buildDraftInfo->fixtureLocation);
+  if (isDraftMount())
+  {
+    getDraftMount().fixtureLocation = rotateClockWise(getDraftMount().fixtureLocation);
+    updateBuildDraft();
+  }
 }
 
 
@@ -162,7 +175,7 @@ void BuildManager::buildMount()
 {
   return MountBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
-    getMountPrototype(), SAFE_DEREF(d_buildDraftInfo).fixtureLocation).build();
+    getMountPrototype(), getDraftMount().fixtureLocation).build();
 }
 
 void BuildManager::buildObject()
@@ -184,6 +197,11 @@ bool BuildManager::isDraftMount() const
 bool BuildManager::isDraftObject() const
 {
   return dynamic_cast<const ObjectPrototype*>(d_buildPrototype);
+}
+
+BuildMountDraftInfo& BuildManager::getDraftMount() const
+{
+  return SAFE_DEREF(dynamic_cast<BuildMountDraftInfo*>(d_buildDraftInfo.get()));
 }
 
 const StructurePrototype& BuildManager::getStructurePrototype() const
@@ -242,7 +260,7 @@ bool BuildManager::canBeBuiltMount() const
 {
   return MountBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
-    getMountPrototype(), SAFE_DEREF(d_buildDraftInfo).fixtureLocation).canBeBuilt();
+    getMountPrototype(), getDraftMount().fixtureLocation).canBeBuilt();
 }
 
 bool BuildManager::canBeBuiltObject() const

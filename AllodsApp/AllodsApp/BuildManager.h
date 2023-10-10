@@ -40,6 +40,7 @@ private:
   bool isDraftStructure() const;
   bool isDraftMount() const;
   bool isDraftObject() const;
+  BuildMountDraftInfo& getDraftMount() const;
   const StructurePrototype& getStructurePrototype() const;
   const MountPrototype& getMountPrototype() const;
   const ObjectPrototype& getObjectPrototype() const;
@@ -59,4 +60,6 @@ private:
   void buildObject();
 
   void tryRemove();
+
+  void createBuildDraftInfo();
 };
