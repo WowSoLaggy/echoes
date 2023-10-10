@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "ObjectBuilder.h"
 
+#include "ObjectsSpawner.h"
+
 
 ObjectBuilder::ObjectBuilder(Location& i_location, const Sdk::Vector2I& i_position, const ObjectPrototype& i_prototype)
   : d_location(i_location)
@@ -17,4 +19,5 @@ bool ObjectBuilder::canBeBuilt()
 
 void ObjectBuilder::build()
 {
+  ObjectsSpawner::spawnObject(d_prototype, d_location, d_position);
 }

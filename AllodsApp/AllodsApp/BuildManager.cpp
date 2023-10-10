@@ -119,7 +119,12 @@ bool BuildManager::onMouseClick(Dx::MouseKey i_key)
 
   if (d_buildDraftInfo)
   {
-    d_isMutlibuilding = true;
+    if (!isDraftObject())
+    {
+      // No objects spamming
+      d_isMutlibuilding = true;
+    }
+
     tryBuild();
     return true;
   }
