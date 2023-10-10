@@ -169,6 +169,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectBuilder.cpp" />
     <ClCompile Include="ObjectsView.cpp" />
+    <ClCompile Include="ObjectView.cpp" />
     <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
     <ClCompile Include="Scenarios.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectBuilder.h" />
     <ClInclude Include="ObjectsView.h" />
+    <ClInclude Include="ObjectView.h" />
     <ClInclude Include="OverlayTypes.h" />
     <ClInclude Include="OverlayView.h" />
     <ClInclude Include="PrototypesCollection.h" />
