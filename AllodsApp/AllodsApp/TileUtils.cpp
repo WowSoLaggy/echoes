@@ -7,12 +7,17 @@
 #include <LaggyDx/ICamera2.h>
 
 
+TileCoord TileUtils::getTileCoords(const Sdk::Vector2I& i_absPos)
+{
+  const int x = static_cast<int>(std::floor((double)i_absPos.x / Constants::TileSize));
+  const int y = static_cast<int>(std::floor((double)i_absPos.y / Constants::TileSize));
+  return { x, y };
+}
+
 Sdk::Vector2I TileUtils::getTileCoords(const Sdk::Vector2I& i_screenPos, const Dx::ICamera2& i_camera)
 {
-  const auto locationPos = i_screenPos + i_camera.getOffset();
-  const int x = static_cast<int>(std::floor((double)locationPos.x / Constants::TileSize));
-  const int y = static_cast<int>(std::floor((double)locationPos.y / Constants::TileSize));
-  return { x, y };
+  const auto absPos = i_screenPos + i_camera.getOffset();
+  return getTileCoords(absPos);
 }
 
 TileCoord TileUtils::getTileCoordsUnderCursor(const Dx::ICamera2& i_camera)

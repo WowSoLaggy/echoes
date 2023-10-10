@@ -188,7 +188,7 @@ void BuildManager::buildMount()
 void BuildManager::buildObject()
 {
   ObjectBuilder(
-    SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
+    SAFE_DEREF(d_session.getCurrentLocation()), getDraftObject().absCoords,
     getObjectPrototype()).build();
 }
 
