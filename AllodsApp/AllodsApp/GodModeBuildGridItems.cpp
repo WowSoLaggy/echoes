@@ -73,7 +73,7 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
 
   // Objects
 
-  const auto& objects = PrototypesCollection::getObjectrototypes();
+  const auto& objects = PrototypesCollection::getObjectPrototypes();
   for (const auto& [_, proto] : objects)
     items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
   const int emptyCellsAfterObjects = i_gridSizeX - (objects.size() % i_gridSizeX);

@@ -19,7 +19,7 @@ public:
 
   static const MountPrototypesMap& getMountPrototypes();
   static const StructurePrototypesMap& getStructurePrototypes();
-  static const ObjectPrototypesMap& getObjectrototypes();
+  static const ObjectPrototypesMap& getObjectPrototypes();
 
 private:
   PrototypesCollection() = delete;

@@ -77,7 +77,7 @@ const StructurePrototypesMap& PrototypesCollection::getStructurePrototypes()
   return d_structurePrototypes;
 }
 
-const ObjectPrototypesMap& PrototypesCollection::getObjectrototypes()
+const ObjectPrototypesMap& PrototypesCollection::getObjectPrototypes()
 {
   return d_objectPrototypes;
 }
