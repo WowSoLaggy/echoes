@@ -152,6 +152,7 @@
     <ClCompile Include="DoorBehavior.cpp" />
     <ClCompile Include="DummyTileThd.cpp" />
     <ClCompile Include="FixtureLocations.cpp" />
+    <ClCompile Include="Fonts.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="DoorBehavior.h" />
     <ClInclude Include="DummyTileThd.h" />
     <ClInclude Include="FixtureLocations.h" />
+    <ClInclude Include="Fonts.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />

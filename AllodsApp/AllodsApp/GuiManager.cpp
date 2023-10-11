@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GuiManager.h"
 
+#include "Fonts.h"
 #include "Game.h"
 #include "GameEvents.h"
 #include "GodModeBuildGridItems.h"
@@ -14,6 +15,7 @@
 #include <LaggyDx/CursorUtils.h>
 #include <LaggyDx/Grid.h>
 #include <LaggyDx/GridItem.h>
+#include <LaggyDx/IFontResource.h>
 #include <LaggyDx/IResourceController.h>
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
@@ -25,8 +27,6 @@
 
 namespace
 {
-  const std::string defaultFont = "MyFont.spritefont";
-
   const Sdk::Vector2I& getResolution()
   {
     const auto& rd = Dx::App::get().getRenderDevice();
@@ -59,7 +59,7 @@ namespace
   {
     auto ctrl = std::make_shared<Dx::Label>();
     i_parent.addChild(ctrl);
-    ctrl->setFont(defaultFont);
+    ctrl->setFont(Fonts::getMenuFont());
     return *ctrl;
   }
 
@@ -67,7 +67,7 @@ namespace
   {
     auto ctrl = std::make_shared<Dx::Button>();
     i_parent.addChild(ctrl);
-    ctrl->setFont(defaultFont);
+    ctrl->setFont(Fonts::getMenuFont());
     return *ctrl;
   }
 
@@ -486,9 +486,11 @@ void GuiManager::showOverlayHintTemp()
   CONTRACT_EXPECT(!d_overlayHint);
 
   d_overlayHint = &createPanel(*d_inGameGui);
-  d_overlayHint->setSize({ 64, 48 });
+  d_overlayHint->setTexture(Dx::TextureUtils::getTexture("White.png"));
+  d_overlayHint->setColor({ 0.6f, 0.47f, 0.31f, 1.0f });
 
   d_overlayHintLabel = &createLabel(*d_overlayHint);
+  d_overlayHintLabel->setFont(Fonts::getInGameHintsFont());
 
   updateOverlayHint();
 }
@@ -519,4 +521,7 @@ void GuiManager::updateOverlayHint()
   const auto* tile = currentLocation.getTile(tileCoords);
   const auto tempString = tile ? Sdk::toString(tile->getT(), 2) + " C" : "N/A";
   d_overlayHintLabel->setText("T: " + tempString);
+
+  const auto stringRect = SAFE_DEREF(d_overlayHintLabel->getFontResource()).getStringRect(d_overlayHintLabel->getText());
+  d_overlayHint->setSize(stringRect.size().getVector<float>() + Sdk::Vector2F(4, 0));
 }
