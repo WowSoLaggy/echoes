@@ -29,8 +29,8 @@ private:
   void onNotLoaded();
   void onLoading();
   void onGameLoaded();
-  std::future<bool> d_loadResourcesFuture;
-  bool loadResources();
+  std::future<std::optional<std::string>> d_loadResourcesFuture;
+  std::optional<std::string> loadResources();
 
 
   GuiManager d_guiManager;

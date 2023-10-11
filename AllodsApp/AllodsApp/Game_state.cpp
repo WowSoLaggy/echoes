@@ -51,8 +51,8 @@ void Game::onLoading()
   if (d_loadResourcesFuture.wait_for(0ms) == std::future_status::timeout)
     return;
 
-  const bool success = d_loadResourcesFuture.get();
-  CONTRACT_ENSURE(success);
+  const std::optional<std::string> errorMsgOpt = d_loadResourcesFuture.get();
+  CONTRACT_ENSURE(!errorMsgOpt.has_value());
 
   onGameLoaded();
 }
@@ -64,7 +64,7 @@ void Game::onGameLoaded()
 }
 
 
-bool Game::loadResources()
+std::optional<std::string> Game::loadResources()
 {
   try
   {
@@ -73,10 +73,14 @@ bool Game::loadResources()
     const fs::path configsPath = Sdk::getExeFolder() / getSettings().dataFolder / "Configs";
     PrototypesCollection::load(configsPath);
   }
+  catch (const Sdk::DxException& i_exc)
+  {
+    return i_exc.what();
+  }
   catch (...)
   {
-    return false;
+    return "Unknown error occured";
   }
 
-  return true;
+  return std::nullopt;
 }
