@@ -219,6 +219,9 @@
     <ClCompile Include="Fonts.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="LampBehavior.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -400,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="Fonts.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LampBehavior.h">
+      <Filter>src\World\BehaviorModel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

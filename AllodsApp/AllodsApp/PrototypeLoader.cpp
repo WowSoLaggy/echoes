@@ -25,6 +25,7 @@ namespace
     const std::unordered_map<std::string, BehaviorModel> LayersMap{
       { "None", BehaviorModel::None },
       { "Door", BehaviorModel::Door },
+      { "Lamp", BehaviorModel::Lamp },
     };
 
     CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(BehaviorModel::Count));

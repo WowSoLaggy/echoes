@@ -1,0 +1,23 @@
+{
+  "Description":
+  {
+    "FrameWidth": 32,
+    "FrameHeight": 5,
+    "Alpha": false
+  },
+  "Animations":
+  [
+    {
+      "Name": "On",
+      "Start": 0,
+      "End": 0,
+      "FrameTime": 1
+    },
+    {
+      "Name": "Off",
+      "Start": 1,
+      "End": 1,
+      "FrameTime": 1
+    }
+  ]
+}
