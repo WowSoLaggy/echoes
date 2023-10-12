@@ -61,6 +61,9 @@
     <Filter Include="src\Builders">
       <UniqueIdentifier>{7a0c4446-1570-4bf5-98a8-fc21a39a0447}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ItemPicker">
+      <UniqueIdentifier>{2fb48709-46df-498f-a665-11fe89246b4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -133,9 +136,6 @@
       <Filter>src\World\BehaviorModel</Filter>
     </ClCompile>
     <ClCompile Include="AnimationUtils.cpp">
-      <Filter>src\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="EntityUtils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Layers.cpp">
@@ -224,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="MountUtils.cpp">
       <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemPicker.cpp">
+      <Filter>src\ItemPicker</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -315,9 +318,6 @@
       <Filter>src\World\BehaviorModel</Filter>
     </ClInclude>
     <ClInclude Include="AnimationUtils.h">
-      <Filter>src\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="EntityUtils.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
@@ -412,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="MountUtils.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemPicker.h">
+      <Filter>src\ItemPicker</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -33,3 +33,10 @@ const Sdk::Vector2I& Object::getSize() const
 {
   return SAFE_DEREF(getPrototype().texture).getDescription().size;
 }
+
+
+Sdk::RectI Object::getRect() const
+{
+  const auto p1 = getPosition() - getSize() / 2;
+  return { p1, p1 + getSize() };
+}

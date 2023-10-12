@@ -2,6 +2,7 @@
 
 #include "Entity.h"
 
+#include <LaggySdk/Rect.h>
 #include <LaggySdk/Vector.h>
 
 
@@ -16,6 +17,8 @@ public:
   [[nodiscard]] const Sdk::Vector2I& getPosition() const;
 
   const Sdk::Vector2I& getSize() const;
+
+  Sdk::RectI getRect() const;
 
 private:
   Sdk::Vector2I d_position;

@@ -161,6 +161,7 @@
     <ClCompile Include="IBehaviorModel.cpp" />
     <ClCompile Include="InteractionManager.cpp" />
     <ClCompile Include="IOverlay.cpp" />
+    <ClCompile Include="ItemPicker.cpp" />
     <ClCompile Include="LampBehavior.cpp" />
     <ClCompile Include="Layers.cpp" />
     <ClCompile Include="main.cpp" />
@@ -189,7 +190,6 @@
     <ClCompile Include="PrototypeLoader.cpp" />
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="StructureBuilder.cpp" />
-    <ClCompile Include="EntityUtils.cpp" />
     <ClCompile Include="StructureView.cpp" />
     <ClCompile Include="TempOverlay.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -226,6 +226,7 @@
     <ClInclude Include="IBehaviorModel.h" />
     <ClInclude Include="InteractionManager.h" />
     <ClInclude Include="IOverlay.h" />
+    <ClInclude Include="ItemPicker.h" />
     <ClInclude Include="LampBehavior.h" />
     <ClInclude Include="Layers.h" />
     <ClInclude Include="Fixture.h" />
@@ -252,7 +253,6 @@
     <ClInclude Include="Prototypes.h" />
     <ClInclude Include="PrototypeLoader.h" />
     <ClInclude Include="StructureBuilder.h" />
-    <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="StructureView.h" />
     <ClInclude Include="TempOverlay.h" />
     <ClInclude Include="Tile.h" />

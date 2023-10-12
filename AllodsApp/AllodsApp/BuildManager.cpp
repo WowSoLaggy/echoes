@@ -2,7 +2,7 @@
 #include "BuildManager.h"
 
 #include "BuildDraftInfo.h"
-#include "EntityUtils.h"
+#include "ItemPicker.h"
 #include "Mount.h"
 #include "MountBuilder.h"
 #include "Object.h"
@@ -292,7 +292,7 @@ bool BuildManager::canBeBuiltObject() const
 
 void BuildManager::tryRemove()
 {
-  const auto entityPtr = EntityUtils::getEntityUnderCursor(d_session);
+  const auto entityPtr = ItemPicker(d_session).pick();
   if (!entityPtr)
     return;
 
