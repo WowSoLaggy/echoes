@@ -8,6 +8,7 @@ enum class Layer : int32_t
   Panneling = Lowest,
   Floor,
   Wall,
+  Furniture,
 
   Count
 };

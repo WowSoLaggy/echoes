@@ -14,6 +14,7 @@ namespace
       { "Panneling", Layer::Panneling },
       { "Floor", Layer::Floor },
       { "Wall", Layer::Wall },
+      { "Furniture", Layer::Furniture },
     };
 
     CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(Layer::Count));
@@ -26,6 +27,7 @@ namespace
       { "None", BehaviorModel::None },
       { "Door", BehaviorModel::Door },
       { "Lamp", BehaviorModel::Lamp },
+      { "Container", BehaviorModel::Container },
     };
 
     CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(BehaviorModel::Count));

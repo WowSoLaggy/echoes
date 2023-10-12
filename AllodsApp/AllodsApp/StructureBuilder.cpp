@@ -23,6 +23,9 @@ bool StructureBuilder::canBeBuilt() const
   if (d_prototype.layer == Layer::Lowest)
     return true;
 
+  if (doesWallBlocksFurniture())
+    return false;
+
   if (!doesTileHaveLowerLayerWithSupport())
     return false;
 
@@ -66,4 +69,17 @@ bool StructureBuilder::doesTileAlreadyHaveTheSameStructure() const
     return structurePtr->getStructurePrototype() == d_prototype;
 
   return false;
+}
+
+bool StructureBuilder::doesWallBlocksFurniture() const
+{
+  if (d_prototype.layer != Layer::Furniture)
+    return false;
+
+  const auto* tile = d_location.getTile(d_tileCoords);
+  if (!tile)
+    return false;
+
+  const auto structurePtr = tile->getStructure(Layer::Wall);
+  return structurePtr != nullptr;
 }

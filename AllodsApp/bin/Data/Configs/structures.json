@@ -34,5 +34,12 @@
     "TextureName": "Door.png",
     "Layer": "Wall",
     "Behavior": "Door"
+  },
+  
+  "Crate":
+  {
+    "TextureName": "Crate.png",
+    "Layer": "Furniture",
+    "Behavior": "Container"
   }
 }

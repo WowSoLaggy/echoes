@@ -228,6 +228,9 @@
     <ClCompile Include="ItemPicker.cpp">
       <Filter>src\ItemPicker</Filter>
     </ClCompile>
+    <ClCompile Include="ContainerBehavior.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -415,6 +418,9 @@
     </ClInclude>
     <ClInclude Include="ItemPicker.h">
       <Filter>src\ItemPicker</Filter>
+    </ClInclude>
+    <ClInclude Include="ContainerBehavior.h">
+      <Filter>src\World\BehaviorModel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

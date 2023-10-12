@@ -23,9 +23,9 @@ void DoorBehavior::processEvent(const Sdk::IEvent& i_event)
 
 void DoorBehavior::interact()
 {
-  if (d_state == DoorState::Closed)
+  if (d_state == State::Closed)
     open();
-  else if (d_state == DoorState::Open)
+  else if (d_state == State::Open)
     close();
 }
 
@@ -33,20 +33,20 @@ void DoorBehavior::interact()
 void DoorBehavior::open()
 {
   AnimationUtils::playAnimation(d_door, "Open", 1);
-  d_state = DoorState::Opening;
+  d_state = State::Opening;
 }
 
 void DoorBehavior::close()
 {
   AnimationUtils::playAnimation(d_door, "Close", 1);
-  d_state = DoorState::Closing;
+  d_state = State::Closing;
 }
 
 
 void DoorBehavior::onAnimationStopped()
 {
-  if (d_state == DoorState::Opening)
-    d_state = DoorState::Open;
-  else if (d_state == DoorState::Closing)
-    d_state = DoorState::Closed;
+  if (d_state == State::Opening)
+    d_state = State::Open;
+  else if (d_state == State::Closing)
+    d_state = State::Closed;
 }

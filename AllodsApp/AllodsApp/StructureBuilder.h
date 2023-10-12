@@ -18,4 +18,5 @@ private:
 
   bool doesTileHaveLowerLayerWithSupport() const;
   bool doesTileAlreadyHaveTheSameStructure() const;
+  bool doesWallBlocksFurniture() const;
 };

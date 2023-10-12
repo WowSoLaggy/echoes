@@ -12,5 +12,5 @@ public:
 public:
   virtual ~IBehaviorModel() = default;
 
-  virtual void interact() = 0;
+  virtual void interact();
 };

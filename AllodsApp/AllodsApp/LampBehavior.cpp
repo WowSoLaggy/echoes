@@ -20,7 +20,7 @@ void LampBehavior::turnOn()
   if (isOn())
     return;
 
-  d_state = LampState::On;
+  d_state = State::On;
   AnimationUtils::playAnimation(d_lamp, "On", 1);
 }
 
@@ -29,7 +29,7 @@ void LampBehavior::turnOff()
   if (isOff())
     return;
 
-  d_state = LampState::Off;
+  d_state = State::Off;
   AnimationUtils::playAnimation(d_lamp, "Off", 1);
 }
 
@@ -44,10 +44,10 @@ void LampBehavior::switchState()
 
 bool LampBehavior::isOn() const
 {
-  return d_state == LampState::On;
+  return d_state == State::On;
 }
 
 bool LampBehavior::isOff() const
 {
-  return d_state == LampState::Off;
+  return d_state == State::Off;
 }

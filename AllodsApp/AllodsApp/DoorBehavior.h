@@ -20,7 +20,7 @@ public:
 
 private:
   
-  enum class DoorState
+  enum class State
   {
     Open,
     Opening,
@@ -29,8 +29,7 @@ private:
   };
 
   Entity& d_door;
-
-  DoorState d_state = DoorState::Closed;
+  State d_state = State::Closed;
 
   void onAnimationStopped();
 };

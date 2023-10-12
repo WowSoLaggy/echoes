@@ -20,12 +20,12 @@ public:
 
 private:
 
-  enum class LampState
+  enum class State
   {
     On,
     Off,
   };
 
   Entity& d_lamp;
-  LampState d_state = LampState::On;
+  State d_state = State::On;
 };

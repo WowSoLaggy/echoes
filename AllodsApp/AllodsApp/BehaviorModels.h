@@ -7,6 +7,7 @@ enum class BehaviorModel
 
   Door,
   Lamp,
+  Container,
 
   Count
 };
