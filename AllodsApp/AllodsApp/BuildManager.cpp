@@ -2,7 +2,10 @@
 #include "BuildManager.h"
 
 #include "BuildDraftInfo.h"
+#include "EntityUtils.h"
+#include "Mount.h"
 #include "MountBuilder.h"
+#include "Object.h"
 #include "ObjectBuilder.h"
 #include "ObjectsSpawner.h"
 #include "Prototypes.h"
@@ -10,7 +13,6 @@
 #include "SessionEvents.h"
 #include "Structure.h"
 #include "StructureBuilder.h"
-#include "StructureUtils.h"
 #include "TileUtils.h"
 
 #include <LaggyDx/App.h>
@@ -290,18 +292,34 @@ bool BuildManager::canBeBuiltObject() const
 
 void BuildManager::tryRemove()
 {
-  const auto structure = StructureUtils::getStructureUnderCursor(d_session);
-  if (!structure)
+  const auto entityPtr = EntityUtils::getEntityUnderCursor(d_session);
+  if (!entityPtr)
     return;
 
   const auto tileCoords = TileUtils::getTileCoordsUnderCursor(d_session.getCamera());
   if (d_isMutliremoving && d_lastRemovedCoords && *d_lastRemovedCoords == tileCoords)
     return;
 
-  ObjectsSpawner::despawnStructure(
-    SAFE_DEREF(d_session.getCurrentLocation()),
-    tileCoords,
-    structure->getStructurePrototype().layer);
+  if (const auto* structure = dynamic_cast<const Structure*>(entityPtr.get()))
+  {
+    ObjectsSpawner::despawnStructure(
+      SAFE_DEREF(d_session.getCurrentLocation()),
+      tileCoords,
+      structure->getStructurePrototype().layer);
+  }
+  else if (const auto* mount = dynamic_cast<const Mount*>(entityPtr.get()))
+  {
+    ObjectsSpawner::despawnMount(
+      SAFE_DEREF(d_session.getCurrentLocation()),
+      tileCoords,
+      *mount);
+  }
+  else if (const auto* object = dynamic_cast<const Object*>(entityPtr.get()))
+  {
+    ObjectsSpawner::despawnObject(
+      SAFE_DEREF(d_session.getCurrentLocation()),
+      *object);
+  }
 
   if (d_isMutliremoving)
     d_lastRemovedCoords = tileCoords;

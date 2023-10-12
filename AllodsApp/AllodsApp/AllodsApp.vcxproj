@@ -167,6 +167,7 @@
     <ClCompile Include="Fixture.cpp" />
     <ClCompile Include="Mount.cpp" />
     <ClCompile Include="MountBuilder.cpp" />
+    <ClCompile Include="MountUtils.cpp" />
     <ClCompile Include="MountView.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectBuilder.cpp" />
@@ -188,7 +189,7 @@
     <ClCompile Include="PrototypeLoader.cpp" />
     <ClCompile Include="Structure.cpp" />
     <ClCompile Include="StructureBuilder.cpp" />
-    <ClCompile Include="StructureUtils.cpp" />
+    <ClCompile Include="EntityUtils.cpp" />
     <ClCompile Include="StructureView.cpp" />
     <ClCompile Include="TempOverlay.cpp" />
     <ClCompile Include="Tile.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="Fixture.h" />
     <ClInclude Include="Mount.h" />
     <ClInclude Include="MountBuilder.h" />
+    <ClInclude Include="MountUtils.h" />
     <ClInclude Include="MountView.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectBuilder.h" />
@@ -250,7 +252,7 @@
     <ClInclude Include="Prototypes.h" />
     <ClInclude Include="PrototypeLoader.h" />
     <ClInclude Include="StructureBuilder.h" />
-    <ClInclude Include="StructureUtils.h" />
+    <ClInclude Include="EntityUtils.h" />
     <ClInclude Include="StructureView.h" />
     <ClInclude Include="TempOverlay.h" />
     <ClInclude Include="Tile.h" />

@@ -5,6 +5,8 @@
 
 #include <LaggyDx/Animation2Player.h>
 
+#include <LaggySdk/Size.h>
+
 
 class Entity
 {
@@ -16,7 +18,9 @@ public:
 
   [[nodiscard]] const Prototype& getPrototype() const;
 
-[[nodiscard]] Dx::Animation2Player& getAnimationPlayer();
+  [[nodiscard]] const Sdk::Size2I& getSize() const;
+
+  [[nodiscard]] Dx::Animation2Player& getAnimationPlayer();
   [[nodiscard]] const Dx::Animation2Player& getAnimationPlayer() const;
 
   void setBehaviorModel(BehaviorModelPtr i_model);

@@ -3,6 +3,8 @@
 
 #include "Prototypes.h"
 
+#include <LaggyDx/ImageDescription.h>
+
 
 Entity::Entity(const Prototype& i_prototype)
   : d_prototype(i_prototype)
@@ -14,6 +16,12 @@ Entity::Entity(const Prototype& i_prototype)
 const Prototype& Entity::getPrototype() const
 {
   return d_prototype;
+}
+
+
+const Sdk::Size2I& Entity::getSize() const
+{
+  return SAFE_DEREF(d_prototype.texture).getDescription().frameSize;
 }
 
 

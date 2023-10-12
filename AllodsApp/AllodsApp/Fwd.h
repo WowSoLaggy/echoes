@@ -25,6 +25,7 @@ struct Scenario;
 struct StructurePrototype;
 
 using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;
+using EntityPtr = std::shared_ptr<Entity>;
 using FixturePtr = std::shared_ptr<Fixture>;
 using MountPtr = std::shared_ptr<Mount>;
 using ObjectPtr = std::shared_ptr<Object>;

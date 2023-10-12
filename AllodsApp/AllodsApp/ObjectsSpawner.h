@@ -23,12 +23,13 @@ public:
   static MountPtr spawnMount(
     const MountPrototype& i_prototype, Structure& i_structure, FixtureLocation i_location);
   static void despawnMount(Structure& i_structure, FixtureLocation i_location);
+  static void despawnMount(Location& i_location, const TileCoord& i_coord, const Mount& i_mount);
 
   static ObjectPtr spawnObject(
     const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position);
   static ObjectPtr spawnObject(
     const ObjectPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position);
-  static void despawnObject(Location& i_location, Object& i_object);
+  static void despawnObject(Location& i_location, const Object& i_object);
 
 private:
   ObjectsSpawner() = delete;

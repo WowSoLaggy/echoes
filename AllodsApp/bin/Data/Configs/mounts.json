@@ -1,6 +1,7 @@
 {
   "Lamp":
   {
-    "TextureName": "Lamp.png"
+    "TextureName": "Lamp.png",
+    "Behavior": "Lamp"
   }
 }

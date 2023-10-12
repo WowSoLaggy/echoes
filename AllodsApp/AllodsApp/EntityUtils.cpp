@@ -1,6 +1,8 @@
 #include "stdafx.h"
-#include "StructureUtils.h"
+#include "EntityUtils.h"
 
+#include "Mount.h"
+#include "MountUtils.h"
 #include "Prototypes.h"
 #include "Session.h"
 #include "Structure.h"
@@ -9,7 +11,7 @@
 #include <LaggyDx/CursorUtils.h>
 
 
-StructurePtr StructureUtils::getStructureUnderCursor(const Session& i_session)
+EntityPtr EntityUtils::getEntityUnderCursor(const Session& i_session)
 {
   const auto* location = i_session.getCurrentLocation();
   if (!location)
@@ -27,6 +29,13 @@ StructurePtr StructureUtils::getStructureUnderCursor(const Session& i_session)
   for (const auto& [_, structurePtr] : std::ranges::reverse_view(tile->getLayers()))
   {
     auto& structure = SAFE_DEREF(structurePtr);
+
+    if (const auto fixturePtr = structure.getFixture())
+    {
+      if (auto mountPtr = MountUtils::getHitMount(*fixturePtr, hitPos))
+        return mountPtr;
+    }
+
     auto& texture = SAFE_DEREF(structure.getPrototype().texture);
     if (!texture.hasAlpha())
       return structurePtr;

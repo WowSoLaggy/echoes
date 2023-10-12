@@ -135,7 +135,7 @@
     <ClCompile Include="AnimationUtils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="StructureUtils.cpp">
+    <ClCompile Include="EntityUtils.cpp">
       <Filter>src\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Layers.cpp">
@@ -221,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="LampBehavior.cpp">
       <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
+    <ClCompile Include="MountUtils.cpp">
+      <Filter>src\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -314,7 +317,7 @@
     <ClInclude Include="AnimationUtils.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="StructureUtils.h">
+    <ClInclude Include="EntityUtils.h">
       <Filter>src\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
@@ -406,6 +409,9 @@
     </ClInclude>
     <ClInclude Include="LampBehavior.h">
       <Filter>src\World\BehaviorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="MountUtils.h">
+      <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

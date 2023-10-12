@@ -61,6 +61,28 @@ void ObjectsSpawner::despawnMount(Structure& i_structure, FixtureLocation i_loca
   fixture->resetMount(i_location);
 }
 
+void ObjectsSpawner::despawnMount(Location& i_location, const TileCoord& i_coord, const Mount& i_mount)
+{
+  const auto& tile = SAFE_DEREF(i_location.getTile(i_coord));
+  for (const auto& [_, structurePtr] : tile.getLayers())
+  {
+    const auto& structure = SAFE_DEREF(structurePtr);
+    if (const auto fixture = structure.getFixture())
+    {
+      for (const auto& [layer, mountPtr] : fixture->getMounts())
+      {
+        if (mountPtr && mountPtr.get() == &i_mount)
+        {
+          fixture->resetMount(layer);
+          return;
+        }
+      }
+    }
+  }
+
+  CONTRACT_THROW;
+}
+
 
 ObjectPtr ObjectsSpawner::spawnObject(
   const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position)
@@ -80,7 +102,7 @@ ObjectPtr ObjectsSpawner::spawnObject(
   return object;
 }
 
-void ObjectsSpawner::despawnObject(Location& i_location, Object& i_object)
+void ObjectsSpawner::despawnObject(Location& i_location, const Object& i_object)
 {
   auto& objects = i_location.getObjects();
   objects.erase(std::remove_if(objects.begin(), objects.end(), [&](const auto i_objectPtr) {
