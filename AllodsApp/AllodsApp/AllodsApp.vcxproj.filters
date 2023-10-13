@@ -231,6 +231,9 @@
     <ClCompile Include="ContainerBehavior.cpp">
       <Filter>src\World\BehaviorModel</Filter>
     </ClCompile>
+    <ClCompile Include="SessionSaver.cpp">
+      <Filter>src\Session</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="ContainerBehavior.h">
       <Filter>src\World\BehaviorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="SessionSaver.h">
+      <Filter>src\Session</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

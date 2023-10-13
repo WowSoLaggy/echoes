@@ -6,15 +6,15 @@
 #include "WorldCreator.h"
 
 
-std::unique_ptr<Session> SessionLoader::createNew(const std::string& i_scenarioName) const
+std::unique_ptr<Session> SessionLoader::createNew(const std::string& i_scenarioName)
 {
   const auto& scenario = Scenarios::getScenario(i_scenarioName);
   return createNew(scenario);
 }
 
-std::unique_ptr<Session> SessionLoader::createNew(const Scenario& i_scenario) const
+std::unique_ptr<Session> SessionLoader::createNew(const Scenario& i_scenario)
 {
-  auto session = std::make_unique<Session>();
+  auto session = std::make_unique<Session>(i_scenario);
 
   session->setWorld(WorldCreator::createTest());
 

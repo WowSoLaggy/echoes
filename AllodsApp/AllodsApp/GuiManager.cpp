@@ -188,16 +188,27 @@ void GuiManager::showPauseMenu()
   layout.setSize(d_pauseMenuPanel->getSize());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
+  const auto createFakePanel = [&]()
+  {
+    auto& fakePanel = createPanel(layout);
+    fakePanel.setSize({ 0, 16 });
+  };
+
   {
     auto& btn = createMenuButton(layout);
     btn.setText("Resume Game");
     btn.setOnPress(std::bind(&GuiManager::onResumeGame, this));
   }
 
+  createFakePanel();
+
   {
-    auto& fakePanel = createPanel(layout);
-    fakePanel.setSize({ 0, 16 });
+    auto& btn = createMenuButton(layout);
+    btn.setText("Save Game");
+    btn.setOnPress(std::bind(&GuiManager::onSaveGame, this));
   }
+
+  createFakePanel();
 
   {
     auto& btn = createMenuButton(layout);
@@ -426,6 +437,10 @@ void GuiManager::onResumeGame()
 {
   CONTRACT_EXPECT(d_session);
   d_session->unpause();
+}
+
+void GuiManager::onSaveGame()
+{
 }
 
 void GuiManager::onExitToMenu()

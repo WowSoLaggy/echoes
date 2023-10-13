@@ -7,6 +7,9 @@
 class SessionLoader
 {
 public:
-  std::unique_ptr<Session> createNew(const std::string& i_scenarioName) const;
-  std::unique_ptr<Session> createNew(const Scenario& i_scenario) const;
+  static std::unique_ptr<Session> createNew(const std::string& i_scenarioName);
+  static std::unique_ptr<Session> createNew(const Scenario& i_scenario);
+
+private:
+  SessionLoader() = delete;
 };

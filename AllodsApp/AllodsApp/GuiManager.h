@@ -57,6 +57,7 @@ private:
   void onExitBuildRemoval();
 
   void onResumeGame();
+  void onSaveGame();
   void onExitToMenu();
 
   const IOverlay* d_overlay = nullptr;

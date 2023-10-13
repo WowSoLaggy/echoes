@@ -181,6 +181,7 @@
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionLoader.cpp" />
     <ClCompile Include="ObjectsSpawner.cpp" />
+    <ClCompile Include="SessionSaver.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -249,6 +250,7 @@
     <ClInclude Include="SessionEvents.h" />
     <ClInclude Include="SessionLoader.h" />
     <ClInclude Include="ObjectsSpawner.h" />
+    <ClInclude Include="SessionSaver.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Structure.h" />

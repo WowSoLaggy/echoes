@@ -7,8 +7,9 @@
 #include <LaggyDx/FreeCamera2Controller.h>
 
 
-Session::Session()
-  : d_buildManager(*this)
+Session::Session(Scenario i_scenario)
+  : d_scenario(std::move(i_scenario))
+  , d_buildManager(*this)
   , d_interactionManager(*this)
 {
   d_camera = Dx::ICamera2::create();

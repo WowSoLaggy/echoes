@@ -5,6 +5,7 @@
 #include "IOverlay.h"
 #include "Location.h"
 #include "OverlayTypes.h"
+#include "Scenario.h"
 #include "World.h"
 
 #include <LaggyDx/ICamera2.h>
@@ -17,7 +18,7 @@
 class Session : public Sdk::EventHandler
 {
 public:
-  Session();
+  Session(Scenario i_scenario);
 
   void update(double i_dt);
   void onMouseMove();
@@ -48,6 +49,8 @@ public:
   void resetOverlay();
 
 private:
+  Scenario d_scenario;
+
   std::unique_ptr<Dx::ICamera2> d_camera;
   std::unique_ptr<Dx::IInputController> d_inputController;
   std::unique_ptr<World> d_world;
