@@ -3,6 +3,7 @@
 #include <LaggySdk/Vector.h>
 
 
+class Avatar;
 class Entity;
 class Fixture;
 class Game;
@@ -15,6 +16,7 @@ class Session;
 class Structure;
 class Tile;
 
+struct AvatarPrototype;
 struct BuildDraftInfo;
 struct BuildMountDraftInfo;
 struct BuildObjectDraftInfo;
@@ -24,6 +26,8 @@ struct Prototype;
 struct Scenario;
 struct StructurePrototype;
 
+using AvatarPtr = std::shared_ptr<Avatar>;
+using Avatars = std::vector<AvatarPtr>;
 using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;
 using EntityPtr = std::shared_ptr<Entity>;
 using FixturePtr = std::shared_ptr<Fixture>;

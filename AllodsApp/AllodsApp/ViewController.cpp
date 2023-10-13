@@ -35,6 +35,7 @@ void ViewController::render()
   d_backgroundView.render(shader, SAFE_DEREF(d_camera));
   d_tileView.render(shader, d_location->getTiles());
   d_objectsView.render(shader, d_location->getObjects());
+  d_avatarsView.render(shader, d_location->getAvatars());
 
   if (d_overlay)
     d_overlayView.render(shader, d_location->getTiles(), *d_overlay);

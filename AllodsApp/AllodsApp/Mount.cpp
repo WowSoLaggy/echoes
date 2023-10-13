@@ -5,7 +5,7 @@
 
 
 Mount::Mount(const MountPrototype& i_prototype)
-  : Entity(i_prototype)
+  : TileBaseEntity(i_prototype)
 {
 }
 

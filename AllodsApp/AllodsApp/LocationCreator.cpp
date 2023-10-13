@@ -29,6 +29,12 @@ std::unique_ptr<Location> LocationCreator::createTest()
     return ObjectsSpawner::spawnObject(i_protoName, *location, std::move(i_position));
   };
 
+  const auto createAvatar = [&](
+    const PrototypeName& i_protoName, Sdk::Vector2I i_position)
+  {
+    return ObjectsSpawner::spawnAvatar(i_protoName, *location, std::move(i_position));
+  };
+
   //
 
   for (int x = 5; x <= 11; ++x)
@@ -92,7 +98,11 @@ std::unique_ptr<Location> LocationCreator::createTest()
     createMount("Lamp", wallS2, FixtureLocation::Top);
   }
 
+  createStr("Crate", 9, 4);
+
   createObject("Lamp", TileUtils::getTileCenter({ 8, 5 }));
+
+  createAvatar("Man", TileUtils::getTileCenter({ 7, 5 }));
 
   return location;
 }

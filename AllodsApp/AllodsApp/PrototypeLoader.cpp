@@ -43,6 +43,36 @@ namespace
 } // anonym NS
 
 
+std::vector<AvatarPrototype> PrototypeLoader::loadAvatars(const fs::path& i_filepath)
+{
+  CONTRACT_EXPECT(fs::exists(i_filepath));
+
+  Json::Value root;
+  {
+    Json::Reader reader;
+    std::ifstream file(i_filepath.string(), std::ifstream::binary);
+    const bool parseOk = reader.parse(file, root, false);
+    CONTRACT_ASSERT(parseOk);
+  }
+
+  std::vector<AvatarPrototype> prototypes;
+  for (const auto& protoName : root.getMemberNames())
+  {
+    CONTRACT_EXPECT(!hasPrototype(prototypes, protoName));
+
+    const auto& protoNode = root[protoName];
+    AvatarPrototype proto;
+
+    proto.name = protoName;
+    const auto textureName = protoNode["TextureName"].asString();
+    proto.texture = &Dx::TextureUtils::getTexture(textureName);
+
+    prototypes.push_back(std::move(proto));
+  }
+
+  return prototypes;
+}
+
 std::vector<MountPrototype> PrototypeLoader::loadMounts(const fs::path& i_filepath)
 {
   CONTRACT_EXPECT(fs::exists(i_filepath));

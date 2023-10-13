@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "ObjectsSpawner.h"
 
-#include "PrototypesCollection.h"
+#include "Avatar.h"
 #include "Location.h"
 #include "Mount.h"
 #include "Object.h"
+#include "PrototypesCollection.h"
 #include "Structure.h"
 
 
@@ -108,4 +109,31 @@ void ObjectsSpawner::despawnObject(Location& i_location, const Object& i_object)
   objects.erase(std::remove_if(objects.begin(), objects.end(), [&](const auto i_objectPtr) {
     return &i_object == i_objectPtr.get();
     }), objects.end());
+}
+
+
+AvatarPtr ObjectsSpawner::spawnAvatar(
+  const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position)
+{
+  const auto& prototype = PrototypesCollection::getAvatarPrototype(i_name);
+  return spawnAvatar(prototype, i_location, i_position);
+}
+
+AvatarPtr ObjectsSpawner::spawnAvatar(
+  const AvatarPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position)
+{
+  AvatarPtr avatar = std::make_shared<Avatar>(i_prototype);
+  avatar->setPosition(std::move(i_position));
+
+  i_location.getAvatars().push_back(avatar);
+
+  return avatar;
+}
+
+void ObjectsSpawner::despawnAvatar(Location& i_location, const Avatar& i_avatar)
+{
+  auto& avatars = i_location.getAvatars();
+  avatars.erase(std::remove_if(avatars.begin(), avatars.end(), [&](const auto i_avatarPtr) {
+    return &i_avatar == i_avatarPtr.get();
+    }), avatars.end());
 }

@@ -1,25 +1,12 @@
 #pragma once
 
-#include "Entity.h"
-
-#include <LaggySdk/Rect.h>
-#include <LaggySdk/Vector.h>
+#include "FreeBaseEntity.h"
 
 
-class Object : public Entity
+class Object : public FreeBaseEntity
 {
 public:
   Object(const ObjectPrototype& i_prototype);
 
   [[nodiscard]] const ObjectPrototype& getObjectPrototype() const;
-
-  void setPosition(Sdk::Vector2I i_position);
-  [[nodiscard]] const Sdk::Vector2I& getPosition() const;
-
-  const Sdk::Vector2I& getSize() const;
-
-  Sdk::RectI getRect() const;
-
-private:
-  Sdk::Vector2I d_position;
 };

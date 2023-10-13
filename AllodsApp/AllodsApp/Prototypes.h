@@ -39,3 +39,8 @@ struct MountPrototype : public Prototype
 struct ObjectPrototype : public Prototype
 {
 };
+
+
+struct AvatarPrototype : public Prototype
+{
+};

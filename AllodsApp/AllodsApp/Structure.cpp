@@ -5,7 +5,7 @@
 
 
 Structure::Structure(const StructurePrototype& i_prototype)
-  : Entity(i_prototype)
+  : TileBaseEntity(i_prototype)
 {
   if (i_prototype.fixture)
     d_fixture = std::make_shared<Fixture>();

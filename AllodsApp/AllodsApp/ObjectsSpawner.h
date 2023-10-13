@@ -31,6 +31,12 @@ public:
     const ObjectPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position);
   static void despawnObject(Location& i_location, const Object& i_object);
 
+  static AvatarPtr spawnAvatar(
+    const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position);
+  static AvatarPtr spawnAvatar(
+    const AvatarPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position);
+  static void despawnAvatar(Location& i_location, const Avatar& i_avatar);
+
 private:
   ObjectsSpawner() = delete;
 };

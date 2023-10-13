@@ -64,6 +64,9 @@
     <Filter Include="src\ItemPicker">
       <UniqueIdentifier>{2fb48709-46df-498f-a665-11fe89246b4f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\ObjectsSpawner">
+      <UniqueIdentifier>{7212e8d2-47d8-4568-947d-3baa381727b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,9 +107,6 @@
     </ClCompile>
     <ClCompile Include="Game_state.cpp">
       <Filter>src\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectsSpawner.cpp">
-      <Filter>src\World\Objects</Filter>
     </ClCompile>
     <ClCompile Include="GuiManager.cpp">
       <Filter>src\GuiManager</Filter>
@@ -234,6 +234,24 @@
     <ClCompile Include="SessionSaver.cpp">
       <Filter>src\Session</Filter>
     </ClCompile>
+    <ClCompile Include="Avatar.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="TileBaseEntity.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="FreeBaseEntity.cpp">
+      <Filter>src\World\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsSpawner.cpp">
+      <Filter>src\World\ObjectsSpawner</Filter>
+    </ClCompile>
+    <ClCompile Include="AvatarView.cpp">
+      <Filter>src\View</Filter>
+    </ClCompile>
+    <ClCompile Include="AvatarsView.cpp">
+      <Filter>src\View</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -283,9 +301,6 @@
     </ClInclude>
     <ClInclude Include="GameStates.h">
       <Filter>src\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectsSpawner.h">
-      <Filter>src\World\Objects</Filter>
     </ClInclude>
     <ClInclude Include="GuiManager.h">
       <Filter>src\GuiManager</Filter>
@@ -427,6 +442,24 @@
     </ClInclude>
     <ClInclude Include="SessionSaver.h">
       <Filter>src\Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="TileBaseEntity.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="FreeBaseEntity.h">
+      <Filter>src\World\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectsSpawner.h">
+      <Filter>src\World\ObjectsSpawner</Filter>
+    </ClInclude>
+    <ClInclude Include="AvatarView.h">
+      <Filter>src\View</Filter>
+    </ClInclude>
+    <ClInclude Include="AvatarsView.h">
+      <Filter>src\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

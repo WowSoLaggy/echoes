@@ -32,6 +32,9 @@ public:
   Objects& getObjects();
   const Objects& getObjects() const;
 
+  Avatars& getAvatars();
+  const Avatars& getAvatars() const;
+
 private:
   std::string d_name;
 
@@ -42,5 +45,6 @@ private:
 
   Tiles d_tiles;
   TileCollection d_tileCollection;
+  Avatars d_avatars;
   Objects d_objects;
 };

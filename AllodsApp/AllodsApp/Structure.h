@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Entity.h"
+#include "TileBaseEntity.h"
 #include "Fixture.h"
 #include "Fwd.h"
 
 
-class Structure : public Entity
+class Structure : public TileBaseEntity
 {
 public:
   Structure(const StructurePrototype& i_prototype);

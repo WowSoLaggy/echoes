@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Entity.h"
+#include "TileBaseEntity.h"
 #include "Fwd.h"
 
 
-class Mount : public Entity
+class Mount : public TileBaseEntity
 {
 public:
   Mount(const MountPrototype& i_prototype);

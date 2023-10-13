@@ -146,6 +146,9 @@
     <ClCompile Include="ActionsController.cpp" />
     <ClCompile Include="AnimationUtils.cpp" />
     <ClCompile Include="AtmoOverlay.cpp" />
+    <ClCompile Include="Avatar.cpp" />
+    <ClCompile Include="AvatarsView.cpp" />
+    <ClCompile Include="AvatarView.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
@@ -154,6 +157,7 @@
     <ClCompile Include="DummyTileThd.cpp" />
     <ClCompile Include="FixtureLocations.cpp" />
     <ClCompile Include="Fonts.cpp" />
+    <ClCompile Include="FreeBaseEntity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
@@ -195,6 +199,7 @@
     <ClCompile Include="StructureView.cpp" />
     <ClCompile Include="TempOverlay.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileBaseEntity.cpp" />
     <ClCompile Include="TileCollection.cpp" />
     <ClCompile Include="TileThd.cpp" />
     <ClCompile Include="TileUtils.cpp" />
@@ -209,6 +214,9 @@
     <ClInclude Include="ActionsController.h" />
     <ClInclude Include="AnimationUtils.h" />
     <ClInclude Include="AtmoOverlay.h" />
+    <ClInclude Include="Avatar.h" />
+    <ClInclude Include="AvatarsView.h" />
+    <ClInclude Include="AvatarView.h" />
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="BehaviorModels.h" />
     <ClInclude Include="BuildManager.h" />
@@ -219,6 +227,7 @@
     <ClInclude Include="DummyTileThd.h" />
     <ClInclude Include="FixtureLocations.h" />
     <ClInclude Include="Fonts.h" />
+    <ClInclude Include="FreeBaseEntity.h" />
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
@@ -260,6 +269,7 @@
     <ClInclude Include="StructureView.h" />
     <ClInclude Include="TempOverlay.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileBaseEntity.h" />
     <ClInclude Include="TileCollection.h" />
     <ClInclude Include="TileThd.h" />
     <ClInclude Include="TileUtils.h" />

@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "Location.h"
 
+#include "Avatar.h"
+#include "Object.h"
+
 #include <LaggyDx/Simulation.h>
 
 
@@ -27,6 +30,11 @@ void Location::update(const double i_dt)
 
   for (auto& [_, tile] : d_tiles)
     tile.update(i_dt);
+
+  for (auto objPtr : d_objects)
+    SAFE_DEREF(objPtr).update(i_dt);
+  for (auto avatarPtr : d_avatars)
+    SAFE_DEREF(avatarPtr).update(i_dt);
 }
 
 
@@ -90,4 +98,15 @@ Objects& Location::getObjects()
 const Objects& Location::getObjects() const
 {
   return d_objects;
+}
+
+
+Avatars& Location::getAvatars()
+{
+  return d_avatars;
+}
+
+const Avatars& Location::getAvatars() const
+{
+  return d_avatars;
 }
