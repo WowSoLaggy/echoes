@@ -20,6 +20,7 @@ struct AvatarPrototype;
 struct BuildDraftInfo;
 struct BuildMountDraftInfo;
 struct BuildObjectDraftInfo;
+struct GameSettings;
 struct MountPrototype;
 struct ObjectPrototype;
 struct Prototype;

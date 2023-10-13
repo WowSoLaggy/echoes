@@ -461,5 +461,8 @@
     <ClInclude Include="AvatarsView.h">
       <Filter>src\View</Filter>
     </ClInclude>
+    <ClInclude Include="GameSettings.h">
+      <Filter>src\Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

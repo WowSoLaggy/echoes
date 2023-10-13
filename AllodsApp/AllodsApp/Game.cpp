@@ -1,16 +1,18 @@
 #include "stdafx.h"
 #include "Game.h"
 
-#include <LaggyDx/AppSettings.h>
+#include "GameSettings.h"
 
 
 namespace
 {
-  const Dx::AppSettings& getAppSettings()
+  std::unique_ptr<Dx::AppSettings> getAppSettings()
   {
-    static Dx::AppSettings settings;
+    auto settings = std::make_unique<GameSettings>();
+
     /*settings.screenWidth = 1024;
     settings.screenHeight = 768;*/
+
     return settings;
   }
 
@@ -28,6 +30,12 @@ Game::~Game()
 {
   if (getSession())
     closeSession();
+}
+
+
+const GameSettings& Game::getGameSettings() const
+{
+  return dynamic_cast<const GameSettings&>(App::getSettings());
 }
 
 

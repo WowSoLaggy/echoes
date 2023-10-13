@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ActionsController.h"
+#include "Fwd.h"
 #include "GameStates.h"
 #include "GuiManager.h"
 #include "Session.h"
@@ -14,6 +15,8 @@ class Game : public Dx::App
 public:
   Game();
   ~Game();
+
+  const GameSettings& getGameSettings() const;
 
   Session* getSession() const;
   GuiManager& getGui();

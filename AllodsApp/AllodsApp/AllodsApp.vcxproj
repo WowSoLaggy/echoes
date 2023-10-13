@@ -231,6 +231,7 @@
     <ClInclude Include="Fwd.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEvents.h" />
+    <ClInclude Include="GameSettings.h" />
     <ClInclude Include="GameStates.h" />
     <ClInclude Include="GodModeBuildGridItems.h" />
     <ClInclude Include="GuiManager.h" />
