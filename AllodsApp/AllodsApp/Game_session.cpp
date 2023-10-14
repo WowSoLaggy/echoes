@@ -1,11 +1,31 @@
 #include "stdafx.h"
 #include "Game.h"
 
+#include "GameSettings.h"
 #include "SessionEvents.h"
 #include "SessionLoader.h"
+#include "SessionSaver.h"
+
+#include <LaggySdk/Files.h>
 
 
 Session* Game::getSession() const { return d_session.get(); }
+
+
+void Game::newSession()
+{
+  startNewSession();
+}
+
+void Game::closeSession()
+{
+  detachSession();
+}
+
+void Game::closeApplication()
+{
+  stop();
+}
 
 
 void Game::attachSession(std::unique_ptr<Session> i_session)
@@ -33,4 +53,10 @@ void Game::startNewSession()
 {
   auto session = SessionLoader::createNew("Test Scenario");
   attachSession(std::move(session));
+}
+
+void Game::saveSession()
+{
+  CONTRACT_EXPECT(d_session);
+  SessionSaver::save(*d_session, Sdk::getExeFolder() / getGameSettings().savesPath / "quick_save.sav");
 }

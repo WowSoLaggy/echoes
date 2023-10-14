@@ -205,7 +205,7 @@ void GuiManager::showPauseMenu()
   {
     auto& btn = createMenuButton(layout);
     btn.setText("Save Game");
-    btn.setOnPress(std::bind(&GuiManager::onSaveGame, this));
+    btn.setOnPress(std::bind(&Game::saveSession, &d_game));
   }
 
   createFakePanel();
@@ -437,10 +437,6 @@ void GuiManager::onResumeGame()
 {
   CONTRACT_EXPECT(d_session);
   d_session->unpause();
-}
-
-void GuiManager::onSaveGame()
-{
 }
 
 void GuiManager::onExitToMenu()

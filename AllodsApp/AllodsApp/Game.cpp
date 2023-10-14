@@ -101,19 +101,3 @@ void Game::createViewController()
 {
   d_viewController = std::make_unique<ViewController>(*this);
 }
-
-
-void Game::newSession()
-{
-  startNewSession();
-}
-
-void Game::closeSession()
-{
-  detachSession();
-}
-
-void Game::closeApplication()
-{
-  stop();
-}
