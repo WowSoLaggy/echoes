@@ -182,6 +182,7 @@
     <ClCompile Include="ObjectView.cpp" />
     <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
+    <ClCompile Include="Scenario.cpp" />
     <ClCompile Include="Scenarios.cpp" />
     <ClCompile Include="Session.cpp" />
     <ClCompile Include="SessionLoader.cpp" />

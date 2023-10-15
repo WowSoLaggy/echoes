@@ -6,6 +6,14 @@
 #include <LaggyDx/ImageDescription.h>
 
 
+void FreeBaseEntity::pushFields()
+{
+  Entity::pushFields();
+
+  pushField("position", d_position);
+}
+
+
 void FreeBaseEntity::setPosition(Sdk::Vector2I i_position)
 {
   d_position = std::move(i_position);

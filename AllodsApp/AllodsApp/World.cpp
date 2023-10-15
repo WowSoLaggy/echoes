@@ -2,6 +2,13 @@
 #include "World.h"
 
 
+void World::pushFields()
+{
+  for (const auto& locationPtr : d_locations)
+    pushObject("location", SAFE_DEREF(locationPtr));
+}
+
+
 Location& World::getLocation(const std::string& i_name) const
 {
   const auto it = std::find_if(d_locations.begin(), d_locations.end(), [&](const auto& locationPtr) {

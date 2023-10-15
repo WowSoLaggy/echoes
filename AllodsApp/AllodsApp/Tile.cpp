@@ -4,6 +4,13 @@
 #include "Structure.h"
 
 
+void Tile::pushFields()
+{
+  for (auto& [layer, structurePtr] : d_layers)
+    pushObject(LayerStr::toString(layer), SAFE_DEREF(structurePtr));
+}
+
+
 void Tile::update(const double i_dt)
 {
   for (auto& [_, structurePtr] : d_layers)

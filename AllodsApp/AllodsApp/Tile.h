@@ -3,15 +3,18 @@
 #include "Fwd.h"
 #include "Layers.h"
 
+#include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Vector.h>
 
 
 using LayersMap = std::map<Layer, StructurePtr>;
 
 
-class Tile
+class Tile : public Sdk::ISerializable
 {
 public:
+  virtual void pushFields() override;
+
   void update(double i_dt);
 
   const LayersMap& getLayers() const;

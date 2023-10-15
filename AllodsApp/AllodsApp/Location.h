@@ -5,12 +5,15 @@
 #include "TileCollection.h"
 
 #include <LaggySdk/EventHandler.h>
+#include <LaggySdk/ISerializable.h>
 
 
-class Location : public Sdk::EventHandler
+class Location : public Sdk::EventHandler, public Sdk::ISerializable
 {
 public:
   Location();
+
+  virtual void pushFields() override;
 
   void setName(std::string i_name);
   const std::string& getName() const;

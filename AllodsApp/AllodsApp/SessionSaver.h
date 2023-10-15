@@ -6,7 +6,7 @@
 class SessionSaver
 {
 public:
-  static void save(const Session& i_session, const fs::path& i_path);
+  static void save(Session& i_session, const fs::path& i_path);
 
 private:
   SessionSaver() = delete;

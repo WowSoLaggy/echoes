@@ -3,12 +3,17 @@
 #include "FixtureLocations.h"
 #include "Fwd.h"
 
+#include <LaggySdk/ISerializable.h>
+
+
 using FixturesMap = std::unordered_map<FixtureLocation, MountPtr>;
 
-class Fixture
+class Fixture : public Sdk::ISerializable
 {
 public:
   Fixture();
+
+  virtual void pushFields() override;
 
   const FixturesMap& getMounts() const;
   MountPtr getMount(FixtureLocation i_location) const;

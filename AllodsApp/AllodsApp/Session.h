@@ -13,17 +13,22 @@
 #include <LaggyDx/MouseKeys.h>
 
 #include <LaggySdk/EventHandler.h>
+#include <LaggySdk/ISerializable.h>
 
 
-class Session : public Sdk::EventHandler
+class Session : public Sdk::EventHandler, public Sdk::ISerializable
 {
 public:
   Session(Scenario i_scenario);
+
+  virtual void pushFields() override;
 
   void update(double i_dt);
   void onMouseMove();
   bool onMouseClick(Dx::MouseKey i_key);
   void onMouseRelease(Dx::MouseKey i_key);
+
+  const Scenario& getScenario() const;
 
   void setWorld(std::unique_ptr<World> i_world);
   World* getWorld() const;

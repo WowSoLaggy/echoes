@@ -11,6 +11,8 @@ class FreeBaseEntity : public Entity
 public:
   using Entity::Entity;
 
+  virtual void pushFields() override;
+
   void setPosition(Sdk::Vector2I i_position);
   [[nodiscard]] const Sdk::Vector2I& getPosition() const;
 

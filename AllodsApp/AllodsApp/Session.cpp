@@ -17,6 +17,14 @@ Session::Session(Scenario i_scenario)
 }
 
 
+void Session::pushFields()
+{
+  pushObject("scenario", d_scenario);
+  if (d_world)
+    pushObject("world", *d_world);
+}
+
+
 void Session::update(const double i_dt)
 {
   if (d_pause)
@@ -54,6 +62,12 @@ void Session::onMouseRelease(Dx::MouseKey i_key)
     return;
 
   d_buildManager.onMouseRelease(i_key);
+}
+
+
+const Scenario& Session::getScenario() const
+{
+  return d_scenario;
 }
 
 

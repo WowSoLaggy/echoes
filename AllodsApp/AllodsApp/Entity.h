@@ -5,14 +5,17 @@
 
 #include <LaggyDx/Animation2Player.h>
 
+#include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Size.h>
 
 
-class Entity
+class Entity : public Sdk::ISerializable
 {
 public:
   Entity(const Prototype& i_prototype);
   virtual ~Entity() = default;
+
+  virtual void pushFields() override;
 
   void update(double i_dt);
 

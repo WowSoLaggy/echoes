@@ -12,6 +12,15 @@ Structure::Structure(const StructurePrototype& i_prototype)
 }
 
 
+void Structure::pushFields()
+{
+  TileBaseEntity::pushFields();
+
+  if (d_fixture)
+    pushObject("fixture", *d_fixture);
+}
+
+
 const StructurePrototype& Structure::getStructurePrototype() const
 {
   return dynamic_cast<const StructurePrototype&>(getPrototype());

@@ -1,11 +1,23 @@
 #include "stdafx.h"
 #include "Fixture.h"
 
+#include "Mount.h"
+
 
 Fixture::Fixture()
 {
   for (int i = 0; i < static_cast<int>(FixtureLocation::Count); ++i)
     d_mounts[static_cast<FixtureLocation>(i)] = nullptr;
+}
+
+
+void Fixture::pushFields()
+{
+  for (const auto& [location, mountPtr] : d_mounts)
+  {
+    if (mountPtr)
+      pushObject(FixtureLocationStr::toString(location), *mountPtr);
+  }
 }
 
 

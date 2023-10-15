@@ -13,6 +13,13 @@ Entity::Entity(const Prototype& i_prototype)
 }
 
 
+void Entity::pushFields()
+{
+  pushField("prototype_name", d_prototype.name);
+  pushObject("animationPlayer", d_animationPlayer);
+}
+
+
 const Prototype& Entity::getPrototype() const
 {
   return d_prototype;

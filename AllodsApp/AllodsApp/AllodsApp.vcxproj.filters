@@ -252,6 +252,9 @@
     <ClCompile Include="AvatarsView.cpp">
       <Filter>src\View</Filter>
     </ClCompile>
+    <ClCompile Include="Scenario.cpp">
+      <Filter>src\Scenario</Filter>
+    </ClCompile>
     <ClCompile Include="BehaviorModels.cpp">
       <Filter>src\World\BehaviorModel</Filter>
     </ClCompile>

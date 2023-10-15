@@ -7,9 +7,34 @@
 #include <LaggyDx/Simulation.h>
 
 
+namespace
+{
+  std::string createTileTag(const TileCoord& i_coord)
+  {
+    return "tile." + std::to_string(i_coord.x) + "." + std::to_string(i_coord.y);
+  }
+
+} // anonym NS
+
+
 Location::Location()
   : d_tileCollection(*this)
 {
+}
+
+
+void Location::pushFields()
+{
+  pushField("name", d_name);
+
+  for (auto& [coord, tile] : d_tiles)
+    pushObject(createTileTag(coord), tile);
+
+  for (auto& objectPtr : d_objects)
+    pushObject("object", SAFE_DEREF(objectPtr));
+
+  for (auto& avatarPtr : d_avatars)
+    pushObject("avatar", SAFE_DEREF(avatarPtr));
 }
 
 
