@@ -1,5 +1,7 @@
 #pragma once
 
+#include <LaggySdk/EnumStr.h>
+
 
 enum class Layer : int32_t
 {
@@ -12,6 +14,10 @@ enum class Layer : int32_t
 
   Count
 };
+
+
+
+DECLARE_ENUM_STR(Layer)
 
 
 const std::vector<Layer>& getLayers();

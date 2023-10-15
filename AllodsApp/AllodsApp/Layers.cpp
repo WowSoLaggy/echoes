@@ -2,6 +2,21 @@
 #include "Layers.h"
 
 
+namespace
+{
+  const std::unordered_map<Layer, std::string> LayersStrings {
+    { Layer::Panneling, "Panneling" },
+    { Layer::Floor, "Floor" },
+    { Layer::Wall, "Wall" },
+    { Layer::Furniture, "Furniture" },
+  };
+
+} // anonym NS
+
+
+DEFINE_ENUM_STR(Layer, LayersStrings)
+
+
 const std::vector<Layer>& getLayers()
 {
   const auto generateVector = []()

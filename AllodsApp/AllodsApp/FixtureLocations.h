@@ -1,5 +1,7 @@
 #pragma once
 
+#include <LaggySdk/EnumStr.h>
+
 
 enum class FixtureLocation
 {
@@ -10,5 +12,9 @@ enum class FixtureLocation
 
   Count
 };
+
+
+DECLARE_ENUM_STR(FixtureLocation)
+
 
 FixtureLocation rotateClockWise(FixtureLocation i_prevLocation);

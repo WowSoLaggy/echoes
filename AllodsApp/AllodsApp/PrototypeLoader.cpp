@@ -8,32 +8,6 @@
 
 namespace
 {
-  Layer getLayerByName(const std::string& i_name)
-  {
-    const std::unordered_map<std::string, Layer> LayersMap {
-      { "Panneling", Layer::Panneling },
-      { "Floor", Layer::Floor },
-      { "Wall", Layer::Wall },
-      { "Furniture", Layer::Furniture },
-    };
-
-    CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(Layer::Count));
-    return LayersMap.at(i_name);
-  }
-
-  BehaviorModel getBehaviorByName(const std::string& i_name)
-  {
-    const std::unordered_map<std::string, BehaviorModel> LayersMap{
-      { "None", BehaviorModel::None },
-      { "Door", BehaviorModel::Door },
-      { "Lamp", BehaviorModel::Lamp },
-      { "Container", BehaviorModel::Container },
-    };
-
-    CONTRACT_ENSURE(LayersMap.size() == static_cast<int>(BehaviorModel::Count));
-    return LayersMap.at(i_name);
-  }
-
   bool hasPrototype(const auto& i_prototypes, const std::string& i_name)
   {
     return std::any_of(i_prototypes.cbegin(), i_prototypes.cend(), [&](const auto& i_prototype) {
@@ -98,7 +72,7 @@ std::vector<MountPrototype> PrototypeLoader::loadMounts(const fs::path& i_filepa
     proto.texture = &Dx::TextureUtils::getTexture(textureName);
 
     if (protoNode.isMember("Behavior"))
-      proto.bahaviorModel = getBehaviorByName(protoNode["Behavior"].asString());
+      proto.bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }
@@ -129,7 +103,7 @@ std::vector<StructurePrototype> PrototypeLoader::loadStructures(const fs::path& 
     proto.name = protoName;
     const auto textureName = protoNode["TextureName"].asString();
     proto.texture = &Dx::TextureUtils::getTexture(textureName);
-    proto.layer = getLayerByName(protoNode["Layer"].asString());
+    proto.layer = LayerStr::fromString(protoNode["Layer"].asString());
 
     if (protoNode.isMember("Support"))
       proto.support = protoNode["Support"].asBool();
@@ -138,7 +112,7 @@ std::vector<StructurePrototype> PrototypeLoader::loadStructures(const fs::path& 
       proto.fixture = protoNode["Fixture"].asBool();
 
     if (protoNode.isMember("Behavior"))
-      proto.bahaviorModel = getBehaviorByName(protoNode["Behavior"].asString());
+      proto.bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }
@@ -171,7 +145,7 @@ std::vector<ObjectPrototype> PrototypeLoader::loadObjects(const fs::path& i_file
     proto.texture = &Dx::TextureUtils::getTexture(textureName);
 
     if (protoNode.isMember("Behavior"))
-      proto.bahaviorModel = getBehaviorByName(protoNode["Behavior"].asString());
+      proto.bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }

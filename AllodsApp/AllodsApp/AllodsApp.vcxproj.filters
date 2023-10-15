@@ -252,6 +252,9 @@
     <ClCompile Include="AvatarsView.cpp">
       <Filter>src\View</Filter>
     </ClCompile>
+    <ClCompile Include="BehaviorModels.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

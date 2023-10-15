@@ -1,5 +1,7 @@
 #pragma once
 
+#include <LaggySdk/EnumStr.h>
+
 
 enum class BehaviorModel
 {
@@ -11,3 +13,6 @@ enum class BehaviorModel
 
   Count
 };
+
+
+DECLARE_ENUM_STR(BehaviorModel)

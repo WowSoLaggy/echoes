@@ -150,6 +150,7 @@
     <ClCompile Include="AvatarsView.cpp" />
     <ClCompile Include="AvatarView.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
+    <ClCompile Include="BehaviorModels.cpp" />
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
     <ClCompile Include="ContainerBehavior.cpp" />
