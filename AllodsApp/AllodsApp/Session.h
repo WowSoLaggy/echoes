@@ -5,7 +5,6 @@
 #include "IOverlay.h"
 #include "Location.h"
 #include "OverlayTypes.h"
-#include "Scenario.h"
 #include "World.h"
 
 #include <LaggyDx/ICamera2.h>
@@ -19,7 +18,7 @@
 class Session : public Sdk::EventHandler, public Sdk::ISerializable
 {
 public:
-  Session(Scenario i_scenario);
+  Session();
 
   virtual void pushFields() override;
 
@@ -28,9 +27,10 @@ public:
   bool onMouseClick(Dx::MouseKey i_key);
   void onMouseRelease(Dx::MouseKey i_key);
 
-  const Scenario& getScenario() const;
+  void setScenario(std::shared_ptr<Scenario> i_scenario);
+  const Scenario* getScenario() const;
 
-  void setWorld(std::unique_ptr<World> i_world);
+  void setWorld(std::shared_ptr<World> i_world);
   World* getWorld() const;
 
   void setCurrentLocation(Location* i_location);
@@ -54,11 +54,11 @@ public:
   void resetOverlay();
 
 private:
-  Scenario d_scenario;
+  std::shared_ptr<Scenario> d_scenario;
 
-  std::unique_ptr<Dx::ICamera2> d_camera;
-  std::unique_ptr<Dx::IInputController> d_inputController;
-  std::unique_ptr<World> d_world;
+  std::shared_ptr<Dx::ICamera2> d_camera;
+  std::shared_ptr<Dx::IInputController> d_inputController;
+  std::shared_ptr<World> d_world;
   Location* d_currentLocation = nullptr;
   
   bool d_pause = false;

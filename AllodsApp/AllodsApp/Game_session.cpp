@@ -9,7 +9,20 @@
 #include <LaggySdk/Files.h>
 
 
-Session* Game::getSession() const { return d_session.get(); }
+namespace
+{
+  fs::path getQuickSavePath(const fs::path& i_savesFolder)
+  {
+    return Sdk::getExeFolder() / i_savesFolder / "quick_save.sav";
+  }
+
+} // anonym NS
+
+
+Session* Game::getSession() const
+{
+  return d_session.get();
+}
 
 
 void Game::newSession()
@@ -58,5 +71,11 @@ void Game::startNewSession()
 void Game::saveSession()
 {
   CONTRACT_EXPECT(d_session);
-  SessionSaver::save(*d_session, Sdk::getExeFolder() / getGameSettings().savesPath / "quick_save.sav");
+  SessionSaver::save(*d_session, getQuickSavePath(getGameSettings().savesPath));
+}
+
+void Game::loadSession()
+{
+  auto session = SessionLoader::load(getQuickSavePath(getGameSettings().savesPath));
+  attachSession(std::move(session));
 }

@@ -25,6 +25,7 @@ public:
   void closeSession();
   void closeApplication();
   void saveSession();
+  void loadSession();
 
 private:
   GameState d_state = GameState::NotLoaded;

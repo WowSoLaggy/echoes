@@ -329,6 +329,12 @@ void GuiManager::showMainMenu()
 
   {
     auto& btn = createMenuButton(layout);
+    btn.setText("Load Game");
+    btn.setOnPress(std::bind(&Game::loadSession, &d_game));
+  }
+
+  {
+    auto& btn = createMenuButton(layout);
     btn.setText("Exit to Desktop");
     btn.setOnPress(std::bind(&Game::closeApplication, &d_game));
   }

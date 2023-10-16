@@ -5,6 +5,7 @@
 
 struct Scenario : public Sdk::ISerializable
 {
+  Scenario() = default;
   Scenario(std::string i_name, std::string i_startingLocation);
 
   virtual void pushFields() override;

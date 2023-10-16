@@ -2,14 +2,14 @@
 #include "Session.h"
 
 #include "LocationEvents.h"
+#include "Scenario.h"
 #include "SessionEvents.h"
 
 #include <LaggyDx/FreeCamera2Controller.h>
 
 
-Session::Session(Scenario i_scenario)
-  : d_scenario(std::move(i_scenario))
-  , d_buildManager(*this)
+Session::Session()
+  : d_buildManager(*this)
   , d_interactionManager(*this)
 {
   d_camera = Dx::ICamera2::create();
@@ -19,9 +19,8 @@ Session::Session(Scenario i_scenario)
 
 void Session::pushFields()
 {
-  pushObject("scenario", d_scenario);
-  if (d_world)
-    pushObject("world", *d_world);
+  pushSharedPtr("scenario", d_scenario);
+  pushSharedPtr("world", d_world);
 }
 
 
@@ -65,13 +64,18 @@ void Session::onMouseRelease(Dx::MouseKey i_key)
 }
 
 
-const Scenario& Session::getScenario() const
+void Session::setScenario(std::shared_ptr<Scenario> i_scenario)
 {
-  return d_scenario;
+  d_scenario = std::move(i_scenario);
+}
+
+const Scenario* Session::getScenario() const
+{
+  return d_scenario.get();
 }
 
 
-void Session::setWorld(std::unique_ptr<World> i_world)
+void Session::setWorld(std::shared_ptr<World> i_world)
 {
   d_world = std::move(i_world);
 }
