@@ -63,24 +63,9 @@ void Location::update(const double i_dt)
 }
 
 
-int Location::getMinX() const
+const Sdk::RectI& Location::getRect() const
 {
-  return d_minX;
-}
-
-int Location::getMinY() const
-{
-  return d_minY;
-}
-
-int Location::getMaxX() const
-{
-  return d_maxX;
-}
-
-int Location::getMaxY() const
-{
-  return d_maxY;
+  return d_minMaxRect;
 }
 
 
@@ -94,10 +79,7 @@ Tile& Location::getOrCreateTile(const TileCoord& i_coord)
   if (auto* tile = getTile(i_coord))
     return *tile;
 
-  d_minX = std::min(d_minX, i_coord.x);
-  d_minY = std::min(d_minY, i_coord.y);
-  d_maxX = std::max(d_maxX, i_coord.x);
-  d_maxY = std::max(d_maxY, i_coord.y);
+  updateMinMax(i_coord);
 
   return d_tiles[i_coord];
 }
@@ -134,4 +116,37 @@ Avatars& Location::getAvatars()
 const Avatars& Location::getAvatars() const
 {
   return d_avatars;
+}
+
+
+void Location::updateMinMax(const TileCoord& i_coord)
+{
+  if (d_tiles.empty())
+  {
+    d_minMaxRect.p1 = i_coord;
+    d_minMaxRect.p2 = i_coord;
+  }
+  else
+  {
+    d_minMaxRect.p1.x = std::min(i_coord.x, d_minMaxRect.p1.x);
+    d_minMaxRect.p1.y = std::min(i_coord.y, d_minMaxRect.p1.y);
+    d_minMaxRect.p2.x = std::max(i_coord.x, d_minMaxRect.p2.x);
+    d_minMaxRect.p2.y = std::max(i_coord.y, d_minMaxRect.p2.y);
+  }
+}
+
+void Location::updateMinMax()
+{
+  if (d_tiles.empty())
+  {
+    d_minMaxRect.p1 = Sdk::Vector2I::zero();
+    d_minMaxRect.p2 = Sdk::Vector2I::zero();
+    return;
+  }
+
+  d_minMaxRect.p1 = d_tiles.begin()->first;
+  d_minMaxRect.p2 = d_tiles.begin()->first;
+
+  for (const auto& [coord, _] : d_tiles)
+    updateMinMax(coord);
 }

@@ -6,6 +6,7 @@
 
 #include <LaggySdk/EventHandler.h>
 #include <LaggySdk/ISerializable.h>
+#include <LaggySdk/Rect.h>
 
 
 class Location : public Sdk::EventHandler, public Sdk::ISerializable
@@ -20,12 +21,7 @@ public:
 
   void update(double i_dt);
 
-  // TODO: ae
-  // Change to Sdk::Rect2I
-  int getMinX() const;
-  int getMinY() const;
-  int getMaxX() const;
-  int getMaxY() const;
+  const Sdk::RectI& getRect() const;
 
   const Tiles& getTiles() const;
   Tile& getOrCreateTile(const TileCoord& i_coord);
@@ -41,10 +37,9 @@ public:
 private:
   std::string d_name;
 
-  int d_minX = 0;
-  int d_minY = 0;
-  int d_maxX = 0;
-  int d_maxY = 0;
+  Sdk::RectI d_minMaxRect;
+  void updateMinMax(const TileCoord& i_coord);
+  void updateMinMax();
 
   Tiles d_tiles;
   TileCollection d_tileCollection;

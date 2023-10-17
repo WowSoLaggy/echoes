@@ -12,24 +12,9 @@ TileCollection::TileCollection(Location& i_location)
 }
 
 
-int TileCollection::minX() const
+const Sdk::RectI& TileCollection::getRect() const
 {
-  return d_location.getMinX();
-}
-
-int TileCollection::minY() const
-{
-  return d_location.getMinY();
-}
-
-int TileCollection::maxX() const
-{
-  return d_location.getMaxX();
-}
-
-int TileCollection::maxY() const
-{
-  return d_location.getMaxY();
+  return d_location.getRect();
 }
 
 
