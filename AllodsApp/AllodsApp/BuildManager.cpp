@@ -9,6 +9,7 @@
 #include "ObjectBuilder.h"
 #include "ObjectsSpawner.h"
 #include "Prototypes.h"
+#include "PrototypeUtils.h"
 #include "Session.h"
 #include "SessionEvents.h"
 #include "Structure.h"
@@ -27,14 +28,14 @@ BuildManager::BuildManager(Session& i_session)
 
 bool BuildManager::isInBuildMode() const
 {
-  return d_buildPrototype;
+  return d_buildPrototype.get();
 }
 
-void BuildManager::setBuildDraft(const Prototype& i_prototype)
+void BuildManager::setBuildDraft(PrototypePtr i_prototype)
 {
   stopRemovalMode();
 
-  d_buildPrototype = &i_prototype;
+  d_buildPrototype = i_prototype;
   createBuildDraftInfo();
   updateBuildDraft();
 
@@ -44,7 +45,7 @@ void BuildManager::setBuildDraft(const Prototype& i_prototype)
 void BuildManager::resetBuildDraft()
 {
   notify(BuildDraftSetEvent(nullptr));
-  d_buildPrototype = nullptr;
+  d_buildPrototype.reset();
   d_buildDraftInfo.reset();
 }
 
@@ -177,37 +178,37 @@ void BuildManager::buildStructure()
 {
   StructureBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
-    getStructurePrototype()).build();
+    d_buildPrototype).build();
 }
 
 void BuildManager::buildMount()
 {
   MountBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
-    getMountPrototype(), getDraftMount().fixtureLocation).build();
+    d_buildPrototype, getDraftMount().fixtureLocation).build();
 }
 
 void BuildManager::buildObject()
 {
   ObjectBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), getDraftObject().absCoords,
-    getObjectPrototype()).build();
+    d_buildPrototype).build();
 }
 
 
 bool BuildManager::isDraftStructure() const
 {
-  return dynamic_cast<const StructurePrototype*>(d_buildPrototype);
+  return dynamic_cast<const StructurePrototype*>(d_buildPrototype.get());
 }
 
 bool BuildManager::isDraftMount() const
 {
-  return dynamic_cast<const MountPrototype*>(d_buildPrototype);
+  return dynamic_cast<const MountPrototype*>(d_buildPrototype.get());
 }
 
 bool BuildManager::isDraftObject() const
 {
-  return dynamic_cast<const ObjectPrototype*>(d_buildPrototype);
+  return dynamic_cast<const ObjectPrototype*>(d_buildPrototype.get());
 }
 
 BuildMountDraftInfo& BuildManager::getDraftMount() const
@@ -218,21 +219,6 @@ BuildMountDraftInfo& BuildManager::getDraftMount() const
 BuildObjectDraftInfo& BuildManager::getDraftObject() const
 {
   return SAFE_DEREF(dynamic_cast<BuildObjectDraftInfo*>(d_buildDraftInfo.get()));
-}
-
-const StructurePrototype& BuildManager::getStructurePrototype() const
-{
-  return SAFE_DEREF(dynamic_cast<const StructurePrototype*>(d_buildPrototype));
-}
-
-const MountPrototype& BuildManager::getMountPrototype() const
-{
-  return SAFE_DEREF(dynamic_cast<const MountPrototype*>(d_buildPrototype));
-}
-
-const ObjectPrototype& BuildManager::getObjectPrototype() const
-{
-  return SAFE_DEREF(dynamic_cast<const ObjectPrototype*>(d_buildPrototype));
 }
 
 
@@ -272,21 +258,21 @@ bool BuildManager::canBeBuiltStructure() const
 {
   return StructureBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
-    getStructurePrototype()).canBeBuilt();
+    d_buildPrototype).canBeBuilt();
 }
 
 bool BuildManager::canBeBuiltMount() const
 {
   return MountBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), SAFE_DEREF(d_buildDraftInfo).tileCoords,
-    getMountPrototype(), getDraftMount().fixtureLocation).canBeBuilt();
+    d_buildPrototype, getDraftMount().fixtureLocation).canBeBuilt();
 }
 
 bool BuildManager::canBeBuiltObject() const
 {
   return ObjectBuilder(
     SAFE_DEREF(d_session.getCurrentLocation()), getDraftObject().absCoords,
-    getObjectPrototype()).canBeBuilt();
+    d_buildPrototype).canBeBuilt();
 }
 
 

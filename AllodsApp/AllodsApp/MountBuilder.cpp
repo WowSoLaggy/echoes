@@ -10,7 +10,7 @@
 
 MountBuilder::MountBuilder(
   Location& i_location, const TileCoord& i_tileCoords,
-  const MountPrototype& i_prototype, const FixtureLocation i_fixtureLocation)
+  PrototypePtr i_prototype, const FixtureLocation i_fixtureLocation)
   : d_location(i_location)
   , d_tileCoords(i_tileCoords)
   , d_prototype(i_prototype)
@@ -32,7 +32,7 @@ bool MountBuilder::canBeBuilt() const
   if (!mountPtr)
     return true;
 
-  return mountPtr->getMountPrototype() != d_prototype;
+  return mountPtr->getMountPrototype() != SAFE_DEREF(d_prototype);
 }
 
 void MountBuilder::build() const

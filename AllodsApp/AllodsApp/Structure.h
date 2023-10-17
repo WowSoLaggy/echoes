@@ -1,14 +1,14 @@
 #pragma once
 
-#include "TileBaseEntity.h"
 #include "Fixture.h"
-#include "Fwd.h"
+#include "TileBaseEntity.h"
 
 
 class Structure : public TileBaseEntity
 {
 public:
-  Structure(const StructurePrototype& i_prototype);
+  Structure();
+  Structure(PrototypePtr i_prototype);
 
   virtual void pushFields() override;
 

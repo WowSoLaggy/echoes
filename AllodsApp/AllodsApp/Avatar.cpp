@@ -4,7 +4,11 @@
 #include "Prototypes.h"
 
 
-Avatar::Avatar(const AvatarPrototype& i_prototype)
+Avatar::Avatar()
+{
+}
+
+Avatar::Avatar(PrototypePtr i_prototype)
   : FreeBaseEntity(i_prototype)
 {
 }

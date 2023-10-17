@@ -4,7 +4,11 @@
 #include "Prototypes.h"
 
 
-Object::Object(const ObjectPrototype& i_prototype)
+Object::Object()
+{
+}
+
+Object::Object(PrototypePtr i_prototype)
   : FreeBaseEntity(i_prototype)
 {
 }

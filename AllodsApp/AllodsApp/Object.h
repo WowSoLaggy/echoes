@@ -6,7 +6,8 @@
 class Object : public FreeBaseEntity
 {
 public:
-  Object(const ObjectPrototype& i_prototype);
+  Object();
+  Object(PrototypePtr i_prototype);
 
   [[nodiscard]] const ObjectPrototype& getObjectPrototype() const;
 };

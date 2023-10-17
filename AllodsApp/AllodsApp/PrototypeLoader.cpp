@@ -11,13 +11,13 @@ namespace
   bool hasPrototype(const auto& i_prototypes, const std::string& i_name)
   {
     return std::any_of(i_prototypes.cbegin(), i_prototypes.cend(), [&](const auto& i_prototype) {
-      return i_prototype.name == i_name; });
+      return SAFE_DEREF(i_prototype).name == i_name; });
   }
 
 } // anonym NS
 
 
-std::vector<AvatarPrototype> PrototypeLoader::loadAvatars(const fs::path& i_filepath)
+std::vector<PrototypePtr> PrototypeLoader::loadAvatars(const fs::path& i_filepath)
 {
   CONTRACT_EXPECT(fs::exists(i_filepath));
 
@@ -29,17 +29,17 @@ std::vector<AvatarPrototype> PrototypeLoader::loadAvatars(const fs::path& i_file
     CONTRACT_ASSERT(parseOk);
   }
 
-  std::vector<AvatarPrototype> prototypes;
+  std::vector<PrototypePtr> prototypes;
   for (const auto& protoName : root.getMemberNames())
   {
     CONTRACT_EXPECT(!hasPrototype(prototypes, protoName));
 
     const auto& protoNode = root[protoName];
-    AvatarPrototype proto;
+    auto proto = std::make_shared<AvatarPrototype>();
 
-    proto.name = protoName;
+    proto->name = protoName;
     const auto textureName = protoNode["TextureName"].asString();
-    proto.texture = &Dx::TextureUtils::getTexture(textureName);
+    proto->texture = &Dx::TextureUtils::getTexture(textureName);
 
     prototypes.push_back(std::move(proto));
   }
@@ -47,7 +47,7 @@ std::vector<AvatarPrototype> PrototypeLoader::loadAvatars(const fs::path& i_file
   return prototypes;
 }
 
-std::vector<MountPrototype> PrototypeLoader::loadMounts(const fs::path& i_filepath)
+std::vector<PrototypePtr> PrototypeLoader::loadMounts(const fs::path& i_filepath)
 {
   CONTRACT_EXPECT(fs::exists(i_filepath));
 
@@ -59,20 +59,20 @@ std::vector<MountPrototype> PrototypeLoader::loadMounts(const fs::path& i_filepa
     CONTRACT_ASSERT(parseOk);
   }
 
-  std::vector<MountPrototype> prototypes;
+  std::vector<PrototypePtr> prototypes;
   for (const auto& protoName : root.getMemberNames())
   {
     CONTRACT_EXPECT(!hasPrototype(prototypes, protoName));
 
     const auto& protoNode = root[protoName];
-    MountPrototype proto;
+    auto proto = std::make_shared<MountPrototype>();
 
-    proto.name = protoName;
+    proto->name = protoName;
     const auto textureName = protoNode["TextureName"].asString();
-    proto.texture = &Dx::TextureUtils::getTexture(textureName);
+    proto->texture = &Dx::TextureUtils::getTexture(textureName);
 
     if (protoNode.isMember("Behavior"))
-      proto.bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
+      proto->bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }
@@ -80,7 +80,7 @@ std::vector<MountPrototype> PrototypeLoader::loadMounts(const fs::path& i_filepa
   return prototypes;
 }
 
-std::vector<StructurePrototype> PrototypeLoader::loadStructures(const fs::path& i_filepath)
+std::vector<PrototypePtr> PrototypeLoader::loadStructures(const fs::path& i_filepath)
 {
   CONTRACT_EXPECT(fs::exists(i_filepath));
 
@@ -92,27 +92,27 @@ std::vector<StructurePrototype> PrototypeLoader::loadStructures(const fs::path& 
     CONTRACT_ASSERT(parseOk);
   }
 
-  std::vector<StructurePrototype> prototypes;
+  std::vector<PrototypePtr> prototypes;
   for (const auto& protoName : root.getMemberNames())
   {
     CONTRACT_EXPECT(!hasPrototype(prototypes, protoName));
 
     const auto& protoNode = root[protoName];
-    StructurePrototype proto;
+    auto proto = std::make_shared<StructurePrototype>();
 
-    proto.name = protoName;
+    proto->name = protoName;
     const auto textureName = protoNode["TextureName"].asString();
-    proto.texture = &Dx::TextureUtils::getTexture(textureName);
-    proto.layer = LayerStr::fromString(protoNode["Layer"].asString());
+    proto->texture = &Dx::TextureUtils::getTexture(textureName);
+    proto->layer = LayerStr::fromString(protoNode["Layer"].asString());
 
     if (protoNode.isMember("Support"))
-      proto.support = protoNode["Support"].asBool();
+      proto->support = protoNode["Support"].asBool();
 
     if (protoNode.isMember("Fixture"))
-      proto.fixture = protoNode["Fixture"].asBool();
+      proto->fixture = protoNode["Fixture"].asBool();
 
     if (protoNode.isMember("Behavior"))
-      proto.bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
+      proto->bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }
@@ -120,7 +120,7 @@ std::vector<StructurePrototype> PrototypeLoader::loadStructures(const fs::path& 
   return prototypes;
 }
 
-std::vector<ObjectPrototype> PrototypeLoader::loadObjects(const fs::path& i_filepath)
+std::vector<PrototypePtr> PrototypeLoader::loadObjects(const fs::path& i_filepath)
 {
   CONTRACT_EXPECT(fs::exists(i_filepath));
 
@@ -132,20 +132,20 @@ std::vector<ObjectPrototype> PrototypeLoader::loadObjects(const fs::path& i_file
     CONTRACT_ASSERT(parseOk);
   }
 
-  std::vector<ObjectPrototype> prototypes;
+  std::vector<PrototypePtr> prototypes;
   for (const auto& protoName : root.getMemberNames())
   {
     CONTRACT_EXPECT(!hasPrototype(prototypes, protoName));
 
     const auto& protoNode = root[protoName];
-    ObjectPrototype proto;
+    auto proto = std::make_shared<ObjectPrototype>();
 
-    proto.name = protoName;
+    proto->name = protoName;
     const auto textureName = protoNode["TextureName"].asString();
-    proto.texture = &Dx::TextureUtils::getTexture(textureName);
+    proto->texture = &Dx::TextureUtils::getTexture(textureName);
 
     if (protoNode.isMember("Behavior"))
-      proto.bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
+      proto->bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }

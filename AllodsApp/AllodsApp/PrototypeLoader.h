@@ -6,10 +6,10 @@
 class PrototypeLoader
 {
 public:
-  static std::vector<AvatarPrototype> loadAvatars(const fs::path& i_filepath);
-  static std::vector<MountPrototype> loadMounts(const fs::path& i_filepath);
-  static std::vector<StructurePrototype> loadStructures(const fs::path& i_filepath);
-  static std::vector<ObjectPrototype> loadObjects(const fs::path& i_filepath);
+  static std::vector<PrototypePtr> loadAvatars(const fs::path& i_filepath);
+  static std::vector<PrototypePtr> loadMounts(const fs::path& i_filepath);
+  static std::vector<PrototypePtr> loadStructures(const fs::path& i_filepath);
+  static std::vector<PrototypePtr> loadObjects(const fs::path& i_filepath);
 
 private:
   PrototypeLoader() = delete;

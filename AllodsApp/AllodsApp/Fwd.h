@@ -37,5 +37,6 @@ using MountPtr = std::shared_ptr<Mount>;
 using ObjectPtr = std::shared_ptr<Object>;
 using Objects = std::vector<ObjectPtr>;
 using PrototypeName = std::string;
+using PrototypePtr = std::shared_ptr<Prototype>;
 using StructurePtr = std::shared_ptr<Structure>;
 using TileCoord = Sdk::Vector2I;

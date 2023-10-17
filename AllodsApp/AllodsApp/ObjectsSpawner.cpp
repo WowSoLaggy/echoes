@@ -17,12 +17,14 @@ StructurePtr ObjectsSpawner::spawnStructure(
 }
 
 StructurePtr ObjectsSpawner::spawnStructure(
-  const StructurePrototype& i_prototype, Location& i_location, const TileCoord& i_coord)
+  PrototypePtr i_prototype, Location& i_location, const TileCoord& i_coord)
 {
+  const auto& structurePrototype = SAFE_DEREF(dynamic_cast<const StructurePrototype*>(i_prototype.get()));
+
   StructurePtr structure = std::make_shared<Structure>(i_prototype);
 
   auto& tile = i_location.getOrCreateTile(i_coord);
-  tile.setStructure(i_prototype.layer, structure);
+  tile.setStructure(structurePrototype.layer, structure);
 
   return structure;
 }
@@ -43,7 +45,7 @@ MountPtr ObjectsSpawner::spawnMount(
 }
 
 MountPtr ObjectsSpawner::spawnMount(
-  const MountPrototype& i_prototype, Structure& i_structure, FixtureLocation i_location)
+  PrototypePtr i_prototype, Structure& i_structure, FixtureLocation i_location)
 {
   auto fixture = i_structure.getFixture();
   CONTRACT_EXPECT(fixture);
@@ -93,7 +95,7 @@ ObjectPtr ObjectsSpawner::spawnObject(
 }
 
 ObjectPtr ObjectsSpawner::spawnObject(
-  const ObjectPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position)
+  PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position)
 {
   ObjectPtr object = std::make_shared<Object>(i_prototype);
   object->setPosition(std::move(i_position));
@@ -120,7 +122,7 @@ AvatarPtr ObjectsSpawner::spawnAvatar(
 }
 
 AvatarPtr ObjectsSpawner::spawnAvatar(
-  const AvatarPrototype& i_prototype, Location& i_location, Sdk::Vector2I i_position)
+  PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position)
 {
   AvatarPtr avatar = std::make_shared<Avatar>(i_prototype);
   avatar->setPosition(std::move(i_position));

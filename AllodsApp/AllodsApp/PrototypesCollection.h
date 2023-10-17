@@ -3,10 +3,7 @@
 #include "Prototypes.h"
 
 
-using AvatarPrototypesMap = std::unordered_map<PrototypeName, AvatarPrototype>;
-using MountPrototypesMap = std::unordered_map<PrototypeName, MountPrototype>;
-using StructurePrototypesMap = std::unordered_map<PrototypeName, StructurePrototype>;
-using ObjectPrototypesMap = std::unordered_map<PrototypeName, ObjectPrototype>;
+using PrototypesMap = std::unordered_map<PrototypeName, PrototypePtr>;
 
 
 class PrototypesCollection
@@ -14,15 +11,15 @@ class PrototypesCollection
 public:
   static void load(const fs::path& i_prototypesFolder);
 
-  static const AvatarPrototype& getAvatarPrototype(const PrototypeName& i_name);
-  static const MountPrototype& getMountPrototype(const PrototypeName& i_name);
-  static const StructurePrototype& getStructurePrototype(const PrototypeName& i_name);
-  static const ObjectPrototype& getObjectPrototype(const PrototypeName& i_name);
+  static PrototypePtr getAvatarPrototype(const PrototypeName& i_name);
+  static PrototypePtr getMountPrototype(const PrototypeName& i_name);
+  static PrototypePtr getStructurePrototype(const PrototypeName& i_name);
+  static PrototypePtr getObjectPrototype(const PrototypeName& i_name);
 
-  static const AvatarPrototypesMap& getAvatarPrototypes();
-  static const MountPrototypesMap& getMountPrototypes();
-  static const StructurePrototypesMap& getStructurePrototypes();
-  static const ObjectPrototypesMap& getObjectPrototypes();
+  static const PrototypesMap& getAvatarPrototypes();
+  static const PrototypesMap& getMountPrototypes();
+  static const PrototypesMap& getStructurePrototypes();
+  static const PrototypesMap& getObjectPrototypes();
 
 private:
   PrototypesCollection() = delete;

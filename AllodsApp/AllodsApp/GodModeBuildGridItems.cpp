@@ -24,14 +24,14 @@ GodModeBuildGridDestroyItem::GodModeBuildGridDestroyItem()
 }
 
 
-GodModeBuildGridItem::GodModeBuildGridItem(const Prototype& i_prototype)
+GodModeBuildGridItem::GodModeBuildGridItem(PrototypePtr i_prototype)
   : d_prototype(i_prototype)
 {
-  setTexture(i_prototype.texture);
+  setTexture(SAFE_DEREF(i_prototype).texture);
 }
 
 
-const Prototype& GodModeBuildGridItem::getPrototype() const
+PrototypePtr GodModeBuildGridItem::getPrototype() const
 {
   return d_prototype;
 }
@@ -50,9 +50,12 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
 
   const auto& prototypes = PrototypesCollection::getStructurePrototypes();
 
-  std::map<Layer, std::vector<std::reference_wrapper<const StructurePrototype>>> layersMap;
+  std::map<Layer, std::vector<PrototypePtr>> layersMap;
   for (const auto& [_, proto] : prototypes)
-    layersMap[proto.layer].push_back(std::ref(proto));
+  {
+    const auto& structurePrototype = SAFE_DEREF(dynamic_cast<const StructurePrototype*>(proto.get()));
+    layersMap[structurePrototype.layer].push_back(proto);
+  }
 
   for (const auto& [_, protos] : layersMap)
   {

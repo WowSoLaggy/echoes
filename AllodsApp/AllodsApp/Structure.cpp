@@ -4,10 +4,14 @@
 #include "Prototypes.h"
 
 
-Structure::Structure(const StructurePrototype& i_prototype)
+Structure::Structure()
+{
+}
+
+Structure::Structure(PrototypePtr i_prototype)
   : TileBaseEntity(i_prototype)
 {
-  if (i_prototype.fixture)
+  if (getStructurePrototype().fixture)
     d_fixture = std::make_shared<Fixture>();
 }
 

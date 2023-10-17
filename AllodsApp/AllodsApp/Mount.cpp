@@ -4,7 +4,11 @@
 #include "Prototypes.h"
 
 
-Mount::Mount(const MountPrototype& i_prototype)
+Mount::Mount()
+{
+}
+
+Mount::Mount(PrototypePtr i_prototype)
   : TileBaseEntity(i_prototype)
 {
 }

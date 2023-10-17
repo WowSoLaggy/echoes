@@ -12,13 +12,14 @@
 class Entity : public Sdk::ISerializable
 {
 public:
-  Entity(const Prototype& i_prototype);
-  virtual ~Entity() = default;
+  Entity();
+  Entity(PrototypePtr i_prototype);
 
   virtual void pushFields() override;
 
   void update(double i_dt);
 
+  void setPrototype(PrototypePtr i_prototype);
   [[nodiscard]] const Prototype& getPrototype() const;
 
   [[nodiscard]] const Sdk::Size2I& getSize() const;
@@ -27,10 +28,11 @@ public:
   [[nodiscard]] const Dx::Animation2Player& getAnimationPlayer() const;
 
   void setBehaviorModel(BehaviorModelPtr i_model);
+  void resetBehaviorModel();
   [[nodiscard]] BehaviorModelPtr getBehaviorModel() const;
 
 private:
-  const Prototype& d_prototype;
+  PrototypePtr d_prototype;
   Dx::Animation2Player d_animationPlayer;
   BehaviorModelPtr d_behaviorModel;
 };

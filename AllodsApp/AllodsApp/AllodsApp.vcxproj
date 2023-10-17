@@ -256,6 +256,7 @@
     <ClInclude Include="OverlayTypes.h" />
     <ClInclude Include="OverlayView.h" />
     <ClInclude Include="PrototypesCollection.h" />
+    <ClInclude Include="PrototypeUtils.h" />
     <ClInclude Include="Scenario.h" />
     <ClInclude Include="Scenarios.h" />
     <ClInclude Include="Session.h" />

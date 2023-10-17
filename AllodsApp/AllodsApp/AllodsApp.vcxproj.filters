@@ -470,5 +470,8 @@
     <ClInclude Include="GameSettings.h">
       <Filter>src\Game</Filter>
     </ClInclude>
+    <ClInclude Include="PrototypeUtils.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

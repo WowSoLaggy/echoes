@@ -6,29 +6,42 @@
 #include <LaggyDx/ImageDescription.h>
 
 
-Entity::Entity(const Prototype& i_prototype)
-  : d_prototype(i_prototype)
+Entity::Entity()
 {
-  setBehaviorModel(IBehaviorModel::get(i_prototype.bahaviorModel, *this));
+}
+
+Entity::Entity(PrototypePtr i_prototype)
+{
+  setPrototype(i_prototype);
 }
 
 
 void Entity::pushFields()
 {
-  pushField("prototype_name", d_prototype.name);
+  pushField("prototype_name", getPrototype().name);
   pushObject("animationPlayer", d_animationPlayer);
 }
 
 
+void Entity::setPrototype(PrototypePtr i_prototype)
+{
+  d_prototype = i_prototype;
+
+  if (d_prototype)
+    setBehaviorModel(IBehaviorModel::get(getPrototype().bahaviorModel, *this));
+  else
+    resetBehaviorModel();
+}
+
 const Prototype& Entity::getPrototype() const
 {
-  return d_prototype;
+  return SAFE_DEREF(d_prototype);
 }
 
 
 const Sdk::Size2I& Entity::getSize() const
 {
-  return SAFE_DEREF(d_prototype.texture).getDescription().frameSize;
+  return SAFE_DEREF(getPrototype().texture).getDescription().frameSize;
 }
 
 
@@ -52,6 +65,11 @@ const Dx::Animation2Player& Entity::getAnimationPlayer() const
 void Entity::setBehaviorModel(BehaviorModelPtr i_model)
 {
   d_behaviorModel = i_model;
+}
+
+void Entity::resetBehaviorModel()
+{
+  setBehaviorModel(nullptr);
 }
 
 BehaviorModelPtr Entity::getBehaviorModel() const

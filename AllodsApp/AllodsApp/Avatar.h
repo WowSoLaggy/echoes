@@ -6,7 +6,8 @@
 class Avatar : public FreeBaseEntity
 {
 public:
-  Avatar(const AvatarPrototype& i_prototype);
+  Avatar();
+  Avatar(PrototypePtr i_prototype);
 
   [[nodiscard]] const AvatarPrototype& getAvatarPrototype() const;
 };

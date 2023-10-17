@@ -13,7 +13,7 @@ public:
   BuildManager(Session& i_session);
 
   bool isInBuildMode() const;
-  void setBuildDraft(const Prototype& i_prototype);
+  void setBuildDraft(PrototypePtr i_prototype);
   void resetBuildDraft();
 
   void rotateDraftClockwise();
@@ -29,7 +29,7 @@ public:
 private:
   Session& d_session;
 
-  const Prototype* d_buildPrototype = nullptr;
+  PrototypePtr d_buildPrototype;
   std::shared_ptr<BuildDraftInfo> d_buildDraftInfo;
 
   bool d_isMutlibuilding = false;
@@ -42,9 +42,6 @@ private:
   bool isDraftObject() const;
   BuildMountDraftInfo& getDraftMount() const;
   BuildObjectDraftInfo& getDraftObject() const;
-  const StructurePrototype& getStructurePrototype() const;
-  const MountPrototype& getMountPrototype() const;
-  const ObjectPrototype& getObjectPrototype() const;
 
   void updateBuildDraft();
   void updateBuildPosition();
