@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Fwd.h"
 #include "Location.h"
 
 #include <LaggySdk/ISerializable.h>
@@ -12,9 +13,9 @@ public:
 
   Location& getLocation(const std::string& i_name) const;
 
-  std::vector<std::unique_ptr<Location>>& getLocations();
-  const std::vector<std::unique_ptr<Location>>& getLocations() const;
+  Locations& getLocations();
+  const Locations& getLocations() const;
 
 private:
-  std::vector<std::unique_ptr<Location>> d_locations;
+  Locations d_locations;
 };

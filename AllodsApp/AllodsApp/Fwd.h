@@ -32,6 +32,7 @@ using Avatars = std::vector<AvatarPtr>;
 using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;
 using EntityPtr = std::shared_ptr<Entity>;
 using FixturePtr = std::shared_ptr<Fixture>;
+using Locations = std::vector<std::shared_ptr<Location>>;
 using MountPtr = std::shared_ptr<Mount>;
 using ObjectPtr = std::shared_ptr<Object>;
 using Objects = std::vector<ObjectPtr>;

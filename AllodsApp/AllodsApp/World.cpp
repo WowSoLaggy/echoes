@@ -4,8 +4,7 @@
 
 void World::pushFields()
 {
-  for (const auto& locationPtr : d_locations)
-    pushObject("location", SAFE_DEREF(locationPtr));
+  pushVector("locations", d_locations);
 }
 
 
@@ -19,12 +18,12 @@ Location& World::getLocation(const std::string& i_name) const
 }
 
 
-std::vector<std::unique_ptr<Location>>& World::getLocations()
+Locations& World::getLocations()
 {
   return d_locations;
 }
 
-const std::vector<std::unique_ptr<Location>>& World::getLocations() const
+const Locations& World::getLocations() const
 {
   return d_locations;
 }
