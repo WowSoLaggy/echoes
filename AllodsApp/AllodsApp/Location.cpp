@@ -37,6 +37,11 @@ void Location::pushFields()
     pushObject("avatar", SAFE_DEREF(avatarPtr));
 }
 
+void Location::onDeserialized()
+{
+  updateMinMax();
+}
+
 
 void Location::setName(std::string i_name)
 {

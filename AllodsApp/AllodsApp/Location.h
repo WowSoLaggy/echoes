@@ -15,6 +15,7 @@ public:
   Location();
 
   virtual void pushFields() override;
+  virtual void onDeserialized() override;
 
   void setName(std::string i_name);
   const std::string& getName() const;
