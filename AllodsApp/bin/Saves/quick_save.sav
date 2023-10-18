@@ -1,0 +1,2288 @@
+{
+  "scenario" : 
+  {
+    "name" : "Test Scenario",
+    "startingLocation" : "Test Location"
+  },
+  "world" : 
+  {
+    "locations" : 
+    [
+      {
+        "avatars" : 
+        [
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "position" : 
+            {
+              "x" : 480,
+              "y" : 352
+            },
+            "prototype_name" : "Man"
+          }
+        ],
+        "name" : "Test Location",
+        "objects" : 
+        [
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "position" : 
+            {
+              "x" : 544,
+              "y" : 352
+            },
+            "prototype_name" : "Lamp_bulb"
+          }
+        ],
+        "tile.10.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.10.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.10.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.10.4" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.10.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0,
+              "timesLeftToPlay" : 1
+            },
+            "prototype_name" : "Door"
+          }
+        },
+        "tile.10.6" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.10.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.10.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.10.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.11.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.11.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.11.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.11.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.11.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.11.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.11.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.11.8" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.11.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.12.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.12.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.12.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Bottom" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.12.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.12.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.12.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.12.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.12.8" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.12.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Top" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.13.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.13.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.13.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.13.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.13.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.13.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.13.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.13.8" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.13.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.14.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.14.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.14.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.14.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.14.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.14.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.14.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.14.8" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.14.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.15.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.15.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.15.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Bottom" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.15.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.15.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.15.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.15.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.15.8" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.15.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Top" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.16.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.16.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.16.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.16.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.16.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.16.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.16.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.16.8" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.16.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.17.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.17.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.4" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.5" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.6" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.17.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.18.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.4" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.5" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.6" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.18.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.4" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.5" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.6" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.5.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.6.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.6.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.6.4" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.6.5" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.6.6" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.6.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.6.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.7.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.7.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.7.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.7.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.7.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.7.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Top" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.7.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.8.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.8.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Bottom" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.8.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.8.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.8.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.8.7" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Door"
+          }
+        },
+        "tile.8.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.9.10" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.9.2" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.9.3" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : null,
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.9.4" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Furniture" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Crate"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.9.5" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.9.6" : 
+        {
+          "Floor" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Floor"
+          },
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          }
+        },
+        "tile.9.7" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Plating"
+          },
+          "Wall" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "fixture" : 
+            {
+              "Top" : 
+              {
+                "animationPlayer" : 
+                {
+                  "animationTime" : 0.0,
+                  "curFrame" : 0
+                },
+                "prototype_name" : "Lamp"
+              }
+            },
+            "prototype_name" : "Wall"
+          }
+        },
+        "tile.9.8" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        },
+        "tile.9.9" : 
+        {
+          "Panneling" : 
+          {
+            "animationPlayer" : 
+            {
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "prototype_name" : "Lattice"
+          }
+        }
+      }
+    ]
+  }
+}
