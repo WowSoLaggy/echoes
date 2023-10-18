@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "Session.h"
 
+#include "Location.h"
 #include "LocationEvents.h"
 #include "Scenario.h"
 #include "SessionEvents.h"
+#include "World.h"
 
 #include <LaggyDx/FreeCamera2Controller.h>
 

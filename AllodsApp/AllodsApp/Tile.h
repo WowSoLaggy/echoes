@@ -14,6 +14,7 @@ class Tile : public Sdk::ISerializable
 {
 public:
   virtual void pushFields() override;
+  virtual void onFieldNotFound(const std::string& i_name, const Json::Value& i_json);
 
   void update(double i_dt);
 
@@ -32,5 +33,3 @@ private:
 
   double d_temperature = 0;
 };
-
-using Tiles = std::unordered_map<TileCoord, Tile, Sdk::Vector2_hash>;

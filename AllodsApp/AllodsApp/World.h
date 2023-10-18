@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Fwd.h"
-#include "Location.h"
 
 #include <LaggySdk/ISerializable.h>
 

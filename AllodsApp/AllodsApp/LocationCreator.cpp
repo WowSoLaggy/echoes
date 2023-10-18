@@ -1,13 +1,14 @@
 #include "stdafx.h"
 #include "LocationCreator.h"
 
+#include "Location.h"
 #include "Mount.h"
 #include "ObjectsSpawner.h"
 #include "Structure.h"
 #include "TileUtils.h"
 
 
-std::unique_ptr<Location> LocationCreator::createTest()
+std::shared_ptr<Location> LocationCreator::createTest()
 {
   auto location = std::make_unique<Location>();
   location->setName("Test Location");
@@ -100,7 +101,7 @@ std::unique_ptr<Location> LocationCreator::createTest()
 
   createStr("Crate", 9, 4);
 
-  createObject("Lamp", TileUtils::getTileCenter({ 8, 5 }));
+  createObject("Lamp_bulb", TileUtils::getTileCenter({ 8, 5 }));
 
   createAvatar("Man", TileUtils::getTileCenter({ 7, 5 }));
 

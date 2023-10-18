@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "World.h"
 
+#include "Location.h"
+
 
 void World::pushFields()
 {

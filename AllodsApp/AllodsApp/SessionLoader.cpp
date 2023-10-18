@@ -3,20 +3,21 @@
 
 #include "Scenario.h"
 #include "Scenarios.h"
+#include "World.h"
 #include "WorldCreator.h"
 
 #include <LaggySdk/JsonSerializer.h>
 
 
-std::unique_ptr<Session> SessionLoader::createNew(const std::string& i_scenarioName)
+std::shared_ptr<Session> SessionLoader::createNew(const std::string& i_scenarioName)
 {
   auto scenario = Scenarios::getScenario(i_scenarioName);
   return createNew(std::move(scenario));
 }
 
-std::unique_ptr<Session> SessionLoader::createNew(std::shared_ptr<Scenario> i_scenario)
+std::shared_ptr<Session> SessionLoader::createNew(std::shared_ptr<Scenario> i_scenario)
 {
-  auto session = std::make_unique<Session>();
+  auto session = std::make_shared<Session>();
 
   session->setScenario(std::move(i_scenario));
   session->setWorld(WorldCreator::createTest());
@@ -28,9 +29,9 @@ std::unique_ptr<Session> SessionLoader::createNew(std::shared_ptr<Scenario> i_sc
 }
 
 
-std::unique_ptr<Session> SessionLoader::load(const fs::path& i_path)
+std::shared_ptr<Session> SessionLoader::load(const fs::path& i_path)
 {
-  auto session = std::make_unique<Session>();
+  auto session = std::make_shared<Session>();
 
   Sdk::JsonSerializer::deserialize(*session, i_path);
 

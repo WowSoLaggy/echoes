@@ -20,8 +20,7 @@ void Structure::pushFields()
 {
   TileBaseEntity::pushFields();
 
-  if (d_fixture)
-    pushObject("fixture", *d_fixture);
+  pushSharedPtr("fixture", d_fixture);
 }
 
 

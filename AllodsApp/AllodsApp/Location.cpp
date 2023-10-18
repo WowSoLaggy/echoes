@@ -6,12 +6,34 @@
 
 #include <LaggyDx/Simulation.h>
 
+#include <LaggySdk/JsonSerializer.h>
+#include <LaggySdk/StringUtils.h>
+
 
 namespace
 {
+  const std::string TileTagPreffix = "tile";
+  const char TileTagSeparator = '.';
+
   std::string createTileTag(const TileCoord& i_coord)
   {
-    return "tile." + std::to_string(i_coord.x) + "." + std::to_string(i_coord.y);
+    return TileTagPreffix + TileTagSeparator +
+      std::to_string(i_coord.x) + TileTagSeparator + std::to_string(i_coord.y);
+  }
+
+  bool isTileTag(const std::string& i_tag)
+  {
+    return i_tag.starts_with(TileTagPreffix + TileTagSeparator);
+  }
+
+  TileCoord parseTileCoord(const std::string& i_tag)
+  {
+    const auto tokens = Sdk::splitString(i_tag, TileTagSeparator);
+    CONTRACT_EXPECT(tokens.size() == 3);
+
+    const int x = std::atoi(tokens[1].c_str());
+    const int y = std::atoi(tokens[2].c_str());
+    return { x, y };
   }
 
 } // anonym NS
@@ -27,11 +49,24 @@ void Location::pushFields()
 {
   pushField("name", d_name);
 
-  /*for (auto& [coord, tile] : d_tiles)
-    pushObject(createTileTag(coord), tile);*/
+  for (auto& [coord, tile] : d_tiles)
+    pushSharedPtr(createTileTag(coord), tile);
 
   pushVector("objects", d_objects);
   pushVector("avatars", d_avatars);
+}
+
+void Location::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
+{
+  if (isTileTag(i_name))
+  {
+    auto tileCoords = parseTileCoord(i_name);
+
+    auto tile = std::make_shared<Tile>();
+    Sdk::JsonSerializer::deserialize(*tile, i_json);
+
+    d_tiles.insert({ std::move(tileCoords), std::move(tile) });
+  }
 }
 
 void Location::onDeserialized()
@@ -56,7 +91,7 @@ void Location::update(const double i_dt)
   Dx::thd::Simulation().update(i_dt, d_tileCollection);
 
   for (auto& [_, tile] : d_tiles)
-    tile.update(i_dt);
+    SAFE_DEREF(tile).update(i_dt);
 
   for (auto objPtr : d_objects)
     SAFE_DEREF(objPtr).update(i_dt);
@@ -83,19 +118,21 @@ Tile& Location::getOrCreateTile(const TileCoord& i_coord)
 
   updateMinMax(i_coord);
 
-  return d_tiles[i_coord];
+  auto tilePtr = std::make_shared<Tile>();
+  d_tiles[i_coord] = tilePtr;
+  return *tilePtr;
 }
 
 Tile* Location::getTile(const TileCoord& i_coord)
 {
   const auto it = d_tiles.find(i_coord);
-  return it == d_tiles.end() ? nullptr : &it->second;
+  return it == d_tiles.end() ? nullptr : it->second.get();
 }
 
 const Tile* Location::getTile(const TileCoord& i_coord) const
 {
   const auto it = d_tiles.find(i_coord);
-  return it == d_tiles.end() ? nullptr : &it->second;
+  return it == d_tiles.end() ? nullptr : it->second.get();
 }
 
 

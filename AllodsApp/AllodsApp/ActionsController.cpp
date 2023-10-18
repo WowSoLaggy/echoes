@@ -2,6 +2,7 @@
 #include "ActionsController.h"
 
 #include "Game.h"
+#include "Session.h"
 #include "SessionEvents.h"
 
 

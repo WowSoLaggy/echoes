@@ -6,6 +6,8 @@
 #include "GameEvents.h"
 #include "GodModeBuildGridItems.h"
 #include "IOverlay.h"
+#include "Location.h"
+#include "Session.h"
 #include "SessionEvents.h"
 #include "TileUtils.h"
 

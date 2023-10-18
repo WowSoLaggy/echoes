@@ -29,6 +29,9 @@ void Entity::pushFields()
   if (hasPrototype())
     pushField(PrototypeNameField, getPrototype().name);
   pushObject("animationPlayer", d_animationPlayer);
+
+  // BehaviorModel is intentionally not serialized -
+  // it will atomatically be assigned after prototype deserialization
 }
 
 void Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)

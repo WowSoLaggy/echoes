@@ -83,7 +83,7 @@ void ObjectsSpawner::despawnMount(Location& i_location, const TileCoord& i_coord
     }
   }
 
-  CONTRACT_THROW;
+  CONTRACT_THROW();
 }
 
 

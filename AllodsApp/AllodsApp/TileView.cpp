@@ -31,9 +31,9 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const Tiles& i_tiles) c
   const MountView mountView(i_shader);
   const StructureView structureView(i_shader);
 
-  for (const auto& [coord, tile] : i_tiles)
+  for (const auto& [coord, tilePtr] : i_tiles)
   {
-    const auto& layers = tile.getLayers();
+    const auto& layers = SAFE_DEREF(tilePtr).getLayers();
     if (layers.empty())
       continue;
 

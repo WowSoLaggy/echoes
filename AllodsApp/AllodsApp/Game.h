@@ -4,7 +4,6 @@
 #include "Fwd.h"
 #include "GameStates.h"
 #include "GuiManager.h"
-#include "Session.h"
 #include "ViewController.h"
 
 #include <LaggyDx/App.h>
@@ -41,8 +40,8 @@ private:
   GuiManager d_guiManager;
 
 
-  std::unique_ptr<Session> d_session;
-  void attachSession(std::unique_ptr<Session> i_session);
+  std::shared_ptr<Session> d_session;
+  void attachSession(std::shared_ptr<Session> i_session);
   void detachSession();
   void startNewSession();
 

@@ -19,7 +19,7 @@ BehaviorModelPtr IBehaviorModel::get(BehaviorModel i_model, Entity& i_entity)
   case BehaviorModel::Container:
     return std::make_shared<ContainerBehavior>(i_entity);
   default:
-    CONTRACT_THROW;
+    CONTRACT_THROW();
   }
 }
 

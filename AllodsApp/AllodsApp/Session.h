@@ -1,11 +1,10 @@
 #pragma once
 
 #include "BuildManager.h"
+#include "Fwd.h"
 #include "InteractionManager.h"
 #include "IOverlay.h"
-#include "Location.h"
 #include "OverlayTypes.h"
-#include "World.h"
 
 #include <LaggyDx/ICamera2.h>
 #include <LaggyDx/IInputController.h>

@@ -13,11 +13,8 @@ Fixture::Fixture()
 
 void Fixture::pushFields()
 {
-  for (const auto& [location, mountPtr] : d_mounts)
-  {
-    if (mountPtr)
-      pushObject(FixtureLocationStr::toString(location), *mountPtr);
-  }
+  for (auto& [location, mountPtr] : d_mounts)
+    pushSharedPtr(FixtureLocationStr::toString(location), mountPtr);
 }
 
 

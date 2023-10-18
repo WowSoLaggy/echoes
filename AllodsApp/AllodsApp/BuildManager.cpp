@@ -168,7 +168,7 @@ void BuildManager::build()
     buildObject();
   else
   {
-    CONTRACT_THROW;
+    CONTRACT_THROW();
   }
 
   updateBuildAllowance();
@@ -251,7 +251,7 @@ bool BuildManager::canBeBuilt() const
   else if (isDraftObject())
     return canBeBuiltObject();
   
-  CONTRACT_THROW;
+  CONTRACT_THROW();
 }
 
 bool BuildManager::canBeBuiltStructure() const

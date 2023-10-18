@@ -12,6 +12,11 @@ namespace
   PrototypesMap d_structurePrototypes;
   PrototypesMap d_objectPrototypes;
 
+  void checkNameIsNotDuplicated(const std::string& i_name)
+  {
+    CONTRACT_ASSERT(!d_allPrototypes.contains(i_name), "Duplicated prototype name: " + i_name);
+  }
+
 } // anonym NS
 
 
@@ -43,10 +48,13 @@ void PrototypesCollection::loadAvatars(const fs::path& i_prototypesFolder)
   const std::string PrototypeFileName = "avatars.json";
   const auto prototypes = PrototypeLoader::loadAvatars(i_prototypesFolder / PrototypeFileName);
 
-  for (const auto& prototype : prototypes)
+  for (const auto& prototypePtr : prototypes)
   {
-    d_allPrototypes[SAFE_DEREF(prototype).name] = prototype;
-    d_avatarPrototypes[SAFE_DEREF(prototype).name] = prototype;
+    const auto& prototype = SAFE_DEREF(prototypePtr);
+    checkNameIsNotDuplicated(prototype.name);
+
+    d_allPrototypes[prototype.name] = prototypePtr;
+    d_avatarPrototypes[prototype.name] = prototypePtr;
   }
 }
 
@@ -55,10 +63,13 @@ void PrototypesCollection::loadMounts(const fs::path& i_prototypesFolder)
   const std::string PrototypeFileName = "mounts.json";
   const auto prototypes = PrototypeLoader::loadMounts(i_prototypesFolder / PrototypeFileName);
 
-  for (const auto& prototype : prototypes)
+  for (const auto& prototypePtr : prototypes)
   {
-    d_allPrototypes[SAFE_DEREF(prototype).name] = prototype;
-    d_mountPrototypes[SAFE_DEREF(prototype).name] = prototype;
+    const auto& prototype = SAFE_DEREF(prototypePtr);
+    checkNameIsNotDuplicated(prototype.name);
+
+    d_allPrototypes[prototype.name] = prototypePtr;
+    d_mountPrototypes[prototype.name] = prototypePtr;
   }
 }
 
@@ -67,10 +78,13 @@ void PrototypesCollection::loadStructures(const fs::path& i_prototypesFolder)
   const std::string PrototypeFileName = "structures.json";
   const auto prototypes = PrototypeLoader::loadStructures(i_prototypesFolder / PrototypeFileName);
 
-  for (const auto& prototype : prototypes)
+  for (const auto& prototypePtr : prototypes)
   {
-    d_allPrototypes[SAFE_DEREF(prototype).name] = prototype;
-    d_structurePrototypes[SAFE_DEREF(prototype).name] = prototype;
+    const auto& prototype = SAFE_DEREF(prototypePtr);
+    checkNameIsNotDuplicated(prototype.name);
+
+    d_allPrototypes[prototype.name] = prototypePtr;
+    d_structurePrototypes[prototype.name] = prototypePtr;
   }
 }
 
@@ -79,10 +93,13 @@ void PrototypesCollection::loadObjects(const fs::path& i_prototypesFolder)
   const std::string PrototypeFileName = "objects.json";
   const auto prototypes = PrototypeLoader::loadObjects(i_prototypesFolder / PrototypeFileName);
 
-  for (const auto& prototype : prototypes)
+  for (const auto& prototypePtr : prototypes)
   {
-    d_allPrototypes[SAFE_DEREF(prototype).name] = prototype;
-    d_objectPrototypes[SAFE_DEREF(prototype).name] = prototype;
+    const auto& prototype = SAFE_DEREF(prototypePtr);
+    checkNameIsNotDuplicated(prototype.name);
+
+    d_allPrototypes[prototype.name] = prototypePtr;
+    d_objectPrototypes[prototype.name] = prototypePtr;
   }
 }
 

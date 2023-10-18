@@ -41,7 +41,7 @@ void Game::closeApplication()
 }
 
 
-void Game::attachSession(std::unique_ptr<Session> i_session)
+void Game::attachSession(std::shared_ptr<Session> i_session)
 {
   CONTRACT_EXPECT(d_session.get() != i_session.get());
 

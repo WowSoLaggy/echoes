@@ -2,11 +2,12 @@
 #include "WorldCreator.h"
 
 #include "LocationCreator.h"
+#include "World.h"
 
 
-std::unique_ptr<World> WorldCreator::createTest()
+std::shared_ptr<World> WorldCreator::createTest()
 {
-  auto world = std::make_unique<World>();
+  auto world = std::make_shared<World>();
 
   world->getLocations().push_back(LocationCreator::createTest());
 

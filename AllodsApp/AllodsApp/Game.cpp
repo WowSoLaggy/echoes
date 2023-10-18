@@ -2,6 +2,7 @@
 #include "Game.h"
 
 #include "GameSettings.h"
+#include "Session.h"
 
 
 namespace

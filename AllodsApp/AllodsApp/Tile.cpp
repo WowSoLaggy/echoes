@@ -3,11 +3,23 @@
 
 #include "Structure.h"
 
+#include <LaggySdk/JsonSerializer.h>
+
 
 void Tile::pushFields()
 {
   for (auto& [layer, structurePtr] : d_layers)
     pushObject(LayerStr::toString(layer), SAFE_DEREF(structurePtr));
+}
+
+void Tile::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
+{
+  const auto layer = LayerStr::fromString(i_name);
+
+  auto structurePtr = std::make_shared<Structure>();
+  Sdk::JsonSerializer::deserialize(*structurePtr, i_json);
+
+  d_layers[layer] = std::move(structurePtr);
 }
 
 

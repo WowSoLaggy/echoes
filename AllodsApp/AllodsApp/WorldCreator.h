@@ -1,12 +1,12 @@
 #pragma once
 
-#include "World.h"
+#include "Fwd.h"
 
 
 class WorldCreator
 {
 public:
-  static std::unique_ptr<World> createTest();
+  static std::shared_ptr<World> createTest();
 
 private:
   WorldCreator() = delete;
