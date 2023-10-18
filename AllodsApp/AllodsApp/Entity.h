@@ -16,10 +16,12 @@ public:
   Entity(PrototypePtr i_prototype);
 
   virtual void pushFields() override;
+  virtual void onFieldNotFound(const std::string& i_name, const Json::Value& i_json) override;
 
   void update(double i_dt);
 
   void setPrototype(PrototypePtr i_prototype);
+  [[nodiscard]] bool hasPrototype() const;
   [[nodiscard]] const Prototype& getPrototype() const;
 
   [[nodiscard]] const Sdk::Size2I& getSize() const;

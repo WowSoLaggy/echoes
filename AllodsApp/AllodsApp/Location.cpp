@@ -27,14 +27,13 @@ void Location::pushFields()
 {
   pushField("name", d_name);
 
-  for (auto& [coord, tile] : d_tiles)
-    pushObject(createTileTag(coord), tile);
+  /*for (auto& [coord, tile] : d_tiles)
+    pushObject(createTileTag(coord), tile);*/
 
-  for (auto& objectPtr : d_objects)
-    pushObject("object", SAFE_DEREF(objectPtr));
+  /*for (auto& objectPtr : d_objects)
+    pushObject("object", SAFE_DEREF(objectPtr));*/
 
-  for (auto& avatarPtr : d_avatars)
-    pushObject("avatar", SAFE_DEREF(avatarPtr));
+  pushVector("avatars", d_avatars);
 }
 
 void Location::onDeserialized()

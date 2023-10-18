@@ -2,8 +2,16 @@
 #include "Entity.h"
 
 #include "Prototypes.h"
+#include "PrototypesCollection.h"
 
 #include <LaggyDx/ImageDescription.h>
+
+
+namespace
+{
+  const std::string PrototypeNameField = "prototype_name";
+
+} // anonym NS
 
 
 Entity::Entity()
@@ -18,8 +26,17 @@ Entity::Entity(PrototypePtr i_prototype)
 
 void Entity::pushFields()
 {
-  pushField("prototype_name", getPrototype().name);
+  if (hasPrototype())
+    pushField(PrototypeNameField, getPrototype().name);
   pushObject("animationPlayer", d_animationPlayer);
+}
+
+void Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
+{
+  if (i_name == PrototypeNameField)
+  {
+    //PrototypesCollection::getAvatarPrototype();
+  }
 }
 
 
@@ -31,6 +48,11 @@ void Entity::setPrototype(PrototypePtr i_prototype)
     setBehaviorModel(IBehaviorModel::get(getPrototype().bahaviorModel, *this));
   else
     resetBehaviorModel();
+}
+
+bool Entity::hasPrototype() const
+{
+  return d_prototype.get();
 }
 
 const Prototype& Entity::getPrototype() const
