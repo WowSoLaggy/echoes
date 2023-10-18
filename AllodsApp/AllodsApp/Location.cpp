@@ -30,9 +30,7 @@ void Location::pushFields()
   /*for (auto& [coord, tile] : d_tiles)
     pushObject(createTileTag(coord), tile);*/
 
-  /*for (auto& objectPtr : d_objects)
-    pushObject("object", SAFE_DEREF(objectPtr));*/
-
+  pushVector("objects", d_objects);
   pushVector("avatars", d_avatars);
 }
 

@@ -17,6 +17,7 @@ public:
 
   virtual void pushFields() override;
   virtual void onFieldNotFound(const std::string& i_name, const Json::Value& i_json) override;
+  virtual void onDeserialized() override;
 
   void update(double i_dt);
 

@@ -35,8 +35,16 @@ void Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_jso
 {
   if (i_name == PrototypeNameField)
   {
-    //PrototypesCollection::getAvatarPrototype();
+    const std::string prototypeName = i_json.asString();
+    const auto prototype = PrototypesCollection::getPrototype(prototypeName);
+    setPrototype(prototype);
   }
+}
+
+void Entity::onDeserialized()
+{
+  // Prototype was not deserialized
+  CONTRACT_ENSURE(hasPrototype());
 }
 
 

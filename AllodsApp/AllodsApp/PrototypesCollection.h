@@ -11,11 +11,13 @@ class PrototypesCollection
 public:
   static void load(const fs::path& i_prototypesFolder);
 
+  static PrototypePtr getPrototype(const PrototypeName& i_name);
   static PrototypePtr getAvatarPrototype(const PrototypeName& i_name);
   static PrototypePtr getMountPrototype(const PrototypeName& i_name);
   static PrototypePtr getStructurePrototype(const PrototypeName& i_name);
   static PrototypePtr getObjectPrototype(const PrototypeName& i_name);
 
+  static const PrototypesMap& getAllPrototypes();
   static const PrototypesMap& getAvatarPrototypes();
   static const PrototypesMap& getMountPrototypes();
   static const PrototypesMap& getStructurePrototypes();
@@ -23,6 +25,8 @@ public:
 
 private:
   PrototypesCollection() = delete;
+
+  static void clearPrototypes();
 
   static void loadAvatars(const fs::path& i_prototypesFolder);
   static void loadMounts(const fs::path& i_prototypesFolder);
