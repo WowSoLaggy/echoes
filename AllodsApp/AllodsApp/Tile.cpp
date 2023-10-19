@@ -12,7 +12,7 @@ void Tile::pushFields()
     pushObject(LayerStr::toString(layer), SAFE_DEREF(structurePtr));
 }
 
-void Tile::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
+Sdk::FieldHandled Tile::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
 {
   const auto layer = LayerStr::fromString(i_name);
 
@@ -20,6 +20,8 @@ void Tile::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
   Sdk::JsonSerializer::deserialize(*structurePtr, i_json);
 
   d_layers[layer] = std::move(structurePtr);
+
+  return true;
 }
 
 

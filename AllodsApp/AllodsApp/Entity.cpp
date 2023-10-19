@@ -36,18 +36,22 @@ void Entity::pushFields()
     pushObject("behaviorModel", *d_behaviorModel);
 }
 
-void Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
+Sdk::FieldHandled Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
 {
   if (i_name == PrototypeNameField)
   {
     const std::string prototypeName = i_json.asString();
     const auto prototype = PrototypesCollection::getPrototype(prototypeName);
     setPrototype(prototype, false);
+    return true;
   }
   else if (i_name == BehaviorModelField)
   {
     setBehaviorModel(IBehaviorModel::deserialize(i_json, *this));
+    return true;
   }
+
+  return false;
 }
 
 void Entity::onDeserialized()

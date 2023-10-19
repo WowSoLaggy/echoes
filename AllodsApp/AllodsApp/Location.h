@@ -15,7 +15,7 @@ public:
   Location();
 
   virtual void pushFields() override;
-  virtual void onFieldNotFound(const std::string& i_name, const Json::Value& i_json);
+  virtual Sdk::FieldHandled onFieldNotFound(const std::string& i_name, const Json::Value& i_json);
   virtual void onDeserialized() override;
 
   void setName(std::string i_name);

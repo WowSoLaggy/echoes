@@ -14,7 +14,7 @@ class Tile : public Sdk::ISerializable
 {
 public:
   virtual void pushFields() override;
-  virtual void onFieldNotFound(const std::string& i_name, const Json::Value& i_json);
+  virtual Sdk::FieldHandled onFieldNotFound(const std::string& i_name, const Json::Value& i_json);
 
   void update(double i_dt);
 

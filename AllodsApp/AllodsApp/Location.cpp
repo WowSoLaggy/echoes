@@ -56,7 +56,7 @@ void Location::pushFields()
   pushVector("avatars", d_avatars);
 }
 
-void Location::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
+Sdk::FieldHandled Location::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
 {
   if (isTileTag(i_name))
   {
@@ -66,7 +66,11 @@ void Location::onFieldNotFound(const std::string& i_name, const Json::Value& i_j
     Sdk::JsonSerializer::deserialize(*tile, i_json);
 
     d_tiles.insert({ std::move(tileCoords), std::move(tile) });
+    
+    return true;
   }
+
+  return false;
 }
 
 void Location::onDeserialized()
