@@ -69,4 +69,8 @@ private:
   void showOverlayHintTemp();
   void hideOverlayHint();
   void updateOverlayHint();
+
+  Dx::Panel* d_contextMenu = nullptr;
+  void showContextMenu();
+  void hideContextMenu();
 };

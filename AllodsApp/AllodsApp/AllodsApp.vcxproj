@@ -250,6 +250,7 @@
     <ClInclude Include="BuildDraftInfo.h" />
     <ClInclude Include="IBehaviorModel.h" />
     <ClInclude Include="InteractionManager.h" />
+    <ClInclude Include="InteractionManagerEvents.h" />
     <ClInclude Include="IOverlay.h" />
     <ClInclude Include="ItemPicker.h" />
     <ClInclude Include="LampBehavior.h" />

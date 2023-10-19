@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "GameEvents.h"
 #include "GodModeBuildGridItems.h"
+#include "InteractionManagerEvents.h"
 #include "IOverlay.h"
 #include "Location.h"
 #include "Session.h"
@@ -143,6 +144,11 @@ void GuiManager::processEvent(const Sdk::IEvent& i_event)
   
   else if (const auto* event = dynamic_cast<const OverlaySetEvent*>(&i_event))
     onOverlaySet(event->getOverlay());
+
+  else if (const auto* event = dynamic_cast<const ShowContextMenuEvent*>(&i_event))
+    showContextMenu();
+  else if (const auto* event = dynamic_cast<const HideContextMenuEvent*>(&i_event))
+    hideContextMenu();
 }
 
 
@@ -162,6 +168,7 @@ void GuiManager::onSessionAttached(Session& i_session)
 
   d_session = &i_session;
   connectTo(i_session);
+  connectTo(i_session.getInteractionManger());
   
   hideMainMenu();
   showInGameGui();
@@ -169,10 +176,11 @@ void GuiManager::onSessionAttached(Session& i_session)
 
 void GuiManager::onSessionDetached(Session& i_session)
 {
+  hideInGameGui();
+
   disconnectFrom(i_session);
   d_session = nullptr;
 
-  hideInGameGui();
   showMainMenu();
 }
 
@@ -390,6 +398,8 @@ void GuiManager::hideInGameGui()
   CONTRACT_EXPECT(d_inGameGui);
 
   hideOverlayUI();
+  hideGodModeBuildMenu();
+  hideContextMenu();
 
   d_inGameGui->setParent(nullptr);
   d_inGameGui = nullptr;
@@ -543,4 +553,25 @@ void GuiManager::updateOverlayHint()
 
   const auto stringRect = SAFE_DEREF(d_overlayHintLabel->getFontResource()).getStringRect(d_overlayHintLabel->getText());
   d_overlayHint->setSize(stringRect.size().getVector<float>() + Sdk::Vector2F(4, 0));
+}
+
+
+void GuiManager::showContextMenu()
+{
+  hideContextMenu();
+
+  d_contextMenu = &createPanel(d_game.getForm());
+  d_contextMenu->setTexture(Dx::TextureUtils::getTexture("White.png"));
+  d_contextMenu->setColor({ 0.6f, 0.47f, 0.31f, 1.0f });
+  d_contextMenu->setSize({ 60, 100 });
+  d_contextMenu->setPosition(Dx::CursorUtils::getPosition().getVector<float>());
+}
+
+void GuiManager::hideContextMenu()
+{
+  if (d_contextMenu)
+  {
+    d_contextMenu->setParent(nullptr);
+    d_contextMenu = nullptr;
+  }
 }

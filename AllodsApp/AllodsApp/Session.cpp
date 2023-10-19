@@ -124,6 +124,11 @@ BuildManager& Session::getBuildManger()
   return d_buildManager;
 }
 
+InteractionManager& Session::getInteractionManger()
+{
+  return d_interactionManager;
+}
+
 
 Dx::ICamera2& Session::getCamera() const
 {

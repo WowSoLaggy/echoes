@@ -37,6 +37,7 @@ public:
   Location* getCurrentLocation() const;
 
   BuildManager& getBuildManger();
+  InteractionManager& getInteractionManger();
 
   Dx::ICamera2& getCamera() const;
 

@@ -479,5 +479,8 @@
     <ClInclude Include="GasTankBehavior.h">
       <Filter>src\World\BehaviorModel</Filter>
     </ClInclude>
+    <ClInclude Include="InteractionManagerEvents.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
