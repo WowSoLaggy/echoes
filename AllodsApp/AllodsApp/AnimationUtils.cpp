@@ -6,9 +6,9 @@
 
 
 void AnimationUtils::playAnimation(
-  Entity& i_entity, const std::string& i_animationName, std::optional<int> i_times)
+  Entity& i_entity, const std::string& i_animationName, std::optional<int> i_times, const bool i_resetTime)
 {
   const auto& animations = i_entity.getPrototype().texture->getAnimationsMap();
   const auto& animation = animations.at(i_animationName);
-  i_entity.getAnimationPlayer().playAnimation(&animation, i_times);
+  i_entity.getAnimationPlayer().playAnimation(&animation, i_times, i_resetTime);
 }

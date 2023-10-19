@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Entity.h"
 
+#include "AnimationUtils.h"
 #include "Prototypes.h"
 #include "PrototypesCollection.h"
 
@@ -58,6 +59,10 @@ void Entity::onDeserialized()
 {
   // Prototype was not deserialized
   CONTRACT_ENSURE(hasPrototype());
+
+  const auto animationToPlay = d_animationPlayer.getAnimationName();
+  if (!animationToPlay.empty())
+    AnimationUtils::playAnimation(*this, animationToPlay, d_animationPlayer.getTimesLeft(), false);
 }
 
 
