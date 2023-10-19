@@ -8,14 +8,14 @@ class LampBehavior : public IBehaviorModel
 {
 public:
   LampBehavior();
-  LampBehavior(Entity* i_lamp);
+  LampBehavior(Entity& i_lamp);
 
   virtual void pushFields() override;
   virtual void interact() override;
 
   virtual BehaviorModel getModelType() const override;
 
-  void setLamp(Entity* i_lamp);
+  void setLamp(Entity& i_lamp);
 
   void turnOn();
   void turnOff();

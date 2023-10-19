@@ -8,9 +8,8 @@ ContainerBehavior::ContainerBehavior()
 {
 }
 
-ContainerBehavior::ContainerBehavior(Entity* i_container)
+ContainerBehavior::ContainerBehavior(Entity& i_container)
 {
-  CONTRACT_EXPECT(i_container);
   setContainer(i_container);
 }
 
@@ -40,9 +39,9 @@ Entity& ContainerBehavior::getContainer() const
   return SAFE_DEREF(d_container);
 }
 
-void ContainerBehavior::setContainer(Entity* i_container)
+void ContainerBehavior::setContainer(Entity& i_container)
 {
-  d_container = i_container;
+  d_container = &i_container;
 }
 
 

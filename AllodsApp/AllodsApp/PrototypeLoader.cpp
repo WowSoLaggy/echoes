@@ -14,6 +14,18 @@ namespace
       return SAFE_DEREF(i_prototype).name == i_name; });
   }
 
+  void loadCommon(Prototype& io_proto, const Json::Value& i_json)
+  {
+    const auto textureName = i_json["TextureName"].asString();
+    io_proto.texture = &Dx::TextureUtils::getTexture(textureName);
+
+    if (i_json.isMember("Behavior"))
+      io_proto.bahaviorModel = BehaviorModelStr::fromString(i_json["Behavior"].asString());
+
+    if (i_json.isMember("Volume"))
+      io_proto.volume = i_json["Volume"].asInt();
+  }
+
 } // anonym NS
 
 
@@ -38,8 +50,7 @@ std::vector<PrototypePtr> PrototypeLoader::loadAvatars(const fs::path& i_filepat
     auto proto = std::make_shared<AvatarPrototype>();
 
     proto->name = protoName;
-    const auto textureName = protoNode["TextureName"].asString();
-    proto->texture = &Dx::TextureUtils::getTexture(textureName);
+    loadCommon(*proto, protoNode);
 
     prototypes.push_back(std::move(proto));
   }
@@ -68,11 +79,7 @@ std::vector<PrototypePtr> PrototypeLoader::loadMounts(const fs::path& i_filepath
     auto proto = std::make_shared<MountPrototype>();
 
     proto->name = protoName;
-    const auto textureName = protoNode["TextureName"].asString();
-    proto->texture = &Dx::TextureUtils::getTexture(textureName);
-
-    if (protoNode.isMember("Behavior"))
-      proto->bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
+    loadCommon(*proto, protoNode);
 
     prototypes.push_back(std::move(proto));
   }
@@ -101,8 +108,8 @@ std::vector<PrototypePtr> PrototypeLoader::loadStructures(const fs::path& i_file
     auto proto = std::make_shared<StructurePrototype>();
 
     proto->name = protoName;
-    const auto textureName = protoNode["TextureName"].asString();
-    proto->texture = &Dx::TextureUtils::getTexture(textureName);
+    loadCommon(*proto, protoNode);
+    
     proto->layer = LayerStr::fromString(protoNode["Layer"].asString());
 
     if (protoNode.isMember("Support"))
@@ -110,9 +117,6 @@ std::vector<PrototypePtr> PrototypeLoader::loadStructures(const fs::path& i_file
 
     if (protoNode.isMember("Fixture"))
       proto->fixture = protoNode["Fixture"].asBool();
-
-    if (protoNode.isMember("Behavior"))
-      proto->bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
 
     prototypes.push_back(std::move(proto));
   }
@@ -141,11 +145,7 @@ std::vector<PrototypePtr> PrototypeLoader::loadObjects(const fs::path& i_filepat
     auto proto = std::make_shared<ObjectPrototype>();
 
     proto->name = protoName;
-    const auto textureName = protoNode["TextureName"].asString();
-    proto->texture = &Dx::TextureUtils::getTexture(textureName);
-
-    if (protoNode.isMember("Behavior"))
-      proto->bahaviorModel = BehaviorModelStr::fromString(protoNode["Behavior"].asString());
+    loadCommon(*proto, protoNode);
 
     prototypes.push_back(std::move(proto));
   }

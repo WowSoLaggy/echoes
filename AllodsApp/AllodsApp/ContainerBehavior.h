@@ -8,14 +8,14 @@ class ContainerBehavior : public IBehaviorModel
 {
 public:
   ContainerBehavior();
-  ContainerBehavior(Entity* i_container);
+  ContainerBehavior(Entity& i_container);
 
   virtual void pushFields() override;
   virtual void interact() override;
 
   virtual BehaviorModel getModelType() const override;
 
-  void setContainer(Entity* i_container);
+  void setContainer(Entity& i_container);
 
   void open();
   void close();

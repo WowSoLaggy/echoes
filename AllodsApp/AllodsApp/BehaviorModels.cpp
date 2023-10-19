@@ -9,6 +9,7 @@ namespace
     { BehaviorModel::Door, "Door" },
     { BehaviorModel::Lamp, "Lamp" },
     { BehaviorModel::Container, "Container" },
+    { BehaviorModel::GasTank, "GasTank" },
   };
 
 } // anonym NS

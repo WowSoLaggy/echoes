@@ -8,9 +8,8 @@ LampBehavior::LampBehavior()
 {
 }
 
-LampBehavior::LampBehavior(Entity* i_lamp)
+LampBehavior::LampBehavior(Entity& i_lamp)
 {
-  CONTRACT_EXPECT(i_lamp);
   setLamp(i_lamp);
 }
 
@@ -40,9 +39,9 @@ Entity& LampBehavior::getLamp() const
   return SAFE_DEREF(d_lamp);
 }
 
-void LampBehavior::setLamp(Entity* i_lamp)
+void LampBehavior::setLamp(Entity& i_lamp)
 {
-  d_lamp = i_lamp;
+  d_lamp = &i_lamp;
 }
 
 

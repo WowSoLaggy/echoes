@@ -43,6 +43,25 @@
               "y" : 352
             },
             "prototypeName" : "Lamp_bulb"
+          },
+          {
+            "animationPlayer" : 
+            {
+              "animationName" : "",
+              "animationTime" : 0.0,
+              "curFrame" : 0
+            },
+            "behaviorModel" : 
+            {
+              "modelType" : 4,
+              "state" : 0
+            },
+            "position" : 
+            {
+              "x" : 886,
+              "y" : 414
+            },
+            "prototypeName" : "GasTank"
           }
         ],
         "tile.10.10" : 

@@ -10,6 +10,7 @@ enum class BehaviorModel : std::int32_t
   Door,
   Lamp,
   Container,
+  GasTank,
 
   Count
 };

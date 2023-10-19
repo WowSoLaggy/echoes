@@ -10,7 +10,7 @@ class DoorBehavior : public IBehaviorModel, public Sdk::EventHandler
 {
 public:
   DoorBehavior();
-  DoorBehavior(Entity* i_door);
+  DoorBehavior(Entity& i_door);
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
   virtual void pushFields() override;
@@ -18,7 +18,7 @@ public:
 
   virtual BehaviorModel getModelType() const override;
 
-  void setDoor(Entity* i_door);
+  void setDoor(Entity& i_door);
 
   void open();
   void close();

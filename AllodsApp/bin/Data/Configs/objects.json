@@ -2,5 +2,12 @@
   "Lamp_bulb":
   {
     "TextureName": "Lamp_bulb.png"
+  },
+  
+  "GasTank":
+  {
+    "TextureName": "GasTank.png",
+    "Behavior": "GasTank",
+    "Volume": 1
   }
 }

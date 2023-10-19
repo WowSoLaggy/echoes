@@ -11,9 +11,8 @@ DoorBehavior::DoorBehavior()
 {
 }
 
-DoorBehavior::DoorBehavior(Entity* i_door)
+DoorBehavior::DoorBehavior(Entity& i_door)
 {
-  CONTRACT_EXPECT(i_door);
   setDoor(i_door);
 }
 
@@ -53,12 +52,12 @@ Entity& DoorBehavior::getDoor() const
   return SAFE_DEREF(d_door);
 }
 
-void DoorBehavior::setDoor(Entity* i_door)
+void DoorBehavior::setDoor(Entity& i_door)
 {
   if (d_door)
     disconnectFrom(d_door->getAnimationPlayer());
 
-  d_door = i_door;
+  d_door = &i_door;
 
   if (d_door)
     connectTo(d_door->getAnimationPlayer());

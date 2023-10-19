@@ -258,6 +258,9 @@
     <ClCompile Include="BehaviorModels.cpp">
       <Filter>src\World\BehaviorModel</Filter>
     </ClCompile>
+    <ClCompile Include="GasTankBehavior.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -472,6 +475,9 @@
     </ClInclude>
     <ClInclude Include="PrototypeUtils.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GasTankBehavior.h">
+      <Filter>src\World\BehaviorModel</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

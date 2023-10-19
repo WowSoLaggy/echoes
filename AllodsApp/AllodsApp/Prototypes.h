@@ -15,6 +15,7 @@ struct Prototype
 
   const Dx::ITexture* texture = nullptr;
   BehaviorModel bahaviorModel = BehaviorModel::None;
+  double volume = 0;
 
   bool operator==(const Prototype& i_other) const
   {
