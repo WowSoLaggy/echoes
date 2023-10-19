@@ -68,3 +68,14 @@ void Tile::setT(const double i_t)
 {
   d_temperature = i_t;
 }
+
+
+const Dx::thd::VolumeUnit& Tile::getVolumeUnit() const
+{
+  return d_volumeUnit;
+}
+
+void Tile::setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit)
+{
+  d_volumeUnit = std::move(i_volumeUnit);
+}

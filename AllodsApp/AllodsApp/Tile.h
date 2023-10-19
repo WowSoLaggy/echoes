@@ -3,6 +3,8 @@
 #include "Fwd.h"
 #include "Layers.h"
 
+#include <LaggyDx/VolumeUnit.h>
+
 #include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Vector.h>
 
@@ -28,8 +30,12 @@ public:
   double getT() const;
   void setT(double i_t);
 
+  const Dx::thd::VolumeUnit& getVolumeUnit() const;
+  void setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit);
+
 private:
   LayersMap d_layers;
 
   double d_temperature = 0;
+  Dx::thd::VolumeUnit d_volumeUnit;
 };

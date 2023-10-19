@@ -19,3 +19,14 @@ void TileThd::setT(const double i_t)
 {
   d_tile.setT(i_t);
 }
+
+
+const Dx::thd::VolumeUnit& TileThd::getVolumeUnit() const
+{
+  return d_tile.getVolumeUnit();
+}
+
+void TileThd::setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit)
+{
+  d_tile.setVolumeUnit(std::move(i_volumeUnit));
+}
