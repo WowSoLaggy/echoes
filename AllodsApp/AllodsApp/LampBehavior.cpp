@@ -17,7 +17,9 @@ LampBehavior::LampBehavior(Entity* i_lamp)
 
 void LampBehavior::pushFields()
 {
-  return IBehaviorModel::pushFields();
+  IBehaviorModel::pushFields();
+
+  pushField("state", *((std::int32_t*)&d_state));
 }
 
 
@@ -29,7 +31,7 @@ void LampBehavior::interact()
 
 BehaviorModel LampBehavior::getModelType() const
 {
-  return BehaviorModel::Container;
+  return BehaviorModel::Lamp;
 }
 
 

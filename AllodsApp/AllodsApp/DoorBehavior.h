@@ -25,9 +25,9 @@ public:
 
 private:
   
-  enum class State
+  enum class State : std::int32_t
   {
-    Open,
+    Open = 0,
     Opening,
     Closing,
     Closed,

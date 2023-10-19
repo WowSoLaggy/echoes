@@ -3,7 +3,7 @@
 #include <LaggySdk/EnumStr.h>
 
 
-enum class BehaviorModel
+enum class BehaviorModel : std::int32_t
 {
   None = 0,
 

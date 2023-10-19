@@ -17,7 +17,9 @@ ContainerBehavior::ContainerBehavior(Entity* i_container)
 
 void ContainerBehavior::pushFields()
 {
-  return IBehaviorModel::pushFields();
+  IBehaviorModel::pushFields();
+
+  pushField("state", *((std::int32_t*)&d_state));
 }
 
 

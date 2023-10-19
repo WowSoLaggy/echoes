@@ -27,7 +27,9 @@ void DoorBehavior::processEvent(const Sdk::IEvent& i_event)
 
 void DoorBehavior::pushFields()
 {
-  return IBehaviorModel::pushFields();
+  IBehaviorModel::pushFields();
+
+  pushField("state", *((std::int32_t*)&d_state));
 }
 
 
@@ -42,7 +44,7 @@ void DoorBehavior::interact()
 
 BehaviorModel DoorBehavior::getModelType() const
 {
-  return BehaviorModel::Container;
+  return BehaviorModel::Door;
 }
 
 
