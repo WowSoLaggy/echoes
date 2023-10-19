@@ -35,10 +35,5 @@ std::shared_ptr<Session> SessionLoader::load(const fs::path& i_path)
 
   Sdk::JsonSerializer::deserialize(*session, i_path);
 
-  // TODO: ae
-  // Serialize current location instead of setting the starting one from scenario (it is obviously incorrect)
-  auto& startingLocation = SAFE_DEREF(session->getWorld()).getLocation(SAFE_DEREF(session->getScenario()).startingLocation);
-  session->setCurrentLocation(&startingLocation);
-
   return session;
 }

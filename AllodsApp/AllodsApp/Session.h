@@ -20,6 +20,7 @@ public:
   Session();
 
   virtual void pushFields() override;
+  virtual void onDeserialized() override;
 
   void update(double i_dt);
   void onMouseMove();
@@ -59,6 +60,7 @@ private:
   std::shared_ptr<Dx::IInputController> d_inputController;
   std::shared_ptr<World> d_world;
   Location* d_currentLocation = nullptr;
+  std::string d_currentLocationName;
   
   bool d_pause = false;
   bool d_godMode = true;

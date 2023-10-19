@@ -23,6 +23,12 @@ void Session::pushFields()
 {
   pushSharedPtr("scenario", d_scenario);
   pushSharedPtr("world", d_world);
+  pushField("currentLocation", d_currentLocationName);
+}
+
+void Session::onDeserialized()
+{
+  setCurrentLocation(&d_world->getLocation(d_currentLocationName));
 }
 
 
@@ -93,12 +99,18 @@ void Session::setCurrentLocation(Location* i_location)
   CONTRACT_EXPECT(d_currentLocation != i_location);
 
   if (d_currentLocation)
+  {
+    d_currentLocationName.clear();
     notify(LocationRemovedEvent(*d_currentLocation));
+  }
 
   d_currentLocation = i_location;
 
   if (d_currentLocation)
+  {
+    d_currentLocationName = d_currentLocation->getName();
     notify(LocationAddedEvent(*d_currentLocation));
+  }
 }
 
 Location* Session::getCurrentLocation() const
