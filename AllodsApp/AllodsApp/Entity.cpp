@@ -9,7 +9,8 @@
 
 namespace
 {
-  const std::string PrototypeNameField = "prototype_name";
+  const std::string PrototypeNameField = "prototypeName";
+  const std::string BehaviorModelField = "behaviorModel";
 
 } // anonym NS
 
@@ -26,12 +27,13 @@ Entity::Entity(PrototypePtr i_prototype)
 
 void Entity::pushFields()
 {
+  pushObject("animationPlayer", d_animationPlayer);
+  
   if (hasPrototype())
     pushField(PrototypeNameField, getPrototype().name);
-  pushObject("animationPlayer", d_animationPlayer);
-
-  // BehaviorModel is intentionally not serialized -
-  // it will atomatically be assigned after prototype deserialization
+  
+  if (d_behaviorModel)
+    pushObject("behaviorModel", *d_behaviorModel);
 }
 
 void Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
@@ -40,7 +42,11 @@ void Entity::onFieldNotFound(const std::string& i_name, const Json::Value& i_jso
   {
     const std::string prototypeName = i_json.asString();
     const auto prototype = PrototypesCollection::getPrototype(prototypeName);
-    setPrototype(prototype);
+    setPrototype(prototype, false);
+  }
+  else if (i_name == BehaviorModelField)
+  {
+    setBehaviorModel(IBehaviorModel::deserialize(i_json, *this));
   }
 }
 
@@ -51,14 +57,17 @@ void Entity::onDeserialized()
 }
 
 
-void Entity::setPrototype(PrototypePtr i_prototype)
+void Entity::setPrototype(PrototypePtr i_prototype, const bool i_setBehaviorModel)
 {
   d_prototype = i_prototype;
 
-  if (d_prototype)
-    setBehaviorModel(IBehaviorModel::get(getPrototype().bahaviorModel, *this));
-  else
-    resetBehaviorModel();
+  if (i_setBehaviorModel)
+  {
+    if (d_prototype)
+      setBehaviorModel(IBehaviorModel::get(getPrototype().bahaviorModel, *this));
+    else
+      resetBehaviorModel();
+  }
 }
 
 bool Entity::hasPrototype() const

@@ -7,10 +7,14 @@
 #include <LaggyDx/AnimationEvents.h>
 
 
-DoorBehavior::DoorBehavior(Entity& i_door)
-  : d_door(i_door)
+DoorBehavior::DoorBehavior()
 {
-  connectTo(d_door.getAnimationPlayer());
+}
+
+DoorBehavior::DoorBehavior(Entity* i_door)
+{
+  CONTRACT_EXPECT(i_door);
+  setDoor(i_door);
 }
 
 
@@ -18,6 +22,12 @@ void DoorBehavior::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* event = dynamic_cast<const Dx::AnimationStoppedEvent*>(&i_event))
     onAnimationStopped();
+}
+
+
+void DoorBehavior::pushFields()
+{
+  return IBehaviorModel::pushFields();
 }
 
 
@@ -30,15 +40,38 @@ void DoorBehavior::interact()
 }
 
 
+BehaviorModel DoorBehavior::getModelType() const
+{
+  return BehaviorModel::Container;
+}
+
+
+Entity& DoorBehavior::getDoor() const
+{
+  return SAFE_DEREF(d_door);
+}
+
+void DoorBehavior::setDoor(Entity* i_door)
+{
+  if (d_door)
+    disconnectFrom(d_door->getAnimationPlayer());
+
+  d_door = i_door;
+
+  if (d_door)
+    connectTo(d_door->getAnimationPlayer());
+}
+
+
 void DoorBehavior::open()
 {
-  AnimationUtils::playAnimation(d_door, "Open", 1);
+  AnimationUtils::playAnimation(getDoor(), "Open", 1);
   d_state = State::Opening;
 }
 
 void DoorBehavior::close()
 {
-  AnimationUtils::playAnimation(d_door, "Close", 1);
+  AnimationUtils::playAnimation(getDoor(), "Close", 1);
   d_state = State::Closing;
 }
 

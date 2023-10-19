@@ -9,11 +9,16 @@
 class DoorBehavior : public IBehaviorModel, public Sdk::EventHandler
 {
 public:
-  DoorBehavior(Entity& i_door);
+  DoorBehavior();
+  DoorBehavior(Entity* i_door);
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
-
+  virtual void pushFields() override;
   virtual void interact() override;
+
+  virtual BehaviorModel getModelType() const override;
+
+  void setDoor(Entity* i_door);
 
   void open();
   void close();
@@ -28,8 +33,10 @@ private:
     Closed,
   };
 
-  Entity& d_door;
+  Entity* d_door = nullptr;
   State d_state = State::Closed;
+
+  Entity& getDoor() const;
 
   void onAnimationStopped();
 };

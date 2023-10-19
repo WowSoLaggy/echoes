@@ -4,9 +4,20 @@
 #include "AnimationUtils.h"
 
 
-ContainerBehavior::ContainerBehavior(Entity& i_container)
-  : d_container(i_container)
+ContainerBehavior::ContainerBehavior()
 {
+}
+
+ContainerBehavior::ContainerBehavior(Entity* i_container)
+{
+  CONTRACT_EXPECT(i_container);
+  setContainer(i_container);
+}
+
+
+void ContainerBehavior::pushFields()
+{
+  return IBehaviorModel::pushFields();
 }
 
 
@@ -16,13 +27,30 @@ void ContainerBehavior::interact()
 }
 
 
+BehaviorModel ContainerBehavior::getModelType() const
+{
+  return BehaviorModel::Container;
+}
+
+
+Entity& ContainerBehavior::getContainer() const
+{
+  return SAFE_DEREF(d_container);
+}
+
+void ContainerBehavior::setContainer(Entity* i_container)
+{
+  d_container = i_container;
+}
+
+
 void ContainerBehavior::open()
 {
   if (isOpen())
     return;
 
   d_state = State::Open;
-  AnimationUtils::playAnimation(d_container, "Open", 1);
+  AnimationUtils::playAnimation(getContainer(), "Open", 1);
 }
 
 void ContainerBehavior::close()
@@ -31,7 +59,7 @@ void ContainerBehavior::close()
     return;
 
   d_state = State::Closed;
-  AnimationUtils::playAnimation(d_container, "Close", 1);
+  AnimationUtils::playAnimation(getContainer(), "Close", 1);
 }
 
 void ContainerBehavior::switchState()

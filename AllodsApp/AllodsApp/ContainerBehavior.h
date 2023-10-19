@@ -7,9 +7,15 @@
 class ContainerBehavior : public IBehaviorModel
 {
 public:
-  ContainerBehavior(Entity& i_container);
+  ContainerBehavior();
+  ContainerBehavior(Entity* i_container);
 
+  virtual void pushFields() override;
   virtual void interact() override;
+
+  virtual BehaviorModel getModelType() const override;
+
+  void setContainer(Entity* i_container);
 
   void open();
   void close();
@@ -26,6 +32,8 @@ private:
     Open,
   };
 
-  Entity& d_container;
+  Entity* d_container = nullptr;
   State d_state = State::Closed;
+
+  Entity& getContainer() const;
 };

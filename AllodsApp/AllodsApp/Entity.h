@@ -21,7 +21,7 @@ public:
 
   void update(double i_dt);
 
-  void setPrototype(PrototypePtr i_prototype);
+  void setPrototype(PrototypePtr i_prototype, bool i_setBehaviorModel = true);
   [[nodiscard]] bool hasPrototype() const;
   [[nodiscard]] const Prototype& getPrototype() const;
 

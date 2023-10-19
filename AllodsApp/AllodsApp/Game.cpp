@@ -11,8 +11,8 @@ namespace
   {
     auto settings = std::make_unique<GameSettings>();
 
-    /*settings.screenWidth = 1024;
-    settings.screenHeight = 768;*/
+    settings->screenWidth = 1024;
+    settings->screenHeight = 768;
 
     return settings;
   }

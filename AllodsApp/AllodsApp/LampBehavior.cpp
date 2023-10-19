@@ -3,9 +3,21 @@
 
 #include "AnimationUtils.h"
 
-LampBehavior::LampBehavior(Entity& i_lamp)
-  : d_lamp(i_lamp)
+
+LampBehavior::LampBehavior()
 {
+}
+
+LampBehavior::LampBehavior(Entity* i_lamp)
+{
+  CONTRACT_EXPECT(i_lamp);
+  setLamp(i_lamp);
+}
+
+
+void LampBehavior::pushFields()
+{
+  return IBehaviorModel::pushFields();
 }
 
 
@@ -15,13 +27,30 @@ void LampBehavior::interact()
 }
 
 
+BehaviorModel LampBehavior::getModelType() const
+{
+  return BehaviorModel::Container;
+}
+
+
+Entity& LampBehavior::getLamp() const
+{
+  return SAFE_DEREF(d_lamp);
+}
+
+void LampBehavior::setLamp(Entity* i_lamp)
+{
+  d_lamp = i_lamp;
+}
+
+
 void LampBehavior::turnOn()
 {
   if (isOn())
     return;
 
   d_state = State::On;
-  AnimationUtils::playAnimation(d_lamp, "On", 1);
+  AnimationUtils::playAnimation(getLamp(), "On", 1);
 }
 
 void LampBehavior::turnOff()
@@ -30,7 +59,7 @@ void LampBehavior::turnOff()
     return;
 
   d_state = State::Off;
-  AnimationUtils::playAnimation(d_lamp, "Off", 1);
+  AnimationUtils::playAnimation(getLamp(), "Off", 1);
 }
 
 void LampBehavior::switchState()
