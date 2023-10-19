@@ -116,26 +116,25 @@ bool BuildManager::onMouseClick(Dx::MouseKey i_key)
       return true;
     }
   }
-
-  if (i_key != Dx::MouseKey::Left)
-    return false;
-
-  if (d_buildDraftInfo)
+  else if (i_key == Dx::MouseKey::Left)
   {
-    if (!isDraftObject())
+    if (d_buildDraftInfo)
     {
-      // No objects spamming
-      d_isMutlibuilding = true;
-    }
+      if (!isDraftObject())
+      {
+        // No objects spamming
+        d_isMutlibuilding = true;
+      }
 
-    tryBuild();
-    return true;
-  }
-  else if (d_isRemovalMode)
-  {
-    d_isMutliremoving = true;
-    tryRemove();
-    return true;
+      tryBuild();
+      return true;
+    }
+    else if (d_isRemovalMode)
+    {
+      d_isMutliremoving = true;
+      tryRemove();
+      return true;
+    }
   }
 
   return false;
