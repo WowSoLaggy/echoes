@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "InteractionManager.h"
 
+#include "CtxMenuContent.h"
 #include "InteractionManagerEvents.h"
 #include "ItemPicker.h"
 #include "Session.h"
@@ -48,12 +49,13 @@ bool InteractionManager::tryInteract()
 
 bool InteractionManager::showContextMenu()
 {
-  const bool hasItemPicked = ItemPicker(d_session).pick() != nullptr;
-  if (!hasItemPicked)
+  const auto entityPtr = ItemPicker(d_session).pick();
+  if (entityPtr == nullptr)
     return hideContextMenu();
   
   d_isContextMenuShown = true;
-  notify(ShowContextMenuEvent());
+
+  notify(ShowCtxMenuEvent(CtxMenuContent(*entityPtr)));
 
   return true;
 }
@@ -64,7 +66,7 @@ bool InteractionManager::hideContextMenu()
     return false;
 
   d_isContextMenuShown = false;
-  notify(HideContextMenuEvent());
+  notify(HideCtxMenuEvent());
 
   return true;
 }

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GuiManager.h"
 
+#include "CtxMenuContent.h"
 #include "Fonts.h"
 #include "Game.h"
 #include "GameEvents.h"
@@ -145,10 +146,10 @@ void GuiManager::processEvent(const Sdk::IEvent& i_event)
   else if (const auto* event = dynamic_cast<const OverlaySetEvent*>(&i_event))
     onOverlaySet(event->getOverlay());
 
-  else if (const auto* event = dynamic_cast<const ShowContextMenuEvent*>(&i_event))
-    showContextMenu();
-  else if (const auto* event = dynamic_cast<const HideContextMenuEvent*>(&i_event))
-    hideContextMenu();
+  else if (const auto* event = dynamic_cast<const ShowCtxMenuEvent*>(&i_event))
+    showCtxMenu(event->getCtxMenuContent());
+  else if (const auto* event = dynamic_cast<const HideCtxMenuEvent*>(&i_event))
+    hideCtxMenu();
 }
 
 
@@ -399,7 +400,7 @@ void GuiManager::hideInGameGui()
 
   hideOverlayUI();
   hideGodModeBuildMenu();
-  hideContextMenu();
+  hideCtxMenu();
 
   d_inGameGui->setParent(nullptr);
   d_inGameGui = nullptr;
@@ -516,7 +517,7 @@ void GuiManager::showOverlayHintTemp()
 
   d_overlayHint = &createPanel(*d_inGameGui);
   d_overlayHint->setTexture(Dx::TextureUtils::getTexture("White.png"));
-  d_overlayHint->setColor({ 0.6f, 0.47f, 0.31f, 1.0f });
+  d_overlayHint->setColor({ 0.6f, 0.47f, 0.31f, 0.8f });
 
   d_overlayHintLabel = &createLabel(*d_overlayHint);
   d_overlayHintLabel->setFont(Fonts::getInGameHintsFont());
@@ -556,22 +557,28 @@ void GuiManager::updateOverlayHint()
 }
 
 
-void GuiManager::showContextMenu()
+void GuiManager::showCtxMenu(const CtxMenuContent& i_ctxMenuContent)
 {
-  hideContextMenu();
+  hideCtxMenu();
 
-  d_contextMenu = &createPanel(d_game.getForm());
-  d_contextMenu->setTexture(Dx::TextureUtils::getTexture("White.png"));
-  d_contextMenu->setColor({ 0.6f, 0.47f, 0.31f, 1.0f });
-  d_contextMenu->setSize({ 60, 100 });
-  d_contextMenu->setPosition(Dx::CursorUtils::getPosition().getVector<float>());
+  d_ctxMenu = &createPanel(d_game.getForm());
+  d_ctxMenu->setTexture(Dx::TextureUtils::getTexture("White.png"));
+  d_ctxMenu->setColor({ 0.6f, 0.47f, 0.31f, 0.8f });
+  d_ctxMenu->setPosition(Dx::CursorUtils::getPosition().getVector<float>());
+
+  auto& label = createLabel(*d_ctxMenu);
+  label.setFont(Fonts::getInGameHintsFont());
+  label.setText(i_ctxMenuContent.getDescription());
+
+  const auto stringRect = SAFE_DEREF(label.getFontResource()).getStringRect(label.getText());
+  d_ctxMenu->setSize(stringRect.size().getVector<float>() + Sdk::Vector2F(4, 0));
 }
 
-void GuiManager::hideContextMenu()
+void GuiManager::hideCtxMenu()
 {
-  if (d_contextMenu)
+  if (d_ctxMenu)
   {
-    d_contextMenu->setParent(nullptr);
-    d_contextMenu = nullptr;
+    d_ctxMenu->setParent(nullptr);
+    d_ctxMenu = nullptr;
   }
 }

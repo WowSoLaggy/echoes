@@ -162,6 +162,7 @@
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
     <ClCompile Include="ContainerBehavior.cpp" />
+    <ClCompile Include="CtxMenuContent.cpp" />
     <ClCompile Include="DoorBehavior.cpp" />
     <ClCompile Include="DummyTileThd.cpp" />
     <ClCompile Include="FixtureLocations.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="BuildModeView.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="ContainerBehavior.h" />
+    <ClInclude Include="CtxMenuContent.h" />
     <ClInclude Include="DoorBehavior.h" />
     <ClInclude Include="DummyTileThd.h" />
     <ClInclude Include="FixtureLocations.h" />

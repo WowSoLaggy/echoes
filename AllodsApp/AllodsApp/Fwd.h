@@ -4,6 +4,7 @@
 
 
 class Avatar;
+class CtxMenuContent;
 class Entity;
 class Fixture;
 class Game;

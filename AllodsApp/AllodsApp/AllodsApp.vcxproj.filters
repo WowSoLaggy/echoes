@@ -261,6 +261,9 @@
     <ClCompile Include="GasTankBehavior.cpp">
       <Filter>src\World\BehaviorModel</Filter>
     </ClCompile>
+    <ClCompile Include="CtxMenuContent.cpp">
+      <Filter>src\Session\InteractionManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -481,6 +484,9 @@
     </ClInclude>
     <ClInclude Include="InteractionManagerEvents.h">
       <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="CtxMenuContent.h">
+      <Filter>src\Session\InteractionManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

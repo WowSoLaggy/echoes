@@ -1,18 +1,27 @@
 #pragma once
 
+#include "Fwd.h"
+
 #include <LaggySdk/IEvent.h>
 
 
-class ShowContextMenuEvent : public Sdk::IEvent
+class ShowCtxMenuEvent : public Sdk::IEvent
 {
 public:
-  ShowContextMenuEvent()
+  ShowCtxMenuEvent(const CtxMenuContent& i_ctxMenuContent)
+    : d_ctxMenuContent(i_ctxMenuContent)
   {
   }
+
+  const CtxMenuContent& getCtxMenuContent() const
+  {
+    return d_ctxMenuContent;
+  }
+
+private:
+  const CtxMenuContent& d_ctxMenuContent;
 };
 
-class HideContextMenuEvent : public Sdk::IEvent
+class HideCtxMenuEvent : public Sdk::IEvent
 {
-public:
-  HideContextMenuEvent() = default;
 };
