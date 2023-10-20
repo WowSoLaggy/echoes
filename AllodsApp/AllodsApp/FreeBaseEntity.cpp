@@ -27,7 +27,7 @@ const Sdk::Vector2I& FreeBaseEntity::getPosition() const
 
 const Sdk::Vector2I& FreeBaseEntity::getSize() const
 {
-  return SAFE_DEREF(getPrototype().texture).getDescription().size;
+  return SAFE_DEREF(getPrototype().texture).getDescription().frameSize;
 }
 
 

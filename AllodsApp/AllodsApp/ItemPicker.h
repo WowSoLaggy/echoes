@@ -16,6 +16,7 @@ public:
 private:
   const Session& d_session;
 
+  EntityPtr pickAvatar(const Sdk::Vector2I& i_screenPos) const;
   EntityPtr pickObject(const Sdk::Vector2I& i_screenPos) const;
   EntityPtr pickStructureOrMount(const Sdk::Vector2I& i_screenPos) const;
 };

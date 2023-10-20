@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ItemPicker.h"
 
+#include "Avatar.h"
 #include "Location.h"
 #include "Mount.h"
 #include "MountUtils.h"
@@ -11,6 +12,31 @@
 #include "TileUtils.h"
 
 #include <LaggyDx/CursorUtils.h>
+
+
+namespace
+{
+  EntityPtr pickEntity(const auto& i_entities, const Sdk::Vector2I& i_screenPos, const Sdk::Vector2I& i_cameraOffset)
+  {
+    for (const auto& objPtr : i_entities)
+    {
+      const auto& obj = SAFE_DEREF(objPtr);
+      const auto rect = obj.getRect().move(-i_cameraOffset);
+      if (!rect.containsPoint(i_screenPos))
+        continue;
+
+      const auto& texture = SAFE_DEREF(obj.getPrototype().texture);
+      if (!texture.hasAlpha())
+        return objPtr;
+
+      if (texture.checkAlpha(i_screenPos - rect.topLeft(), obj.getAnimationPlayer().getCurrentFrame()))
+        return objPtr;
+    }
+
+    return nullptr;
+  }
+
+} // anonym NS
 
 
 ItemPicker::ItemPicker(const Session& i_session)
@@ -26,6 +52,9 @@ EntityPtr ItemPicker::pick() const
 
 EntityPtr ItemPicker::pick(const Sdk::Vector2I& i_screenPos) const
 {
+  if (const auto avatarPtr = pickAvatar(i_screenPos))
+    return avatarPtr;
+
   if (const auto objectPtr = pickObject(i_screenPos))
     return objectPtr;
   
@@ -36,26 +65,16 @@ EntityPtr ItemPicker::pick(const Sdk::Vector2I& i_screenPos) const
 }
 
 
+EntityPtr ItemPicker::pickAvatar(const Sdk::Vector2I& i_screenPos) const
+{
+  const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
+  return pickEntity(location.getAvatars(), i_screenPos, d_session.getCamera().getOffset());
+}
+
 EntityPtr ItemPicker::pickObject(const Sdk::Vector2I& i_screenPos) const
 {
   const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
-  
-  for (const auto objPtr : location.getObjects())
-  {
-    const auto& obj = SAFE_DEREF(objPtr);
-    const auto rect = obj.getRect().move(-d_session.getCamera().getOffset());
-    if (!rect.containsPoint(i_screenPos))
-      continue;
-
-    const auto& texture = SAFE_DEREF(obj.getObjectPrototype().texture);
-    if (!texture.hasAlpha())
-      return objPtr;
-    
-    if (texture.checkAlpha(i_screenPos - rect.topLeft(), obj.getAnimationPlayer().getCurrentFrame()))
-      return objPtr;
-  }
-
-  return nullptr;
+  return pickEntity(location.getObjects(), i_screenPos, d_session.getCamera().getOffset());
 }
 
 EntityPtr ItemPicker::pickStructureOrMount(const Sdk::Vector2I& i_screenPos) const
