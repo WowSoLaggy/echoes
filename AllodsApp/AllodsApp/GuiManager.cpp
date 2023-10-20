@@ -5,6 +5,7 @@
 #include "Fonts.h"
 #include "Game.h"
 #include "GameEvents.h"
+#include "GuiCreator.h"
 #include "GodModeBuildGridItems.h"
 #include "InteractionManagerEvents.h"
 #include "IOverlay.h"
@@ -35,67 +36,6 @@ namespace
   {
     const auto& rd = Dx::App::get().getRenderDevice();
     return rd.getResolution();
-  }
-
-  Dx::Control& createControl(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::Control>();
-    i_parent.addChild(ctrl);
-    return *ctrl;
-  }
-
-  Dx::Layout& createLayout(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::Layout>();
-    i_parent.addChild(ctrl);
-    ctrl->setOffsetBetweenElements(16);
-    return *ctrl;
-  }
-
-  Dx::Panel& createPanel(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::Panel>();
-    i_parent.addChild(ctrl);
-    return *ctrl;
-  }
-
-  Dx::Label& createLabel(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::Label>();
-    i_parent.addChild(ctrl);
-    ctrl->setFont(Fonts::getMenuFont());
-    return *ctrl;
-  }
-
-  Dx::Button& createButton(Dx::IControl& i_parent)
-  {
-    auto ctrl = std::make_shared<Dx::Button>();
-    i_parent.addChild(ctrl);
-    ctrl->setFont(Fonts::getMenuFont());
-    return *ctrl;
-  }
-
-  Dx::Button& createMenuButton(Dx::IControl& i_parent)
-  {
-    auto& ctrl = createButton(i_parent);
-    ctrl.setTextureName(Dx::ButtonState::Normal, "Button.png");
-    ctrl.setTextureName(Dx::ButtonState::Hover, "ButtonLight.png");
-    ctrl.setTextureName(Dx::ButtonState::Pressed, "ButtonPressed.png");
-    return ctrl;
-  }
-
-  Dx::Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
-  {
-    auto ctrl = std::make_shared<Dx::Grid>(Sdk::Vector2I{ i_slotsX, i_slotsY });
-    i_parent.addChild(ctrl);
-
-    ctrl->setTextures(
-      "Grid_T.png", "Grid_TL.png", "Grid_TR.png",
-      "Grid_L.png", "Grid_R.png",
-      "Grid_B.png", "Grid_BL.png", "Grid_BR.png",
-      "Grid_Slot.png", "Grid_Selection.png");
-
-    return *ctrl;
   }
 
   std::string getOverlayName(const OverlayType i_type)
@@ -189,24 +129,24 @@ void GuiManager::showPauseMenu()
 {
   CONTRACT_EXPECT(!d_pauseMenuPanel);
 
-  d_pauseMenuPanel = &createPanel(d_game.getForm());
+  d_pauseMenuPanel = &GuiCreator::createPanel(d_game.getForm());
   d_pauseMenuPanel->sendToFront();
   d_pauseMenuPanel->setTexture(Dx::TextureUtils::getTexture("Black.png"));
   d_pauseMenuPanel->setSize(getResolution().getVector<float>());
   d_pauseMenuPanel->setColor(Dx::colorWithAlpha(Dx::Colors::White, 0.5f));
 
-  auto& layout = createLayout(*d_pauseMenuPanel);
+  auto& layout = GuiCreator::createLayout(*d_pauseMenuPanel);
   layout.setSize(d_pauseMenuPanel->getSize());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
   const auto createFakePanel = [&]()
   {
-    auto& fakePanel = createPanel(layout);
+    auto& fakePanel = GuiCreator::createPanel(layout);
     fakePanel.setSize({ 0, 16 });
   };
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Resume Game");
     btn.setOnPress(std::bind(&GuiManager::onResumeGame, this));
   }
@@ -214,7 +154,7 @@ void GuiManager::showPauseMenu()
   createFakePanel();
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Save Game");
     btn.setOnPress(std::bind(&Game::saveSession, &d_game));
   }
@@ -222,13 +162,13 @@ void GuiManager::showPauseMenu()
   createFakePanel();
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Exit to Menu");
     btn.setOnPress(std::bind(&GuiManager::onExitToMenu, this));
   }
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Exit to Desktop");
     btn.setOnPress(std::bind(&Game::closeApplication, &d_game));
   }
@@ -304,15 +244,15 @@ void GuiManager::onGameStateChanged(const GameState i_newState)
 
 void GuiManager::showLoadingScreen()
 {
-  auto& background = createPanel(d_game.getForm());
+  auto& background = GuiCreator::createPanel(d_game.getForm());
   background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
   background.setSize(getResolution().getVector<float>());
 
-  auto& layout = createLayout(d_game.getForm());
+  auto& layout = GuiCreator::createLayout(d_game.getForm());
   layout.setSize(getResolution().getVector<float>());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
-  auto& loadingLabel = createLabel(layout);
+  auto& loadingLabel = GuiCreator::createLabel(layout);
   loadingLabel.setText("Loading...");
 }
 
@@ -324,28 +264,28 @@ void GuiManager::hideLoadingScreen()
 
 void GuiManager::showMainMenu()
 {
-  auto& background = createPanel(d_game.getForm());
+  auto& background = GuiCreator::createPanel(d_game.getForm());
   background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
   background.setSize(getResolution().getVector<float>());
 
-  auto& layout = createLayout(d_game.getForm());
+  auto& layout = GuiCreator::createLayout(d_game.getForm());
   layout.setSize(getResolution().getVector<float>());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Start New Game");
     btn.setOnPress(std::bind(&Game::newSession, &d_game));
   }
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Load Game");
     btn.setOnPress(std::bind(&Game::loadSession, &d_game));
   }
 
   {
-    auto& btn = createMenuButton(layout);
+    auto& btn = GuiCreator::createMenuButton(layout);
     btn.setText("Exit to Desktop");
     btn.setOnPress(std::bind(&Game::closeApplication, &d_game));
   }
@@ -367,23 +307,23 @@ void GuiManager::showInGameGui()
 {
   CONTRACT_EXPECT(!d_inGameGui);
 
-  d_inGameGui = &createControl(d_game.getForm());
+  d_inGameGui = &GuiCreator::createControl(d_game.getForm());
 
   const bool godMode = SAFE_DEREF(d_session).isGodMode();
 
-  auto& godModeLayout = createLayout(*d_inGameGui);
+  auto& godModeLayout = GuiCreator::createLayout(*d_inGameGui);
   godModeLayout.setPosition({ 0, (float)getResolution().y });
   godModeLayout.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
 
   {
-    auto& btn = createButton(godModeLayout);
+    auto& btn = GuiCreator::createButton(godModeLayout);
     btn.setTextureName(godMode ? "f1_enabled.png" : "f1_disabled.png");
     if (!godMode)
       btn.setOnPress(std::bind(&GuiManager::onBtnGodMode, this));
   }
 
   {
-    auto& btn = createButton(godModeLayout);
+    auto& btn = GuiCreator::createButton(godModeLayout);
     btn.setTextureName(godMode ? "f2_disabled.png" : "f2_enabled.png");
     if (godMode)
       btn.setOnPress(std::bind(&GuiManager::onBtnLiveMode, this));
@@ -421,7 +361,7 @@ void GuiManager::showGodModeBuildMenu()
 
   const int gridSizeY = ((int)items.size() - 1) / GridSizeX + 1;
 
-  d_godModeBuildGrid = &createGrid(d_game.getForm(), GridSizeX, gridSizeY);
+  d_godModeBuildGrid = &GuiCreator::createGrid(d_game.getForm(), GridSizeX, gridSizeY);
   d_godModeBuildGrid->setItems(std::move(items));
   d_godModeBuildGrid->setPosition({ 16, 16 });
   d_godModeBuildGrid->setSelectionEnabled(true);
@@ -483,17 +423,17 @@ void GuiManager::showOverlayUI()
   CONTRACT_EXPECT(d_overlay);
   CONTRACT_EXPECT(!d_overlayPanel);
 
-  d_overlayPanel = &createPanel(*d_inGameGui);
+  d_overlayPanel = &GuiCreator::createPanel(*d_inGameGui);
   d_overlayPanel->setTexture(Dx::TextureUtils::getTexture("White.png"));
   d_overlayPanel->setColor({ 0.5f, 0.5f, 0.5f, 0.5f });
   d_overlayPanel->setSize({ 200, 48 });
   d_overlayPanel->setPosition({ getResolution().x - d_overlayPanel->getSize().x, 0 });
 
-  auto& layout = createLayout(*d_overlayPanel);
+  auto& layout = GuiCreator::createLayout(*d_overlayPanel);
   layout.setSize(d_overlayPanel->getSize());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
   
-  auto& label = createLabel(layout);
+  auto& label = GuiCreator::createLabel(layout);
   label.setText(getOverlayName(d_overlay->getType()));
 
   if (d_overlay->getType() == OverlayType::Temp)
@@ -515,11 +455,11 @@ void GuiManager::showOverlayHintTemp()
 {
   CONTRACT_EXPECT(!d_overlayHint);
 
-  d_overlayHint = &createPanel(*d_inGameGui);
+  d_overlayHint = &GuiCreator::createPanel(*d_inGameGui);
   d_overlayHint->setTexture(Dx::TextureUtils::getTexture("White.png"));
   d_overlayHint->setColor({ 0.6f, 0.47f, 0.31f, 0.8f });
 
-  d_overlayHintLabel = &createLabel(*d_overlayHint);
+  d_overlayHintLabel = &GuiCreator::createLabel(*d_overlayHint);
   d_overlayHintLabel->setFont(Fonts::getInGameHintsFont());
 
   updateOverlayHint();
@@ -561,12 +501,12 @@ void GuiManager::showCtxMenu(const CtxMenuContent& i_ctxMenuContent)
 {
   hideCtxMenu();
 
-  d_ctxMenu = &createPanel(d_game.getForm());
+  d_ctxMenu = &GuiCreator::createPanel(d_game.getForm());
   d_ctxMenu->setTexture(Dx::TextureUtils::getTexture("White.png"));
   d_ctxMenu->setColor({ 0.6f, 0.47f, 0.31f, 0.8f });
   d_ctxMenu->setPosition(Dx::CursorUtils::getPosition().getVector<float>());
 
-  auto& label = createLabel(*d_ctxMenu);
+  auto& label = GuiCreator::createLabel(*d_ctxMenu);
   label.setFont(Fonts::getInGameHintsFont());
   label.setText(i_ctxMenuContent.getDescription());
 

@@ -28,9 +28,6 @@
     <Filter Include="src\World\Prototypes">
       <UniqueIdentifier>{a9e2c0db-f407-480a-bd16-c39061d2d113}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\GuiManager">
-      <UniqueIdentifier>{44c5d645-8436-415b-be99-f604882895e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\ActionsController">
       <UniqueIdentifier>{9863edc1-0a1a-441f-a787-22931fd2afdd}</UniqueIdentifier>
     </Filter>
@@ -66,6 +63,9 @@
     </Filter>
     <Filter Include="src\World\ObjectsSpawner">
       <UniqueIdentifier>{7212e8d2-47d8-4568-947d-3baa381727b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Gui">
+      <UniqueIdentifier>{44c5d645-8436-415b-be99-f604882895e7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,13 +109,13 @@
       <Filter>src\Game</Filter>
     </ClCompile>
     <ClCompile Include="GuiManager.cpp">
-      <Filter>src\GuiManager</Filter>
+      <Filter>src\Gui</Filter>
     </ClCompile>
     <ClCompile Include="ActionsController.cpp">
       <Filter>src\ActionsController</Filter>
     </ClCompile>
     <ClCompile Include="GodModeBuildGridItems.cpp">
-      <Filter>src\GuiManager</Filter>
+      <Filter>src\Gui</Filter>
     </ClCompile>
     <ClCompile Include="BuildManager.cpp">
       <Filter>src\Session\BuildManager</Filter>
@@ -264,6 +264,9 @@
     <ClCompile Include="CtxMenuContent.cpp">
       <Filter>src\Session\InteractionManager</Filter>
     </ClCompile>
+    <ClCompile Include="GuiCreator.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -315,13 +318,13 @@
       <Filter>src\Game</Filter>
     </ClInclude>
     <ClInclude Include="GuiManager.h">
-      <Filter>src\GuiManager</Filter>
+      <Filter>src\Gui</Filter>
     </ClInclude>
     <ClInclude Include="ActionsController.h">
       <Filter>src\ActionsController</Filter>
     </ClInclude>
     <ClInclude Include="GodModeBuildGridItems.h">
-      <Filter>src\GuiManager</Filter>
+      <Filter>src\Gui</Filter>
     </ClInclude>
     <ClInclude Include="BuildManager.h">
       <Filter>src\Session\BuildManager</Filter>
@@ -487,6 +490,9 @@
     </ClInclude>
     <ClInclude Include="CtxMenuContent.h">
       <Filter>src\Session\InteractionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiCreator.h">
+      <Filter>src\Gui</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
