@@ -20,6 +20,7 @@ void GasTankBehavior::pushFields()
   IBehaviorModel::pushFields();
 
   pushField("state", *((std::int32_t*)&d_state));
+  pushObject("volumeUnit", d_volumeUnit);
 }
 
 
@@ -43,7 +44,9 @@ Entity& GasTankBehavior::getGasTank() const
 void GasTankBehavior::setGasTank(Entity& i_gasTank)
 {
   d_gasTank = &i_gasTank;
-  d_volumeUnit.setVolume(d_gasTank->getPrototype().volume);
+
+  if (d_gasTank->hasPrototype())
+    d_volumeUnit.setVolume(d_gasTank->getPrototype().volume);
 }
 
 
