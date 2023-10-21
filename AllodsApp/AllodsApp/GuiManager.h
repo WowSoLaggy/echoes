@@ -27,7 +27,7 @@ private:
 
   void onGameStateChanged(GameState i_newState);
 
-  const Sdk::Vector2I& getResolution();
+  Sdk::Vector2F getResolution() const;
 
   void showLoadingScreen();
   void hideLoadingScreen();

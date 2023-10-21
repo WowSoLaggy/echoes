@@ -14,10 +14,10 @@ void GuiManager::showMainMenu()
 {
   auto& background = GuiCreator::createPanel(d_game.getForm());
   background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
-  background.setSize(getResolution().getVector<float>());
+  background.setSize(getResolution());
 
   auto& layout = GuiCreator::createLayout(d_game.getForm());
-  layout.setSize(getResolution().getVector<float>());
+  layout.setSize(getResolution());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
   {

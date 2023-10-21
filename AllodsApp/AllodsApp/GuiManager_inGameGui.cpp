@@ -24,7 +24,7 @@ void GuiManager::showInGameGui()
   const bool devMode = SAFE_DEREF(d_session).isDevMode();
 
   auto& devModeLayout = GuiCreator::createLayout(*d_inGameGui);
-  devModeLayout.setPosition({ 0, (float)getResolution().y });
+  devModeLayout.setPosition({ 0, getResolution().y });
   devModeLayout.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
 
   {

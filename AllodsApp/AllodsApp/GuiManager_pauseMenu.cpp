@@ -19,7 +19,7 @@ void GuiManager::showPauseMenu()
   d_pauseMenuPanel = &GuiCreator::createPanel(d_game.getForm());
   d_pauseMenuPanel->sendToFront();
   d_pauseMenuPanel->setTexture(Dx::TextureUtils::getTexture("Black.png"));
-  d_pauseMenuPanel->setSize(getResolution().getVector<float>());
+  d_pauseMenuPanel->setSize(getResolution());
   d_pauseMenuPanel->setColor(Dx::colorWithAlpha(Dx::Colors::White, 0.5f));
 
   auto& layout = GuiCreator::createLayout(*d_pauseMenuPanel);

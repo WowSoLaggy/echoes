@@ -56,10 +56,10 @@ void GuiManager::update()
 }
 
 
-const Sdk::Vector2I& GuiManager::getResolution()
+Sdk::Vector2F GuiManager::getResolution() const
 {
   const auto& rd = Dx::App::get().getRenderDevice();
-  return rd.getResolution();
+  return rd.getResolution().getVector<float>();
 }
 
 
