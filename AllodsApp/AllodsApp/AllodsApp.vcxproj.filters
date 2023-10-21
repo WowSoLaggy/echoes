@@ -267,6 +267,27 @@
     <ClCompile Include="GuiCreator.cpp">
       <Filter>src\Gui</Filter>
     </ClCompile>
+    <ClCompile Include="GuiManager_loadingScreen.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager_pauseMenu.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager_mainMenu.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager_inGameGui.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager_overlay.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager_ctxMenu.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager_devBuildMenu.cpp">
+      <Filter>src\Gui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

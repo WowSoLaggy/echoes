@@ -71,3 +71,10 @@ Dx::Grid& GuiCreator::createGrid(Dx::IControl& i_parent, const int i_slotsX, con
 
   return *ctrl;
 }
+
+
+void GuiCreator::createFakePanel(Dx::IControl& i_parent, const float i_height)
+{
+  auto& fakePanel = GuiCreator::createPanel(i_parent);
+  fakePanel.setSize({ 0, i_height });
+}

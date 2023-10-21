@@ -14,6 +14,8 @@ public:
   static Dx::Button& createMenuButton(Dx::IControl& i_parent);
   static Dx::Grid& createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY);
 
+  static void createFakePanel(Dx::IControl& i_parent, float i_height = 16);
+
 private:
   GuiCreator() = delete;
 };

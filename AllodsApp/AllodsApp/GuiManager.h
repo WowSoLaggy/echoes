@@ -27,11 +27,13 @@ private:
 
   void onGameStateChanged(GameState i_newState);
 
+  const Sdk::Vector2I& getResolution();
+
   void showLoadingScreen();
   void hideLoadingScreen();
   void showMainMenu();
   void hideMainMenu();
-  void recreateInGameMenu();
+  void recreateInGameGui();
   void showInGameGui();
   void hideInGameGui();
 
