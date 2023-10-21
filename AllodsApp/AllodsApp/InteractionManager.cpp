@@ -14,15 +14,12 @@ InteractionManager::InteractionManager(Session& i_session)
 }
 
 
-bool InteractionManager::onMouseClick(Dx::MouseKey i_key)
+bool InteractionManager::onMouseClick(const Dx::MouseKey i_key)
 {
   if (i_key == Dx::MouseKey::Left)
   {
     if (d_isContextMenuShown)
-    {
-      hideContextMenu();
-      return true;
-    }
+      return hideContextMenu();
     else
       return tryInteract();
   }
@@ -54,7 +51,6 @@ bool InteractionManager::showContextMenu()
     return hideContextMenu();
   
   d_isContextMenuShown = true;
-
   notify(ShowCtxMenuEvent(CtxMenuContent(*entityPtr)));
 
   return true;
