@@ -36,10 +36,10 @@ public:
 };
 
 
-class GodModeEvent : public Sdk::IEvent
+class DevModeSwitchEvent : public Sdk::IEvent
 {
 public:
-  GodModeEvent(const bool i_enabled)
+  DevModeSwitchEvent(const bool i_enabled)
     : d_enabled(i_enabled)
   {
   }

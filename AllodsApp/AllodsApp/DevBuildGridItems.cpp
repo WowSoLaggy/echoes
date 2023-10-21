@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "GodModeBuildGridItems.h"
+#include "DevBuildGridItems.h"
 
 #include "PrototypesCollection.h"
 
@@ -18,32 +18,32 @@ namespace
 } // anonym NS
 
 
-GodModeBuildGridDestroyItem::GodModeBuildGridDestroyItem()
+DevBuildGridDestroyItem::DevBuildGridDestroyItem()
 {
   setTexture(&Dx::TextureUtils::getTexture("Destroy.png"));
 }
 
 
-GodModeBuildGridItem::GodModeBuildGridItem(PrototypePtr i_prototype)
+DevBuildGridItem::DevBuildGridItem(PrototypePtr i_prototype)
   : d_prototype(i_prototype)
 {
   setTexture(SAFE_DEREF(i_prototype).texture);
 }
 
 
-PrototypePtr GodModeBuildGridItem::getPrototype() const
+PrototypePtr DevBuildGridItem::getPrototype() const
 {
   return d_prototype;
 }
 
 
-Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
+Dx::GridItems getDevBuildGridItems(const int i_gridSizeX)
 {
   Dx::GridItems items;
 
   // Destroy icon
 
-  items.push_back(std::make_shared<GodModeBuildGridDestroyItem>());
+  items.push_back(std::make_shared<DevBuildGridDestroyItem>());
   insertEmptyCells(items, i_gridSizeX - 1);
 
   // Structure prototypes per layers
@@ -60,7 +60,7 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
   for (const auto& [_, protos] : layersMap)
   {
     for (const auto& proto : protos)
-      items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
+      items.push_back(std::make_shared<DevBuildGridItem>(proto));
 
     const int emptyCellsAfterLayer = i_gridSizeX - (protos.size() % i_gridSizeX);
     insertEmptyCells(items, emptyCellsAfterLayer);
@@ -70,7 +70,7 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
 
   const auto& mounts = PrototypesCollection::getMountPrototypes();
   for (const auto& [_, proto] : mounts)
-    items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
+    items.push_back(std::make_shared<DevBuildGridItem>(proto));
   const int emptyCellsAfterMounts = i_gridSizeX - (mounts.size() % i_gridSizeX);
   insertEmptyCells(items, emptyCellsAfterMounts);
 
@@ -78,7 +78,7 @@ Dx::GridItems getGodModeBuildGridItems(const int i_gridSizeX)
 
   const auto& objects = PrototypesCollection::getObjectPrototypes();
   for (const auto& [_, proto] : objects)
-    items.push_back(std::make_shared<GodModeBuildGridItem>(proto));
+    items.push_back(std::make_shared<DevBuildGridItem>(proto));
   const int emptyCellsAfterObjects = i_gridSizeX - (objects.size() % i_gridSizeX);
   insertEmptyCells(items, emptyCellsAfterObjects);
 

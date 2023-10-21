@@ -46,9 +46,9 @@ public:
   void unpause(bool i_silent = false);
   bool isPause() const;
 
-  void enableGodMode();
-  void disableGodMode();
-  bool isGodMode() const;
+  void enableDevMode();
+  void disableDevMode();
+  bool isDevMode() const;
 
   const IOverlay* getOverlay() const;
   void setOverlay(OverlayType i_overlayType);
@@ -64,7 +64,7 @@ private:
   std::string d_currentLocationName;
   
   bool d_pause = false;
-  bool d_godMode = true;
+  bool d_devMode = true;
 
   BuildManager d_buildManager;
   InteractionManager d_interactionManager;

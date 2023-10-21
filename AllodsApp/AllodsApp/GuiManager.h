@@ -17,9 +17,9 @@ public:
 
   void update();
 
-  bool isGodModeBuildMenuShown() const;
-  void showGodModeBuildMenu();
-  void hideGodModeBuildMenu();
+  bool isDevBuildMenuShown() const;
+  void showDevBuildMenu();
+  void hideDevBuildMenu();
 
 private:
   Game& d_game;
@@ -38,12 +38,12 @@ private:
   void hideInGameGui();
 
   Dx::Control* d_inGameGui = nullptr;
-  void onBtnGodMode();
+  void onBtnDevMode();
   void onBtnLiveMode();
 
-  Dx::Grid* d_godModeBuildGrid = nullptr;
-  void onGodModeBuildSelectedItem(const Dx::GridItem& i_item);
-  void onGodModeBuildUnselectedItem();
+  Dx::Grid* d_devBuildGrid = nullptr;
+  void onDevBuildSelectedItem(const Dx::GridItem& i_item);
+  void onDevBuildUnselectedItem();
 
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);
@@ -52,9 +52,9 @@ private:
   void showPauseMenu();
   void hidePauseMenu();
   
-  void onGodModeEvent(bool i_enabled);
-  void onGodModeOn();
-  void onGodModeOff();
+  void onDevModeSwitchEvent(bool i_enabled);
+  void onDevModeOn();
+  void onDevModeOff();
 
   void onExitBuildRemoval();
 

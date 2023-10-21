@@ -172,7 +172,7 @@
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
     <ClCompile Include="GasTankBehavior.cpp" />
-    <ClCompile Include="GodModeBuildGridItems.cpp" />
+    <ClCompile Include="DevBuildGridItems.cpp" />
     <ClCompile Include="GuiCreator.cpp" />
     <ClCompile Include="GuiManager.cpp" />
     <ClCompile Include="GuiManager_ctxMenu.cpp" />
@@ -255,7 +255,7 @@
     <ClInclude Include="GameSettings.h" />
     <ClInclude Include="GameStates.h" />
     <ClInclude Include="GasTankBehavior.h" />
-    <ClInclude Include="GodModeBuildGridItems.h" />
+    <ClInclude Include="DevBuildGridItems.h" />
     <ClInclude Include="GuiCreator.h" />
     <ClInclude Include="GuiManager.h" />
     <ClInclude Include="BuildDraftInfo.h" />

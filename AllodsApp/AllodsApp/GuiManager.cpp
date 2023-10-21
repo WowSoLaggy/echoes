@@ -25,8 +25,8 @@ void GuiManager::processEvent(const Sdk::IEvent& i_event)
   else if (const auto* event = dynamic_cast<const SessionDetachedEvent*>(&i_event))
     onSessionDetached(event->getSession());
   
-  else if (const auto* event = dynamic_cast<const GodModeEvent*>(&i_event))
-    onGodModeEvent(event->getEnabled());
+  else if (const auto* event = dynamic_cast<const DevModeSwitchEvent*>(&i_event))
+    onDevModeSwitchEvent(event->getEnabled());
   
   else if (const auto* event = dynamic_cast<const PauseEvent*>(&i_event))
     showPauseMenu();
@@ -86,20 +86,20 @@ void GuiManager::onSessionDetached(Session& i_session)
 }
 
 
-void GuiManager::onGodModeEvent(bool i_enabled)
+void GuiManager::onDevModeSwitchEvent(bool i_enabled)
 {
-  i_enabled ? onGodModeOn() : onGodModeOff();
+  i_enabled ? onDevModeOn() : onDevModeOff();
 }
 
-void GuiManager::onGodModeOn()
+void GuiManager::onDevModeOn()
 {
   recreateInGameGui();
 }
 
-void GuiManager::onGodModeOff()
+void GuiManager::onDevModeOff()
 {
   recreateInGameGui();
-  hideGodModeBuildMenu();
+  hideDevBuildMenu();
 }
 
 

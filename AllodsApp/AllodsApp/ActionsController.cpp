@@ -19,14 +19,14 @@ void ActionsController::processEvent(const Sdk::IEvent& i_event)
     onSessionAttached(event->getSession());
   else if (const auto* event = dynamic_cast<const SessionDetachedEvent*>(&i_event))
     onSessionDetached(event->getSession());
-  else if (const auto* event = dynamic_cast<const GodModeEvent*>(&i_event))
-    onGodMode(event->getEnabled());
+  else if (const auto* event = dynamic_cast<const DevModeSwitchEvent*>(&i_event))
+    onDevModeSwitch(event->getEnabled());
 }
 
 
 void ActionsController::onSessionAttached(Session& i_session)
 {
-  onGodMode(i_session.isGodMode());
+  onDevModeSwitch(i_session.isDevMode());
   connectTo(i_session);
 }
 
@@ -36,9 +36,9 @@ void ActionsController::onSessionDetached(Session& i_session)
   setMainMenuActions();
 }
 
-void ActionsController::onGodMode(const bool i_enabled)
+void ActionsController::onDevModeSwitch(const bool i_enabled)
 {
-  i_enabled ? setGodModeActions() : setLiveModeActions();
+  i_enabled ? setDevModeActions() : setLiveModeActions();
 }
 
 
@@ -56,13 +56,13 @@ Dx::ActionsMap ActionsController::getCommonActions()
   return actions;
 }
 
-void ActionsController::setGodModeActions()
+void ActionsController::setDevModeActions()
 {
   auto actions = getCommonActions();
 
-  setOnPress(actions, Dx::KeyboardKey::F2, &ActionsController::disableGodMode);
+  setOnPress(actions, Dx::KeyboardKey::F2, &ActionsController::disableDevMode);
 
-  setOnPress(actions, Dx::KeyboardKey::B, &ActionsController::switchGodModeBuildMenu);
+  setOnPress(actions, Dx::KeyboardKey::B, &ActionsController::switchDevBuildMenu);
 
   setOnPress(actions, Dx::KeyboardKey::F5, &ActionsController::switchTempOverlay);
   setOnPress(actions, Dx::KeyboardKey::F6, &ActionsController::switchAtmoOverlay);
@@ -77,7 +77,7 @@ void ActionsController::setLiveModeActions()
 {
   auto actions = getCommonActions();
 
-  setOnPress(actions, Dx::KeyboardKey::F1, &ActionsController::enableGodMode);
+  setOnPress(actions, Dx::KeyboardKey::F1, &ActionsController::enableDevMode);
 
   d_game.setActionsMap(std::move(actions));
 }
@@ -94,23 +94,23 @@ void ActionsController::escapePress()
   SAFE_DEREF(d_game.getSession()).onEscape();
 }
 
-void ActionsController::enableGodMode()
+void ActionsController::enableDevMode()
 {
-  SAFE_DEREF(d_game.getSession()).enableGodMode();
+  SAFE_DEREF(d_game.getSession()).enableDevMode();
 }
 
-void ActionsController::disableGodMode()
+void ActionsController::disableDevMode()
 {
-  SAFE_DEREF(d_game.getSession()).disableGodMode();
+  SAFE_DEREF(d_game.getSession()).disableDevMode();
 }
 
 
-void ActionsController::switchGodModeBuildMenu()
+void ActionsController::switchDevBuildMenu()
 {
-  if (d_game.getGui().isGodModeBuildMenuShown())
-    d_game.getGui().hideGodModeBuildMenu();
+  if (d_game.getGui().isDevBuildMenuShown())
+    d_game.getGui().hideDevBuildMenu();
   else
-    d_game.getGui().showGodModeBuildMenu();
+    d_game.getGui().showDevBuildMenu();
 }
 
 

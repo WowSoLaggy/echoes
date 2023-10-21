@@ -20,11 +20,11 @@ private:
 
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);
-  void onGodMode(bool i_enabled);
+  void onDevModeSwitch(bool i_enabled);
 
   void setMainMenuActions();
   Dx::ActionsMap getCommonActions();
-  void setGodModeActions();
+  void setDevModeActions();
   void setLiveModeActions();
 
   void setOnPress(Dx::ActionsMap& i_map, Dx::KeyboardKey i_key, auto i_func);
@@ -35,10 +35,10 @@ private:
 
   void escapePress();
 
-  void enableGodMode();
-  void disableGodMode();
+  void enableDevMode();
+  void disableDevMode();
 
-  void switchGodModeBuildMenu();
+  void switchDevBuildMenu();
 
   void switchTempOverlay();
   void switchAtmoOverlay();

@@ -114,7 +114,7 @@
     <ClCompile Include="ActionsController.cpp">
       <Filter>src\ActionsController</Filter>
     </ClCompile>
-    <ClCompile Include="GodModeBuildGridItems.cpp">
+    <ClCompile Include="DevBuildGridItems.cpp">
       <Filter>src\Gui</Filter>
     </ClCompile>
     <ClCompile Include="BuildManager.cpp">
@@ -344,7 +344,7 @@
     <ClInclude Include="ActionsController.h">
       <Filter>src\ActionsController</Filter>
     </ClInclude>
-    <ClInclude Include="GodModeBuildGridItems.h">
+    <ClInclude Include="DevBuildGridItems.h">
       <Filter>src\Gui</Filter>
     </ClInclude>
     <ClInclude Include="BuildManager.h">

@@ -21,23 +21,23 @@ void GuiManager::showInGameGui()
 
   d_inGameGui = &GuiCreator::createControl(d_game.getForm());
 
-  const bool godMode = SAFE_DEREF(d_session).isGodMode();
+  const bool devMode = SAFE_DEREF(d_session).isDevMode();
 
-  auto& godModeLayout = GuiCreator::createLayout(*d_inGameGui);
-  godModeLayout.setPosition({ 0, (float)getResolution().y });
-  godModeLayout.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
+  auto& devModeLayout = GuiCreator::createLayout(*d_inGameGui);
+  devModeLayout.setPosition({ 0, (float)getResolution().y });
+  devModeLayout.setAlign(Dx::LayoutAlign::LeftToRight_BottomSide);
 
   {
-    auto& btn = GuiCreator::createButton(godModeLayout);
-    btn.setTextureName(godMode ? "f1_enabled.png" : "f1_disabled.png");
-    if (!godMode)
-      btn.setOnPress(std::bind(&GuiManager::onBtnGodMode, this));
+    auto& btn = GuiCreator::createButton(devModeLayout);
+    btn.setTextureName(devMode ? "f1_enabled.png" : "f1_disabled.png");
+    if (!devMode)
+      btn.setOnPress(std::bind(&GuiManager::onBtnDevMode, this));
   }
 
   {
-    auto& btn = GuiCreator::createButton(godModeLayout);
-    btn.setTextureName(godMode ? "f2_disabled.png" : "f2_enabled.png");
-    if (godMode)
+    auto& btn = GuiCreator::createButton(devModeLayout);
+    btn.setTextureName(devMode ? "f2_disabled.png" : "f2_enabled.png");
+    if (devMode)
       btn.setOnPress(std::bind(&GuiManager::onBtnLiveMode, this));
   }
 
@@ -51,7 +51,7 @@ void GuiManager::hideInGameGui()
   CONTRACT_EXPECT(d_inGameGui);
 
   hideOverlayUI();
-  hideGodModeBuildMenu();
+  hideDevBuildMenu();
   hideCtxMenu();
 
   d_inGameGui->setParent(nullptr);
@@ -59,14 +59,14 @@ void GuiManager::hideInGameGui()
 }
 
 
-void GuiManager::onBtnGodMode()
+void GuiManager::onBtnDevMode()
 {
   CONTRACT_EXPECT(d_session);
-  d_session->enableGodMode();
+  d_session->enableDevMode();
 }
 
 void GuiManager::onBtnLiveMode()
 {
   CONTRACT_EXPECT(d_session);
-  d_session->disableGodMode();
+  d_session->disableDevMode();
 }

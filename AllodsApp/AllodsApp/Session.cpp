@@ -136,30 +136,30 @@ Dx::ICamera2& Session::getCamera() const
 }
 
 
-void Session::enableGodMode()
+void Session::enableDevMode()
 {
-  if (d_godMode)
+  if (d_devMode)
     return;
 
-  d_godMode = true;
+  d_devMode = true;
 
-  notify(GodModeEvent(d_godMode));
+  notify(DevModeSwitchEvent(d_devMode));
 }
 
-void Session::disableGodMode()
+void Session::disableDevMode()
 {
-  if (!d_godMode)
+  if (!d_devMode)
     return;
 
   resetOverlay();
-  d_godMode = false;
+  d_devMode = false;
 
-  notify(GodModeEvent(d_godMode));
+  notify(DevModeSwitchEvent(d_devMode));
 }
 
-bool Session::isGodMode() const
+bool Session::isDevMode() const
 {
-  return d_godMode;
+  return d_devMode;
 }
 
 
