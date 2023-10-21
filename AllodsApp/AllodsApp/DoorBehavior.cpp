@@ -7,6 +7,20 @@
 #include <LaggyDx/AnimationEvents.h>
 
 
+namespace
+{
+  const std::unordered_map<DoorBehavior::State, std::string> DoorBehaviorStatesStrings {
+    { DoorBehavior::State::Open, "Open" },
+    { DoorBehavior::State::Opening, "Opening" },
+    { DoorBehavior::State::Closing, "Closing" },
+    { DoorBehavior::State::Closed, "Closed" },
+  };
+
+} // anonym NS
+
+DEFINE_ENUM_STR(DoorBehavior::State, DoorBehaviorStatesStrings)
+
+
 DoorBehavior::DoorBehavior()
 {
 }
@@ -44,6 +58,11 @@ void DoorBehavior::interact()
 BehaviorModel DoorBehavior::getModelType() const
 {
   return BehaviorModel::Door;
+}
+
+std::string DoorBehavior::getDescription() const
+{
+  return "State: " + StateStr::toString(d_state);
 }
 
 

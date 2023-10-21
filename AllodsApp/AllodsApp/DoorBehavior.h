@@ -9,6 +9,16 @@
 class DoorBehavior : public IBehaviorModel, public Sdk::EventHandler
 {
 public:
+  enum class State : std::int32_t
+  {
+    Open = 0,
+    Opening,
+    Closing,
+    Closed,
+  };
+  DECLARE_ENUM_STR(State);
+
+public:
   DoorBehavior();
   DoorBehavior(Entity& i_door);
 
@@ -17,6 +27,7 @@ public:
   virtual void interact() override;
 
   virtual BehaviorModel getModelType() const override;
+  virtual std::string getDescription() const override;
 
   void setDoor(Entity& i_door);
 
@@ -24,15 +35,6 @@ public:
   void close();
 
 private:
-  
-  enum class State : std::int32_t
-  {
-    Open = 0,
-    Opening,
-    Closing,
-    Closed,
-  };
-
   Entity* d_door = nullptr;
   State d_state = State::Closed;
 

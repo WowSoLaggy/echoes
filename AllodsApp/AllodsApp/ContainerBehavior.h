@@ -7,6 +7,14 @@
 class ContainerBehavior : public IBehaviorModel
 {
 public:
+  enum class State : std::int32_t
+  {
+    Closed = 0,
+    Open,
+  };
+  DECLARE_ENUM_STR(State);
+
+public:
   ContainerBehavior();
   ContainerBehavior(Entity& i_container);
 
@@ -14,6 +22,7 @@ public:
   virtual void interact() override;
 
   virtual BehaviorModel getModelType() const override;
+  virtual std::string getDescription() const override;
 
   void setContainer(Entity& i_container);
 
@@ -25,13 +34,6 @@ public:
   bool isClosed();
 
 private:
-
-  enum class State : std::int32_t
-  {
-    Closed = 0,
-    Open,
-  };
-
   Entity* d_container = nullptr;
   State d_state = State::Closed;
 

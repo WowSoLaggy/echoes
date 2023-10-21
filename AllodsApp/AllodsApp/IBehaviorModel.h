@@ -20,6 +20,7 @@ public:
   virtual void interact();
 
   virtual BehaviorModel getModelType() const = 0;
+  virtual std::string getDescription() const = 0;
 
 private:
   int d_modelTypeCache = 0;

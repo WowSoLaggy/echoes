@@ -8,6 +8,14 @@
 class GasTankBehavior : public IBehaviorModel
 {
 public:
+  enum class State : std::int32_t
+  {
+    Open = 0,
+    Close,
+  };
+  DECLARE_ENUM_STR(State);
+
+public:
   GasTankBehavior();
   GasTankBehavior(Entity& i_gasTank);
 
@@ -15,6 +23,7 @@ public:
   virtual void interact() override;
 
   virtual BehaviorModel getModelType() const override;
+  virtual std::string getDescription() const override;
 
   void setGasTank(Entity& i_gasTank);
 
@@ -26,13 +35,6 @@ public:
   bool isClose() const;
 
 private:
-
-  enum class State : std::int32_t
-  {
-    Open = 0,
-    Close,
-  };
-
   Entity* d_gasTank = nullptr;
   State d_state = State::Open;
 

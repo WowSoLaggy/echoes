@@ -5,6 +5,18 @@
 #include "Prototypes.h"
 
 
+namespace
+{
+  const std::unordered_map<GasTankBehavior::State, std::string> GasTankBehaviorStatesStrings {
+    { GasTankBehavior::State::Open, "Open" },
+    { GasTankBehavior::State::Close, "Close" },
+  };
+
+} // anonym NS
+
+DEFINE_ENUM_STR(GasTankBehavior::State, GasTankBehaviorStatesStrings)
+
+
 GasTankBehavior::GasTankBehavior()
 {
 }
@@ -33,6 +45,11 @@ void GasTankBehavior::interact()
 BehaviorModel GasTankBehavior::getModelType() const
 {
   return BehaviorModel::GasTank;
+}
+
+std::string GasTankBehavior::getDescription() const
+{
+  return "State: " + StateStr::toString(d_state);
 }
 
 

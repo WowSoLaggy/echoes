@@ -4,6 +4,18 @@
 #include "AnimationUtils.h"
 
 
+namespace
+{
+  const std::unordered_map<LampBehavior::State, std::string> LampBehaviorStatesStrings {
+    { LampBehavior::State::On, "On" },
+    { LampBehavior::State::Off, "Off" },
+  };
+
+} // anonym NS
+
+DEFINE_ENUM_STR(LampBehavior::State, LampBehaviorStatesStrings)
+
+
 LampBehavior::LampBehavior()
 {
 }
@@ -31,6 +43,11 @@ void LampBehavior::interact()
 BehaviorModel LampBehavior::getModelType() const
 {
   return BehaviorModel::Lamp;
+}
+
+std::string LampBehavior::getDescription() const
+{
+  return "State: " + StateStr::toString(d_state);
 }
 
 

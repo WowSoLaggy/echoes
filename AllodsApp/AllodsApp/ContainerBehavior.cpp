@@ -4,6 +4,18 @@
 #include "AnimationUtils.h"
 
 
+namespace
+{
+  const std::unordered_map<ContainerBehavior::State, std::string> ContainerBehaviorStatesStrings {
+    { ContainerBehavior::State::Open, "Open" },
+    { ContainerBehavior::State::Closed, "Closed" },
+  };
+
+} // anonym NS
+
+DEFINE_ENUM_STR(ContainerBehavior::State, ContainerBehaviorStatesStrings)
+
+
 ContainerBehavior::ContainerBehavior()
 {
 }
@@ -31,6 +43,11 @@ void ContainerBehavior::interact()
 BehaviorModel ContainerBehavior::getModelType() const
 {
   return BehaviorModel::Container;
+}
+
+std::string ContainerBehavior::getDescription() const
+{
+  return "State: " + StateStr::toString(d_state);
 }
 
 
