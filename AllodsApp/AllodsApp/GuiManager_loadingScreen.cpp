@@ -12,11 +12,11 @@
 
 void GuiManager::showLoadingScreen()
 {
-  auto& background = GuiCreator::createPanel(d_game.getForm());
-  background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
-  background.setSize(getResolution());
+  d_background = &GuiCreator::createPanel(d_game.getForm());
+  d_background->setTexture(Dx::TextureUtils::getTexture("Black.png"));
+  d_background->setSize(getResolution());
 
-  auto& layout = GuiCreator::createLayout(background);
+  auto& layout = GuiCreator::createLayout(*d_background);
   layout.setSize(getResolution());
   layout.setAlign(Dx::LayoutAlign::TopToBottom_Center);
 
@@ -26,5 +26,8 @@ void GuiManager::showLoadingScreen()
 
 void GuiManager::hideLoadingScreen()
 {
-  d_game.getForm().removeChildren();
+  CONTRACT_EXPECT(d_background);
+
+  d_background->setParent(nullptr);
+  d_background = nullptr;
 }

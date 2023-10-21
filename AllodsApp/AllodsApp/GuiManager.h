@@ -29,8 +29,10 @@ private:
 
   Sdk::Vector2F getResolution() const;
 
+  Dx::Panel* d_background = nullptr;
   void showLoadingScreen();
   void hideLoadingScreen();
+
   void showMainMenu();
   void hideMainMenu();
   void recreateInGameGui();
