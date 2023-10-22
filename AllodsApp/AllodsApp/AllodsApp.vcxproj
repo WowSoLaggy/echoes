@@ -173,6 +173,9 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Game_session.cpp" />
     <ClCompile Include="Game_state.cpp" />
+    <ClCompile Include="Gases.cpp" />
+    <ClCompile Include="GasPrototypesCollection.cpp" />
+    <ClCompile Include="GasPrototypesLoader.cpp" />
     <ClCompile Include="GasTankBehavior.cpp" />
     <ClCompile Include="DevBuildGridItems.cpp" />
     <ClCompile Include="GuiCreator.cpp" />
@@ -226,6 +229,7 @@
     <ClCompile Include="TileThd.cpp" />
     <ClCompile Include="TileUtils.cpp" />
     <ClCompile Include="TileView.cpp" />
+    <ClCompile Include="Units.cpp" />
     <ClCompile Include="ViewController.cpp" />
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="LocationCreator.cpp" />
@@ -258,6 +262,9 @@
     <ClInclude Include="GameEvents.h" />
     <ClInclude Include="GameSettings.h" />
     <ClInclude Include="GameStates.h" />
+    <ClInclude Include="Gases.h" />
+    <ClInclude Include="GasPrototypesCollection.h" />
+    <ClInclude Include="GasPrototypesLoader.h" />
     <ClInclude Include="GasTankBehavior.h" />
     <ClInclude Include="DevBuildGridItems.h" />
     <ClInclude Include="GuiCreator.h" />
@@ -304,6 +311,7 @@
     <ClInclude Include="TileThd.h" />
     <ClInclude Include="TileUtils.h" />
     <ClInclude Include="TileView.h" />
+    <ClInclude Include="Units.h" />
     <ClInclude Include="ViewController.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="LocationEvents.h" />

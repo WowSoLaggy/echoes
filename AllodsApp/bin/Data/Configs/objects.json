@@ -8,6 +8,6 @@
   {
     "TextureName": "GasTank.png",
     "Behavior": "GasTank",
-    "Volume": 1
+    "Volume": 0.08
   }
 }

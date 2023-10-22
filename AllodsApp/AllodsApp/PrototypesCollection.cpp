@@ -6,15 +6,15 @@
 
 namespace
 {
-  PrototypesMap d_allPrototypes;
-  PrototypesMap d_avatarPrototypes;
-  PrototypesMap d_mountPrototypes;
-  PrototypesMap d_structurePrototypes;
-  PrototypesMap d_objectPrototypes;
+  PrototypesMap g_allPrototypes;
+  PrototypesMap g_avatarPrototypes;
+  PrototypesMap g_mountPrototypes;
+  PrototypesMap g_structurePrototypes;
+  PrototypesMap g_objectPrototypes;
 
   void checkNameIsNotDuplicated(const std::string& i_name)
   {
-    CONTRACT_ASSERT(!d_allPrototypes.contains(i_name), "Duplicated prototype name: " + i_name);
+    CONTRACT_ASSERT(!g_allPrototypes.contains(i_name), "Duplicated prototype name: " + i_name);
   }
 
 } // anonym NS
@@ -35,11 +35,11 @@ void PrototypesCollection::load(const fs::path& i_prototypesFolder)
 
 void PrototypesCollection::clearPrototypes()
 {
-  d_allPrototypes.clear();
-  d_avatarPrototypes.clear();
-  d_mountPrototypes.clear();
-  d_structurePrototypes.clear();
-  d_objectPrototypes.clear();
+  g_allPrototypes.clear();
+  g_avatarPrototypes.clear();
+  g_mountPrototypes.clear();
+  g_structurePrototypes.clear();
+  g_objectPrototypes.clear();
 }
 
 
@@ -53,8 +53,8 @@ void PrototypesCollection::loadAvatars(const fs::path& i_prototypesFolder)
     const auto& prototype = SAFE_DEREF(prototypePtr);
     checkNameIsNotDuplicated(prototype.name);
 
-    d_allPrototypes[prototype.name] = prototypePtr;
-    d_avatarPrototypes[prototype.name] = prototypePtr;
+    g_allPrototypes[prototype.name] = prototypePtr;
+    g_avatarPrototypes[prototype.name] = prototypePtr;
   }
 }
 
@@ -68,8 +68,8 @@ void PrototypesCollection::loadMounts(const fs::path& i_prototypesFolder)
     const auto& prototype = SAFE_DEREF(prototypePtr);
     checkNameIsNotDuplicated(prototype.name);
 
-    d_allPrototypes[prototype.name] = prototypePtr;
-    d_mountPrototypes[prototype.name] = prototypePtr;
+    g_allPrototypes[prototype.name] = prototypePtr;
+    g_mountPrototypes[prototype.name] = prototypePtr;
   }
 }
 
@@ -83,8 +83,8 @@ void PrototypesCollection::loadStructures(const fs::path& i_prototypesFolder)
     const auto& prototype = SAFE_DEREF(prototypePtr);
     checkNameIsNotDuplicated(prototype.name);
 
-    d_allPrototypes[prototype.name] = prototypePtr;
-    d_structurePrototypes[prototype.name] = prototypePtr;
+    g_allPrototypes[prototype.name] = prototypePtr;
+    g_structurePrototypes[prototype.name] = prototypePtr;
   }
 }
 
@@ -98,59 +98,59 @@ void PrototypesCollection::loadObjects(const fs::path& i_prototypesFolder)
     const auto& prototype = SAFE_DEREF(prototypePtr);
     checkNameIsNotDuplicated(prototype.name);
 
-    d_allPrototypes[prototype.name] = prototypePtr;
-    d_objectPrototypes[prototype.name] = prototypePtr;
+    g_allPrototypes[prototype.name] = prototypePtr;
+    g_objectPrototypes[prototype.name] = prototypePtr;
   }
 }
 
 
 PrototypePtr PrototypesCollection::getPrototype(const PrototypeName& i_name)
 {
-  return d_allPrototypes.at(i_name);
+  return g_allPrototypes.at(i_name);
 }
 
 PrototypePtr PrototypesCollection::getAvatarPrototype(const PrototypeName& i_name)
 {
-  return d_avatarPrototypes.at(i_name);
+  return g_avatarPrototypes.at(i_name);
 }
 
 PrototypePtr PrototypesCollection::getMountPrototype(const PrototypeName& i_name)
 {
-  return d_mountPrototypes.at(i_name);
+  return g_mountPrototypes.at(i_name);
 }
 
 PrototypePtr PrototypesCollection::getStructurePrototype(const PrototypeName& i_name)
 {
-  return d_structurePrototypes.at(i_name);
+  return g_structurePrototypes.at(i_name);
 }
 
 PrototypePtr PrototypesCollection::getObjectPrototype(const PrototypeName& i_name)
 {
-  return d_objectPrototypes.at(i_name);
+  return g_objectPrototypes.at(i_name);
 }
 
 
 const PrototypesMap& PrototypesCollection::getAllPrototypes()
 {
-  return d_allPrototypes;
+  return g_allPrototypes;
 }
 
 const PrototypesMap& PrototypesCollection::getAvatarPrototypes()
 {
-  return d_avatarPrototypes;
+  return g_avatarPrototypes;
 }
 
 const PrototypesMap& PrototypesCollection::getMountPrototypes()
 {
-  return d_mountPrototypes;
+  return g_mountPrototypes;
 }
 
 const PrototypesMap& PrototypesCollection::getStructurePrototypes()
 {
-  return d_structurePrototypes;
+  return g_structurePrototypes;
 }
 
 const PrototypesMap& PrototypesCollection::getObjectPrototypes()
 {
-  return d_objectPrototypes;
+  return g_objectPrototypes;
 }

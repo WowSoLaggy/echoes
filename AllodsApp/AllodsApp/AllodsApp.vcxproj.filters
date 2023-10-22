@@ -70,6 +70,9 @@
     <Filter Include="src\Gui\Controls">
       <UniqueIdentifier>{a01f2648-e1b2-4bb9-92bd-ea17a7a816a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Thermodyamics\Gases">
+      <UniqueIdentifier>{bb3309cf-e281-422b-935b-7f6e52e250ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -296,6 +299,18 @@
     </ClCompile>
     <ClCompile Include="CtxMenu.cpp">
       <Filter>src\Gui\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Gases.cpp">
+      <Filter>src\Thermodyamics\Gases</Filter>
+    </ClCompile>
+    <ClCompile Include="GasPrototypesCollection.cpp">
+      <Filter>src\Thermodyamics\Gases</Filter>
+    </ClCompile>
+    <ClCompile Include="GasPrototypesLoader.cpp">
+      <Filter>src\Thermodyamics\Gases</Filter>
+    </ClCompile>
+    <ClCompile Include="Units.cpp">
+      <Filter>src\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -529,6 +544,18 @@
     </ClInclude>
     <ClInclude Include="CtxMenu.h">
       <Filter>src\Gui\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Gases.h">
+      <Filter>src\Thermodyamics\Gases</Filter>
+    </ClInclude>
+    <ClInclude Include="GasPrototypesCollection.h">
+      <Filter>src\Thermodyamics\Gases</Filter>
+    </ClInclude>
+    <ClInclude Include="GasPrototypesLoader.h">
+      <Filter>src\Thermodyamics\Gases</Filter>
+    </ClInclude>
+    <ClInclude Include="Units.h">
+      <Filter>src\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

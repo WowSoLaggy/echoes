@@ -2,6 +2,7 @@
 #include "Game.h"
 
 #include "GameEvents.h"
+#include "GasPrototypesCollection.h"
 #include "PrototypesCollection.h"
 
 #include <LaggySdk/Files.h>
@@ -72,6 +73,8 @@ std::optional<std::string> Game::loadResources()
 
     const fs::path configsPath = Sdk::getExeFolder() / getSettings().dataFolder / "Configs";
     PrototypesCollection::load(configsPath);
+
+    GasPrototypesCollection::initialize();
   }
   catch (const Sdk::DxException& i_exc)
   {

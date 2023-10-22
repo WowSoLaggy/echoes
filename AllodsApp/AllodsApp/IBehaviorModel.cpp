@@ -77,7 +77,7 @@ void IBehaviorModel::interact()
 }
 
 
-BehaviorActions IBehaviorModel::getActions(bool i_devMode) const
+BehaviorActions IBehaviorModel::getActions(bool i_devMode)
 {
   return {};
 }

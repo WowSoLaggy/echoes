@@ -3,7 +3,13 @@
 
 #include "BehaviorAction.h"
 #include "Entity.h"
+#include "GasPrototypesCollection.h"
 #include "Prototypes.h"
+#include "Units.h"
+
+#include <LaggyDx/GasPrototype.h>
+
+#include <LaggySdk/StringUtils.h>
 
 
 namespace
@@ -50,15 +56,21 @@ BehaviorModel GasTankBehavior::getModelType() const
 
 std::string GasTankBehavior::getDescription() const
 {
-  return "State: " + StateStr::toString(d_state);
+  return
+    "State: " + StateStr::toString(d_state) + "\n" +
+    "Pressure: " + Sdk::toString(Units::paToKPa(d_volumeUnit.getPressure()), 2) + " KPa";
 }
 
-BehaviorActions GasTankBehavior::getActions(bool i_devMode) const
+BehaviorActions GasTankBehavior::getActions(bool i_devMode)
 {
   auto actions = IBehaviorModel::getActions(i_devMode);
 
   if (i_devMode)
-    actions.push_back(std::make_shared<BehaviorAction>("test", []() {}, true));
+    actions.push_back(std::make_shared<BehaviorAction>("test",
+      [&]() {
+        d_volumeUnit.addGas(GasPrototypesCollection::get(Gas::Oxygen).id, 1000000);
+      },
+      true));
 
   return actions;
 }

@@ -21,7 +21,7 @@ public:
 
   virtual BehaviorModel getModelType() const = 0;
   virtual std::string getDescription() const = 0;
-  virtual BehaviorActions getActions(bool i_devMode) const;
+  virtual BehaviorActions getActions(bool i_devMode);
 
 private:
   int d_modelTypeCache = 0;

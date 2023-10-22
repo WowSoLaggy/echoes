@@ -24,7 +24,7 @@ public:
 
   virtual BehaviorModel getModelType() const override;
   virtual std::string getDescription() const override;
-  virtual BehaviorActions getActions(bool i_devMode) const override;
+  virtual BehaviorActions getActions(bool i_devMode) override;
 
   void setGasTank(Entity& i_gasTank);
 
