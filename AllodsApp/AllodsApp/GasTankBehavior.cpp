@@ -10,7 +10,7 @@ namespace
 {
   const std::unordered_map<GasTankBehavior::State, std::string> GasTankBehaviorStatesStrings {
     { GasTankBehavior::State::Open, "Open" },
-    { GasTankBehavior::State::Close, "Close" },
+    { GasTankBehavior::State::Closed, "Closed" },
   };
 
 } // anonym NS
@@ -91,7 +91,7 @@ void GasTankBehavior::close()
   if (isClose())
     return;
 
-  d_state = State::Close;
+  d_state = State::Closed;
 }
 
 void GasTankBehavior::switchState()
@@ -110,5 +110,5 @@ bool GasTankBehavior::isOpen() const
 
 bool GasTankBehavior::isClose() const
 {
-  return d_state == State::Close;
+  return d_state == State::Closed;
 }

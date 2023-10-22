@@ -54,7 +54,11 @@
             "behaviorModel" : 
             {
               "modelType" : 4,
-              "state" : 0
+              "state" : 1,
+              "volumeUnit" : 
+              {
+                "volume" : 1.0
+              }
             },
             "position" : 
             {

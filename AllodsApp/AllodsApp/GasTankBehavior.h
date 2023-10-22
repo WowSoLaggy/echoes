@@ -11,7 +11,7 @@ public:
   enum class State : std::int32_t
   {
     Open = 0,
-    Close,
+    Closed,
   };
   DECLARE_ENUM_STR(State);
 
@@ -37,7 +37,7 @@ public:
 
 private:
   Entity* d_gasTank = nullptr;
-  State d_state = State::Open;
+  State d_state = State::Closed;
 
   Entity& getGasTank() const;
 
