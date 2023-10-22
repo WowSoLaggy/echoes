@@ -11,6 +11,7 @@ class Entity;
 class Fixture;
 class Game;
 class IBehaviorModel;
+class InteractionManager;
 class IOverlay;
 class Location;
 class Mount;

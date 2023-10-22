@@ -4,6 +4,7 @@
 #include "CtxMenu.h"
 #include "Game.h"
 #include "GuiCreator.h"
+#include "Session.h"
 
 #include <LaggyDx/CursorUtils.h>
 
@@ -12,7 +13,9 @@ void GuiManager::showCtxMenu(const CtxMenuContent& i_ctxMenuContent)
 {
   hideCtxMenu();
 
-  d_ctxMenu = &GuiCreator::createCtxMenu(d_game.getForm());
+  d_ctxMenu = &GuiCreator::createCtxMenu(
+    d_game.getForm(),
+    SAFE_DEREF(d_session).getInteractionManger());
   d_ctxMenu->setContext(i_ctxMenuContent);
   d_ctxMenu->setPosition(Dx::CursorUtils::getPosition().getVector<float>());
 }

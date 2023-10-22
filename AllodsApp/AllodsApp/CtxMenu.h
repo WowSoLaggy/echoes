@@ -9,11 +9,15 @@
 class CtxMenu : public Dx::Panel
 {
 public:
+  CtxMenu(InteractionManager& i_interactionManager);
+
+  virtual void processEvent(const Sdk::IEvent& i_event) override;
+
   void setContext(const CtxMenuContent& i_ctxMenuContent);
 
-  void setText();
-  void setActions();
-
 private:
+  InteractionManager& d_interactionManager;
   Dx::Label* d_label = nullptr;
+
+  void onChildPressed();
 };

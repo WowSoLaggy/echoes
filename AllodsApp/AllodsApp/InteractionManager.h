@@ -14,13 +14,13 @@ public:
 
   bool onMouseClick(Dx::MouseKey i_key);
 
+  bool showCtxMenu();
+  bool hideCtxMenu();
+
 private:
   Session& d_session;
 
-  bool d_isContextMenuShown = false;
+  bool d_isCtxMenuShown = false;
 
   bool tryInteract();
-
-  bool showContextMenu();
-  bool hideContextMenu();
 };

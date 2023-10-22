@@ -18,13 +18,13 @@ bool InteractionManager::onMouseClick(const Dx::MouseKey i_key)
 {
   if (i_key == Dx::MouseKey::Left)
   {
-    if (d_isContextMenuShown)
-      return hideContextMenu();
+    if (d_isCtxMenuShown)
+      return hideCtxMenu();
     else
       return tryInteract();
   }
   else if (i_key == Dx::MouseKey::Right)
-    return showContextMenu();
+    return showCtxMenu();
 
   return false;
 }
@@ -44,24 +44,24 @@ bool InteractionManager::tryInteract()
   return false;
 }
 
-bool InteractionManager::showContextMenu()
+bool InteractionManager::showCtxMenu()
 {
   const auto entityPtr = ItemPicker(d_session).pick();
   if (entityPtr == nullptr)
-    return hideContextMenu();
+    return hideCtxMenu();
   
-  d_isContextMenuShown = true;
+  d_isCtxMenuShown = true;
   notify(ShowCtxMenuEvent(CtxMenuContent(*entityPtr, d_session.isDevMode())));
 
   return true;
 }
 
-bool InteractionManager::hideContextMenu()
+bool InteractionManager::hideCtxMenu()
 {
-  if (!d_isContextMenuShown)
+  if (!d_isCtxMenuShown)
     return false;
 
-  d_isContextMenuShown = false;
+  d_isCtxMenuShown = false;
   notify(HideCtxMenuEvent());
 
   return true;

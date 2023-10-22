@@ -83,9 +83,9 @@ Dx::Grid& GuiCreator::createGrid(Dx::IControl& i_parent, const int i_slotsX, con
 }
 
 
-CtxMenu& GuiCreator::createCtxMenu(Dx::IControl& i_parent)
+CtxMenu& GuiCreator::createCtxMenu(Dx::IControl& i_parent, InteractionManager& i_interactionManager)
 {
-  auto ctrl = std::make_shared<CtxMenu>();
+  auto ctrl = std::make_shared<CtxMenu>(i_interactionManager);
   i_parent.addChild(ctrl);
   return *ctrl;
 }

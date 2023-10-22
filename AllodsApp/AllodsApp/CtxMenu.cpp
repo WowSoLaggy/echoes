@@ -5,12 +5,27 @@
 #include "CtxMenuContent.h"
 #include "Fonts.h"
 #include "GuiCreator.h"
+#include "InteractionManager.h"
 
 #include <LaggyDx/Button.h>
+#include <LaggyDx/ControlEvents.h>
 #include <LaggyDx/IFontResource.h>
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/TextureUtils.h>
+
+
+CtxMenu::CtxMenu(InteractionManager& i_interactionManager)
+  : d_interactionManager(i_interactionManager)
+{
+}
+
+
+void CtxMenu::processEvent(const Sdk::IEvent& i_event)
+{
+  if (dynamic_cast<const Dx::ButtonPressedEvent*>(&i_event))
+    onChildPressed();
+}
 
 
 void CtxMenu::setContext(const CtxMenuContent& i_ctxMenuContent)
@@ -44,6 +59,8 @@ void CtxMenu::setContext(const CtxMenuContent& i_ctxMenuContent)
     button.setText(std::move(text));
     button.setOnPress(action.getFunction());
 
+    connectTo(button);
+
     totalSize.x = std::max(totalSize.x, button.getSize().x);
     totalSize.y += button.getSize().y;
   }
@@ -52,10 +69,7 @@ void CtxMenu::setContext(const CtxMenuContent& i_ctxMenuContent)
 }
 
 
-void CtxMenu::setText()
+void CtxMenu::onChildPressed()
 {
-}
-
-void CtxMenu::setActions()
-{
+  d_interactionManager.hideCtxMenu();
 }
