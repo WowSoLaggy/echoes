@@ -75,3 +75,9 @@ void IBehaviorModel::pushFields()
 void IBehaviorModel::interact()
 {
 }
+
+
+BehaviorActions IBehaviorModel::getActions(bool i_devMode) const
+{
+  return {};
+}

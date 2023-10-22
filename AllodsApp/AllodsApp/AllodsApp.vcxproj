@@ -158,10 +158,12 @@
     <ClCompile Include="AvatarsView.cpp" />
     <ClCompile Include="AvatarView.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
+    <ClCompile Include="BehaviorAction.cpp" />
     <ClCompile Include="BehaviorModels.cpp" />
     <ClCompile Include="BuildManager.cpp" />
     <ClCompile Include="BuildModeView.cpp" />
     <ClCompile Include="ContainerBehavior.cpp" />
+    <ClCompile Include="CtxMenu.cpp" />
     <ClCompile Include="CtxMenuContent.cpp" />
     <ClCompile Include="DoorBehavior.cpp" />
     <ClCompile Include="DummyTileThd.cpp" />
@@ -238,11 +240,13 @@
     <ClInclude Include="AvatarsView.h" />
     <ClInclude Include="AvatarView.h" />
     <ClInclude Include="BackgroundView.h" />
+    <ClInclude Include="BehaviorAction.h" />
     <ClInclude Include="BehaviorModels.h" />
     <ClInclude Include="BuildManager.h" />
     <ClInclude Include="BuildModeView.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="ContainerBehavior.h" />
+    <ClInclude Include="CtxMenu.h" />
     <ClInclude Include="CtxMenuContent.h" />
     <ClInclude Include="DoorBehavior.h" />
     <ClInclude Include="DummyTileThd.h" />

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GuiCreator.h"
 
+#include "CtxMenu.h"
 #include "Fonts.h"
 
 #include <LaggyDx/Button.h>
@@ -58,6 +59,15 @@ Dx::Button& GuiCreator::createMenuButton(Dx::IControl& i_parent)
   return ctrl;
 }
 
+Dx::Button& GuiCreator::createCtxMenuButton(Dx::IControl& i_parent)
+{
+  auto& ctrl = createButton(i_parent);
+  ctrl.setTextureName(Dx::ButtonState::Normal, "CtxButton.png");
+  ctrl.setTextureName(Dx::ButtonState::Hover, "CtxButton.png");
+  ctrl.setTextureName(Dx::ButtonState::Pressed, "CtxButtonPressed.png");
+  return ctrl;
+}
+
 Dx::Grid& GuiCreator::createGrid(Dx::IControl& i_parent, const int i_slotsX, const int i_slotsY)
 {
   auto ctrl = std::make_shared<Dx::Grid>(Sdk::Vector2I{ i_slotsX, i_slotsY });
@@ -69,6 +79,14 @@ Dx::Grid& GuiCreator::createGrid(Dx::IControl& i_parent, const int i_slotsX, con
     "Grid_B.png", "Grid_BL.png", "Grid_BR.png",
     "Grid_Slot.png", "Grid_Selection.png");
 
+  return *ctrl;
+}
+
+
+CtxMenu& GuiCreator::createCtxMenu(Dx::IControl& i_parent)
+{
+  auto ctrl = std::make_shared<CtxMenu>();
+  i_parent.addChild(ctrl);
   return *ctrl;
 }
 

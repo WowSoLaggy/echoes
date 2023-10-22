@@ -4,6 +4,8 @@
 
 
 class Avatar;
+class BehaviorAction;
+class CtxMenu;
 class CtxMenuContent;
 class Entity;
 class Fixture;
@@ -31,6 +33,8 @@ struct StructurePrototype;
 
 using AvatarPtr = std::shared_ptr<Avatar>;
 using Avatars = std::vector<AvatarPtr>;
+using BehaviorActionPtr = std::shared_ptr<BehaviorAction>;
+using BehaviorActions = std::vector<BehaviorActionPtr>;
 using BehaviorModelPtr = std::shared_ptr<IBehaviorModel>;
 using EntityPtr = std::shared_ptr<Entity>;
 using FixturePtr = std::shared_ptr<Fixture>;

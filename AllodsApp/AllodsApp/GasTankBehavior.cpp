@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GasTankBehavior.h"
 
+#include "BehaviorAction.h"
 #include "Entity.h"
 #include "Prototypes.h"
 
@@ -50,6 +51,16 @@ BehaviorModel GasTankBehavior::getModelType() const
 std::string GasTankBehavior::getDescription() const
 {
   return "State: " + StateStr::toString(d_state);
+}
+
+BehaviorActions GasTankBehavior::getActions(bool i_devMode) const
+{
+  auto actions = IBehaviorModel::getActions(i_devMode);
+
+  if (i_devMode)
+    actions.push_back(std::make_shared<BehaviorAction>("test", []() {}, true));
+
+  return actions;
 }
 
 

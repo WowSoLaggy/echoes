@@ -74,7 +74,7 @@ private:
   void hideOverlayHint();
   void updateOverlayHint();
 
-  Dx::Panel* d_ctxMenu = nullptr;
+  CtxMenu* d_ctxMenu = nullptr;
   void showCtxMenu(const CtxMenuContent& i_ctxMenuContent);
   void hideCtxMenu();
 };

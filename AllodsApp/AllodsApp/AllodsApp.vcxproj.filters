@@ -67,6 +67,9 @@
     <Filter Include="src\Gui">
       <UniqueIdentifier>{44c5d645-8436-415b-be99-f604882895e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Gui\Controls">
+      <UniqueIdentifier>{a01f2648-e1b2-4bb9-92bd-ea17a7a816a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -287,6 +290,12 @@
     </ClCompile>
     <ClCompile Include="GuiManager_devBuildMenu.cpp">
       <Filter>src\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorAction.cpp">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClCompile>
+    <ClCompile Include="CtxMenu.cpp">
+      <Filter>src\Gui\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -514,6 +523,12 @@
     </ClInclude>
     <ClInclude Include="GuiCreator.h">
       <Filter>src\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorAction.h">
+      <Filter>src\World\BehaviorModel</Filter>
+    </ClInclude>
+    <ClInclude Include="CtxMenu.h">
+      <Filter>src\Gui\Controls</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -51,7 +51,7 @@ bool InteractionManager::showContextMenu()
     return hideContextMenu();
   
   d_isContextMenuShown = true;
-  notify(ShowCtxMenuEvent(CtxMenuContent(*entityPtr)));
+  notify(ShowCtxMenuEvent(CtxMenuContent(*entityPtr, d_session.isDevMode())));
 
   return true;
 }
