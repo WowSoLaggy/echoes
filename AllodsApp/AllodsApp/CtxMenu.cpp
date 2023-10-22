@@ -22,9 +22,14 @@ void CtxMenu::setContext(const CtxMenuContent& i_ctxMenuContent)
   layout.setAlign(Dx::LayoutAlign::TopToBottom_LeftSide);
   layout.setOffsetBetweenElements(0);
 
+  // Description
+
   d_label = &GuiCreator::createLabel(layout);
   d_label->setFont(Fonts::getInGameHintsFont());
   d_label->setText(i_ctxMenuContent.getDescription());
+
+  const auto stringRect = SAFE_DEREF(d_label->getFontResource()).getStringRect(d_label->getText());
+  auto totalSize = stringRect.size().getVector<float>() + Sdk::Vector2F(4, 0);
 
   // Actions
 
@@ -38,12 +43,12 @@ void CtxMenu::setContext(const CtxMenuContent& i_ctxMenuContent)
     text += action.getName();
     button.setText(std::move(text));
     button.setOnPress(action.getFunction());
+
+    totalSize.x = std::max(totalSize.x, button.getSize().x);
+    totalSize.y += button.getSize().y;
   }
 
-  // Final menu size
-
-  const auto stringRect = SAFE_DEREF(d_label->getFontResource()).getStringRect(d_label->getText());
-  setSize(stringRect.size().getVector<float>() + Sdk::Vector2F(4, 0));
+  setSize(totalSize);
 }
 
 
