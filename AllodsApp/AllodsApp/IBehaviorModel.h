@@ -17,6 +17,9 @@ public:
   virtual ~IBehaviorModel() = default;
 
   virtual void pushFields() override;
+  
+  virtual void update(double i_dt);
+  
   virtual void interact();
 
   virtual BehaviorModel getModelType() const = 0;

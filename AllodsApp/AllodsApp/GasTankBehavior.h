@@ -21,6 +21,9 @@ public:
   GasTankBehavior(Entity& i_gasTank);
 
   virtual void pushFields() override;
+
+  virtual void update(double i_dt) override;
+
   virtual void interact() override;
 
   virtual BehaviorModel getModelType() const override;

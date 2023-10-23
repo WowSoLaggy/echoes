@@ -43,6 +43,11 @@ void GasTankBehavior::pushFields()
 }
 
 
+void GasTankBehavior::update(double i_dt)
+{
+}
+
+
 void GasTankBehavior::interact()
 {
   switchState();

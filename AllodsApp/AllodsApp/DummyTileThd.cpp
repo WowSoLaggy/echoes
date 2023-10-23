@@ -26,12 +26,15 @@ void DummyTileThd::setT(double i_t)
 }
 
 
+Dx::thd::VolumeUnit& DummyTileThd::getVolumeUnit()
+{
+  static auto volumeUnit = createSpaceVolumeUnit();
+  volumeUnit.clear();
+  return volumeUnit;
+}
+
 const Dx::thd::VolumeUnit& DummyTileThd::getVolumeUnit() const
 {
   static const auto volumeUnit = createSpaceVolumeUnit();
   return volumeUnit;
-}
-
-void DummyTileThd::setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit)
-{
 }

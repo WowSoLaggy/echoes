@@ -72,6 +72,12 @@ void IBehaviorModel::pushFields()
   pushField("modelType", d_modelTypeCache);
 }
 
+
+void IBehaviorModel::update(const double i_dt)
+{
+}
+
+
 void IBehaviorModel::interact()
 {
 }

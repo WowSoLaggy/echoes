@@ -21,12 +21,12 @@ void TileThd::setT(const double i_t)
 }
 
 
-const Dx::thd::VolumeUnit& TileThd::getVolumeUnit() const
+Dx::thd::VolumeUnit& TileThd::getVolumeUnit()
 {
   return d_tile.getVolumeUnit();
 }
 
-void TileThd::setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit)
+const Dx::thd::VolumeUnit& TileThd::getVolumeUnit() const
 {
-  d_tile.setVolumeUnit(std::move(i_volumeUnit));
+  return d_tile.getVolumeUnit();
 }

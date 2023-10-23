@@ -30,8 +30,8 @@ public:
   double getT() const;
   void setT(double i_t);
 
+  Dx::thd::VolumeUnit& getVolumeUnit();
   const Dx::thd::VolumeUnit& getVolumeUnit() const;
-  void setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit);
 
 private:
   LayersMap d_layers;

@@ -70,12 +70,12 @@ void Tile::setT(const double i_t)
 }
 
 
-const Dx::thd::VolumeUnit& Tile::getVolumeUnit() const
+Dx::thd::VolumeUnit& Tile::getVolumeUnit()
 {
   return d_volumeUnit;
 }
 
-void Tile::setVolumeUnit(Dx::thd::VolumeUnit i_volumeUnit)
+const Dx::thd::VolumeUnit& Tile::getVolumeUnit() const
 {
-  d_volumeUnit = std::move(i_volumeUnit);
+  return d_volumeUnit;
 }

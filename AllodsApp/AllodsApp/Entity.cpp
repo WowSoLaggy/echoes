@@ -99,6 +99,8 @@ const Sdk::Size2I& Entity::getSize() const
 void Entity::update(const double i_dt)
 {
   d_animationPlayer.update(i_dt);
+  if (d_behaviorModel)
+    d_behaviorModel->update(i_dt);
 }
 
 
