@@ -6,4 +6,6 @@ namespace Constants
 
   constexpr double DefaultTileVolume = 1;
 
+  constexpr double PaInOneAtm = 101325;
+
 } // ns Constants

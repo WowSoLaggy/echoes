@@ -15,8 +15,6 @@
 #include <LaggyDx/Panel.h>
 #include <LaggyDx/TextureUtils.h>
 
-#include <LaggySdk/StringUtils.h>
-
 
 namespace
 {
@@ -68,8 +66,7 @@ void GuiManager::showOverlayUI()
   auto& label = GuiCreator::createLabel(layout);
   label.setText(getOverlayName(d_overlay->getType()));
 
-  if (d_overlay->getType() == OverlayType::Temp)
-    showOverlayHintTemp();
+  showOverlayHintTemp();
 }
 
 void GuiManager::hideOverlayUI()
@@ -113,17 +110,13 @@ void GuiManager::updateOverlayHint()
   CONTRACT_EXPECT(d_overlayHintLabel);
   CONTRACT_EXPECT(d_session);
 
-  CONTRACT_EXPECT(d_overlay->getType() == OverlayType::Temp);
-
   const auto& mousePos = Dx::CursorUtils::getPosition();
   d_overlayHint->setPosition(mousePos.getVector<float>() + Sdk::Vector2F{ 8, 0 });
 
   const auto tileCoords = TileUtils::getTileCoordsUnderCursor(d_session->getCamera());
-  const auto& currentLocation = SAFE_DEREF(d_session->getCurrentLocation());
-  const auto* tile = currentLocation.getTile(tileCoords);
-  const auto tempString = tile ? Sdk::toString(tile->getT(), 2) + " C" : "N/A";
-  d_overlayHintLabel->setText("T: " + tempString);
+  const auto hintText = d_overlay->getHint(tileCoords);
+  d_overlayHintLabel->setText(hintText);
 
-  const auto stringRect = SAFE_DEREF(d_overlayHintLabel->getFontResource()).getStringRect(d_overlayHintLabel->getText());
+  const auto stringRect = SAFE_DEREF(d_overlayHintLabel->getFontResource()).getStringRect(hintText);
   d_overlayHint->setSize(stringRect.size().getVector<float>() + Sdk::Vector2F(4, 0));
 }

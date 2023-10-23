@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Gases.h"
 #include "IBehaviorModel.h"
 
 #include <LaggyDx/VolumeUnit.h>
@@ -42,4 +43,6 @@ private:
   Entity& getGasTank() const;
 
   Dx::thd::VolumeUnit d_volumeUnit;
+
+  std::unordered_map<Gas, double> getGasesRatio() const;
 };

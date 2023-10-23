@@ -3,6 +3,9 @@
 
 #include "Location.h"
 
+#include <LaggySdk/Math.h>
+#include <LaggySdk/StringUtils.h>
+
 
 namespace
 {
@@ -25,6 +28,7 @@ OverlayType TempOverlay::getType() const
   return OverlayType::Temp;
 }
 
+
 Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
 {
   const auto* tile = d_location.getTile(i_tileCoord);
@@ -32,6 +36,13 @@ Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
     return { 0, 0, 0, 0 };
 
   const double t = tile->getT();
-  const double normT = std::min<double>(100, std::max<double>(0, t));
+  const double normT = Sdk::clamp<double>(t, 0, 100);
   return d_gradient.get((float)normT / 100);
+}
+
+std::string TempOverlay::getHint(const TileCoord& i_tileCoord) const
+{
+  const auto* tile = d_location.getTile(i_tileCoord);
+  const auto tempString = tile ? Sdk::toString(tile->getT(), 2) + " C" : "N/A";
+  return "T: " + tempString;
 }

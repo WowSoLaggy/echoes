@@ -56,9 +56,17 @@ BehaviorModel GasTankBehavior::getModelType() const
 
 std::string GasTankBehavior::getDescription() const
 {
-  return
+  const std::string descriptionStr =
     "State: " + StateStr::toString(d_state) + "\n" +
     "Pressure: " + Sdk::toString(Units::paToKPa(d_volumeUnit.getPressure()), 2) + " KPa";
+
+  const auto ratio = getGasesRatio();
+
+  std::string gasesString = "\n";
+  for (const auto& [gas, ratio] : ratio)
+    gasesString += GasStr::toString(gas) + ": " + Sdk::toString(ratio * 100, 1) + " %\n";
+
+  return descriptionStr + gasesString;
 }
 
 BehaviorActions GasTankBehavior::getActions(bool i_devMode)
@@ -123,4 +131,22 @@ bool GasTankBehavior::isOpen() const
 bool GasTankBehavior::isClose() const
 {
   return d_state == State::Closed;
+}
+
+
+std::unordered_map<Gas, double> GasTankBehavior::getGasesRatio() const
+{
+  std::unordered_map<Gas, double> ratio;
+
+  int totalAmount = 0;
+  for (const auto& [id, amount] : d_volumeUnit.getGases())
+  {
+    totalAmount += amount;
+    ratio[static_cast<Gas>(id)] = amount;
+  }
+
+  for (auto& [_, amount] : ratio)
+    amount /= totalAmount;
+
+  return ratio;
 }

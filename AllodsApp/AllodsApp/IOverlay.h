@@ -15,5 +15,7 @@ public:
   virtual ~IOverlay() = default;
 
   virtual OverlayType getType() const = 0;
+
   virtual Dx::Color getColor(const TileCoord& i_tileCoord) const = 0;
+  virtual std::string getHint(const TileCoord& i_tileCoord) const = 0;
 };
