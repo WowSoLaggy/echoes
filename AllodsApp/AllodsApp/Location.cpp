@@ -117,7 +117,7 @@ const Tiles& Location::getTiles() const
 
 Tile& Location::getOrCreateTile(const TileCoord& i_coord)
 {
-  if (auto* tile = getTile(i_coord))
+  if (auto tile = getTile(i_coord))
     return *tile;
 
   updateMinMax(i_coord);
@@ -127,16 +127,16 @@ Tile& Location::getOrCreateTile(const TileCoord& i_coord)
   return *tilePtr;
 }
 
-Tile* Location::getTile(const TileCoord& i_coord)
+TilePtr Location::getTile(const TileCoord& i_coord)
 {
   const auto it = d_tiles.find(i_coord);
-  return it == d_tiles.end() ? nullptr : it->second.get();
+  return it == d_tiles.end() ? nullptr : it->second;
 }
 
-const Tile* Location::getTile(const TileCoord& i_coord) const
+const TilePtr Location::getTile(const TileCoord& i_coord) const
 {
   const auto it = d_tiles.find(i_coord);
-  return it == d_tiles.end() ? nullptr : it->second.get();
+  return it == d_tiles.end() ? nullptr : it->second;
 }
 
 

@@ -44,7 +44,7 @@ void StructureBuilder::build() const
 
 bool StructureBuilder::doesTileHaveLowerLayerWithSupport() const
 {
-  const auto* tile = d_location.getTile(d_tileCoords);
+  const auto tile = d_location.getTile(d_tileCoords);
   if (!tile)
     return false;
 
@@ -67,7 +67,7 @@ bool StructureBuilder::doesTileHaveLowerLayerWithSupport() const
 
 bool StructureBuilder::doesTileAlreadyHaveTheSameStructure() const
 {
-  const auto* tile = d_location.getTile(d_tileCoords);
+  const auto tile = d_location.getTile(d_tileCoords);
   if (!tile)
     return false;
 
@@ -85,7 +85,7 @@ bool StructureBuilder::doesWallBlocksFurniture() const
   if (structurePrototype.layer != Layer::Furniture)
     return false;
 
-  const auto* tile = d_location.getTile(d_tileCoords);
+  const auto tile = d_location.getTile(d_tileCoords);
   if (!tile)
     return false;
 

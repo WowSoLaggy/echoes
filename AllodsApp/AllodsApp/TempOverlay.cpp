@@ -31,7 +31,7 @@ OverlayType TempOverlay::getType() const
 
 Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
 {
-  const auto* tile = d_location.getTile(i_tileCoord);
+  const auto tile = d_location.getTile(i_tileCoord);
   if (!tile)
     return { 0, 0, 0, 0 };
 
@@ -42,7 +42,7 @@ Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
 
 std::string TempOverlay::getHint(const TileCoord& i_tileCoord) const
 {
-  const auto* tile = d_location.getTile(i_tileCoord);
+  const auto tile = d_location.getTile(i_tileCoord);
   const auto tempString = tile ? Sdk::toString(tile->getT(), 2) + " C" : "N/A";
   return "T: " + tempString;
 }

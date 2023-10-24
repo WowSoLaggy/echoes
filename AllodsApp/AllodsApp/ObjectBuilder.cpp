@@ -28,7 +28,7 @@ void ObjectBuilder::build() const
 bool ObjectBuilder::hasStructureAtWallLayer() const
 {
   const auto tileCoords = TileUtils::getTileCoords(d_position);
-  const auto* tile = d_location.getTile(tileCoords);
+  const auto tile = d_location.getTile(tileCoords);
   if (!tile)
     return false;
 

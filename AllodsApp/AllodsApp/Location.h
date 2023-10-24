@@ -27,14 +27,14 @@ public:
 
   const Tiles& getTiles() const;
   Tile& getOrCreateTile(const TileCoord& i_coord);
-  Tile* getTile(const TileCoord& i_coord);
-  const Tile* getTile(const TileCoord& i_coord) const;
   
   Objects& getObjects();
   const Objects& getObjects() const;
 
   Avatars& getAvatars();
   const Avatars& getAvatars() const;
+  TilePtr getTile(const TileCoord& i_coord);
+  const TilePtr getTile(const TileCoord& i_coord) const;
 
 private:
   std::string d_name;

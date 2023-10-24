@@ -22,7 +22,7 @@ OverlayType AtmoOverlay::getType() const
 
 Dx::Color AtmoOverlay::getColor(const TileCoord& i_tileCoord) const
 {
-  const auto* tile = d_location.getTile(i_tileCoord);
+  const auto tile = d_location.getTile(i_tileCoord);
   if (!tile)
     return { 0, 0, 0, 0 };
 
@@ -35,7 +35,7 @@ Dx::Color AtmoOverlay::getColor(const TileCoord& i_tileCoord) const
 
 std::string AtmoOverlay::getHint(const TileCoord& i_tileCoord) const
 {
-  const auto* tile = d_location.getTile(i_tileCoord);
+  const auto tile = d_location.getTile(i_tileCoord);
   if (tile)
   {
     const double pressureKPa = Units::paToKPa(tile->getVolumeUnit().getPressure());

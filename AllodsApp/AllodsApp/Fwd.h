@@ -47,4 +47,5 @@ using PrototypeName = std::string;
 using PrototypePtr = std::shared_ptr<Prototype>;
 using StructurePtr = std::shared_ptr<Structure>;
 using TileCoord = Sdk::Vector2I;
-using Tiles = std::unordered_map<TileCoord, std::shared_ptr<Tile>, Sdk::Vector2_hash>;
+using TilePtr = std::shared_ptr<Tile>;
+using Tiles = std::unordered_map<TileCoord, TilePtr, Sdk::Vector2_hash>;

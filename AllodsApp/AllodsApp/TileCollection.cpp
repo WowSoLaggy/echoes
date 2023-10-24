@@ -20,7 +20,7 @@ const Sdk::RectI& TileCollection::getRect() const
 
 std::shared_ptr<Dx::thd::ITile> TileCollection::getTile(const Sdk::Vector2I& i_coords) const
 {
-  if (auto* tile = d_location.getTile(i_coords))
+  if (auto tile = d_location.getTile(i_coords))
     return std::make_shared<TileThd>(*tile);
 
   return std::make_shared<DummyTileThd>();

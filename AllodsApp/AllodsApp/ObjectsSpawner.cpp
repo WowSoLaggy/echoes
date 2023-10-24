@@ -32,7 +32,7 @@ StructurePtr ObjectsSpawner::spawnStructure(
 void ObjectsSpawner::despawnStructure(
   Location& i_location, const TileCoord& i_tileCoord, const Layer i_layer)
 {
-  if (auto* tile = i_location.getTile(i_tileCoord))
+  if (auto tile = i_location.getTile(i_tileCoord))
     tile->resetStructure(i_layer);
 }
 

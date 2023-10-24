@@ -47,7 +47,7 @@ void MountBuilder::build() const
 
 StructurePtr MountBuilder::getStructureWithFixture() const
 {
-  const auto* tile = d_location.getTile(d_tileCoords);
+  const auto tile = d_location.getTile(d_tileCoords);
   if (!tile)
     return nullptr;
 
