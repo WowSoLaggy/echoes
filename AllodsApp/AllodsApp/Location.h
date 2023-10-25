@@ -27,12 +27,6 @@ public:
 
   const Tiles& getTiles() const;
   Tile& getOrCreateTile(const TileCoord& i_coord);
-  
-  Objects& getObjects();
-  const Objects& getObjects() const;
-
-  Avatars& getAvatars();
-  const Avatars& getAvatars() const;
   TilePtr getTile(const TileCoord& i_coord);
   const TilePtr getTile(const TileCoord& i_coord) const;
 
@@ -45,6 +39,4 @@ private:
 
   Tiles d_tiles;
   TileCollection d_tileCollection;
-  Avatars d_avatars;
-  Objects d_objects;
 };

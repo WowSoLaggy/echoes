@@ -16,6 +16,25 @@
 
 namespace
 {
+  std::vector<TilePtr> collectNeighborTiles(const TileCoord& i_coord, const Location& i_location)
+  {
+    std::vector<TilePtr> tiles;
+
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ -1, -1 }));
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 0, -1 }));
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 1, -1 }));
+
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ -1, 0 }));
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 0, 0 }));
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 1, 0 }));
+
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ -1, 1 }));
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 0, 1 }));
+    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 1, 1 }));
+
+    return tiles;
+  }
+
   EntityPtr pickEntity(const auto& i_entities, const Sdk::Vector2I& i_screenPos, const Sdk::Vector2I& i_cameraOffset)
   {
     for (const auto& objPtr : i_entities)
@@ -68,13 +87,35 @@ EntityPtr ItemPicker::pick(const Sdk::Vector2I& i_screenPos) const
 EntityPtr ItemPicker::pickAvatar(const Sdk::Vector2I& i_screenPos) const
 {
   const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
-  return pickEntity(location.getAvatars(), i_screenPos, d_session.getCamera().getOffset());
+  const auto tileCoord = TileUtils::getTileCoords(i_screenPos, d_session.getCamera());
+  const auto tilesToCheck = collectNeighborTiles(tileCoord, location);
+  for (const auto tile : tilesToCheck)
+  {
+    if (!tile)
+      continue;
+
+    if (const auto entityPtr = pickEntity(tile->getAvatars(), i_screenPos, d_session.getCamera().getOffset()))
+      return entityPtr;
+  }
+
+  return nullptr;
 }
 
 EntityPtr ItemPicker::pickObject(const Sdk::Vector2I& i_screenPos) const
 {
   const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
-  return pickEntity(location.getObjects(), i_screenPos, d_session.getCamera().getOffset());
+  const auto tileCoord = TileUtils::getTileCoords(i_screenPos, d_session.getCamera());
+  const auto tilesToCheck = collectNeighborTiles(tileCoord, location);
+  for (const auto tile : tilesToCheck)
+  {
+    if (!tile)
+      continue;
+
+    if (const auto entityPtr = pickEntity(tile->getObjects(), i_screenPos, d_session.getCamera().getOffset()))
+      return entityPtr;
+  }
+
+  return nullptr;
 }
 
 EntityPtr ItemPicker::pickStructureOrMount(const Sdk::Vector2I& i_screenPos) const
@@ -85,7 +126,7 @@ EntityPtr ItemPicker::pickStructureOrMount(const Sdk::Vector2I& i_screenPos) con
   const auto tilePosScreen = TileUtils::getTilePosScreen(tileCoords, d_session.getCamera());
   const auto hitPos = i_screenPos - tilePosScreen;
 
-  const auto* tile = location.getTile(tileCoords);
+  const auto tile = location.getTile(tileCoords);
   if (!tile)
     return nullptr;
 

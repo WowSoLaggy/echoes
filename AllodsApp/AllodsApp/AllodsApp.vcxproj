@@ -155,7 +155,6 @@
     <ClCompile Include="AnimationUtils.cpp" />
     <ClCompile Include="AtmoOverlay.cpp" />
     <ClCompile Include="Avatar.cpp" />
-    <ClCompile Include="AvatarsView.cpp" />
     <ClCompile Include="AvatarView.cpp" />
     <ClCompile Include="BackgroundView.cpp" />
     <ClCompile Include="BehaviorAction.cpp" />
@@ -201,7 +200,6 @@
     <ClCompile Include="MountView.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectBuilder.cpp" />
-    <ClCompile Include="ObjectsView.cpp" />
     <ClCompile Include="ObjectView.cpp" />
     <ClCompile Include="OverlayView.cpp" />
     <ClCompile Include="PrototypesCollection.cpp" />
@@ -241,7 +239,6 @@
     <ClInclude Include="AnimationUtils.h" />
     <ClInclude Include="AtmoOverlay.h" />
     <ClInclude Include="Avatar.h" />
-    <ClInclude Include="AvatarsView.h" />
     <ClInclude Include="AvatarView.h" />
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="BehaviorAction.h" />
@@ -284,7 +281,6 @@
     <ClInclude Include="MountView.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectBuilder.h" />
-    <ClInclude Include="ObjectsView.h" />
     <ClInclude Include="ObjectView.h" />
     <ClInclude Include="OverlayTypes.h" />
     <ClInclude Include="OverlayView.h" />

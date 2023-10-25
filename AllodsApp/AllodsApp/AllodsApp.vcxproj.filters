@@ -201,9 +201,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectsView.cpp">
-      <Filter>src\View</Filter>
-    </ClCompile>
     <ClCompile Include="StructureBuilder.cpp">
       <Filter>src\Builders</Filter>
     </ClCompile>
@@ -253,9 +250,6 @@
       <Filter>src\World\ObjectsSpawner</Filter>
     </ClCompile>
     <ClCompile Include="AvatarView.cpp">
-      <Filter>src\View</Filter>
-    </ClCompile>
-    <ClCompile Include="AvatarsView.cpp">
       <Filter>src\View</Filter>
     </ClCompile>
     <ClCompile Include="Scenario.cpp">
@@ -467,9 +461,6 @@
     <ClInclude Include="Object.h">
       <Filter>src\World\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectsView.h">
-      <Filter>src\View</Filter>
-    </ClInclude>
     <ClInclude Include="StructureBuilder.h">
       <Filter>src\Builders</Filter>
     </ClInclude>
@@ -516,9 +507,6 @@
       <Filter>src\World\ObjectsSpawner</Filter>
     </ClInclude>
     <ClInclude Include="AvatarView.h">
-      <Filter>src\View</Filter>
-    </ClInclude>
-    <ClInclude Include="AvatarsView.h">
       <Filter>src\View</Filter>
     </ClInclude>
     <ClInclude Include="GameSettings.h">

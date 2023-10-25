@@ -1,10 +1,8 @@
 #pragma once
 
-#include "AvatarsView.h"
 #include "BackgroundView.h"
 #include "BuildModeView.h"
 #include "Fwd.h"
-#include "ObjectsView.h"
 #include "OverlayView.h"
 #include "TileView.h"
 
@@ -28,8 +26,6 @@ private:
 
   const BackgroundView d_backgroundView;
   const TileView d_tileView;
-  const ObjectsView d_objectsView;
-  const AvatarsView d_avatarsView;
   const OverlayView d_overlayView;
   BuildModeView d_buildModeView;
 

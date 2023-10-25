@@ -1,9 +1,6 @@
 #include "stdafx.h"
 #include "Location.h"
 
-#include "Avatar.h"
-#include "Object.h"
-
 #include <LaggyDx/Simulation.h>
 
 #include <LaggySdk/JsonSerializer.h>
@@ -51,9 +48,6 @@ void Location::pushFields()
 
   for (auto& [coord, tile] : d_tiles)
     pushSharedPtr(createTileTag(coord), tile);
-
-  pushVector("objects", d_objects);
-  pushVector("avatars", d_avatars);
 }
 
 Sdk::FieldHandled Location::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
@@ -96,11 +90,6 @@ void Location::update(const double i_dt)
 
   for (auto& [_, tile] : d_tiles)
     SAFE_DEREF(tile).update(i_dt);
-
-  for (auto objPtr : d_objects)
-    SAFE_DEREF(objPtr).update(i_dt);
-  for (auto avatarPtr : d_avatars)
-    SAFE_DEREF(avatarPtr).update(i_dt);
 }
 
 
@@ -137,28 +126,6 @@ const TilePtr Location::getTile(const TileCoord& i_coord) const
 {
   const auto it = d_tiles.find(i_coord);
   return it == d_tiles.end() ? nullptr : it->second;
-}
-
-
-Objects& Location::getObjects()
-{
-  return d_objects;
-}
-
-const Objects& Location::getObjects() const
-{
-  return d_objects;
-}
-
-
-Avatars& Location::getAvatars()
-{
-  return d_avatars;
-}
-
-const Avatars& Location::getAvatars() const
-{
-  return d_avatars;
 }
 
 

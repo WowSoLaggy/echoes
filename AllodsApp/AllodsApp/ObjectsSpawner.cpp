@@ -7,6 +7,7 @@
 #include "Object.h"
 #include "PrototypesCollection.h"
 #include "Structure.h"
+#include "TileUtils.h"
 
 
 StructurePtr ObjectsSpawner::spawnStructure(
@@ -97,20 +98,23 @@ ObjectPtr ObjectsSpawner::spawnObject(
 ObjectPtr ObjectsSpawner::spawnObject(
   PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position)
 {
+  const auto tileCoord = TileUtils::getTileCoords(i_position);
+  auto& tile = i_location.getOrCreateTile(tileCoord);
+
   ObjectPtr object = std::make_shared<Object>(i_prototype);
   object->setPosition(std::move(i_position));
 
-  i_location.getObjects().push_back(object);
+  tile.addObject(object);
 
   return object;
 }
 
 void ObjectsSpawner::despawnObject(Location& i_location, const Object& i_object)
 {
-  auto& objects = i_location.getObjects();
-  objects.erase(std::remove_if(objects.begin(), objects.end(), [&](const auto i_objectPtr) {
-    return &i_object == i_objectPtr.get();
-    }), objects.end());
+  const auto tileCoord = TileUtils::getTileCoords(i_object.getPosition());
+  auto& tile = i_location.getOrCreateTile(tileCoord);
+
+  tile.removeObject(i_object);
 }
 
 
@@ -124,18 +128,21 @@ AvatarPtr ObjectsSpawner::spawnAvatar(
 AvatarPtr ObjectsSpawner::spawnAvatar(
   PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position)
 {
+  const auto tileCoord = TileUtils::getTileCoords(i_position);
+  auto& tile = i_location.getOrCreateTile(tileCoord);
+
   AvatarPtr avatar = std::make_shared<Avatar>(i_prototype);
   avatar->setPosition(std::move(i_position));
 
-  i_location.getAvatars().push_back(avatar);
+  tile.addAvatar(avatar);
 
   return avatar;
 }
 
 void ObjectsSpawner::despawnAvatar(Location& i_location, const Avatar& i_avatar)
 {
-  auto& avatars = i_location.getAvatars();
-  avatars.erase(std::remove_if(avatars.begin(), avatars.end(), [&](const auto i_avatarPtr) {
-    return &i_avatar == i_avatarPtr.get();
-    }), avatars.end());
+  const auto tileCoord = TileUtils::getTileCoords(i_avatar.getPosition());
+  auto& tile = i_location.getOrCreateTile(tileCoord);
+
+  tile.removeAvatar(i_avatar);
 }

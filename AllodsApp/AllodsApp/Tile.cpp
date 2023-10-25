@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Tile.h"
 
+#include "Avatar.h"
+#include "Object.h"
 #include "Structure.h"
 
 #include <LaggySdk/JsonSerializer.h>
@@ -10,6 +12,9 @@ void Tile::pushFields()
 {
   for (auto& [layer, structurePtr] : d_layers)
     pushObject(LayerStr::toString(layer), SAFE_DEREF(structurePtr));
+
+  pushVector("objects", d_objects);
+  pushVector("avatars", d_avatars);
 }
 
 Sdk::FieldHandled Tile::onFieldNotFound(const std::string& i_name, const Json::Value& i_json)
@@ -29,12 +34,28 @@ void Tile::update(const double i_dt)
 {
   for (auto& [_, structurePtr] : d_layers)
     SAFE_DEREF(structurePtr).update(i_dt);
+
+  for (auto objPtr : d_objects)
+    SAFE_DEREF(objPtr).update(i_dt);
+
+  for (auto avatarPtr : d_avatars)
+    SAFE_DEREF(avatarPtr).update(i_dt);
 }
 
 
 const LayersMap& Tile::getLayers() const
 {
   return d_layers;
+}
+
+const Objects& Tile::getObjects() const
+{
+  return d_objects;
+}
+
+const Avatars& Tile::getAvatars() const
+{
+  return d_avatars;
 }
 
 
@@ -44,7 +65,6 @@ const StructurePtr Tile::getStructure(Layer i_layer) const
     return d_layers.at(i_layer);
   return nullptr;
 }
-
 
 void Tile::setStructure(const Layer i_layer, StructurePtr i_structure)
 {
@@ -56,6 +76,43 @@ void Tile::setStructure(const Layer i_layer, StructurePtr i_structure)
 void Tile::resetStructure(const Layer i_layer)
 {
   d_layers.erase(i_layer);
+}
+
+
+void Tile::addObject(ObjectPtr i_object)
+{
+  CONTRACT_EXPECT(i_object);
+  d_objects.push_back(i_object);
+}
+
+void Tile::addAvatar(AvatarPtr i_avatar)
+{
+  CONTRACT_EXPECT(i_avatar);
+  d_avatars.push_back(i_avatar);
+}
+
+void Tile::removeObject(const Object& i_object)
+{
+  const int originalSize = (int)d_objects.size();
+
+  d_objects.erase(std::remove_if(d_objects.begin(), d_objects.end(), [&](const auto i_objectPtr) {
+    return &i_object == i_objectPtr.get();
+    }), d_objects.end());
+
+  const int newSize = (int)d_objects.size();
+  CONTRACT_EXPECT(newSize == originalSize - 1);
+}
+
+void Tile::removeAvatar(const Avatar& i_avatar)
+{
+  const int originalSize = (int)d_avatars.size();
+
+  d_avatars.erase(std::remove_if(d_avatars.begin(), d_avatars.end(), [&](const auto i_avatarPtr) {
+    return &i_avatar == i_avatarPtr.get();
+    }), d_avatars.end());
+
+  const int newSize = (int)d_avatars.size();
+  CONTRACT_EXPECT(newSize == originalSize - 1);
 }
 
 
