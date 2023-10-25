@@ -79,11 +79,19 @@ BehaviorActions GasTankBehavior::getActions(bool i_devMode)
   auto actions = IBehaviorModel::getActions(i_devMode);
 
   if (i_devMode)
-    actions.push_back(std::make_shared<BehaviorAction>("test",
+  {
+    actions.push_back(std::make_shared<BehaviorAction>("Remove gases",
+      [&]() {
+        d_volumeUnit.clear();
+      },
+      true));
+
+    actions.push_back(std::make_shared<BehaviorAction>("Fill with oxygen",
       [&]() {
         d_volumeUnit.addGas(GasPrototypesCollection::get(Gas::Oxygen).id, 1000000);
       },
       true));
+  }
 
   return actions;
 }

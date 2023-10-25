@@ -938,7 +938,34 @@
               "curFrame" : 0
             },
             "prototypeName" : "Plating"
-          }
+          },
+          "objects" : 
+          [
+            {
+              "animationPlayer" : 
+              {
+                "animationName" : "",
+                "animationTime" : 0.0,
+                "curFrame" : 0
+              },
+              "behaviorModel" : 
+              {
+                "modelType" : 4,
+                "state" : 1,
+                "volumeUnit" : 
+                {
+                  "gasAmount" : 0,
+                  "volume" : 0.080000000000000002
+                }
+              },
+              "position" : 
+              {
+                "x" : 905,
+                "y" : 415
+              },
+              "prototypeName" : "GasTank"
+            }
+          ]
         },
         "tile.14.7" : 
         {
