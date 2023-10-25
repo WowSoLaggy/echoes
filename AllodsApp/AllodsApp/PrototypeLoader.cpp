@@ -23,7 +23,7 @@ namespace
       io_proto.bahaviorModel = BehaviorModelStr::fromString(i_json["Behavior"].asString());
 
     if (i_json.isMember("Volume"))
-      io_proto.volume = i_json["Volume"].asInt();
+      io_proto.volume = i_json["Volume"].asDouble();
   }
 
 } // anonym NS
