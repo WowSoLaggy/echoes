@@ -26,7 +26,7 @@ Dx::Color AtmoOverlay::getColor(const TileCoord& i_tileCoord) const
   if (!tile)
     return { 0, 0, 0, 0 };
 
-  const double pressurePa = tile->getVolumeUnit().getPressure();
+  const double pressurePa = tile->getUnit().getPressure();
   const double pressureAtm = Units::paToAtm(pressurePa);
   const double pressureNorm = Sdk::clamp<double>(pressureAtm / 2, 0, 1);
 
@@ -38,7 +38,7 @@ std::string AtmoOverlay::getHint(const TileCoord& i_tileCoord) const
   const auto tile = d_location.getTile(i_tileCoord);
   if (tile)
   {
-    const double pressureKPa = Units::paToKPa(tile->getVolumeUnit().getPressure());
+    const double pressureKPa = Units::paToKPa(tile->getUnit().getPressure());
     if (pressureKPa > 0)
       return "P: " + Sdk::toString(pressureKPa, 2) + " KPa";
   }

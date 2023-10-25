@@ -127,12 +127,12 @@ void Tile::setT(const double i_t)
 }
 
 
-Dx::thd::VolumeUnit& Tile::getVolumeUnit()
+Dx::thd::Unit& Tile::getUnit()
 {
-  return d_volumeUnit;
+  return d_unit;
 }
 
-const Dx::thd::VolumeUnit& Tile::getVolumeUnit() const
+const Dx::thd::Unit& Tile::getUnit() const
 {
-  return d_volumeUnit;
+  return d_unit;
 }

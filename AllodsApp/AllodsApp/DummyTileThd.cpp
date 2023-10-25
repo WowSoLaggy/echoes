@@ -3,14 +3,16 @@
 
 #include "Constants.h"
 
+#include <LaggyDx/Unit.h>
+
 
 namespace
 {
-  Dx::thd::VolumeUnit createSpaceVolumeUnit()
+  Dx::thd::Unit createSpaceUnit()
   {
-    Dx::thd::VolumeUnit volumeUnit;
-    volumeUnit.setVolume(Constants::DefaultTileVolume);
-    return volumeUnit;
+    Dx::thd::Unit unit;
+    unit.setVolume(Constants::DefaultTileVolume);
+    return unit;
   }
 
 } // anonym NS
@@ -26,15 +28,15 @@ void DummyTileThd::setT(double i_t)
 }
 
 
-Dx::thd::VolumeUnit& DummyTileThd::getVolumeUnit()
+Dx::thd::Unit& DummyTileThd::getUnit()
 {
-  static auto volumeUnit = createSpaceVolumeUnit();
-  volumeUnit.clear();
-  return volumeUnit;
+  static auto unit = createSpaceUnit();
+  unit.clear();
+  return unit;
 }
 
-const Dx::thd::VolumeUnit& DummyTileThd::getVolumeUnit() const
+const Dx::thd::Unit& DummyTileThd::getUnit() const
 {
-  static const auto volumeUnit = createSpaceVolumeUnit();
-  return volumeUnit;
+  static const auto unit = createSpaceUnit();
+  return unit;
 }

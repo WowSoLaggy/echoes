@@ -13,8 +13,8 @@ public:
   virtual double getT() const override;
   virtual void setT(double i_t) override;
 
-  virtual Dx::thd::VolumeUnit& getVolumeUnit() override;
-  virtual const Dx::thd::VolumeUnit& getVolumeUnit() const override;
+  virtual Dx::thd::Unit& getUnit() override;
+  virtual const Dx::thd::Unit& getUnit() const override;
 
 private:
   Tile& d_tile;

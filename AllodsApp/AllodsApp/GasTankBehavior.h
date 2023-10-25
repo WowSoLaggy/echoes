@@ -3,7 +3,7 @@
 #include "Gases.h"
 #include "IBehaviorModel.h"
 
-#include <LaggyDx/VolumeUnit.h>
+#include <LaggyDx/Unit.h>
 
 
 class GasTankBehavior : public IBehaviorModel
@@ -45,7 +45,7 @@ private:
 
   Entity& getGasTank() const;
 
-  Dx::thd::VolumeUnit d_volumeUnit;
+  Dx::thd::Unit d_unit;
 
   std::unordered_map<Gas, double> getGasesRatio() const;
 };

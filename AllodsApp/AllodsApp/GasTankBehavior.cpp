@@ -39,7 +39,7 @@ void GasTankBehavior::pushFields()
   IBehaviorModel::pushFields();
 
   pushField("state", *((std::int32_t*)&d_state));
-  pushObject("volumeUnit", d_volumeUnit);
+  pushObject("unit", d_unit);
 }
 
 
@@ -63,7 +63,7 @@ std::string GasTankBehavior::getDescription() const
 {
   const std::string descriptionStr =
     "State: " + StateStr::toString(d_state) + "\n" +
-    "Pressure: " + Sdk::toString(Units::paToKPa(d_volumeUnit.getPressure()), 2) + " KPa";
+    "Pressure: " + Sdk::toString(Units::paToKPa(d_unit.getPressure()), 2) + " KPa";
 
   const auto ratio = getGasesRatio();
 
@@ -82,13 +82,13 @@ BehaviorActions GasTankBehavior::getActions(bool i_devMode)
   {
     actions.push_back(std::make_shared<BehaviorAction>("Remove gases",
       [&]() {
-        d_volumeUnit.clear();
+        d_unit.clear();
       },
       true));
 
     actions.push_back(std::make_shared<BehaviorAction>("Fill with oxygen",
       [&]() {
-        d_volumeUnit.addGas(GasPrototypesCollection::get(Gas::Oxygen).id, 1000000);
+        d_unit.addGas(GasPrototypesCollection::get(Gas::Oxygen).id, 1000000);
       },
       true));
   }
@@ -107,7 +107,7 @@ void GasTankBehavior::setGasTank(Entity& i_gasTank)
   d_gasTank = &i_gasTank;
 
   if (d_gasTank->hasPrototype())
-    d_volumeUnit.setVolume(d_gasTank->getPrototype().volume);
+    d_unit.setVolume(d_gasTank->getPrototype().volume);
 }
 
 
@@ -152,7 +152,7 @@ std::unordered_map<Gas, double> GasTankBehavior::getGasesRatio() const
   std::unordered_map<Gas, double> ratio;
 
   int totalAmount = 0;
-  for (const auto& [id, amount] : d_volumeUnit.getGases())
+  for (const auto& [id, amount] : d_unit.getGases())
   {
     totalAmount += amount;
     ratio[static_cast<Gas>(id)] = amount;
