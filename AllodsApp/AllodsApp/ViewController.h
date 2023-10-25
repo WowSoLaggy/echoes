@@ -35,6 +35,9 @@ private:
 
   virtual void processEvent(const Sdk::IEvent& i_event) override;
 
+  void renderObjects(const Objects& i_objects);
+  void renderAvatars(const Avatars& i_avatars);
+
   void onSessionAttached(Session& i_session);
   void onSessionDetached(Session& i_session);
   void onLocationAdded(Location& i_location);

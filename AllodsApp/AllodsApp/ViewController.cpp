@@ -1,9 +1,14 @@
 #include "stdafx.h"
 #include "ViewController.h"
 
+#include "Avatar.h"
+#include "AvatarView.h"
 #include "Game.h"
 #include "Location.h"
 #include "LocationEvents.h"
+#include "Object.h"
+#include "ObjectView.h"
+#include "Prototypes.h"
 #include "Session.h"
 #include "SessionEvents.h"
 
@@ -33,11 +38,50 @@ void ViewController::render()
   const auto& shader = SAFE_DEREF(d_locationShader);
 
   d_backgroundView.render(shader, SAFE_DEREF(d_camera));
-  d_tileView.render(shader, d_location->getTiles());
+
+  Objects objectsToDraw;
+  Avatars avatarsToDraw;
+
+  for (const auto& [coord, tilePtr] : d_location->getTiles())
+  {
+    const auto& tile = SAFE_DEREF(tilePtr);
+    d_tileView.render(shader, coord, tile);
+
+    const auto& tileObjects = tile.getObjects();
+    objectsToDraw.insert(objectsToDraw.end(), tileObjects.begin(), tileObjects.end());
+
+    const auto& tileAvatars = tile.getAvatars();
+    avatarsToDraw.insert(avatarsToDraw.end(), tileAvatars.begin(), tileAvatars.end());
+  }
+
+  renderObjects(objectsToDraw);
+  renderAvatars(avatarsToDraw);
 
   if (d_overlay)
     d_overlayView.render(shader, d_location->getTiles(), *d_overlay);
   d_buildModeView.render(shader);
+}
+
+void ViewController::renderObjects(const Objects& i_objects)
+{
+  const ObjectView objectView(SAFE_DEREF(d_locationShader));
+
+  for (const auto objectPtr : i_objects)
+  {
+    const auto& object = SAFE_DEREF(objectPtr);
+    objectView.render(object.getPrototype().texture, object.getPosition(), object.getAnimationPlayer().getCurrentFrame());
+  }
+}
+
+void ViewController::renderAvatars(const Avatars& i_avatars)
+{
+  const AvatarView avatarView(SAFE_DEREF(d_locationShader));
+
+  for (const auto avatarPtr : i_avatars)
+  {
+    const auto& avatar = SAFE_DEREF(avatarPtr);
+    avatarView.render(avatar.getPrototype().texture, avatar.getPosition(), avatar.getAnimationPlayer().getCurrentFrame());
+  }
 }
 
 
