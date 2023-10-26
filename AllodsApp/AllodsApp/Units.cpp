@@ -16,4 +16,10 @@ namespace Units
     return i_pa / Constants::PaInOneAtm;
   }
 
+
+  double volumeToLitres(double i_volume)
+  {
+    return i_volume * 1000;
+  }
+
 } // ns Units

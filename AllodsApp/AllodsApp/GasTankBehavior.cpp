@@ -63,6 +63,7 @@ std::string GasTankBehavior::getDescription() const
 {
   const std::string descriptionStr =
     "State: " + StateStr::toString(d_state) + "\n" +
+    "Volume: " + std::to_string((int)Units::volumeToLitres(d_unit.getVolume())) + " L\n" +
     "Pressure: " + Sdk::toString(Units::paToKPa(d_unit.getPressure()), 2) + " KPa";
 
   const auto ratio = getGasesRatio();
