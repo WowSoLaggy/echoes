@@ -6,6 +6,7 @@
 #include "ObjectsSpawner.h"
 #include "Structure.h"
 #include "TileUtils.h"
+#include "Units.h"
 
 
 std::shared_ptr<Location> LocationCreator::createTest()
@@ -78,7 +79,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
   createStr("Floor", 8, 7);
   auto& door = *createStr("Door", 8, 7);
 
-  location->getOrCreateTile({ 8, 5 }).setT(100);
+  location->getOrCreateTile({ 8, 5 }).setT(Units::celsiusToKelvin(100));
 
   {
     auto& wallN = SAFE_DEREF(location->getOrCreateTile({ 8, 3 }).getStructure(Layer::Wall));

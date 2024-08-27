@@ -2,6 +2,7 @@
 #include "TempOverlay.h"
 
 #include "Location.h"
+#include "Units.h"
 
 #include <LaggySdk/Math.h>
 #include <LaggySdk/StringUtils.h>
@@ -43,6 +44,6 @@ Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
 std::string TempOverlay::getHint(const TileCoord& i_tileCoord) const
 {
   const auto tile = d_location.getTile(i_tileCoord);
-  const auto tempString = tile ? Sdk::toString(tile->getT(), 2) + " C" : "N/A";
+  const auto tempString = tile ? Sdk::toString(Units::kelvinToCelsius(tile->getT()), 2) + " C" : "N/A";
   return "T: " + tempString;
 }

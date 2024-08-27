@@ -126,6 +126,11 @@ void Tile::setT(const double i_t)
   d_temperature = i_t;
 }
 
+double Tile::getInsulationFactor() const
+{
+  return 1.0;
+}
+
 
 Dx::thd::Unit& Tile::getUnit()
 {

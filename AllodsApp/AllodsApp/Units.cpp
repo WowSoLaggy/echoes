@@ -22,4 +22,15 @@ namespace Units
     return i_volume * 1000;
   }
 
+
+  double celsiusToKelvin(double i_celsius)
+  {
+    return i_celsius + Constants::KelvinOffset;
+  }
+
+  double kelvinToCelsius(double i_kelvin)
+  {
+    return i_kelvin - Constants::KelvinOffset;
+  }
+
 } // ns Units

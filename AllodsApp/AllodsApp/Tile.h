@@ -35,6 +35,7 @@ public:
 
   double getT() const;
   void setT(double i_t);
+  double getInsulationFactor() const;
 
   Dx::thd::Unit& getUnit();
   const Dx::thd::Unit& getUnit() const;

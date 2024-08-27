@@ -21,6 +21,12 @@ void TileThd::setT(const double i_t)
 }
 
 
+double TileThd::getInsulationFactor() const
+{
+  return d_tile.getInsulationFactor();
+}
+
+
 Dx::thd::Unit& TileThd::getUnit()
 {
   return d_tile.getUnit();

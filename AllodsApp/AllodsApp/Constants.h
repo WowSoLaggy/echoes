@@ -8,4 +8,6 @@ namespace Constants
 
   constexpr double PaInOneAtm = 101325;
 
+  constexpr double KelvinOffset = 273.15;
+
 } // ns Constants
