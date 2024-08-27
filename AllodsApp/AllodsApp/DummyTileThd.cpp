@@ -20,7 +20,7 @@ namespace
 
 double DummyTileThd::getT() const
 {
-  return 2.7; // temperature that equals to the cosmic microwave background radiation
+  return Constants::MbrTemperature;
 }
 
 void DummyTileThd::setT(double i_t)
@@ -30,7 +30,7 @@ void DummyTileThd::setT(double i_t)
 
 double DummyTileThd::getInsulationFactor() const
 {
-  return 0.0; // perfect insulation
+  return 0.01; // almost perfect insulation
 }
 
 
