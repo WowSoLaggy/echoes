@@ -33,6 +33,9 @@ public:
   void removeObject(const Object& i_object);
   void removeAvatar(const Avatar& i_avatar);
 
+  bool isSpaceExposed() const;
+  bool isAirTight() const;
+
   double getT() const;
   void setT(double i_t);
   double getInsulationFactor() const;

@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "LocationCreator.h"
 
+#include "Constants.h"
+#include "Gases.h"
 #include "Location.h"
 #include "Mount.h"
 #include "ObjectsSpawner.h"
@@ -37,7 +39,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
     return ObjectsSpawner::spawnAvatar(i_protoName, *location, std::move(i_position));
   };
 
-  //
+  // Base
 
   for (int x = 5; x <= 11; ++x)
   {
@@ -79,7 +81,19 @@ std::shared_ptr<Location> LocationCreator::createTest()
   createStr("Floor", 8, 7);
   auto& door = *createStr("Door", 8, 7);
 
-  location->getOrCreateTile({ 8, 5 }).setT(Units::celsiusToKelvin(100));
+  // Atmosphere
+
+  location->getOrCreateTile({ 8, 5 }).getUnit().addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 9);
+
+  // Temperature
+
+  for (int y = 3; y <= 7; ++y)
+  {
+    for (int x = 6; x <= 10; ++x)
+      location->getOrCreateTile({ x, y }).setT(Units::celsiusToKelvin(22));
+  }
+
+  // Interior
 
   {
     auto& wallN = SAFE_DEREF(location->getOrCreateTile({ 8, 3 }).getStructure(Layer::Wall));

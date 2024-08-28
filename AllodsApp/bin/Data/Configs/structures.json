@@ -3,14 +3,16 @@
   {
     "TextureName": "Lattice.png",
     "Layer": "Panneling",
-    "Support": false
+    "Support": false,
+    "SpaceExposure": true
   },
   
   "Plating":
   {
     "TextureName": "Plating.png",
     "Layer": "Panneling",
-    "Support": true
+    "Support": true,
+    "SpaceExposure": false
   },
   
   
@@ -26,14 +28,16 @@
   {
     "TextureName": "Wall.png",
     "Layer": "Wall",
-    "Fixture": true
+    "Fixture": true,
+    "InsulationFactor": 0.1
   },
   
   "Door":
   {
     "TextureName": "Door.png",
     "Layer": "Wall",
-    "Behavior": "Door"
+    "Behavior": "Door",
+    "InsulationFactor": 0.1
   },
   
   "Crate":

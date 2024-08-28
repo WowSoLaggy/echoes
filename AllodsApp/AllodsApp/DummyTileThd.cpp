@@ -33,6 +33,11 @@ double DummyTileThd::getInsulationFactor() const
   return 0.01; // almost perfect insulation
 }
 
+bool DummyTileThd::isAirTight() const
+{
+  return false;
+}
+
 
 Dx::thd::Unit& DummyTileThd::getUnit()
 {

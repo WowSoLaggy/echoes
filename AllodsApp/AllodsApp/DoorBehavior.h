@@ -34,6 +34,8 @@ public:
   void open();
   void close();
 
+  bool isAirTight() const;
+
 private:
   Entity* d_door = nullptr;
   State d_state = State::Closed;

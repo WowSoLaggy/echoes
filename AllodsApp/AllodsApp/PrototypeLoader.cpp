@@ -118,6 +118,12 @@ std::vector<PrototypePtr> PrototypeLoader::loadStructures(const fs::path& i_file
     if (protoNode.isMember("Fixture"))
       proto->fixture = protoNode["Fixture"].asBool();
 
+    if (protoNode.isMember("SpaceExposure"))
+      proto->spaceExposure = protoNode["SpaceExposure"].asBool();
+
+    if (protoNode.isMember("InsulationFactor"))
+      proto->insulationFactor = protoNode["InsulationFactor"].asDouble();
+
     prototypes.push_back(std::move(proto));
   }
 

@@ -26,6 +26,11 @@ double TileThd::getInsulationFactor() const
   return d_tile.getInsulationFactor();
 }
 
+bool TileThd::isAirTight() const
+{
+  return d_tile.isAirTight();
+}
+
 
 Dx::thd::Unit& TileThd::getUnit()
 {

@@ -16,6 +16,8 @@ public:
 
   [[nodiscard]] FixturePtr getFixture() const;
 
+  bool isAirTight() const;
+
 private:
   FixturePtr d_fixture;
 };

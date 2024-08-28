@@ -29,6 +29,8 @@ struct StructurePrototype : public Prototype
   Layer layer;
   bool support = false;
   bool fixture = false;
+  bool spaceExposure = false;
+  double insulationFactor = 1.0;
 };
 
 

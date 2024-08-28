@@ -96,6 +96,12 @@ void DoorBehavior::close()
 }
 
 
+bool DoorBehavior::isAirTight() const
+{
+  return d_state != State::Open && d_state != State::Closing;
+}
+
+
 void DoorBehavior::onAnimationStopped()
 {
   if (d_state == State::Opening)

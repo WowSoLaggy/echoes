@@ -2,7 +2,9 @@
 #include "Tile.h"
 
 #include "Avatar.h"
+#include "Constants.h"
 #include "Object.h"
+#include "Prototypes.h"
 #include "Structure.h"
 
 #include <LaggySdk/JsonSerializer.h>
@@ -116,6 +118,36 @@ void Tile::removeAvatar(const Avatar& i_avatar)
 }
 
 
+bool Tile::isSpaceExposed() const
+{
+  // Any wall always makes the space not exposed
+  if (d_layers.find(Layer::Wall) != d_layers.end())
+    return false;
+
+  // Floor always makes the space not exposed
+  if (d_layers.find(Layer::Floor) != d_layers.end())
+    return false;
+
+  // Panneling can expose to space or not
+  const auto it = d_layers.find(Layer::Panneling);
+  if (it != d_layers.end())
+    return SAFE_DEREF(it->second).getStructurePrototype().spaceExposure;
+
+  // If there are no walls, no floors and no panneling, the space is exposed
+  return true;
+}
+
+bool Tile::isAirTight() const
+{
+  // Tile can be airtight only if there is a wall structure that is airtight
+  const auto it = d_layers.find(Layer::Wall);
+  if (it != d_layers.end())
+    return SAFE_DEREF(it->second).isAirTight();
+
+  return false;
+}
+
+
 double Tile::getT() const
 {
   return d_temperature;
@@ -128,7 +160,16 @@ void Tile::setT(const double i_t)
 
 double Tile::getInsulationFactor() const
 {
-  return 1.0;
+  // If wall exists - tile insulation factor is defined by the wall insulation factor
+  const auto it = d_layers.find(Layer::Wall);
+  if (it != d_layers.end())
+    return SAFE_DEREF(it->second).getStructurePrototype().insulationFactor;
+
+  // Insulation depends on the gas pressure. No gas - perfect insulation, high gas pressure - worse insulation
+  const double pressure = getUnit().getPressure();
+  const double insulationFactor = Constants::BaseAirInsulation * (pressure / (Constants::IdeatHeatTransferPressure + pressure));
+
+  return insulationFactor;
 }
 
 

@@ -33,6 +33,12 @@ public:
   void setBehaviorModel(BehaviorModelPtr i_model);
   void resetBehaviorModel();
   [[nodiscard]] BehaviorModelPtr getBehaviorModel() const;
+  
+  template <typename T>
+  [[nodiscard]] T* getBehaviorModel() const
+  {
+    return dynamic_cast<T*>(d_behaviorModel.get());
+  }
 
 private:
   PrototypePtr d_prototype;
