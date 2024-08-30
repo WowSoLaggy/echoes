@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "AtmoOverlay.h"
 
+#include "Constants.h"
 #include "Location.h"
 #include "Units.h"
 
@@ -38,9 +39,9 @@ std::string AtmoOverlay::getHint(const TileCoord& i_tileCoord) const
   const auto tile = d_location.getTile(i_tileCoord);
   if (tile)
   {
-    const double pressureKPa = Units::paToKPa(tile->getUnit().getPressure());
-    if (pressureKPa > 0)
-      return "P: " + Sdk::toString(pressureKPa, 2) + " KPa";
+    const double pressurePa = tile->getUnit().getPressure();
+    if (pressurePa >= Constants::MinimumPressure)
+      return "P: " + Sdk::toString(Units::paToKPa(pressurePa), 2) + " KPa";
   }
 
   return "Vacuum";

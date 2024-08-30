@@ -6,7 +6,7 @@
 class DummyTileThd : public Dx::thd::ITile
 {
 public:
-  virtual double getT() const override;
+  virtual std::optional<double> getT() const override;
   virtual void setT(double i_t) override;
 
   virtual double getInsulationFactor() const override;

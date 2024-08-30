@@ -18,9 +18,9 @@ namespace
 } // anonym NS
 
 
-double DummyTileThd::getT() const
+std::optional<double> DummyTileThd::getT() const
 {
-  return Constants::MbrTemperature;
+  return std::nullopt;
 }
 
 void DummyTileThd::setT(double i_t)

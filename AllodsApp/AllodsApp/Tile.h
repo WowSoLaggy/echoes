@@ -36,7 +36,7 @@ public:
   bool isSpaceExposed() const;
   bool isAirTight() const;
 
-  double getT() const;
+  std::optional<double> getT() const;
   void setT(double i_t);
   double getInsulationFactor() const;
 

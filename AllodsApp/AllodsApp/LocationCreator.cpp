@@ -18,6 +18,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
+    location->getOrCreateTile({ x, y }).setT(Units::celsiusToKelvin(22));
     return ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y });
   };
 
@@ -85,13 +86,6 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   location->getOrCreateTile({ 8, 5 }).getUnit().addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 9);
 
-  // Temperature
-
-  for (int y = 3; y <= 7; ++y)
-  {
-    for (int x = 6; x <= 10; ++x)
-      location->getOrCreateTile({ x, y }).setT(Units::celsiusToKelvin(22));
-  }
 
   // Interior
 

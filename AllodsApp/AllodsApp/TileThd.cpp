@@ -10,7 +10,7 @@ TileThd::TileThd(Tile& i_tile)
 }
 
 
-double TileThd::getT() const
+std::optional<double> TileThd::getT() const
 {
   return d_tile.getT();
 }
@@ -40,4 +40,11 @@ Dx::thd::Unit& TileThd::getUnit()
 const Dx::thd::Unit& TileThd::getUnit() const
 {
   return d_tile.getUnit();
+}
+
+
+void TileThd::afterUpdate()
+{
+  if (d_tile.isSpaceExposed())
+    getUnit().clear();
 }

@@ -36,14 +36,24 @@ Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
   if (!tile)
     return { 0, 0, 0, 0 };
 
-  const double t = tile->getT();
-  const double normT = Sdk::clamp<double>(t, 0, 100);
+  const auto tOpt = tile->getT();
+  if (!tOpt)
+    return { 0, 0, 0, 0 };
+
+  const double normT = Sdk::clamp<double>(*tOpt, 0, 100);
   return d_gradient.get((float)normT / 100);
 }
 
 std::string TempOverlay::getHint(const TileCoord& i_tileCoord) const
 {
   const auto tile = d_location.getTile(i_tileCoord);
-  const auto tempString = tile ? Sdk::toString(Units::kelvinToCelsius(tile->getT()), 2) + " C" : "N/A";
+  if (!tile)
+    return "T: N/A";
+
+  const auto tOpt = tile->getT();
+  if (!tOpt)
+    return "T: N/A";
+
+  const auto tempString = tile ? Sdk::toString(Units::kelvinToCelsius(*tOpt), 1) + " C" : "N/A";
   return "T: " + tempString;
 }
