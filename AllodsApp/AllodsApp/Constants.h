@@ -14,4 +14,6 @@ namespace Constants
   constexpr double KelvinOffset = 273.15;
   constexpr double MbrTemperature = 2.7; // temperature that equals to the cosmic microwave background radiation
 
+  constexpr double GasInSpaceDecayFactor = 0.1;
+
 } // ns Constants

@@ -2,6 +2,7 @@
 #include "AtmoOverlay.h"
 
 #include "Constants.h"
+#include "Gases.h"
 #include "Location.h"
 #include "Units.h"
 
@@ -36,12 +37,28 @@ Dx::Color AtmoOverlay::getColor(const TileCoord& i_tileCoord) const
 
 std::string AtmoOverlay::getHint(const TileCoord& i_tileCoord) const
 {
-  const auto tile = d_location.getTile(i_tileCoord);
-  if (tile)
+  if (const auto tile = d_location.getTile(i_tileCoord))
   {
     const double pressurePa = tile->getUnit().getPressure();
     if (pressurePa >= Constants::MinimumPressure)
-      return "P: " + Sdk::toString(Units::paToKPa(pressurePa), 2) + " KPa";
+    {
+      const auto gases = tile->getUnit().getGases();
+      if (!gases.empty())
+      {
+        const int gasAmount = tile->getUnit().getGasAmount();
+        CONTRACT_ASSERT(gasAmount > 0);
+
+        std::string result = "P: " + Sdk::toString(Units::paToKPa(pressurePa), 2) + " KPa";
+        for (const auto& [id, amount] : gases)
+        {
+          const double gasShare = amount / gasAmount;
+          const std::string gasName = GasStr::toString(static_cast<Gas>(id));
+          result += "\n" + gasName + ": " + Sdk::toString(gasShare * 100, 2) + "%";
+        }
+
+        return result;
+      }
+    }
   }
 
   return "Vacuum";

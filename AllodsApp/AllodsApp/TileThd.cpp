@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TileThd.h"
 
+#include "Constants.h"
 #include "Tile.h"
 
 
@@ -50,8 +51,7 @@ void TileThd::afterUpdate(const double i_dt)
     const double initialGasAmount = getUnit().getGasAmount();
     if (initialGasAmount > 0)
     {
-      constexpr double GasInSpaceDecayFactor = 0.1;
-      const double newGasAmount = initialGasAmount * std::exp(-GasInSpaceDecayFactor * i_dt);
+      const double newGasAmount = initialGasAmount * std::exp(-Constants::GasInSpaceDecayFactor * i_dt);
       const double decayGasShare = 1 - newGasAmount / initialGasAmount;
       const auto gasesToRemove = d_tile.getUnit().extractGases(decayGasShare);
       d_tile.getUnit().removeGases(gasesToRemove);
