@@ -43,8 +43,18 @@ const Dx::thd::Unit& TileThd::getUnit() const
 }
 
 
-void TileThd::afterUpdate()
+void TileThd::afterUpdate(const double i_dt)
 {
   if (d_tile.isSpaceExposed())
-    getUnit().clear();
+  {
+    const double initialGasAmount = getUnit().getGasAmount();
+    if (initialGasAmount > 0)
+    {
+      constexpr double GasInSpaceDecayFactor = 0.1;
+      const double newGasAmount = initialGasAmount * std::exp(-GasInSpaceDecayFactor * i_dt);
+      const double decayGasShare = 1 - newGasAmount / initialGasAmount;
+      const auto gasesToRemove = d_tile.getUnit().extractGases(decayGasShare);
+      d_tile.getUnit().removeGases(gasesToRemove);
+    }
+  }
 }

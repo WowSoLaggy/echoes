@@ -19,7 +19,7 @@ public:
   virtual Dx::thd::Unit& getUnit() override;
   virtual const Dx::thd::Unit& getUnit() const override;
 
-  virtual void afterUpdate() override;
+  virtual void afterUpdate(double i_dt) override;
 
 private:
   Tile& d_tile;
