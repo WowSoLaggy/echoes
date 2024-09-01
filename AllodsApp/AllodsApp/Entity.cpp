@@ -2,6 +2,7 @@
 #include "Entity.h"
 
 #include "AnimationUtils.h"
+#include "Materials.h"
 #include "Prototypes.h"
 #include "PrototypesCollection.h"
 
@@ -128,4 +129,33 @@ void Entity::resetBehaviorModel()
 BehaviorModelPtr Entity::getBehaviorModel() const
 {
   return d_behaviorModel;
+}
+
+
+double Entity::getMass() const
+{
+  return getPrototype().mass;
+}
+
+
+void Entity::setTemperature(const double i_temperature)
+{
+  d_temperature = i_temperature;
+}
+
+std::optional<double> Entity::getTemperature() const
+{
+  return d_temperature;
+}
+
+double Entity::getThermalConductivity() const
+{
+  const auto material = getPrototype().material;
+  return getMaterialThermalConductivity(material);
+}
+
+double Entity::getHeatCapacity() const
+{
+  const auto material = getPrototype().material;
+  return getMaterialHeatCapacity(material) * getMass();
 }

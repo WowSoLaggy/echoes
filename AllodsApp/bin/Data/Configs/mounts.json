@@ -2,6 +2,8 @@
   "Lamp":
   {
     "TextureName": "Lamp.png",
-    "Behavior": "Lamp"
+    "Behavior": "Lamp",
+    "Mass": 0.2,
+    "Material": "Glass"
   }
 }

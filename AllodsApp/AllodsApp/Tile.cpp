@@ -3,6 +3,7 @@
 
 #include "Avatar.h"
 #include "Constants.h"
+#include "Mount.h"
 #include "Object.h"
 #include "Prototypes.h"
 #include "Structure.h"
@@ -58,6 +59,35 @@ const Objects& Tile::getObjects() const
 const Avatars& Tile::getAvatars() const
 {
   return d_avatars;
+}
+
+std::vector<Entity*> Tile::getEntities()
+{
+  std::vector<Entity*> entities;
+
+  // Add structures and mounts (tile-based entities)
+  for (const auto& [_, structurePtr] : d_layers)
+  {
+    entities.push_back(structurePtr.get());
+    if (const auto fixturePtr = SAFE_DEREF(structurePtr).getFixture())
+    {
+      for (const auto mountPtr : fixturePtr->getMountsFlat())
+        entities.push_back(mountPtr);
+    }
+  }
+
+  // Add objects and avatars (free-based entities)
+  for (const auto& objPtr : d_objects)
+    entities.push_back(objPtr.get());
+  for (const auto& avatarPtr : d_avatars)
+    entities.push_back(avatarPtr.get());
+
+  return entities;
+}
+
+const std::vector<Entity*> Tile::getEntities() const
+{
+  return const_cast<Tile*>(this)->getEntities();
 }
 
 
@@ -148,30 +178,16 @@ bool Tile::isAirTight() const
 }
 
 
-std::optional<double> Tile::getT() const
+std::optional<double> Tile::getTemperature() const
 {
   if (getUnit().getPressure() >= Constants::MinimumPressure)
     return d_temperature;
   return std::nullopt;
 }
 
-void Tile::setT(const double i_t)
+void Tile::setTemperature(const double i_t)
 {
   d_temperature = i_t;
-}
-
-double Tile::getInsulationFactor() const
-{
-  // If wall exists - tile insulation factor is defined by the wall insulation factor
-  const auto it = d_layers.find(Layer::Wall);
-  if (it != d_layers.end())
-    return SAFE_DEREF(it->second).getStructurePrototype().insulationFactor;
-
-  // Insulation depends on the gas pressure. No gas - perfect insulation, high gas pressure - worse insulation
-  const double pressure = getUnit().getPressure();
-  const double insulationFactor = Constants::BaseAirInsulation * (pressure / (Constants::IdeatHeatTransferPressure + pressure));
-
-  return insulationFactor;
 }
 
 

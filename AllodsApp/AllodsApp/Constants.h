@@ -16,4 +16,7 @@ namespace Constants
 
   constexpr double GasInSpaceDecayFactor = 0.1;
 
+  constexpr double VacuumThermalConductivity = 0;
+  constexpr double VacuumHeatCapacity = 1000000;
+
 } // ns Constants

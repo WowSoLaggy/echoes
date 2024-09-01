@@ -3,6 +3,7 @@
 #include "BehaviorModels.h"
 #include "Fwd.h"
 #include "Layers.h"
+#include "Materials.h"
 
 #include <LaggyDx/ITexture.h>
 
@@ -16,6 +17,8 @@ struct Prototype
   const Dx::ITexture* texture = nullptr;
   BehaviorModel bahaviorModel = BehaviorModel::None;
   double volume = 0;
+  double mass = 0;
+  Material material = Material::Default;
 
   bool operator==(const Prototype& i_other) const
   {
@@ -30,7 +33,6 @@ struct StructurePrototype : public Prototype
   bool support = false;
   bool fixture = false;
   bool spaceExposure = false;
-  double insulationFactor = 1.0;
 };
 
 

@@ -18,20 +18,25 @@ namespace
 } // anonym NS
 
 
-std::optional<double> DummyTileThd::getT() const
+std::optional<double> DummyTileThd::getTemperature() const
 {
   return std::nullopt;
 }
 
-void DummyTileThd::setT(double i_t)
+void DummyTileThd::setTemperature(double i_t)
 {
 }
 
-
-double DummyTileThd::getInsulationFactor() const
+double DummyTileThd::getThermalConductivity() const
 {
-  return 0.01; // almost perfect insulation
+  return Constants::VacuumThermalConductivity;
 }
+
+double DummyTileThd::getHeatCapacity() const
+{
+  return Constants::VacuumHeatCapacity;
+}
+
 
 bool DummyTileThd::isAirTight() const
 {
@@ -50,4 +55,10 @@ const Dx::thd::Unit& DummyTileThd::getUnit() const
 {
   static const auto unit = createSpaceUnit();
   return unit;
+}
+
+
+std::vector<Dx::thd::IThdObject*> DummyTileThd::getHeatAgents() const
+{
+  return {};
 }

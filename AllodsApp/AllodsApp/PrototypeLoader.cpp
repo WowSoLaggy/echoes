@@ -16,6 +16,7 @@ namespace
 
   void loadCommon(Prototype& io_proto, const Json::Value& i_json)
   {
+    CONTRACT_EXPECT(i_json.isMember("TextureName"));
     const auto textureName = i_json["TextureName"].asString();
     io_proto.texture = &Dx::TextureUtils::getTexture(textureName);
 
@@ -24,6 +25,12 @@ namespace
 
     if (i_json.isMember("Volume"))
       io_proto.volume = i_json["Volume"].asDouble();
+
+    CONTRACT_EXPECT(i_json.isMember("Mass"));
+    io_proto.mass = i_json["Mass"].asDouble();
+
+    CONTRACT_EXPECT(i_json.isMember("Material"));
+    io_proto.material = MaterialStr::fromString(i_json["Material"].asString());
   }
 
 } // anonym NS
@@ -120,9 +127,6 @@ std::vector<PrototypePtr> PrototypeLoader::loadStructures(const fs::path& i_file
 
     if (protoNode.isMember("SpaceExposure"))
       proto->spaceExposure = protoNode["SpaceExposure"].asBool();
-
-    if (protoNode.isMember("InsulationFactor"))
-      proto->insulationFactor = protoNode["InsulationFactor"].asDouble();
 
     prototypes.push_back(std::move(proto));
   }

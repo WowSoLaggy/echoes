@@ -18,7 +18,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
-    location->getOrCreateTile({ x, y }).setT(Units::celsiusToKelvin(22));
+    location->getOrCreateTile({ x, y }).setTemperature(Units::celsiusToKelvin(22));
     return ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y });
   };
 
@@ -42,7 +42,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   // Base
 
-  for (int x = 5; x <= 11; ++x)
+  for (int x = 5; x <= 15; ++x)
   {
     createStr("Lattice", x, 2);
     createStr("Lattice", x, 8);
@@ -51,22 +51,22 @@ std::shared_ptr<Location> LocationCreator::createTest()
   for (int y = 3; y <= 7; ++y)
   {
     createStr("Lattice", 5, y);
-    createStr("Lattice", 11, y);
+    createStr("Lattice", 15, y);
   }
 
-  for (int x = 6; x <= 10; ++x)
+  for (int x = 6; x <= 14; ++x)
   {
     for (int y = 3; y <= 7; ++y)
       createStr("Plating", x, y);
   }
 
-  for (int x = 7; x <= 9; ++x)
+  for (int x = 7; x <= 13; ++x)
   {
     for (int y = 4; y <= 6; ++y)
       createStr("Floor", x, y);
   }
 
-  for (int x = 6; x <= 10; ++x)
+  for (int x = 6; x <= 14; ++x)
   {
     createStr("Wall", x, 3);
     if (x != 8)
@@ -77,6 +77,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
   {
     createStr("Wall", 6, y);
     createStr("Wall", 10, y);
+    createStr("Wall", 14, y);
   }
 
   createStr("Floor", 8, 7);
@@ -86,6 +87,15 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   location->getOrCreateTile({ 8, 5 }).getUnit().addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 9);
 
+  for (int y = 4; y <= 6; ++y)
+  {
+    for (int x = 11; x <= 13; ++x)
+    {
+      location->getOrCreateTile({ x, y }).getUnit().addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
+      if (x != 12 || y != 5)
+        location->getOrCreateTile({ x, y }).setTemperature(0);
+    }
+  }
 
   // Interior
 

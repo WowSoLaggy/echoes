@@ -1,6 +1,8 @@
 {
   "Man":
   {
-    "TextureName": "Man.png"
+    "TextureName": "Man.png",
+    "Mass": 80,
+    "Material": "Bio"
   }
 }

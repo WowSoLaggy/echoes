@@ -1,13 +1,17 @@
 {
   "Lamp_bulb":
   {
-    "TextureName": "Lamp_bulb.png"
+    "TextureName": "Lamp_bulb.png",
+    "Mass": 0.1,
+    "Material": "Glass"
   },
   
   "GasTank":
   {
     "TextureName": "GasTank.png",
     "Behavior": "GasTank",
-    "Volume": 0.08
+    "Volume": 0.08,
+    "Mass": 2,
+    "Material": "Metal"
   }
 }

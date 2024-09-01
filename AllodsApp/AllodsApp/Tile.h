@@ -23,6 +23,8 @@ public:
   const LayersMap& getLayers() const;
   const Objects& getObjects() const;
   const Avatars& getAvatars() const;
+  std::vector<Entity*> getEntities();
+  const std::vector<Entity*> getEntities() const;
 
   const StructurePtr getStructure(Layer i_layer) const;
   void setStructure(Layer i_layer, StructurePtr i_structure);
@@ -36,9 +38,8 @@ public:
   bool isSpaceExposed() const;
   bool isAirTight() const;
 
-  std::optional<double> getT() const;
-  void setT(double i_t);
-  double getInsulationFactor() const;
+  std::optional<double> getTemperature() const;
+  void setTemperature(double i_t);
 
   Dx::thd::Unit& getUnit();
   const Dx::thd::Unit& getUnit() const;

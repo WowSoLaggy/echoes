@@ -73,6 +73,9 @@
     <Filter Include="src\Thermodyamics\Gases">
       <UniqueIdentifier>{bb3309cf-e281-422b-935b-7f6e52e250ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Materials">
+      <UniqueIdentifier>{0f54042e-bd7d-43d4-8f2f-b9b5dba963e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -305,6 +308,9 @@
     </ClCompile>
     <ClCompile Include="Units.cpp">
       <Filter>src\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Materials.cpp">
+      <Filter>src\World\Materials</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -544,6 +550,9 @@
     </ClInclude>
     <ClInclude Include="Units.h">
       <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials.h">
+      <Filter>src\World\Materials</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

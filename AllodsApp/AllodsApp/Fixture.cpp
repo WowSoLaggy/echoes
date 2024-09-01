@@ -18,6 +18,17 @@ void Fixture::pushFields()
 }
 
 
+const std::vector<Mount*> Fixture::getMountsFlat() const
+{
+  std::vector<Mount*> mounts;
+  for (const auto& [_, mountPtr] : d_mounts)
+  {
+    if (mountPtr)
+      mounts.push_back(mountPtr.get());
+  }
+  return mounts;
+}
+
 const FixturesMap& Fixture::getMounts() const
 {
   return d_mounts;

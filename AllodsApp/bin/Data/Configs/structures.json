@@ -4,7 +4,9 @@
     "TextureName": "Lattice.png",
     "Layer": "Panneling",
     "Support": false,
-    "SpaceExposure": true
+    "SpaceExposure": true,
+    "Mass": 10,
+    "Material": "Metal"
   },
   
   "Plating":
@@ -12,7 +14,9 @@
     "TextureName": "Plating.png",
     "Layer": "Panneling",
     "Support": true,
-    "SpaceExposure": false
+    "SpaceExposure": false,
+    "Mass": 20,
+    "Material": "Metal"
   },
   
   
@@ -20,7 +24,9 @@
   {
     "TextureName": "Floor.png",
     "Layer": "Floor",
-    "Support": true
+    "Support": true,
+    "Mass": 5,
+    "Material": "Metal"
   },
   
   
@@ -29,7 +35,17 @@
     "TextureName": "Wall.png",
     "Layer": "Wall",
     "Fixture": true,
-    "InsulationFactor": 0.1
+    "Mass": 200,
+    "Material": "Metal"
+  },
+  
+  "Insulated wall":
+  {
+    "TextureName": "Insulated_wall.png",
+    "Layer": "Wall",
+    "Fixture": true,
+    "Mass": 200,
+    "Material": "InsulatedMetal"
   },
   
   "Door":
@@ -37,13 +53,16 @@
     "TextureName": "Door.png",
     "Layer": "Wall",
     "Behavior": "Door",
-    "InsulationFactor": 0.1
+    "Mass": 200,
+    "Material": "Metal"
   },
   
   "Crate":
   {
     "TextureName": "Crate.png",
     "Layer": "Furniture",
-    "Behavior": "Container"
+    "Behavior": "Container",
+    "Mass": 10,
+    "Material": "Metal"
   }
 }

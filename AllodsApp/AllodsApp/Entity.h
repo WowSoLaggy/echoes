@@ -4,12 +4,13 @@
 #include "IBehaviorModel.h"
 
 #include <LaggyDx/Animation2Player.h>
+#include <LaggyDx/IThdObject.h>
 
 #include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Size.h>
 
 
-class Entity : public Sdk::ISerializable
+class Entity : public Sdk::ISerializable, public Dx::thd::IThdObject
 {
 public:
   Entity();
@@ -40,8 +41,17 @@ public:
     return dynamic_cast<T*>(d_behaviorModel.get());
   }
 
+  [[nodiscard]] double getMass() const;
+
+  virtual void setTemperature(double i_temperature) override;
+  [[nodiscard]] virtual std::optional<double> getTemperature() const override;
+  [[nodiscard]] virtual double getThermalConductivity() const override;
+  [[nodiscard]] virtual double getHeatCapacity() const override;
+
 private:
   PrototypePtr d_prototype;
   Dx::Animation2Player d_animationPlayer;
   BehaviorModelPtr d_behaviorModel;
+
+  double d_temperature = 0;
 };

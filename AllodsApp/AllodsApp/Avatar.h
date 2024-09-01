@@ -10,4 +10,6 @@ public:
   Avatar(PrototypePtr i_prototype);
 
   [[nodiscard]] const AvatarPrototype& getAvatarPrototype() const;
+
+  [[nodiscard]] virtual std::optional<double> getTemperature() const override;
 };

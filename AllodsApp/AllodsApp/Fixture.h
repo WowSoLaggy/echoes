@@ -15,6 +15,7 @@ public:
 
   virtual void pushFields() override;
 
+  const std::vector<Mount*> getMountsFlat() const;
   const FixturesMap& getMounts() const;
   MountPtr getMount(FixtureLocation i_location) const;
 
