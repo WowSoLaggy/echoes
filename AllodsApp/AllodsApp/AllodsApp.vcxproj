@@ -177,6 +177,7 @@
     <ClCompile Include="GasPrototypesLoader.cpp" />
     <ClCompile Include="GasTankBehavior.cpp" />
     <ClCompile Include="DevBuildGridItems.cpp" />
+    <ClCompile Include="GasThd.cpp" />
     <ClCompile Include="GuiCreator.cpp" />
     <ClCompile Include="GuiManager.cpp" />
     <ClCompile Include="GuiManager_ctxMenu.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="GasPrototypesLoader.h" />
     <ClInclude Include="GasTankBehavior.h" />
     <ClInclude Include="DevBuildGridItems.h" />
+    <ClInclude Include="GasThd.h" />
     <ClInclude Include="GuiCreator.h" />
     <ClInclude Include="GuiManager.h" />
     <ClInclude Include="BuildDraftInfo.h" />

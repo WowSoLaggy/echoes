@@ -312,6 +312,9 @@
     <ClCompile Include="Materials.cpp">
       <Filter>src\World\Materials</Filter>
     </ClCompile>
+    <ClCompile Include="GasThd.cpp">
+      <Filter>src\Thermodyamics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -553,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="Materials.h">
       <Filter>src\World\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="GasThd.h">
+      <Filter>src\Thermodyamics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -11,5 +11,5 @@ public:
 
   [[nodiscard]] const AvatarPrototype& getAvatarPrototype() const;
 
-  [[nodiscard]] virtual std::optional<double> getTemperature() const override;
+  [[nodiscard]] virtual double getTemperature() const override;
 };

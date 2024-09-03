@@ -38,11 +38,8 @@ Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
   if (!tile)
     return { 0, 0, 0, 0 };
 
-  const auto tOpt = tile->getTemperature();
-  if (!tOpt)
-    return { 0, 0, 0, 0 };
-
-  const double normT = Sdk::clamp<double>(*tOpt, 0, 100);
+  const double t = tile->getGasUnitThd().getTemperature();
+  const double normT = Sdk::clamp<double>(t, 0, 100);
   return d_gradient.get((float)normT / 100);
 }
 
@@ -60,7 +57,7 @@ std::string TempOverlay::getHint(const TileCoord& i_tileCoord) const
   if (!tile)
     return "T: N/A";
 
-  std::string hint = "Atmo: " + str(tile->getTemperature());
+  std::string hint = "Atmo: " + str(tile->getGasUnitThd().getTemperature());
 
   for (const auto& entityPtr : tile->getEntities())
   {

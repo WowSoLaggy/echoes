@@ -1,9 +1,8 @@
 #pragma once
 
 #include "Fwd.h"
+#include "GasThd.h"
 #include "Layers.h"
-
-#include <LaggyDx/Unit.h>
 
 #include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Vector.h>
@@ -38,11 +37,8 @@ public:
   bool isSpaceExposed() const;
   bool isAirTight() const;
 
-  std::optional<double> getTemperature() const;
-  void setTemperature(double i_t);
-
-  Dx::thd::Unit& getUnit();
-  const Dx::thd::Unit& getUnit() const;
+  GasThd& getGasUnitThd();
+  const GasThd& getGasUnitThd() const;
 
 private:
   LayersMap d_layers;
@@ -50,5 +46,5 @@ private:
   Objects d_objects;
 
   double d_temperature = 0;
-  Dx::thd::Unit d_unit;
+  GasThd d_gasUnitThd;
 };

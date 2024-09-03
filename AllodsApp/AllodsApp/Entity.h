@@ -14,7 +14,7 @@ class Entity : public Sdk::ISerializable, public Dx::thd::IThdObject
 {
 public:
   Entity();
-  Entity(PrototypePtr i_prototype);
+  explicit Entity(PrototypePtr i_prototype);
 
   virtual void pushFields() override;
   virtual Sdk::FieldHandled onFieldNotFound(const std::string& i_name, const Json::Value& i_json) override;
@@ -44,7 +44,7 @@ public:
   [[nodiscard]] double getMass() const;
 
   virtual void setTemperature(double i_temperature) override;
-  [[nodiscard]] virtual std::optional<double> getTemperature() const override;
+  [[nodiscard]] virtual double getTemperature() const override;
   [[nodiscard]] virtual double getThermalConductivity() const override;
   [[nodiscard]] virtual double getHeatCapacity() const override;
 

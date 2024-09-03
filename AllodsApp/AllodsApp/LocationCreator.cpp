@@ -18,7 +18,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
-    location->getOrCreateTile({ x, y }).setTemperature(Units::celsiusToKelvin(22));
+    location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(22));
     return ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y });
   };
 
@@ -85,15 +85,15 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   // Atmosphere
 
-  location->getOrCreateTile({ 8, 5 }).getUnit().addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 9);
+  SAFE_DEREF(location->getOrCreateTile({ 8, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 9);
 
   for (int y = 4; y <= 6; ++y)
   {
     for (int x = 11; x <= 13; ++x)
     {
-      location->getOrCreateTile({ x, y }).getUnit().addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
+      SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
       if (x != 12 || y != 5)
-        location->getOrCreateTile({ x, y }).setTemperature(0);
+        location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(0);
     }
   }
 

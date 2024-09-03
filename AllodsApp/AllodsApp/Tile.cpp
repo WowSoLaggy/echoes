@@ -178,25 +178,12 @@ bool Tile::isAirTight() const
 }
 
 
-std::optional<double> Tile::getTemperature() const
+GasThd& Tile::getGasUnitThd()
 {
-  if (getUnit().getPressure() >= Constants::MinimumPressure)
-    return d_temperature;
-  return std::nullopt;
+  return d_gasUnitThd;
 }
 
-void Tile::setTemperature(const double i_t)
+const GasThd& Tile::getGasUnitThd() const
 {
-  d_temperature = i_t;
-}
-
-
-Dx::thd::Unit& Tile::getUnit()
-{
-  return d_unit;
-}
-
-const Dx::thd::Unit& Tile::getUnit() const
-{
-  return d_unit;
+  return d_gasUnitThd;
 }

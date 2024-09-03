@@ -143,7 +143,7 @@ void Entity::setTemperature(const double i_temperature)
   d_temperature = i_temperature;
 }
 
-std::optional<double> Entity::getTemperature() const
+double Entity::getTemperature() const
 {
   return d_temperature;
 }

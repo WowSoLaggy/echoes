@@ -21,7 +21,7 @@ const AvatarPrototype& Avatar::getAvatarPrototype() const
 }
 
 
-std::optional<double> Avatar::getTemperature() const
+double Avatar::getTemperature() const
 {
   return Units::celsiusToKelvin(36.6);
 }
