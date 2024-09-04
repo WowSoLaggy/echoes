@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TempOverlay.h"
 
+#include "Constants.h"
 #include "Entity.h"
 #include "Location.h"
 #include "Prototypes.h"
@@ -57,7 +58,12 @@ std::string TempOverlay::getHint(const TileCoord& i_tileCoord) const
   if (!tile)
     return "T: N/A";
 
-  std::string hint = "Atmo: " + str(tile->getGasUnitThd().getTemperature());
+  std::string hint = "Atmo: ";
+  
+  if (SAFE_DEREF(tile->getGasUnitThd().getGasUnit()).getPressure() >= Constants::MinimumPressure)
+    hint += str(tile->getGasUnitThd().getTemperature());
+  else
+    hint += "N/A";
 
   for (const auto& entityPtr : tile->getEntities())
   {
