@@ -32,7 +32,11 @@ double GasThd::getThermalConductivity() const
     conductivity += partialConductivity;
   }
 
-  return conductivity;
+  // `conductivityMassMultiplier` simulates that gas with higher pressure has higher thermal conductivity
+  // while no pressure means no thermal conductivity
+  const double conductivityMassMultiplier = gasAmount / Constants::PaInOneAtm;
+
+  return conductivity * conductivityMassMultiplier;
 }
 
 double GasThd::getHeatCapacity() const

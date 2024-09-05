@@ -83,7 +83,7 @@ BehaviorActions GasTankBehavior::getActions(bool i_devMode)
   {
     actions.push_back(std::make_shared<BehaviorAction>("Remove gases",
       [&]() {
-        d_gasUnit.clear();
+        d_gasUnit.clearGases();
       },
       true));
 

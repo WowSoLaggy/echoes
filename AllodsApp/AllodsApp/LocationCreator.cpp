@@ -1,14 +1,28 @@
 #include "stdafx.h"
 #include "LocationCreator.h"
 
+#include "Avatar.h"
 #include "Constants.h"
 #include "Gases.h"
 #include "Location.h"
 #include "Mount.h"
+#include "Object.h"
 #include "ObjectsSpawner.h"
 #include "Structure.h"
 #include "TileUtils.h"
 #include "Units.h"
+
+
+namespace
+{
+  template <typename T>
+  T setDefaultTemperature(T i_obj)
+  {
+    const double DefaultTemperature = Units::celsiusToKelvin(22);
+    i_obj->setTemperature(DefaultTemperature);
+    return i_obj;
+  }
+} // anonym NS
 
 
 std::shared_ptr<Location> LocationCreator::createTest()
@@ -18,26 +32,25 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   const auto createStr = [&](const PrototypeName& i_protoName, const int x, const int y)
   {
-    location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(22));
-    return ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y });
+    return setDefaultTemperature(ObjectsSpawner::spawnStructure(i_protoName, *location, { x, y }));
   };
 
   const auto createMount = [&](
     const PrototypeName& i_protoName, Structure& i_structure, const FixtureLocation i_location)
   {
-    return ObjectsSpawner::spawnMount(i_protoName, i_structure, i_location);
+    return setDefaultTemperature(ObjectsSpawner::spawnMount(i_protoName, i_structure, i_location));
   };
 
   const auto createObject = [&](
     const PrototypeName& i_protoName, Sdk::Vector2I i_position)
   {
-    return ObjectsSpawner::spawnObject(i_protoName, *location, std::move(i_position));
+    return setDefaultTemperature(ObjectsSpawner::spawnObject(i_protoName, *location, std::move(i_position)));
   };
 
   const auto createAvatar = [&](
     const PrototypeName& i_protoName, Sdk::Vector2I i_position)
   {
-    return ObjectsSpawner::spawnAvatar(i_protoName, *location, std::move(i_position));
+    return setDefaultTemperature(ObjectsSpawner::spawnAvatar(i_protoName, *location, std::move(i_position)));
   };
 
   // Base
@@ -76,26 +89,28 @@ std::shared_ptr<Location> LocationCreator::createTest()
   for (int y = 4; y <= 6; ++y)
   {
     createStr("Wall", 6, y);
-    createStr("Wall", 10, y);
+    if (y != 6)
+      createStr("Wall", 10, y);
     createStr("Wall", 14, y);
   }
 
   createStr("Floor", 8, 7);
-  auto& door = *createStr("Door", 8, 7);
+  createStr("Door", 8, 7);
+  createStr("Door", 10, 6);
 
   // Atmosphere
 
-  SAFE_DEREF(location->getOrCreateTile({ 8, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 9);
-
   for (int y = 4; y <= 6; ++y)
   {
-    for (int x = 11; x <= 13; ++x)
+    for (int x = 7; x <= 9; ++x)
     {
-      SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
-      if (x != 12 || y != 5)
-        location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(0);
+      //SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
+      //location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(22));
     }
   }
+
+  SAFE_DEREF(location->getOrCreateTile({ 12, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 19);
+  location->getOrCreateTile({ 12, 5 }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(100));
 
   // Interior
 

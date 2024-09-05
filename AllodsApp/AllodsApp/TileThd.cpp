@@ -18,7 +18,8 @@ std::vector<Dx::thd::IThdObject*> TileThd::getThdObjects() const
   for (auto& entity : d_tile.getEntities())
     heatAgents.push_back(entity);
 
-  heatAgents.push_back(&d_tile.getGasUnitThd());
+  if (!d_tile.isAirTight())
+    heatAgents.push_back(&d_tile.getGasUnitThd());
 
   return heatAgents;
 }
