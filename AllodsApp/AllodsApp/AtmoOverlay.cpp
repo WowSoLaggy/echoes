@@ -53,7 +53,7 @@ std::string AtmoOverlay::getHint(const TileCoord& i_tileCoord) const
         std::string result = "P: " + Sdk::toString(Units::paToKPa(pressurePa), 2) + " KPa";
         for (const auto& [id, amount] : gases)
         {
-          const double gasShare = amount / gasAmount;
+          const double gasShare = (double)amount / gasAmount;
           const std::string gasName = GasStr::toString(static_cast<Gas>(id));
           result += "\n" + gasName + ": " + Sdk::toString(gasShare * 100, 2) + "%";
         }

@@ -5,8 +5,8 @@
 namespace
 {
   const std::unordered_map<Gas, std::string> GasMap {
-    { Gas::Oxygen, "Oxygen" },
-    { Gas::CarbonDioxide, "Carbon Dioxide" },
+    { Gas::Oxygen, "O2" },
+    { Gas::CarbonDioxide, "CO2" },
   };
 
 } // anonym NS
