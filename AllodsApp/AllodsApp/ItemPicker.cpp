@@ -20,17 +20,11 @@ namespace
   {
     std::vector<TilePtr> tiles;
 
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ -1, -1 }));
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 0, -1 }));
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 1, -1 }));
-
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ -1, 0 }));
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 0, 0 }));
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 1, 0 }));
-
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ -1, 1 }));
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 0, 1 }));
-    tiles.push_back(i_location.getTile(i_coord + TileCoord{ 1, 1 }));
+    for (int y = -1; y <= 1; ++y)
+    {
+      for (int x = -1; x <= 1; ++x)
+        tiles.push_back(i_location.getTile(i_coord + TileCoord{ x, y }));
+    }
 
     return tiles;
   }
