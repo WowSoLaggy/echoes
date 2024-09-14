@@ -29,13 +29,13 @@ public:
     const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position);
   static ObjectPtr spawnObject(
     PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position);
-  static void despawnObject(Location& i_location, const Object& i_object);
+  static void despawnObject(Location& i_location, Object& i_object);
 
   static AvatarPtr spawnAvatar(
     const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position);
   static AvatarPtr spawnAvatar(
     PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position);
-  static void despawnAvatar(Location& i_location, const Avatar& i_avatar);
+  static void despawnAvatar(Location& i_location, Avatar& i_avatar);
 
 private:
   ObjectsSpawner() = delete;

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "BuildManager.h"
 
+#include "Avatar.h"
 #include "BuildDraftInfo.h"
 #include "ItemPicker.h"
 #include "Mount.h"
@@ -299,11 +300,17 @@ void BuildManager::tryRemove()
       tileCoords,
       *mount);
   }
-  else if (const auto* object = dynamic_cast<const Object*>(entityPtr.get()))
+  else if (auto* object = dynamic_cast<Object*>(entityPtr.get()))
   {
     ObjectsSpawner::despawnObject(
       SAFE_DEREF(d_session.getCurrentLocation()),
       *object);
+  }
+  else if (auto* avatar = dynamic_cast<Avatar*>(entityPtr.get()))
+  {
+    ObjectsSpawner::despawnAvatar(
+      SAFE_DEREF(d_session.getCurrentLocation()),
+      *avatar);
   }
 
   if (d_isMutliremoving)

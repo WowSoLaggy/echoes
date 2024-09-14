@@ -33,6 +33,11 @@ Sdk::FieldHandled Tile::onFieldNotFound(const std::string& i_name, const Json::V
 }
 
 
+void Tile::processEvent(const Sdk::IEvent& i_event)
+{
+}
+
+
 void Tile::update(const double i_dt)
 {
   leakGasToSpace(i_dt);
@@ -105,10 +110,14 @@ void Tile::setStructure(const Layer i_layer, StructurePtr i_structure)
   CONTRACT_EXPECT(i_structure);
   CONTRACT_EXPECT(d_layers[i_layer] == nullptr);
   d_layers[i_layer] = i_structure;
+  connectTo(*i_structure);
 }
 
 void Tile::resetStructure(const Layer i_layer)
 {
+  auto structurePtr = d_layers.at(i_layer);
+  CONTRACT_EXPECT(structurePtr);
+  disconnectFrom(*structurePtr);
   d_layers.erase(i_layer);
 }
 
@@ -117,16 +126,20 @@ void Tile::addObject(ObjectPtr i_object)
 {
   CONTRACT_EXPECT(i_object);
   d_objects.push_back(i_object);
+  connectTo(*i_object);
 }
 
 void Tile::addAvatar(AvatarPtr i_avatar)
 {
   CONTRACT_EXPECT(i_avatar);
   d_avatars.push_back(i_avatar);
+  connectTo(*i_avatar);
 }
 
-void Tile::removeObject(const Object& i_object)
+void Tile::removeObject(Object& i_object)
 {
+  disconnectFrom(i_object);
+
   const int originalSize = (int)d_objects.size();
 
   d_objects.erase(std::remove_if(d_objects.begin(), d_objects.end(), [&](const auto i_objectPtr) {
@@ -137,8 +150,10 @@ void Tile::removeObject(const Object& i_object)
   CONTRACT_EXPECT(newSize == originalSize - 1);
 }
 
-void Tile::removeAvatar(const Avatar& i_avatar)
+void Tile::removeAvatar(Avatar& i_avatar)
 {
+  disconnectFrom(i_avatar);
+
   const int originalSize = (int)d_avatars.size();
 
   d_avatars.erase(std::remove_if(d_avatars.begin(), d_avatars.end(), [&](const auto i_avatarPtr) {

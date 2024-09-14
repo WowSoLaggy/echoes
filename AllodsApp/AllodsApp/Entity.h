@@ -6,11 +6,12 @@
 #include <LaggyDx/Animation2Player.h>
 #include <LaggyDx/IThdObject.h>
 
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Size.h>
 
 
-class Entity : public Sdk::ISerializable, public Dx::thd::IThdObject
+class Entity : public Sdk::ISerializable, public Dx::thd::IThdObject, public Sdk::EventHandler
 {
 public:
   Entity();

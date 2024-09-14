@@ -109,7 +109,7 @@ ObjectPtr ObjectsSpawner::spawnObject(
   return object;
 }
 
-void ObjectsSpawner::despawnObject(Location& i_location, const Object& i_object)
+void ObjectsSpawner::despawnObject(Location& i_location, Object& i_object)
 {
   const auto tileCoord = TileUtils::getTileCoords(i_object.getPosition());
   auto& tile = i_location.getOrCreateTile(tileCoord);
@@ -139,7 +139,7 @@ AvatarPtr ObjectsSpawner::spawnAvatar(
   return avatar;
 }
 
-void ObjectsSpawner::despawnAvatar(Location& i_location, const Avatar& i_avatar)
+void ObjectsSpawner::despawnAvatar(Location& i_location, Avatar& i_avatar)
 {
   const auto tileCoord = TileUtils::getTileCoords(i_avatar.getPosition());
   auto& tile = i_location.getOrCreateTile(tileCoord);

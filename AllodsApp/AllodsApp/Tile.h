@@ -4,6 +4,7 @@
 #include "GasThd.h"
 #include "Layers.h"
 
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/ISerializable.h>
 #include <LaggySdk/Vector.h>
 
@@ -11,11 +12,13 @@
 using LayersMap = std::map<Layer, StructurePtr>;
 
 
-class Tile : public Sdk::ISerializable
+class Tile : public Sdk::ISerializable, public Sdk::EventHandler
 {
 public:
   virtual void pushFields() override;
   virtual Sdk::FieldHandled onFieldNotFound(const std::string& i_name, const Json::Value& i_json);
+
+  virtual void processEvent(const Sdk::IEvent& i_event);
 
   void update(double i_dt);
 
@@ -31,8 +34,8 @@ public:
 
   void addObject(ObjectPtr i_object);
   void addAvatar(AvatarPtr i_avatar);
-  void removeObject(const Object& i_object);
-  void removeAvatar(const Avatar& i_avatar);
+  void removeObject(Object& i_object);
+  void removeAvatar(Avatar& i_avatar);
 
   bool isSpaceExposed() const;
   bool isAirTight() const;
