@@ -109,7 +109,7 @@ std::shared_ptr<Location> LocationCreator::createTest()
     }
   }
 
-  SAFE_DEREF(location->getOrCreateTile({ 12, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm);
+  /*SAFE_DEREF(location->getOrCreateTile({ 12, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm);
   for (int y = 4; y <= 6; ++y)
   {
     for (int x = 11; x <= 13; ++x)
@@ -117,6 +117,17 @@ std::shared_ptr<Location> LocationCreator::createTest()
       if (x != 12 || y != 5)
         SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
       
+      location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(22));
+    }
+  }*/
+
+  for (int y = 4; y <= 6; ++y)
+  {
+    for (int x = 11; x <= 13; ++x)
+    {
+      SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 8 / 9);
+      SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm * 1 / 9);
+
       location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(22));
     }
   }
