@@ -23,16 +23,3 @@ std::vector<Dx::thd::IThdObject*> TileThd::getThdObjects() const
 
   return heatAgents;
 }
-
-
-void TileThd::leakGasesToSpace(double i_dt)
-{
-  /*const double initialGasAmount = getUnit().getGasAmount();
-  if (initialGasAmount > 0)
-  {
-    const double newGasAmount = initialGasAmount * std::exp(-Constants::GasInSpaceDecayFactor * i_dt);
-    const double decayGasShare = 1 - newGasAmount / initialGasAmount;
-    const auto gasesToRemove = d_tile.getUnit().extractGases(decayGasShare);
-    d_tile.getUnit().removeGases(gasesToRemove);
-  }*/
-}

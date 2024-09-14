@@ -39,6 +39,9 @@ Dx::Color TempOverlay::getColor(const TileCoord& i_tileCoord) const
   if (!tile)
     return { 0, 0, 0, 0 };
 
+  if (!SAFE_DEREF(tile->getGasUnitThd().getGasUnit()).hasGas())
+    return { 0, 0, 0, 0 };
+
   const double t = tile->getGasUnitThd().getTemperature();
   const double normT = Sdk::clamp<double>(t, 0, 100);
   return d_gradient.get((float)normT / 100);

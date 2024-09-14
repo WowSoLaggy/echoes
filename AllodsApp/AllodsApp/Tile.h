@@ -40,6 +40,8 @@ public:
   GasThd& getGasUnitThd();
   const GasThd& getGasUnitThd() const;
 
+  void leakGasToSpace(double i_dt);
+
 private:
   LayersMap d_layers;
   Avatars d_avatars;

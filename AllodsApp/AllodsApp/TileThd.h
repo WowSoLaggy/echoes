@@ -14,6 +14,4 @@ public:
 
 private:
   Tile& d_tile;
-
-  void leakGasesToSpace(double i_dt);
 };

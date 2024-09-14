@@ -35,6 +35,8 @@ Sdk::FieldHandled Tile::onFieldNotFound(const std::string& i_name, const Json::V
 
 void Tile::update(const double i_dt)
 {
+  leakGasToSpace(i_dt);
+
   for (auto& [_, structurePtr] : d_layers)
     SAFE_DEREF(structurePtr).update(i_dt);
 
@@ -186,4 +188,25 @@ GasThd& Tile::getGasUnitThd()
 const GasThd& Tile::getGasUnitThd() const
 {
   return d_gasUnitThd;
+}
+
+
+void Tile::leakGasToSpace(const double i_dt)
+{
+  auto& gasUnit = SAFE_DEREF(d_gasUnitThd.getGasUnit());
+  if (!gasUnit.hasGas())
+    return;
+
+  if (!isSpaceExposed())
+    return;
+
+  const double initialGasAmount = gasUnit.getGasAmount();
+  if (initialGasAmount > 0)
+  {
+    const double newGasAmount = initialGasAmount * std::exp(-Constants::GasInSpaceDecayFactor * i_dt);
+    const double decayGasShare = 1 - newGasAmount / initialGasAmount;
+    const int gasAmountToRemove = static_cast<int>(decayGasShare * initialGasAmount);
+    const auto gasesToRemove = gasUnit.removeAmountOfGases(gasAmountToRemove);
+    gasUnit.removeGases(gasesToRemove);
+  }
 }
