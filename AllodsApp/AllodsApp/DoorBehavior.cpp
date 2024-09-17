@@ -35,8 +35,8 @@ void DoorBehavior::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* event = dynamic_cast<const Dx::AnimationStoppedEvent*>(&i_event))
     onAnimationStopped();
-  else if (const auto* event = dynamic_cast<const Dx::AnimationFrameChangedEvent*>(&i_event))
-    onAnimationUpdated(event->getCurrentFrame(), event->getAnimationLength());
+  else if (const auto* event = dynamic_cast<const Dx::AnimationTimeUpdatedEvent*>(&i_event))
+    onAnimationUpdated(event->getTime(), event->getTotalTime());
 }
 
 
@@ -112,13 +112,13 @@ void DoorBehavior::onAnimationStopped()
   }
 }
 
-void DoorBehavior::onAnimationUpdated(const int i_curFrame, const int i_totalFrames)
+void DoorBehavior::onAnimationUpdated(const double i_animationTime, const double i_animationLength)
 {
   // Update occupied volume
   if (d_state == State::Opening)
-    updateOccupiedVolume(1.0 - i_curFrame / static_cast<double>(i_totalFrames));
+    updateOccupiedVolume(1 - i_animationTime / i_animationLength);
   else if (d_state == State::Closing)
-    updateOccupiedVolume(i_curFrame / static_cast<double>(i_totalFrames));
+    updateOccupiedVolume(i_animationTime / i_animationLength);
 }
 
 

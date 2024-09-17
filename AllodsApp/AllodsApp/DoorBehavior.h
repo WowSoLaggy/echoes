@@ -39,7 +39,7 @@ private:
   Entity& getDoor() const;
 
   void onAnimationStopped();
-  void onAnimationUpdated(int i_curFrame, int i_totalFrames);
+  void onAnimationUpdated(double i_animationTime, double i_animationLength);
   // 0 - whole tile volume is occupied by the door, meaning that the door is fully closed and there is no space for gas
   // 1 - the door is fully open, meaning that the whole tile volume is available for gas
   void updateOccupiedVolume(double i_occupiedVolume);
