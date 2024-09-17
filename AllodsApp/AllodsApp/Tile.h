@@ -38,7 +38,6 @@ public:
   void removeAvatar(Avatar& i_avatar);
 
   bool isSpaceExposed() const;
-  bool isAirTight() const;
 
   GasThd& getGasUnitThd();
   const GasThd& getGasUnitThd() const;
@@ -52,4 +51,7 @@ private:
 
   double d_temperature = 0;
   GasThd d_gasUnitThd;
+
+  // Recalculates the tile's volume available for gas depending on the entities on the tile
+  void onVolumeChanged();
 };

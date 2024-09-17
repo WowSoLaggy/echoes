@@ -3,11 +3,12 @@
 #include "BehaviorModels.h"
 #include "Fwd.h"
 
+#include <LaggySdk/EventHandler.h>
 #include <LaggySdk/ISerializable.h>
 #include <LaggySdk/json.h>
 
 
-class IBehaviorModel : public Sdk::ISerializable
+class IBehaviorModel : public Sdk::ISerializable, public Sdk::EventHandler
 {
 public:
   static BehaviorModelPtr get(BehaviorModel i_model, Entity& i_entity);

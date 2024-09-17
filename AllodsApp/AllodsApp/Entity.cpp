@@ -2,6 +2,7 @@
 #include "Entity.h"
 
 #include "AnimationUtils.h"
+#include "BehaviorEvents.h"
 #include "Materials.h"
 #include "Prototypes.h"
 #include "PrototypesCollection.h"
@@ -67,6 +68,12 @@ void Entity::onDeserialized()
 }
 
 
+void Entity::processEvent(const Sdk::IEvent& i_event)
+{
+  notify(i_event);
+}
+
+
 void Entity::setPrototype(PrototypePtr i_prototype, const bool i_setBehaviorModel)
 {
   d_prototype = i_prototype;
@@ -118,7 +125,13 @@ const Dx::Animation2Player& Entity::getAnimationPlayer() const
 
 void Entity::setBehaviorModel(BehaviorModelPtr i_model)
 {
+  if (d_behaviorModel)
+    disconnectFrom(*d_behaviorModel);
+
   d_behaviorModel = i_model;
+
+  if (d_behaviorModel)
+    connectTo(*d_behaviorModel);
 }
 
 void Entity::resetBehaviorModel()
@@ -158,4 +171,16 @@ double Entity::getHeatCapacity() const
 {
   const auto material = getPrototype().material;
   return getMaterialHeatCapacity(material) * getMass();
+}
+
+
+double Entity::getVolume() const
+{
+  return d_volume;
+}
+
+void Entity::setVolume(const double i_volume)
+{
+  d_volume = i_volume;
+  notify(EntityVolumeChangedEvent());
 }

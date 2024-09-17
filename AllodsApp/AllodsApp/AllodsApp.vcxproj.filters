@@ -560,5 +560,8 @@
     <ClInclude Include="GasThd.h">
       <Filter>src\Thermodyamics</Filter>
     </ClInclude>
+    <ClInclude Include="BehaviorEvents.h">
+      <Filter>src\Events</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

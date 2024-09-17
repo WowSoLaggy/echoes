@@ -21,6 +21,8 @@ public:
   virtual Sdk::FieldHandled onFieldNotFound(const std::string& i_name, const Json::Value& i_json) override;
   virtual void onDeserialized() override;
 
+  virtual void processEvent(const Sdk::IEvent& i_event) override;
+
   void update(double i_dt);
 
   void setPrototype(PrototypePtr i_prototype, bool i_setBehaviorModel = true);
@@ -49,10 +51,17 @@ public:
   [[nodiscard]] virtual double getThermalConductivity() const override;
   [[nodiscard]] virtual double getHeatCapacity() const override;
 
+  // Indicates how much of the tile's volume this entity occupies (mostly for gas simulation)
+  // 1 means that the entity occupies the whole tile's volume
+  // 0 means that the entity occupies no volume
+  [[nodiscard]] double getVolume() const;
+  void setVolume(double i_volume);
+
 private:
   PrototypePtr d_prototype;
   Dx::Animation2Player d_animationPlayer;
   BehaviorModelPtr d_behaviorModel;
 
   double d_temperature = 0;
+  double d_volume = 1;
 };

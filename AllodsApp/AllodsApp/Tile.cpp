@@ -2,6 +2,7 @@
 #include "Tile.h"
 
 #include "Avatar.h"
+#include "BehaviorEvents.h"
 #include "Constants.h"
 #include "Mount.h"
 #include "Object.h"
@@ -35,6 +36,8 @@ Sdk::FieldHandled Tile::onFieldNotFound(const std::string& i_name, const Json::V
 
 void Tile::processEvent(const Sdk::IEvent& i_event)
 {
+  if (const auto* event = dynamic_cast<const EntityVolumeChangedEvent*>(&i_event))
+    onVolumeChanged();
 }
 
 
@@ -111,6 +114,8 @@ void Tile::setStructure(const Layer i_layer, StructurePtr i_structure)
   CONTRACT_EXPECT(d_layers[i_layer] == nullptr);
   d_layers[i_layer] = i_structure;
   connectTo(*i_structure);
+
+  onVolumeChanged();
 }
 
 void Tile::resetStructure(const Layer i_layer)
@@ -119,6 +124,8 @@ void Tile::resetStructure(const Layer i_layer)
   CONTRACT_EXPECT(structurePtr);
   disconnectFrom(*structurePtr);
   d_layers.erase(i_layer);
+
+  onVolumeChanged();
 }
 
 
@@ -168,30 +175,19 @@ void Tile::removeAvatar(Avatar& i_avatar)
 bool Tile::isSpaceExposed() const
 {
   // Any wall always makes the space not exposed
-  if (d_layers.find(Layer::Wall) != d_layers.end())
+  if (getStructure(Layer::Wall) != nullptr)
     return false;
 
   // Floor always makes the space not exposed
-  if (d_layers.find(Layer::Floor) != d_layers.end())
+  if (getStructure(Layer::Floor) != nullptr)
     return false;
 
   // Panneling can expose to space or not
-  const auto it = d_layers.find(Layer::Panneling);
-  if (it != d_layers.end())
-    return SAFE_DEREF(it->second).getStructurePrototype().spaceExposure;
+  if (const auto panneling = getStructure(Layer::Panneling))
+    return panneling->getStructurePrototype().spaceExposure;
 
   // If there are no walls, no floors and no panneling, the space is exposed
   return true;
-}
-
-bool Tile::isAirTight() const
-{
-  // Tile can be airtight only if there is a wall structure that is airtight
-  const auto it = d_layers.find(Layer::Wall);
-  if (it != d_layers.end())
-    return SAFE_DEREF(it->second).isAirTight();
-
-  return false;
 }
 
 
@@ -224,4 +220,19 @@ void Tile::leakGasToSpace(const double i_dt)
     const auto gasesToRemove = gasUnit.removeAmountOfGases(gasAmountToRemove);
     gasUnit.removeGases(gasesToRemove);
   }
+}
+
+
+void Tile::onVolumeChanged()
+{
+  double availableVolume = 1;
+
+  // Consider only structures on 'Wall' layer so far
+  if (const auto wallStructure = getStructure(Layer::Wall))
+  {
+    const double occupiedVolume = wallStructure->getVolume();
+    availableVolume = 1 - occupiedVolume;
+  }
+
+  SAFE_DEREF(d_gasUnitThd.getGasUnit()).setVolume(availableVolume);
 }

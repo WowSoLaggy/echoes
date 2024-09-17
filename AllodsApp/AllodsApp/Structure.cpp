@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Structure.h"
 
-#include "DoorBehavior.h"
 #include "Prototypes.h"
 
 
@@ -34,13 +33,4 @@ const StructurePrototype& Structure::getStructurePrototype() const
 FixturePtr Structure::getFixture() const
 {
   return d_fixture;
-}
-
-
-bool Structure::isAirTight() const
-{
-  if (const auto* doorBehavior = getBehaviorModel<DoorBehavior>())
-    return doorBehavior->isAirTight();
-
-  return true;
 }

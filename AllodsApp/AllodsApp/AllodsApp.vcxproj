@@ -244,6 +244,7 @@
     <ClInclude Include="AvatarView.h" />
     <ClInclude Include="BackgroundView.h" />
     <ClInclude Include="BehaviorAction.h" />
+    <ClInclude Include="BehaviorEvents.h" />
     <ClInclude Include="BehaviorModels.h" />
     <ClInclude Include="BuildManager.h" />
     <ClInclude Include="BuildModeView.h" />

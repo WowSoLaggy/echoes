@@ -35,6 +35,8 @@ void DoorBehavior::processEvent(const Sdk::IEvent& i_event)
 {
   if (const auto* event = dynamic_cast<const Dx::AnimationStoppedEvent*>(&i_event))
     onAnimationStopped();
+  else if (const auto* event = dynamic_cast<const Dx::AnimationFrameChangedEvent*>(&i_event))
+    onAnimationUpdated(event->getCurrentFrame(), event->getAnimationLength());
 }
 
 
@@ -96,16 +98,31 @@ void DoorBehavior::close()
 }
 
 
-bool DoorBehavior::isAirTight() const
-{
-  return d_state != State::Open && d_state != State::Closing;
-}
-
-
 void DoorBehavior::onAnimationStopped()
 {
   if (d_state == State::Opening)
+  {
     d_state = State::Open;
+    updateOccupiedVolume(0);
+  }
   else if (d_state == State::Closing)
+  {
     d_state = State::Closed;
+    updateOccupiedVolume(1);
+  }
+}
+
+void DoorBehavior::onAnimationUpdated(const int i_curFrame, const int i_totalFrames)
+{
+  // Update occupied volume
+  if (d_state == State::Opening)
+    updateOccupiedVolume(1.0 - i_curFrame / static_cast<double>(i_totalFrames));
+  else if (d_state == State::Closing)
+    updateOccupiedVolume(i_curFrame / static_cast<double>(i_totalFrames));
+}
+
+
+void DoorBehavior::updateOccupiedVolume(const double i_occupiedVolume)
+{
+  getDoor().setVolume(i_occupiedVolume);
 }
