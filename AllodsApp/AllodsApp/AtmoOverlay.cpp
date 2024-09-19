@@ -10,6 +10,40 @@
 #include <LaggySdk/StringUtils.h>
 
 
+namespace
+{
+  // Map of colors for gases
+  std::unordered_map<Gas, Dx::Color> gasColors = {
+    { Gas::Oxygen, { 0.0f, 0.0f, 1.0f, 1.0f } },
+    { Gas::CarbonDioxide, { 1.0f, 0.5f, 0.0f, 1.0f } },
+  };
+
+  // Get color from gas mixture
+  Dx::Color getColorFromGasMixture(const Dx::thd::GasUnit& i_gasUnit)
+  {
+    const auto& gases = i_gasUnit.getGases();
+    if (gases.empty())
+      return { 0, 0, 0, 0 };
+
+    Dx::Color resultColor;
+    const double totalAmount = i_gasUnit.getGasAmount();
+    for (const auto& [id, amount] : gases)
+    {
+      const double gasShare = (double)amount / totalAmount;
+      const auto& color = gasColors[static_cast<Gas>(id)];
+      resultColor += color * (float)gasShare;
+    }
+
+    const double pressurePa = i_gasUnit.getPressure();
+    const double pressureAtm = Units::paToAtm(pressurePa);
+    const double pressureNorm = Sdk::clamp<double>(pressureAtm / 2, 0, 1);
+    resultColor.a = (float)pressureNorm;
+
+    return resultColor;
+  }
+} // anonym NS
+
+
 AtmoOverlay::AtmoOverlay(const Location& i_location)
   : d_location(i_location)
 {
@@ -28,11 +62,7 @@ Dx::Color AtmoOverlay::getColor(const TileCoord& i_tileCoord) const
   if (!tile)
     return { 0, 0, 0, 0 };
 
-  const double pressurePa = SAFE_DEREF(tile->getGasUnitThd().getGasUnit()).getPressure();
-  const double pressureAtm = Units::paToAtm(pressurePa);
-  const double pressureNorm = Sdk::clamp<double>(pressureAtm / 2, 0, 1);
-
-  return { 0.5f, 1.0f, 0.5f, (float)pressureNorm };
+  return getColorFromGasMixture(SAFE_DEREF(tile->getGasUnitThd().getGasUnit()));
 }
 
 std::string AtmoOverlay::getHint(const TileCoord& i_tileCoord) const

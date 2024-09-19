@@ -134,6 +134,8 @@ std::shared_ptr<Location> LocationCreator::createTest()
   /*SAFE_DEREF(location->getOrCreateTile({ 12, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 19);
   location->getOrCreateTile({ 12, 5 }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(100));*/
 
+  SAFE_DEREF(location->getOrCreateTile({ 8, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm * 9);
+
   // Interior
 
   {
