@@ -34,8 +34,10 @@ private:
   std::string d_name;
 
   Sdk::RectI d_minMaxRect;
-  void updateMinMax(const TileCoord& i_coord);
+  Sdk::RectI d_minMaxRectExpanded;
+  void updateMinMax(const TileCoord& i_coord, bool i_updateExtendedRect = true);
   void updateMinMax();
+  void onMinMaxUpdated();
 
   Tiles d_tiles;
   TileCollection d_tileCollection;

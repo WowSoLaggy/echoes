@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Units.h"
+
+
 namespace Constants
 {
   constexpr int TileSize = 64;
@@ -13,6 +16,7 @@ namespace Constants
 
   constexpr double KelvinOffset = 273.15;
   constexpr double MbrTemperature = 2.7; // temperature that equals to the cosmic microwave background radiation
+  const double DefaultEntityTemperature = Units::celsiusToKelvin(22.0);
 
   constexpr double GasInSpaceDecayFactor = 0.1;
 

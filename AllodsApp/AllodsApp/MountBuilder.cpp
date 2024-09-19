@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MountBuilder.h"
 
+#include "Constants.h"
 #include "Location.h"
 #include "Mount.h"
 #include "ObjectsSpawner.h"
@@ -41,7 +42,8 @@ void MountBuilder::build() const
   CONTRACT_EXPECT(structure);
 
   ObjectsSpawner::despawnMount(*structure, d_fixtureLocation);
-  ObjectsSpawner::spawnMount(d_prototype, *structure, d_fixtureLocation);
+  const auto mountPtr = ObjectsSpawner::spawnMount(d_prototype, *structure, d_fixtureLocation);
+  SAFE_DEREF(mountPtr).setTemperature(Constants::DefaultEntityTemperature);
 }
 
 

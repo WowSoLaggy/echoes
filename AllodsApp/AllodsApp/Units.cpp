@@ -17,18 +17,18 @@ namespace Units
   }
 
 
-  double volumeToLitres(double i_volume)
+  double volumeToLitres(const double i_volume)
   {
     return i_volume * 1000;
   }
 
 
-  double celsiusToKelvin(double i_celsius)
+  double celsiusToKelvin(const double i_celsius)
   {
     return i_celsius + Constants::KelvinOffset;
   }
 
-  double kelvinToCelsius(double i_kelvin)
+  double kelvinToCelsius(const double i_kelvin)
   {
     return i_kelvin - Constants::KelvinOffset;
   }

@@ -1,7 +1,9 @@
 #include "stdafx.h"
 #include "ObjectBuilder.h"
 
+#include "Constants.h"
 #include "Location.h"
+#include "Object.h"
 #include "ObjectsSpawner.h"
 #include "TileUtils.h"
 
@@ -21,7 +23,8 @@ bool ObjectBuilder::canBeBuilt() const
 
 void ObjectBuilder::build() const
 {
-  ObjectsSpawner::spawnObject(d_prototype, d_location, d_position);
+  const auto objectPtr = ObjectsSpawner::spawnObject(d_prototype, d_location, d_position);
+  SAFE_DEREF(objectPtr).setTemperature(Constants::DefaultEntityTemperature);
 }
 
 

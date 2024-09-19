@@ -95,7 +95,7 @@ void Location::update(const double i_dt)
 
 const Sdk::RectI& Location::getRect() const
 {
-  return d_minMaxRect;
+  return d_minMaxRectExpanded;
 }
 
 
@@ -129,7 +129,7 @@ const TilePtr Location::getTile(const TileCoord& i_coord) const
 }
 
 
-void Location::updateMinMax(const TileCoord& i_coord)
+void Location::updateMinMax(const TileCoord& i_coord, const bool i_updateExtendedRect /* = true */)
 {
   if (d_tiles.empty())
   {
@@ -143,6 +143,9 @@ void Location::updateMinMax(const TileCoord& i_coord)
     d_minMaxRect.p2.x = std::max(i_coord.x, d_minMaxRect.p2.x);
     d_minMaxRect.p2.y = std::max(i_coord.y, d_minMaxRect.p2.y);
   }
+
+  if (i_updateExtendedRect)
+    onMinMaxUpdated();
 }
 
 void Location::updateMinMax()
@@ -158,5 +161,12 @@ void Location::updateMinMax()
   d_minMaxRect.p2 = d_tiles.begin()->first;
 
   for (const auto& [coord, _] : d_tiles)
-    updateMinMax(coord);
+    updateMinMax(coord, false);
+
+  onMinMaxUpdated();
+}
+
+void Location::onMinMaxUpdated()
+{
+  d_minMaxRectExpanded = const_cast<const Sdk::RectI&>(d_minMaxRect).expand(1);
 }

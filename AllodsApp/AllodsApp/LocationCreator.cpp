@@ -18,8 +18,7 @@ namespace
   template <typename T>
   T setDefaultTemperature(T i_obj)
   {
-    const double DefaultTemperature = Units::celsiusToKelvin(22);
-    i_obj->setTemperature(DefaultTemperature);
+    i_obj->setTemperature(Constants::DefaultEntityTemperature);
     return i_obj;
   }
 } // anonym NS

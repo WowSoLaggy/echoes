@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "StructureBuilder.h"
 
+#include "Constants.h"
 #include "Location.h"
 #include "ObjectsSpawner.h"
 #include "Prototypes.h"
@@ -38,7 +39,8 @@ void StructureBuilder::build() const
 {
   const auto& structurePrototype = PrototypeUtils::convert<StructurePrototype>(d_prototype);
   ObjectsSpawner::despawnStructure(d_location, d_tileCoords, structurePrototype.layer);
-  ObjectsSpawner::spawnStructure(d_prototype, d_location, d_tileCoords);
+  const auto structurePtr = ObjectsSpawner::spawnStructure(d_prototype, d_location, d_tileCoords);
+  SAFE_DEREF(structurePtr).setTemperature(Constants::DefaultEntityTemperature);
 }
 
 
