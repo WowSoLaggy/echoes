@@ -34,7 +34,7 @@ void ObjectsSpawner::despawnStructure(
   Location& i_location, const TileCoord& i_tileCoord, const Layer i_layer)
 {
   if (auto tile = i_location.getTile(i_tileCoord))
-    tile->resetStructure(i_layer);
+    tile->resetStructureIfExists(i_layer);
 }
 
 

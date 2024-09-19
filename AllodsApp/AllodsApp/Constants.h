@@ -18,7 +18,7 @@ namespace Constants
   constexpr double MbrTemperature = 2.7; // temperature that equals to the cosmic microwave background radiation
   const double DefaultEntityTemperature = Units::celsiusToKelvin(22.0);
 
-  constexpr double GasInSpaceDecayFactor = 0.1;
+  constexpr double GasInSpaceDecayFactor = 0.3;
 
   constexpr double VacuumThermalConductivity = 0;
   constexpr double VacuumHeatCapacity = 1000000;

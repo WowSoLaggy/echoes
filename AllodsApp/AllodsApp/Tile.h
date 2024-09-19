@@ -30,7 +30,7 @@ public:
 
   const StructurePtr getStructure(Layer i_layer) const;
   void setStructure(Layer i_layer, StructurePtr i_structure);
-  void resetStructure(Layer i_layer);
+  void resetStructureIfExists(Layer i_layer);
 
   void addObject(ObjectPtr i_object);
   void addAvatar(AvatarPtr i_avatar);

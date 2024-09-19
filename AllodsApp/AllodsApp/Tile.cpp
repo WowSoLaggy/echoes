@@ -118,9 +118,12 @@ void Tile::setStructure(const Layer i_layer, StructurePtr i_structure)
   onVolumeChanged();
 }
 
-void Tile::resetStructure(const Layer i_layer)
+void Tile::resetStructureIfExists(const Layer i_layer)
 {
-  auto structurePtr = d_layers.at(i_layer);
+  if (!d_layers.contains(i_layer))
+    return;
+
+  const auto structurePtr = d_layers.at(i_layer);
   CONTRACT_EXPECT(structurePtr);
   disconnectFrom(*structurePtr);
   d_layers.erase(i_layer);
