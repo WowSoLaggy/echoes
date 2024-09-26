@@ -76,6 +76,9 @@
     <Filter Include="src\World\Materials">
       <UniqueIdentifier>{0f54042e-bd7d-43d4-8f2f-b9b5dba963e9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\World\Objects\Avatar">
+      <UniqueIdentifier>{0801894c-1425-4a34-9f4f-eb076db82fe4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -240,9 +243,6 @@
     <ClCompile Include="SessionSaver.cpp">
       <Filter>src\Session</Filter>
     </ClCompile>
-    <ClCompile Include="Avatar.cpp">
-      <Filter>src\World\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="TileBaseEntity.cpp">
       <Filter>src\World\Objects</Filter>
     </ClCompile>
@@ -314,6 +314,15 @@
     </ClCompile>
     <ClCompile Include="GasThd.cpp">
       <Filter>src\Thermodyamics</Filter>
+    </ClCompile>
+    <ClCompile Include="Avatar.cpp">
+      <Filter>src\World\Objects\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="IAvatarBehavior.cpp">
+      <Filter>src\World\Objects\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="AvatarBehaviorPlayer.cpp">
+      <Filter>src\World\Objects\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -503,9 +512,6 @@
     <ClInclude Include="SessionSaver.h">
       <Filter>src\Session</Filter>
     </ClInclude>
-    <ClInclude Include="Avatar.h">
-      <Filter>src\World\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="TileBaseEntity.h">
       <Filter>src\World\Objects</Filter>
     </ClInclude>
@@ -562,6 +568,15 @@
     </ClInclude>
     <ClInclude Include="BehaviorEvents.h">
       <Filter>src\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Avatar.h">
+      <Filter>src\World\Objects\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="IAvatarBehavior.h">
+      <Filter>src\World\Objects\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="AvatarBehaviorPlayer.h">
+      <Filter>src\World\Objects\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
