@@ -28,15 +28,15 @@ namespace
     { Material::InsulatedMetal, 0.01 },
     { Material::Glass, 1.0 },
 
-    { Material::Oxygen, 0.025 },
-    { Material::CarbonDioxide, 0.025 },
+    { Material::Oxygen, 0.25 },
+    { Material::CarbonDioxide, 0.25 },
   };
 
   // J / (kg * K)
   const std::unordered_map<Material, double> HeatCapacityMap{
     { Material::Bio, 3500.0 },
 
-    { Material::Metal, 500.0 },
+    { Material::Metal, 500 },
     { Material::InsulatedMetal, 500.0 },
     { Material::Glass, 850.0 },
 

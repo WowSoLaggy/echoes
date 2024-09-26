@@ -27,6 +27,8 @@ public:
   const Avatars& getAvatars() const;
   std::vector<Entity*> getEntities();
   const std::vector<Entity*> getEntities() const;
+  std::vector<Structure*> getStructures();
+  const std::vector<Structure*> getStructures() const;
 
   const StructurePtr getStructure(Layer i_layer) const;
   void setStructure(Layer i_layer, StructurePtr i_structure);

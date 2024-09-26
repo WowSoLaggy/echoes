@@ -100,6 +100,19 @@ const std::vector<Entity*> Tile::getEntities() const
   return const_cast<Tile*>(this)->getEntities();
 }
 
+std::vector<Structure*> Tile::getStructures()
+{
+  std::vector<Structure*> structures;
+  for (const auto& [_, structurePtr] : d_layers)
+    structures.push_back(structurePtr.get());
+  return structures;
+}
+
+const std::vector<Structure*> Tile::getStructures() const
+{
+  return const_cast<Tile*>(this)->getStructures();
+}
+
 
 const StructurePtr Tile::getStructure(Layer i_layer) const
 {

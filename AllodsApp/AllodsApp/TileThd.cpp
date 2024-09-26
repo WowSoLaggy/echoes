@@ -2,6 +2,7 @@
 #include "TileThd.h"
 
 #include "Entity.h"
+#include "Structure.h"
 #include "Tile.h"
 
 
@@ -11,14 +12,26 @@ TileThd::TileThd(Tile& i_tile)
 }
 
 
-std::vector<Dx::thd::IThdObject*> TileThd::getThdObjects() const
+std::vector<Dx::thd::IThdObject*> TileThd::getThdObjectsAll() const
 {
-  std::vector<Dx::thd::IThdObject*> heatAgents;
+  std::vector<Dx::thd::IThdObject*> agents;
   
   for (auto& entity : d_tile.getEntities())
-    heatAgents.push_back(entity);
+    agents.push_back(entity);
 
-  heatAgents.push_back(&d_tile.getGasUnitThd());
+  agents.push_back(&d_tile.getGasUnitThd());
 
-  return heatAgents;
+  return agents;
+}
+
+std::vector<Dx::thd::IThdObject*> TileThd::getThdObjectsExternal() const
+{
+  std::vector<Dx::thd::IThdObject*> agents;
+
+  for (auto& entity : d_tile.getStructures())
+    agents.push_back(entity);
+
+  agents.push_back(&d_tile.getGasUnitThd());
+
+  return agents;
 }

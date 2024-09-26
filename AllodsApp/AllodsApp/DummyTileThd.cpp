@@ -4,9 +4,26 @@
 #include "GasThd.h"
 
 
-std::vector<Dx::thd::IThdObject*> DummyTileThd::getThdObjects() const
+namespace
 {
-  static GasThd gasThd;
+  GasThd& getDummyGasThd()
+  {
+    static GasThd gasThd;
+    return gasThd;
+  }
+} // anonym NS
+
+
+std::vector<Dx::thd::IThdObject*> DummyTileThd::getThdObjectsAll() const
+{
+  auto& gasThd = getDummyGasThd();
+  SAFE_DEREF(gasThd.getGasUnit()).clearGases();
+  return { &gasThd };
+}
+
+std::vector<Dx::thd::IThdObject*> DummyTileThd::getThdObjectsExternal() const
+{
+  auto& gasThd = getDummyGasThd();
   SAFE_DEREF(gasThd.getGasUnit()).clearGases();
   return { &gasThd };
 }

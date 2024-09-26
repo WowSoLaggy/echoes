@@ -95,7 +95,24 @@ std::shared_ptr<Location> LocationCreator::createTest()
 
   createStr("Floor", 8, 7);
   createStr("Door", 8, 7);
-  createStr("Door", 10, 6);
+  const auto& door = createStr("Door", 10, 6);
+
+  door->setTemperature(Units::celsiusToKelvin(50));
+
+  // Small atmo box below
+
+  for (int x = 11; x <= 14; ++x)
+  {
+    createStr("Wall", x, 9);
+    createStr("Wall", x, 11);
+  }
+  createStr("Door", 11, 10);
+  createStr("Wall", 14, 10);
+  createStr("Floor", 12, 10);
+  createStr("Floor", 13, 10);
+  SAFE_DEREF(location->getOrCreateTile({ 12, 10 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm);
+  SAFE_DEREF(location->getOrCreateTile({ 13, 10 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm);
+
 
   // Atmosphere
 
@@ -124,17 +141,17 @@ std::shared_ptr<Location> LocationCreator::createTest()
   {
     for (int x = 11; x <= 13; ++x)
     {
-      SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 8 / 9);
-      SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm * 1 / 9);
+      //SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 8 / 9);
+      //SAFE_DEREF(location->getOrCreateTile({ x, y }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm * 1 / 9);
 
-      location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(22));
+      //location->getOrCreateTile({ x, y }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(50));
     }
   }
 
   /*SAFE_DEREF(location->getOrCreateTile({ 12, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::Oxygen), (int)Constants::PaInOneAtm * 19);
   location->getOrCreateTile({ 12, 5 }).getGasUnitThd().setTemperature(Units::celsiusToKelvin(100));*/
 
-  SAFE_DEREF(location->getOrCreateTile({ 8, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm * 9);
+  //SAFE_DEREF(location->getOrCreateTile({ 8, 5 }).getGasUnitThd().getGasUnit()).addGas(static_cast<Dx::thd::GasId>(Gas::CarbonDioxide), (int)Constants::PaInOneAtm * 9);
 
   // Interior
 
