@@ -12,7 +12,7 @@ public:
   ObjectView(const Dx::ISpriteShader& i_shader);
 
   void render(
-    const Dx::ITexture* i_texture, const Sdk::Vector2I& i_position,
+    const Dx::ITexture* i_texture, const Sdk::Vector2F& i_position,
     int i_animationFrame, Dx::Color i_color = Dx::Colors::White) const;
 
 private:

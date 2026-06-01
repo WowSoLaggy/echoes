@@ -8,14 +8,14 @@
 class ObjectBuilder
 {
 public:
-  ObjectBuilder(Location& i_location, const Sdk::Vector2I& i_position, PrototypePtr i_prototype);
+  ObjectBuilder(Location& i_location, const Sdk::Vector2F& i_position, PrototypePtr i_prototype);
 
   bool canBeBuilt() const;
   void build() const;
 
 private:
   Location& d_location;
-  const Sdk::Vector2I& d_position;
+  const Sdk::Vector2F& d_position;
   PrototypePtr d_prototype;
 
   bool hasStructureAtWallLayer() const;

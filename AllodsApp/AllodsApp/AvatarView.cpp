@@ -12,7 +12,7 @@ AvatarView::AvatarView(const Dx::ISpriteShader& i_shader)
 
 
 void AvatarView::render(
-  const Dx::ITexture* i_texture, const Sdk::Vector2I& i_position,
+  const Dx::ITexture* i_texture, const Sdk::Vector2F& i_position,
   int i_animationFrame, Dx::Color i_color) const
 {
   Dx::AnimatedSprite sprite;

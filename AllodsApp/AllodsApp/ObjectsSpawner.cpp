@@ -89,14 +89,14 @@ void ObjectsSpawner::despawnMount(Location& i_location, const TileCoord& i_coord
 
 
 ObjectPtr ObjectsSpawner::spawnObject(
-  const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position)
+  const PrototypeName& i_name, Location& i_location, Sdk::Vector2F i_position)
 {
   const auto& prototype = PrototypesCollection::getObjectPrototype(i_name);
   return spawnObject(prototype, i_location, i_position);
 }
 
 ObjectPtr ObjectsSpawner::spawnObject(
-  PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position)
+  PrototypePtr i_prototype, Location& i_location, Sdk::Vector2F i_position)
 {
   const auto tileCoord = TileUtils::getTileCoords(i_position);
   auto& tile = i_location.getOrCreateTile(tileCoord);
@@ -119,14 +119,14 @@ void ObjectsSpawner::despawnObject(Location& i_location, Object& i_object)
 
 
 AvatarPtr ObjectsSpawner::spawnAvatar(
-  const PrototypeName& i_name, Location& i_location, Sdk::Vector2I i_position)
+  const PrototypeName& i_name, Location& i_location, Sdk::Vector2F i_position)
 {
   const auto& prototype = PrototypesCollection::getAvatarPrototype(i_name);
   return spawnAvatar(prototype, i_location, i_position);
 }
 
 AvatarPtr ObjectsSpawner::spawnAvatar(
-  PrototypePtr i_prototype, Location& i_location, Sdk::Vector2I i_position)
+  PrototypePtr i_prototype, Location& i_location, Sdk::Vector2F i_position)
 {
   const auto tileCoord = TileUtils::getTileCoords(i_position);
   auto& tile = i_location.getOrCreateTile(tileCoord);

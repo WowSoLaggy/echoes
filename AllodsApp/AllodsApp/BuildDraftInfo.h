@@ -25,5 +25,5 @@ struct BuildMountDraftInfo : public BuildDraftInfo
 
 struct BuildObjectDraftInfo : public BuildDraftInfo
 {
-  Sdk::Vector2I absCoords;
+  Sdk::Vector2F absCoords;
 };

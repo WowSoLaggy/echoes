@@ -230,9 +230,9 @@ void BuildManager::updateBuildDraft()
 
 void BuildManager::updateBuildPosition()
 {
-  const auto& mousePos = Dx::CursorUtils::getPosition();
+  const auto mousePos = Dx::CursorUtils::getPosition().getVector<float>();
   SAFE_DEREF(d_buildDraftInfo).tileCoords = TileUtils::getTileCoords(mousePos, d_session.getCamera());
-  
+
   if (isDraftObject())
     getDraftObject().absCoords = TileUtils::getAbsPosUnderCursor(d_session.getCamera());
 }

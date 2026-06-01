@@ -40,8 +40,8 @@ void MountView::render(
   sprite.setRotation(MountUtils::getRotation(i_fixtureLocation));
 
   const auto basePosition = Sdk::Vector2I{ i_coords.x * Constants::TileSize, i_coords.y * Constants::TileSize };
-  const auto mountPosition = basePosition + MountUtils::getPosition(sprite.getSize(), i_fixtureLocation);
-  sprite.setPosition(mountPosition);
+  const auto mountPosition = basePosition + MountUtils::getPosition(sprite.getSize().getVector<int>(), i_fixtureLocation);
+  sprite.setPosition(mountPosition.getVector<float>());
 
   sprite.setColor(std::move(i_color));
 

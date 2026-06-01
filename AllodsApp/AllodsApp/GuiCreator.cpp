@@ -53,18 +53,18 @@ Dx::Button& GuiCreator::createButton(Dx::IControl& i_parent)
 Dx::Button& GuiCreator::createMenuButton(Dx::IControl& i_parent)
 {
   auto& ctrl = createButton(i_parent);
-  ctrl.setTextureName(Dx::ButtonState::Normal, "Button.png");
-  ctrl.setTextureName(Dx::ButtonState::Hover, "ButtonLight.png");
-  ctrl.setTextureName(Dx::ButtonState::Pressed, "ButtonPressed.png");
+  ctrl.setTextureName("Button.png", Dx::ButtonState::Normal);
+  ctrl.setTextureName("ButtonLight.png", Dx::ButtonState::Hovered);
+  ctrl.setTextureName("ButtonPressed.png", Dx::ButtonState::Pressed);
   return ctrl;
 }
 
 Dx::Button& GuiCreator::createCtxMenuButton(Dx::IControl& i_parent)
 {
   auto& ctrl = createButton(i_parent);
-  ctrl.setTextureName(Dx::ButtonState::Normal, "CtxButton.png");
-  ctrl.setTextureName(Dx::ButtonState::Hover, "CtxButton.png");
-  ctrl.setTextureName(Dx::ButtonState::Pressed, "CtxButtonPressed.png");
+  ctrl.setTextureName("CtxButton.png", Dx::ButtonState::Normal);
+  ctrl.setTextureName("CtxButton.png", Dx::ButtonState::Hovered);
+  ctrl.setTextureName("CtxButtonPressed.png", Dx::ButtonState::Pressed);
   return ctrl;
 }
 

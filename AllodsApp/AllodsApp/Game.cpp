@@ -89,12 +89,12 @@ bool Game::onMouseClick(Dx::MouseKey i_key)
   return false;
 }
 
-void Game::onMouseRelease(Dx::MouseKey i_key)
+bool Game::onMouseRelease(Dx::MouseKey i_key)
 {
   if (d_session)
     d_session->onMouseRelease(i_key);
 
-  App::onMouseRelease(i_key);
+  return App::onMouseRelease(i_key);
 }
 
 

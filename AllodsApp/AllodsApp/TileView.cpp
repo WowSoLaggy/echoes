@@ -51,7 +51,7 @@ void TileView::render(const Dx::ISpriteShader& i_shader, const TileCoord& i_coor
     const auto& structure = SAFE_DEREF(it->second);
 
     structureView.render(
-      structure.getPrototype().texture, { i_coord.x * Constants::TileSize, i_coord.y * Constants::TileSize },
+      structure.getPrototype().texture, { (float)(i_coord.x * Constants::TileSize), (float)(i_coord.y * Constants::TileSize) },
       structure.getAnimationPlayer().getCurrentFrame());
 
     if (const auto fixturePtr = structure.getFixture())

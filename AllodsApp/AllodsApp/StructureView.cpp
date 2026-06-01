@@ -12,7 +12,7 @@ StructureView::StructureView(const Dx::ISpriteShader& i_shader)
 
 
 void StructureView::render(
-  const Dx::ITexture* i_texture, Sdk::Vector2I i_position,
+  const Dx::ITexture* i_texture, Sdk::Vector2F i_position,
   int i_animationFrame, Dx::Color i_color) const
 {
   Dx::AnimatedSprite sprite;

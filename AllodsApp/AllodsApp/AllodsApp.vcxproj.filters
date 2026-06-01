@@ -79,6 +79,9 @@
     <Filter Include="src\World\Objects\Avatar">
       <UniqueIdentifier>{0801894c-1425-4a34-9f4f-eb076db82fe4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="docs">
+      <UniqueIdentifier>{462e1477-1f53-4676-b4e7-cc5f7e55a642}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -578,5 +581,19 @@
     <ClInclude Include="AvatarBehaviorPlayer.h">
       <Filter>src\World\Objects\Avatar</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\CLAUDE.md">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="..\..\!docs\design_document.md">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="..\..\!docs\game_description.md">
+      <Filter>docs</Filter>
+    </None>
+    <None Include="..\..\!docs\lore.md">
+      <Filter>docs</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -15,11 +15,11 @@ void OverlayView::render(
   const IOverlay& i_overlay) const
 {
   Dx::Sprite sprite;
-  sprite.setSize({ Constants::TileSize, Constants::TileSize });
+  sprite.setSize({ (float)Constants::TileSize, (float)Constants::TileSize });
 
   for (const auto& [coord, tile] : i_tiles)
   {
-    sprite.setPosition({ coord.x * Constants::TileSize, coord.y * Constants::TileSize });
+    sprite.setPosition({ (float)(coord.x * Constants::TileSize), (float)(coord.y * Constants::TileSize) });
     sprite.setTexture(Dx::TextureUtils::getTexture("White.png"));
     sprite.setColor(i_overlay.getColor(coord));
 

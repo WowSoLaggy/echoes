@@ -81,14 +81,14 @@ EntityPtr ItemPicker::pick(const Sdk::Vector2I& i_screenPos) const
 EntityPtr ItemPicker::pickAvatar(const Sdk::Vector2I& i_screenPos) const
 {
   const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
-  const auto tileCoord = TileUtils::getTileCoords(i_screenPos, d_session.getCamera());
+  const auto tileCoord = TileUtils::getTileCoords(i_screenPos.getVector<float>(), d_session.getCamera());
   const auto tilesToCheck = collectNeighborTiles(tileCoord, location);
   for (const auto tile : tilesToCheck)
   {
     if (!tile)
       continue;
 
-    if (const auto entityPtr = pickEntity(tile->getAvatars(), i_screenPos, d_session.getCamera().getOffset()))
+    if (const auto entityPtr = pickEntity(tile->getAvatars(), i_screenPos, d_session.getCamera().getOffset().getVector<int>()))
       return entityPtr;
   }
 
@@ -98,14 +98,14 @@ EntityPtr ItemPicker::pickAvatar(const Sdk::Vector2I& i_screenPos) const
 EntityPtr ItemPicker::pickObject(const Sdk::Vector2I& i_screenPos) const
 {
   const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
-  const auto tileCoord = TileUtils::getTileCoords(i_screenPos, d_session.getCamera());
+  const auto tileCoord = TileUtils::getTileCoords(i_screenPos.getVector<float>(), d_session.getCamera());
   const auto tilesToCheck = collectNeighborTiles(tileCoord, location);
   for (const auto tile : tilesToCheck)
   {
     if (!tile)
       continue;
 
-    if (const auto entityPtr = pickEntity(tile->getObjects(), i_screenPos, d_session.getCamera().getOffset()))
+    if (const auto entityPtr = pickEntity(tile->getObjects(), i_screenPos, d_session.getCamera().getOffset().getVector<int>()))
       return entityPtr;
   }
 
@@ -116,9 +116,9 @@ EntityPtr ItemPicker::pickStructureOrMount(const Sdk::Vector2I& i_screenPos) con
 {
   const auto& location = SAFE_DEREF(d_session.getCurrentLocation());
 
-  const auto tileCoords = TileUtils::getTileCoords(i_screenPos, d_session.getCamera());
+  const auto tileCoords = TileUtils::getTileCoords(i_screenPos.getVector<float>(), d_session.getCamera());
   const auto tilePosScreen = TileUtils::getTilePosScreen(tileCoords, d_session.getCamera());
-  const auto hitPos = i_screenPos - tilePosScreen;
+  const auto hitPos = i_screenPos - tilePosScreen.getVector<int>();
 
   const auto tile = location.getTile(tileCoords);
   if (!tile)

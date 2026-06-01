@@ -13,13 +13,13 @@ public:
 
   virtual void pushFields() override;
 
-  void setPosition(Sdk::Vector2I i_position);
-  [[nodiscard]] const Sdk::Vector2I& getPosition() const;
+  void setPosition(Sdk::Vector2F i_position);
+  [[nodiscard]] const Sdk::Vector2F& getPosition() const;
 
   const Sdk::Vector2I& getSize() const;
 
   Sdk::RectI getRect() const;
 
 private:
-  Sdk::Vector2I d_position;
+  Sdk::Vector2F d_position;
 };

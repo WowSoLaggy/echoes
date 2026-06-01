@@ -41,13 +41,13 @@ std::shared_ptr<Location> LocationCreator::createTest()
   };
 
   const auto createObject = [&](
-    const PrototypeName& i_protoName, Sdk::Vector2I i_position)
+    const PrototypeName& i_protoName, Sdk::Vector2F i_position)
   {
     return setDefaultTemperature(ObjectsSpawner::spawnObject(i_protoName, *location, std::move(i_position)));
   };
 
   const auto createAvatar = [&](
-    const PrototypeName& i_protoName, Sdk::Vector2I i_position)
+    const PrototypeName& i_protoName, Sdk::Vector2F i_position)
   {
     return setDefaultTemperature(ObjectsSpawner::spawnAvatar(i_protoName, *location, std::move(i_position)));
   };

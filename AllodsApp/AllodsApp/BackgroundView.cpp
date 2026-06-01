@@ -12,7 +12,7 @@ BackgroundView::BackgroundView()
   d_sprite.setTexture(rc.getTexture("Space.png"));
 
   const auto& rd = Dx::App::get().getRenderDevice();
-  d_sprite.setSize(rd.getResolution());
+  d_sprite.setSize(rd.getResolution().getVector<float>());
 }
 
 
