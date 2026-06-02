@@ -56,6 +56,7 @@ Dx::Button& GuiCreator::createMenuButton(Dx::IControl& i_parent)
   ctrl.setTextureName("Button.png", Dx::ButtonState::Normal);
   ctrl.setTextureName("ButtonLight.png", Dx::ButtonState::Hovered);
   ctrl.setTextureName("ButtonPressed.png", Dx::ButtonState::Pressed);
+  ctrl.resetSizeToTexture();
   return ctrl;
 }
 
@@ -65,6 +66,7 @@ Dx::Button& GuiCreator::createCtxMenuButton(Dx::IControl& i_parent)
   ctrl.setTextureName("CtxButton.png", Dx::ButtonState::Normal);
   ctrl.setTextureName("CtxButton.png", Dx::ButtonState::Hovered);
   ctrl.setTextureName("CtxButtonPressed.png", Dx::ButtonState::Pressed);
+  ctrl.resetSizeToTexture();
   return ctrl;
 }
 
