@@ -7,13 +7,12 @@
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 void GuiManager::showLoadingScreen()
 {
   d_background = &GuiCreator::createPanel(d_game.getForm());
-  d_background->setTexture(Dx::TextureUtils::getTexture("Black.png"));
+  d_background->setTexture("Black.png");
   d_background->setSize(getResolution());
 
   auto& layout = GuiCreator::createLayout(*d_background);

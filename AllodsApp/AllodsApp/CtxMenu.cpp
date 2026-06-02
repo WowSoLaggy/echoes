@@ -12,7 +12,6 @@
 #include <LaggyDx/IFontResource.h>
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 CtxMenu::CtxMenu(InteractionManager& i_interactionManager)
@@ -30,7 +29,7 @@ void CtxMenu::processEvent(const Sdk::IEvent& i_event)
 
 void CtxMenu::setContext(const CtxMenuContent& i_ctxMenuContent)
 {
-  setTexture(Dx::TextureUtils::getTexture("White.png"));
+  setTexture("white.png");
   setColor({ 0.6f, 0.47f, 0.31f, 0.8f });
 
   auto& layout = GuiCreator::createLayout(*this);

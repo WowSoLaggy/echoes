@@ -6,7 +6,6 @@
 
 #include <LaggyDx/ISpriteShader.h>
 #include <LaggyDx/Sprite.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 void OverlayView::render(
@@ -20,7 +19,7 @@ void OverlayView::render(
   for (const auto& [coord, tile] : i_tiles)
   {
     sprite.setPosition({ (float)(coord.x * Constants::TileSize), (float)(coord.y * Constants::TileSize) });
-    sprite.setTexture(Dx::TextureUtils::getTexture("White.png"));
+    sprite.setTexture("white.png");
     sprite.setColor(i_overlay.getColor(coord));
 
     i_shader.draw(sprite);

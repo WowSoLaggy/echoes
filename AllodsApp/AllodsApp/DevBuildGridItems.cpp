@@ -4,7 +4,6 @@
 #include "PrototypesCollection.h"
 
 #include <LaggyDx/GridItem.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 namespace
@@ -20,7 +19,7 @@ namespace
 
 DevBuildGridDestroyItem::DevBuildGridDestroyItem()
 {
-  setTexture(&Dx::TextureUtils::getTexture("Destroy.png"));
+  setTexture("Destroy.png");
 }
 
 

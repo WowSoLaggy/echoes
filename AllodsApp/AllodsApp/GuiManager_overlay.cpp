@@ -13,7 +13,6 @@
 #include <LaggyDx/Label.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 namespace
@@ -54,7 +53,7 @@ void GuiManager::showOverlayUI()
   CONTRACT_EXPECT(!d_overlayPanel);
 
   d_overlayPanel = &GuiCreator::createPanel(*d_inGameGui);
-  d_overlayPanel->setTexture(Dx::TextureUtils::getTexture("White.png"));
+  d_overlayPanel->setTexture("white.png");
   d_overlayPanel->setColor({ 0.5f, 0.5f, 0.5f, 0.5f });
   d_overlayPanel->setSize({ 200, 48 });
   d_overlayPanel->setPosition({ getResolution().x - d_overlayPanel->getSize().x, 0 });
@@ -85,7 +84,7 @@ void GuiManager::showOverlayHintTemp()
   CONTRACT_EXPECT(!d_overlayHint);
 
   d_overlayHint = &GuiCreator::createPanel(*d_inGameGui);
-  d_overlayHint->setTexture(Dx::TextureUtils::getTexture("White.png"));
+  d_overlayHint->setTexture("white.png");
   d_overlayHint->setColor({ 0.6f, 0.47f, 0.31f, 0.8f });
 
   d_overlayHintLabel = &GuiCreator::createLabel(*d_overlayHint);

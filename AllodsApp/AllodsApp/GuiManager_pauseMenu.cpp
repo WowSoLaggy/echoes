@@ -9,7 +9,6 @@
 #include <LaggyDx/Colors.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 void GuiManager::showPauseMenu()
@@ -18,7 +17,7 @@ void GuiManager::showPauseMenu()
 
   d_pauseMenuPanel = &GuiCreator::createPanel(d_game.getForm());
   d_pauseMenuPanel->sendToFront();
-  d_pauseMenuPanel->setTexture(Dx::TextureUtils::getTexture("Black.png"));
+  d_pauseMenuPanel->setTexture("Black.png");
   d_pauseMenuPanel->setSize(getResolution());
   d_pauseMenuPanel->setColor(Dx::colorWithAlpha(Dx::Colors::White, 0.5f));
 

@@ -7,13 +7,12 @@
 #include <LaggyDx/Button.h>
 #include <LaggyDx/Layout.h>
 #include <LaggyDx/Panel.h>
-#include <LaggyDx/TextureUtils.h>
 
 
 void GuiManager::showMainMenu()
 {
   auto& background = GuiCreator::createPanel(d_game.getForm());
-  background.setTexture(Dx::TextureUtils::getTexture("Black.png"));
+  background.setTexture("Black.png");
   background.setSize(getResolution());
 
   auto& layout = GuiCreator::createLayout(d_game.getForm());
