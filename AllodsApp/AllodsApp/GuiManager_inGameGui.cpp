@@ -30,6 +30,7 @@ void GuiManager::showInGameGui()
   {
     auto& btn = GuiCreator::createButton(devModeLayout);
     btn.setTextureName(devMode ? "f1_enabled.png" : "f1_disabled.png");
+    btn.resetSizeToTexture();
     if (!devMode)
       btn.setOnPress(std::bind(&GuiManager::onBtnDevMode, this));
   }
@@ -37,6 +38,7 @@ void GuiManager::showInGameGui()
   {
     auto& btn = GuiCreator::createButton(devModeLayout);
     btn.setTextureName(devMode ? "f2_disabled.png" : "f2_enabled.png");
+    btn.resetSizeToTexture();
     if (devMode)
       btn.setOnPress(std::bind(&GuiManager::onBtnLiveMode, this));
   }
